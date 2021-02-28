@@ -1,0 +1,51 @@
+.btn-wrapper {
+  border-radius: 0;
+  cursor: pointer;
+  display: inline-block;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  outline: 0;
+  z-index: 1;
+  padding: 0.5rem 2em;
+
+  font-size: 0.875rem;
+  margin: 0 auto;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    width: 20px;
+    height: 10px;
+    border-radius: 20px 20px 0 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: -webkit-transform 0.8s linear;
+    transition: -webkit-transform 0.8s linear;
+    transition: transform 0.8s linear;
+    transition: transform 0.8s linear, -webkit-transform 0.8s linear;
+  }
+}
+
+@media (min-width: 73.125rem) {
+  .button--fullscreen {
+    min-width: 21.875rem;
+    padding-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+  }
+  .button--wide {
+    min-width: 10.875rem;
+    padding-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+  }
+  .button__with-icon {
+    min-width: 21.875rem;
+    padding-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+  }
+}

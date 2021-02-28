@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+  <style>
+    .progress-loader {
+      position: relative;
+      display: flex;
+      margin-top: 10rem;
+    }
+
+    
+
+    .main-view {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    body {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      font-family: IRANSans;
+      /* direction: rtl; */
+      /* background-color: #e6e7e8; */
+      padding-right: 80px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: none;
+    }
+  </style>
+
+  <script type="module" src="/build/design-system-hiweb.esm.js"></script>
+  <script nomodule src="/build/design-system-hiweb.js"></script>
+</head>
+
+<body>
+  <div class="main-view">
+    <div style="flex: 1 0 auto">
+      <div>
+        <header>
+          <!-- <nav-right-hiweb array="[{title:'home',icon:Home},{title:'home',icon:Home},{title:'home',icon:Home}]"></nav-right-hiweb> -->
+          <sidebar-admin-hiweb items='[{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]},{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]}]'></sidebar-admin-hiweb>
+        </header>
+      </div>
+
+      <div class="container-fluid">
+        <div class="col">
+          <label>Buttons</label>
+          <button-hiweb title="مشاهده"></button-hiweb>
+          <button-error-hiweb title="مشاهده"></button-error-hiweb>
+          <button-info-hiweb title="مشاهده"></button-info-hiweb>
+          <button-outline-hiweb title="مشاهده"></button-outline-hiweb>
+        </div>
+        <div class="row">
+          <input-hiweb label="ایمیل" validator='["required",{"name":"length","options":{"min":6}},"email"]'></input-hiweb>
+        </div>
+        <div class="row mt-4">
+          <card-news-hiweb background-url="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" title-news="برد استقلال مقابل فولاد"
+            description-news="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است." onclick="showMenu()" btn-text="ادامه متن"></card-news-hiweb>
+        </div>
+
+        <div>
+          <card-accordion-hiweb label="خبر"></card-accordion-hiweb>
+        </div>
+        <div>
+          <table-hiweb></table-hiweb>
+        </div>
+        <div class="row">
+          <label>Loaders</label>
+          <!-- <progress-loader-hiweb-component class="row progress-loader-component"></progress-loader-hiweb-component> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> -->
+</body>
+
+<script>
+  var comp = document.querySelector('input-hiweb');
+  console.log('comp', comp.validator);
+  let validator = [
+    'required',
+    {
+      name: 'length',
+      options: {
+        min: 6,
+      },
+    },
+    // 'fruit',
+    'email',
+  ];
+  comp.validator = validator;
+
+  function showMenu() {
+    console.log('saljgkash');
+  }
+
+  var comp1 = document.querySelector('side-bar');
+    // let validator = [
+    //   'required',
+    //   {
+    //     name: 'length',
+    //     options: {
+    //       min: 6,
+    //     },
+    //   },
+    //   'email',
+    // ];
+    // comp.validator = validator;
+
+    function test(pass){
+      console.log(pass);
+    }
+
+    comp1.onClick = function test(pass){
+      console.log(pass);
+    }
+</script>
+
+</html>

@@ -1,0 +1,15 @@
+.button-outline-wrapper {
+  font-family: inherit;
+  color: $primary-color;
+  background-color: $white-color;
+  border: 1px solid $primary-color;
+
+  &:hover {
+    color: $white-color;
+    &:before {
+      -webkit-transform: scale(100);
+      transform: scale(100);
+      background-color: $primary-color;
+    }
+  }
+}

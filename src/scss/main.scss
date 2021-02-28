@@ -1,0 +1,16 @@
+// Bootstrap globals
+@import '~bootstrap/scss/bootstrap';
+
+@import './variables.scss';
+@import './button.scss';
+//  local style
+.btn {
+  background-color: #001489;
+}
+body {
+  background-color: #b0e0e6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a {
+  text-decoration: none;
+}

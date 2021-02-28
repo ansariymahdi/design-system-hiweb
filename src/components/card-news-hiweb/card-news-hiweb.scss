@@ -1,0 +1,157 @@
+.card-news {
+  float: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  .menu-content {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    &::before {
+      content: '';
+      display: table;
+    }
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    li {
+      display: inline-block;
+    }
+    a {
+      color: #fff;
+    }
+    span {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'Open Sans';
+      transform: translate(-50%, 0);
+    }
+  }
+  .wrapper {
+    background-color: #fff;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      .data {
+        transform: translateY(0);
+      }
+    }
+  }
+  .data {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(calc(70px + 1em));
+    transition: transform 0.3s;
+    .content {
+      padding: 1em;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  .author {
+    font-size: 12px;
+  }
+  .title {
+    margin-top: 10px;
+  }
+  .text {
+    height: 70px;
+    margin: 0;
+  }
+  input[type='checkbox'] {
+    display: none;
+    &:checked {
+      + {
+        .menu-content {
+          transform: translateY(-60px);
+        }
+      }
+    }
+  }
+}
+.example-2 {
+  .wrapper {
+    background: linear-gradient(#04040400, #000000eb);
+    &:hover {
+      .menu-content {
+        span {
+          transform: translate(-50%, -10px);
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .header {
+    color: #fff;
+    padding: 1em;
+    &::before {
+      content: '';
+      display: table;
+    }
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    .date {
+      float: right;
+      font-size: 12px;
+      background: #001489;
+      padding: 7px;
+    }
+  }
+  .menu-content {
+    float: left;
+    li {
+      margin: 0 5px;
+      position: relative;
+    }
+    span {
+      transition: all 0.3s;
+      opacity: 0;
+    }
+  }
+  .data {
+    color: #fff;
+    transform: translateY(calc(70px + 4em));
+  }
+  .title {
+    a {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+  }
+  .button {
+    display: block;
+    width: 100px;
+    margin: 2em auto 1em;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+    position: relative;
+    font-weight: 700;
+    &::after {
+      content: '\2190';
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
+      transition: all 0.3s;
+    }
+    &:hover {
+      &::after {
+        transform: translate(5px, -50%);
+        opacity: 1;
+      }
+    }
+  }
+}

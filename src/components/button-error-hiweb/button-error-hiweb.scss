@@ -1,0 +1,15 @@
+.button-error-wrapper {
+  font-family: inherit;
+  color: $white-color;
+  background-color: $red-color;
+  border: 1px solid $red-color;
+
+  &:hover {
+    color: $red-color;
+    &:before {
+      -webkit-transform: scale(100);
+      transform: scale(100);
+      background-color: $white-color;
+    }
+  }
+}
