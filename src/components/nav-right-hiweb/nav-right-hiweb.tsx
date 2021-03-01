@@ -1,9 +1,12 @@
 import { Component, h, Prop, State } from '@stencil/core';
-// import Home from './../../assets/home.svg';
-// import { Menu } from './../../models/Menu';
-// import { SomeValue } from './../../models/some-value.interface';
-import User from './../../assets/icons/user.svg';
-// import { createPopper } from '@popperjs/core';
+import user from './../../assets/icons/user.svg';
+import google from './../../assets/google.svg';
+import home from './../../assets/home.svg';
+import arrowDown from './../../assets/down-arrow.svg';
+
+const logo = {
+  Home: home
+};
 
 @Component({
   tag: 'nav-right-hiweb',
@@ -11,53 +14,52 @@ import User from './../../assets/icons/user.svg';
   shadow: true,
 })
 export class NavRightHiweb {
-  // private _arrayData: SomeValue[];
   @Prop() array: string;
-  // @Watch('arrayData')
-  // arrayDataWatcher(newValue: SomeValue[] | string) {
-  //   if (typeof newValue === 'string') {
-  //     this._arrayData = JSON.parse(newValue);
-  //   } else {
-  //     this._arrayData = newValue;
-  //   }
-  // }
+  @Prop() onClick;
+  @State() open: boolean = false;
   @State() items: any = [];
 
   componentWillLoad() {
-    console.log(this.array);
-    // for (let entry of this.array) {
-    //   console.log(entry);
-    // }
-    try {
-      this.items = JSON.parse(this.array);
-      console.log(this.items);
-    } catch (e) {}
+    this.items = JSON.parse(this.array);
   }
 
-  // componentWillLoad() {
-  //   this.arrayDataWatcher(this.objectData);
-  // }
+  handleClick = () => {
+    this.open = false;
+    // this.onClick();
+  }
+
+  handleOpen = () => {
+     this.open = !this.open;
+  }
 
   render() {
     return (
-      <nav>
-        <div class="header-wrapper">
-          <div class="header-inner">
-            <a class="logo-nav">
-              <div class="logo-nav-inner"></div>
-            </a>
-            <div class="navigation-btns">
-              {this.items.map(item => (
-                <a class="menu-nav">
-                  <div class="placeholder" innerHTML={item.icon} />
-                  <spen>{item.name}</spen>
-                </a>
-              ))}
+      <nav class={this.open ? 'open' : 'close'}>
+        <div class="header last">
+          <div class="placeholder" innerHTML={google} />
+        </div>
+        <div class="body">
+          {this.items.map(item => (
+            <div>
+              <div
+                class="placeholder item"
+                innerHTML={logo[item.icon]}
+                data-tooltip={item.title}
+                onClick={this.handleClick}
+              />
             </div>
-            <div class="navigation-btns-user">
-              <div class="placeholder" innerHTML={User} />
-            </div>
-          </div>
+          ))}
+        </div>
+        <div class="footer last">
+          <div class="placeholder" innerHTML={user} />
+        </div>
+        <div class="button">
+          <div
+            class="placeholder"
+            innerHTML={arrowDown}
+            onClick={this.handleOpen}
+            onScroll={this.handleOpen}
+          />
         </div>
       </nav>
     );

@@ -36,6 +36,7 @@ export namespace Components {
     }
     interface NavRightHiweb {
         "array": string;
+        "onClick": any;
     }
     interface ProgressLoaderHiweb {
     }
@@ -164,6 +165,7 @@ declare namespace LocalJSX {
     }
     interface NavRightHiweb {
         "array"?: string;
+        "onClick"?: any;
     }
     interface ProgressLoaderHiweb {
     }

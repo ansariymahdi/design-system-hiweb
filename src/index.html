@@ -13,7 +13,10 @@
       margin-top: 10rem;
     }
 
-    
+
+
+
+
 
     .main-view {
       display: -webkit-box;
@@ -43,6 +46,12 @@
       -moz-osx-font-smoothing: grayscale;
       -webkit-text-size-adjust: none;
     }
+
+    @media (max-width: 600px) {
+      body {
+        padding-right: 0;
+      }
+    }
   </style>
 
   <script type="module" src="/build/design-system-hiweb.esm.js"></script>
@@ -54,8 +63,8 @@
     <div style="flex: 1 0 auto">
       <div>
         <header>
-          <!-- <nav-right-hiweb array="[{title:'home',icon:Home},{title:'home',icon:Home},{title:'home',icon:Home}]"></nav-right-hiweb> -->
-          <sidebar-admin-hiweb items='[{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]},{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]}]'></sidebar-admin-hiweb>
+          <nav-right-hiweb array='[{"title":"home","icon":"Home"},{"title":"home","icon":"Home"},{"title":"home","icon":"Home"}]'></nav-right-hiweb>
+          <!-- <sidebar-admin-hiweb items='[{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]},{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]}]'></sidebar-admin-hiweb> -->
         </header>
       </div>
 
@@ -111,7 +120,7 @@
     console.log('saljgkash');
   }
 
-  var comp1 = document.querySelector('side-bar');
+  var comp1 = document.querySelector('nav-right-hiweb');
     // let validator = [
     //   'required',
     //   {
@@ -128,9 +137,10 @@
       console.log(pass);
     }
 
-    comp1.onClick = function test(pass){
+    comp1.test = function test(pass){
       console.log(pass);
     }
+
 </script>
 
 </html>

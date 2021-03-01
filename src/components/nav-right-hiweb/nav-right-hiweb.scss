@@ -1,84 +1,162 @@
-.header-wrapper {
+nav {
   position: fixed;
-  z-index: 1000;
+  z-index: 9999;
+  height: 100vh;
+  width: 80px;
   top: 0;
   right: 0;
-  width: 80px;
-  height: 100%;
   background-color: #fdfdfd;
-  border: 1px solid rgba(87, 87, 86, 0.2);
+  border: 0 solid rgba(87, 87, 86, 0.2);
   -webkit-box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
-  border-width: 0 0 0 1px;
-}
-.header-inner a {
-  display: block;
-}
-.logo-nav {
-  display: block;
-  max-width: 60px;
-  margin: 10px auto;
-}
-.logo-nav .logo-nav-inner {
-  width: 60px;
-  height: 60px;
-  background-image: url('/assets/images/logo.png');
-  background-size: 60px 60px;
-}
-.placeholder {
-  text-align: center;
-  svg {
-    width: 20px;
-    height: 20px;
-  }
-}
-.navigation-btns {
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-.navigation-btns-user {
-  position: absolute;
-  width: 100%;
-  bottom: 0%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  a {
-    padding: 10px 0;
-    margin-top: 20px;
-    position: relative;
-  }
-}
-.navigation-btns,
-.action-btns {
-  position: absolute;
-  width: 100%;
+  border-left-width: 1px;
+  transition-duration: 1.5s;
 }
 
-.navigation-btns .menu-nav {
-  height: 42px;
+.last {
+  width: 100%;
+  position: absolute;
+  height: 80px;
 }
-.navigation-btns > a {
-  position: relative;
+
+.header {
+  z-index: 3;
+  top: 0;
 }
-.navigation-btns {
-  a {
-    padding: 10px 0;
-    margin-top: 20px;
-    position: relative;
+
+.header .placeholder, .footer .placeholder, .button .placeholder {
+  height: 80px;
+  svg {
+    width: 60px;
+    height: 60px;
   }
-  .action-btns {
-    a {
-      padding: 10px 0;
-      margin-top: 20px;
-      position: relative;
+}
+
+.body {
+  --scale-body: 1;
+  z-index: 2;
+  height: calc(100% - 160px);
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: scale(var(--scale-body));
+  transition: 1s transform;
+  transform-origin: bottom center;
+}
+
+.body .placeholder {
+  margin: 15px 0;
+  height: 40px;
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.footer {
+  --scale-footer: 1;
+  bottom: 0;
+  z-index: 1;
+  transform: scale(var(--scale-footer));
+  transition: 1s transform;
+  transform-origin: bottom center;
+}
+
+.button {
+  position: absolute;
+  height: 80px;
+  width: 100%;
+  bottom: -80px;
+  cursor: pointer;
+  transition: 1s transform;
+  svg {
+    transition: 1s transform;
+  }
+}
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  position: relative;
+  cursor: pointer;
+}
+
+.item::before,
+.item::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: #333;
+
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateX(var(--translate-y, 0)) translateY(-50%) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: right center;
+}
+
+.item::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+
+  content: attr(data-tooltip);
+  color: white;
+  padding: .5rem;
+  border-radius: .3rem;
+  text-align: center;
+  width: max-content;
+  background: var(--tooltip-color);
+}
+
+.item:hover::before,
+.item:hover::after {
+  --scale: 1;
+}
+
+.item::after {
+  --translate-y: calc(-1 * var(--arrow-size) - 1px);
+
+  content: '';
+  border: var(--arrow-size) solid transparent;
+  border-left-color: var(--tooltip-color);
+  transform-origin: left center;
+}
+
+@media (max-width: 600px) {
+  .open {
+    .body {
+      height: calc(100% - 240px);
+    }
+    .footer {
+      bottom: 80px;
+    }
+    .button {
+      transform: translateY(-80px);
+      svg {
+        transform: rotate(180deg);
+      }
     }
   }
-}
-#tooltip {
-  background-color: #333;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 13px;
+  .close {
+    height: 160px;
+    .body {
+      --scale-body: 0;
+      transform-origin: top center;
+    }
+    .footer {
+      bottom: 80px;
+      --scale-footer: 0;
+      transform-origin: top center;
+    }
+    .button {
+      transform: translateY(-80px);
+    }
+  }
 }
