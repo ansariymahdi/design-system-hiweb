@@ -90,6 +90,13 @@ nav {
   align-items: center;
 }
 
+.footer {
+  .item::before,
+  .item::after {
+    left: 0px;
+  }
+}
+
 .item {
   position: relative;
   cursor: pointer;
@@ -154,6 +161,11 @@ nav {
       width: 35px;
       height: 35px;
     }
+  }
+
+  .item::before,
+  .item::after {
+    left: -12px;
   }
 
   .open {
