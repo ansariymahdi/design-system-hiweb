@@ -38,6 +38,7 @@ export namespace Components {
         "array": any;
         "arrayString": string;
         "onClick": any;
+        "userIcon": {title: string,icon: string, path: string};
     }
     interface ProgressLoaderHiweb {
     }
@@ -170,6 +171,7 @@ declare namespace LocalJSX {
         "array"?: any;
         "arrayString"?: string;
         "onClick"?: any;
+        "userIcon"?: {title: string,icon: string, path: string};
     }
     interface ProgressLoaderHiweb {
     }

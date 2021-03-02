@@ -119,15 +119,18 @@
   const items = [
     {
       title: "home",
-      icon: "home"
+      icon: "home",
+      path: '/',
     },
     {
       title: "برای تست تست می‌کنم",
-      icon: "facebook"
+      icon: "facebook",
+      path: '/',
     },
     {
       title: "home",
-      icon: "instagram"
+      icon: "instagram",
+      path: '/',
     }
   ];
 
@@ -135,8 +138,15 @@
     console.log(pass);
   }
 
+  const user = {
+    title: 'user',
+    path: '//',
+    icon: 'user',
+  }
+
+  comp1.userIcon = user;
   comp1.array = items;
-  comp1.test = function test(pass) {
+  comp1.onClick = function test(pass) {
     console.log(pass);
   }
 </script>

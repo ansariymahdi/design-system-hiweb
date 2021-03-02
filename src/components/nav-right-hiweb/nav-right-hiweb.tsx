@@ -1,5 +1,4 @@
 import { Component, h, Prop, State } from '@stencil/core';
-import user from './../../assets/icons/user.svg';
 import logoTest from './../../assets/icons/esteghlal_logo.svg';
 // import home from './../../assets/home.svg';
 import arrowDown from './../../assets/icons/down-arrow.svg';
@@ -14,6 +13,7 @@ export class NavRightHiweb {
   @Prop() array: any;
   @Prop() arrayString: string;
   @Prop() onClick;
+  @Prop({attribute: 'user'}) userIcon: {title: string,icon: string, path: string};
   @State() open: boolean = false;
   @State() items: any = [];
 
@@ -23,14 +23,13 @@ export class NavRightHiweb {
     } else {
       this.items = this.array;
     }
-    console.log(this.items);
-
+    console.log('test', this.userIcon);
 
   }
 
-  handleClick = () => {
+  handleClick = path => {
     this.open = false;
-    // this.onClick();
+    this.onClick(path);
   }
 
   handleOpen = () => {
@@ -50,16 +49,17 @@ export class NavRightHiweb {
                 class="placeholder item"
                 innerHTML={icons[item.icon]}
                 data-tooltip={item.title}
-                onClick={this.handleClick}
+                onClick={() => this.handleClick(item.path)}
               />
             </div>
           ))}
         </div>
         <div class="footer last">
           <div
-            class="placeholder"
-            innerHTML={user}
-            onClick={this.handleClick}
+            class="placeholder item"
+            innerHTML={icons[this.userIcon.icon]}
+            data-tooltip={this.userIcon.title}
+            onClick={() => this.handleClick(this.userIcon.path)}
           />
         </div>
         <div class="button">
