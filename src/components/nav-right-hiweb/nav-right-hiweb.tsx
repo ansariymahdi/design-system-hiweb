@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 import logoTest from './../../assets/icons/esteghlal_logo.svg';
 // import home from './../../assets/home.svg';
 import arrowDown from './../../assets/icons/down-arrow.svg';
@@ -12,7 +12,7 @@ import icons from './../../modules/iconsList';
 export class NavRightHiweb {
   @Prop() array: any;
   @Prop() arrayString: string;
-  @Prop() onClick;
+  @Event() onClick: EventEmitter;
   @Prop({attribute: 'user'}) userIcon: {title: string,icon: string, path: string};
   @State() open: boolean = false;
   @State() items: any = [];
@@ -29,7 +29,7 @@ export class NavRightHiweb {
 
   handleClick = path => {
     this.open = false;
-    this.onClick(path);
+    this.onClick.emit(path);
   }
 
   handleOpen = () => {
