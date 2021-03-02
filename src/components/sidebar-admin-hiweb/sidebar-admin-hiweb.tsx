@@ -1,8 +1,8 @@
 import { Component, h, Prop, State } from '@stencil/core';
 
-import deleteIcon from '../../assets/x-mark.svg';
-import menu from '../../assets/menu.svg';
-import back from '../../assets/back.svg';
+import deleteIcon from '../../assets/icons/x-mark.svg';
+import menu from '../../assets/icons/menu.svg';
+import back from '../../assets/icons/back.svg';
 
 const icons = {
   'deleteIcon': deleteIcon,

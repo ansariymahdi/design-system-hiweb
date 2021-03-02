@@ -1,12 +1,9 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import user from './../../assets/icons/user.svg';
-import google from './../../assets/google.svg';
-import home from './../../assets/home.svg';
-import arrowDown from './../../assets/down-arrow.svg';
-
-const logo = {
-  Home: home
-};
+import logoTest from './../../assets/icons/esteghlal_logo.svg';
+// import home from './../../assets/home.svg';
+import arrowDown from './../../assets/icons/down-arrow.svg';
+import icons from './../../modules/iconsList';
 
 @Component({
   tag: 'nav-right-hiweb',
@@ -26,6 +23,8 @@ export class NavRightHiweb {
     } else {
       this.items = this.array;
     }
+    console.log(this.items);
+
 
   }
 
@@ -42,14 +41,14 @@ export class NavRightHiweb {
     return (
       <nav class={this.open ? 'open' : 'close'}>
         <div class="header last">
-          <div class="placeholder" innerHTML={google} />
+          <div class="placeholder" innerHTML={logoTest} />
         </div>
         <div class="body">
           {this.items.map(item => (
             <div>
               <a
                 class="placeholder item"
-                innerHTML={logo[item.icon]}
+                innerHTML={icons[item.icon]}
                 data-tooltip={item.title}
                 onClick={this.handleClick}
               />
