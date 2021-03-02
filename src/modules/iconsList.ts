@@ -21,6 +21,8 @@ import user from './../assets/icons/user.svg';
 import usersTalking from './../assets/icons/users-talking.svg';
 import whatsapp from './../assets/icons/whatsapp.svg';
 import xMark from './../assets/icons/x-mark.svg';
+import newsPaper from './../assets/icons/newspaper.svg';
+import table from './../assets/icons/table.svg';
 
 const icons = {
   arrowUp,
@@ -45,7 +47,9 @@ const icons = {
   user,
   usersTalking,
   whatsapp,
-  xMark
+  xMark,
+  newsPaper,
+  table
 }
 
 export default icons
