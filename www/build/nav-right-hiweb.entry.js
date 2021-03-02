@@ -115,7 +115,12 @@ const NavRightHiweb = class {
     };
   }
   componentWillLoad() {
-    this.items = JSON.parse(this.array);
+    if (this.arrayString) {
+      this.items = JSON.parse(this.arrayString);
+    }
+    else {
+      this.items = this.array;
+    }
   }
   render() {
     return (h("nav", { class: this.open ? 'open' : 'close' }, h("div", { class: "header last" }, h("div", { class: "placeholder", innerHTML: google })), h("div", { class: "body" }, this.items.map(item => (h("div", null, h("a", { class: "placeholder item", innerHTML: logo[item.icon], "data-tooltip": item.title, onClick: this.handleClick }))))), h("div", { class: "footer last" }, h("div", { class: "placeholder", innerHTML: user, onClick: this.handleClick })), h("div", { class: "button" }, h("div", { class: "placeholder", innerHTML: arrowDown, onClick: this.handleOpen, onScroll: this.handleOpen }))));

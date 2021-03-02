@@ -14,13 +14,19 @@ const logo = {
   shadow: true,
 })
 export class NavRightHiweb {
-  @Prop() array: string;
+  @Prop() array: any;
+  @Prop() arrayString: string;
   @Prop() onClick;
   @State() open: boolean = false;
   @State() items: any = [];
 
   componentWillLoad() {
-    this.items = JSON.parse(this.array);
+    if (this.arrayString) {
+      this.items = JSON.parse(this.arrayString);
+    } else {
+      this.items = this.array;
+    }
+
   }
 
   handleClick = () => {
