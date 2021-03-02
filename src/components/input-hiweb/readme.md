@@ -9,7 +9,6 @@
 
 | Property        | Attribute   | Description | Type      | Default     |
 | --------------- | ----------- | ----------- | --------- | ----------- |
-| `error`         | `error`     |             | `string`  | `undefined` |
 | `label`         | `label`     |             | `string`  | `undefined` |
 | `valid`         | `valid`     |             | `boolean` | `undefined` |
 | `validatorProp` | `validator` |             | `string`  | `undefined` |

@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type    | Default                                                                       |
-| ---------- | --------- | ----------- | ------- | ----------------------------------------------------------------------------- |
-| `menuList` | --        |             | `any[]` | `[     { title: 'home', icon: Home },     { title: 'home', icon: Home },   ]` |
+| Property  | Attribute  | Description | Type     | Default     |
+| --------- | ---------- | ----------- | -------- | ----------- |
+| `array`   | `array`    |             | `string` | `undefined` |
+| `onClick` | `on-click` |             | `any`    | `undefined` |
 
 
 ----------------------------------------------

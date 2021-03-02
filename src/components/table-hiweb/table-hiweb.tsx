@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'table-hiweb',
@@ -6,53 +6,54 @@ import { Component, h } from '@stencil/core';
   shadow: true,
 })
 export class TableHiweb {
+  @Prop({ attribute: 'data' }) dataProp: string;
+  @State() data: {head: {title: string, options: string[]}[], body: string[][]};
+  @State() options: string[][] = [];
+
+  componentWillLoad() {
+    this.data = JSON.parse(this.dataProp);
+    this.options = this.data.head.map(({options}) => {
+      return (options);
+    });
+  }
+
+  renderHead = () => {
+    return (
+      <tr>
+        {
+          this.data.head.map(({title, options}) => {
+            return (
+              <th class={options.join(' ')}>{title}</th>
+            );
+          })
+        }
+      </tr>
+    );
+  }
+
+  renderRow = dataArray => {
+    return (
+      <tr>
+        {dataArray.map((data, index) => {
+          return (
+            <td class={this.options[index].join(' ')}>{data}</td>
+          );
+        })}
+      </tr>
+    );
+  }
+
   render() {
     return (
       <div class="table-responsive">
         <table class="table text-right">
           <thead>
-            <tr>
-              <th>ردیف</th>
-              <th>موضوع</th>
-              <th>موضوع</th>
-
-              <th></th>
-            </tr>
+            {this.renderHead()}
           </thead>
           <tbody>
-            <tr>
-              <th>ردیف</th>
-              <th>موضوع</th>
-              <th>موضوع</th>
-
-              <th></th>
-            </tr>
-            {/* {
-                                            optionGroups.length !== 0 ?
-
-                                                optionGroups.map((item, index) => (
-                                                    <tr>
-                                                        <th >{index + 1}</th>
-                                                        <td>{item?.groupName}</td>
-                                                        <td>{item?.options[0]?.title}</td>
-                                                        <td>{item?.options[1]?.title}</td>
-
-                                                        <td>
-                                                            <ul className=" mr-auto list-inline">
-                                                                <li class="list-inline-item"><a><i className="feather icon-edit-2" /></a></li>
-                                                                <li class="list-inline-item"><a><i className="feather icon-trash-2" /></a></li>
-                                                            </ul>
-
-                                                        </td>
-                                                    </tr>
-
-                                                ))
-
-                                                : <div></div>
-
-
-
-                                        } */}
+            {
+              this.data.body.map(eachRow => this.renderRow(eachRow))
+            }
           </tbody>
         </table>
       </div>

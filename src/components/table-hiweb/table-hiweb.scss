@@ -6,11 +6,13 @@ $primary-color: #04a9f5;
 $dark-color: #37474f;
 .table {
   color: #888;
+  direction: rtl;
   td,
   th {
     border-top: 1px solid $theme-border;
     white-space: nowrap;
     padding: 1.05rem 0.75rem;
+    text-align: right;
   }
 
   thead th {
@@ -26,6 +28,17 @@ $dark-color: #37474f;
     td {
       padding: 0.35rem;
     }
+  }
+  .left {
+    text-align: left;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
   }
 }
 /* Border versions */
@@ -163,3 +176,9 @@ table {
 }
 /**====== Foo-table css end ======**/
 /**====== Data Tables css end ======**/
+
+@media (max-width: 600px) {
+  .hide {
+    display: none;
+  }
+}

@@ -49,6 +49,7 @@ export namespace Components {
         "textcolor": any;
     }
     interface TableHiweb {
+        "dataProp": string;
     }
 }
 declare global {
@@ -178,6 +179,7 @@ declare namespace LocalJSX {
         "textcolor"?: any;
     }
     interface TableHiweb {
+        "dataProp"?: string;
     }
     interface IntrinsicElements {
         "button-error-hiweb": ButtonErrorHiweb;

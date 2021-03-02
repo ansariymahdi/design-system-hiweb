@@ -51,7 +51,11 @@ export class NavRightHiweb {
           ))}
         </div>
         <div class="footer last">
-          <div class="placeholder" innerHTML={user} />
+          <div
+            class="placeholder"
+            innerHTML={user}
+            onClick={this.handleClick}
+          />
         </div>
         <div class="button">
           <div
