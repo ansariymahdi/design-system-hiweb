@@ -1,7 +1,7 @@
 {
   "name": "design-system-hiweb",
-  "version": "0.0.3",
-  "description": "Stencil Component Starter",
+  "version": "0.0.4",
+  "description": "hiweb components",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
