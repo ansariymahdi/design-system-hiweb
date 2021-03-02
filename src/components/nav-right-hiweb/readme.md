@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property  | Attribute  | Description | Type     | Default     |
-| --------- | ---------- | ----------- | -------- | ----------- |
-| `array`   | `array`    |             | `string` | `undefined` |
-| `onClick` | `on-click` |             | `any`    | `undefined` |
+| Property      | Attribute      | Description | Type     | Default     |
+| ------------- | -------------- | ----------- | -------- | ----------- |
+| `array`       | `array`        |             | `any`    | `undefined` |
+| `arrayString` | `array-string` |             | `string` | `undefined` |
+| `onClick`     | `on-click`     |             | `any`    | `undefined` |
 
 
 ----------------------------------------------
