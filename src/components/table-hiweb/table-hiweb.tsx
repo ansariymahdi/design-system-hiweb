@@ -6,12 +6,22 @@ import { Component, h, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class TableHiweb {
-  @Prop({ attribute: 'data' }) dataProp: string;
+  @Prop({ attribute: 'data' }) dataProp: {head: {title: string, options: string[]}[], body: string[][]};
+  @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @State() data: {head: {title: string, options: string[]}[], body: string[][]};
   @State() options: string[][] = [];
 
   componentWillLoad() {
-    this.data = JSON.parse(this.dataProp);
+    if (this.dataStringProp) {
+      console.log('bye');
+
+      this.data = JSON.parse(this.dataStringProp);
+    } else {
+      console.log('hi');
+
+      this.data = this.dataProp;
+    }
+
     this.options = this.data.head.map(({options}) => {
       return (options);
     });

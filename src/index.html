@@ -83,7 +83,7 @@
           <card-accordion-hiweb label="خبر"></card-accordion-hiweb>
         </div>
         <div>
-          <table-hiweb data='{"head":[{"title":"test1","options":["left"]},{"title":"test2","options":["hide"]},{"title":"test3","options":[]}],"body":[["assdfsdf","asdfasdkh","alksjdhfaksjd"],["assdfsdf","asdfasdkh","alksjdhfaksjd"],["assdfsdf","asdfasdkh","alksjdhfaksjd"],["assdfsdf","asdfasdkh","alksjdhfaksjd"]],"foot":["test4","test5","test6"]}'></table-hiweb>
+          <table-hiweb dataString='{"head":[{"title":"test1","options":["left"]},{"title":"test2","options":["hide"]},{"title":"test3","options":[]}],"body":[["assdfsdf","asdfasdkh","alksjdhfaksjd"],["assdfsdf","asdfasdkh","alksjdhfaksjd"],["assdfsdf","asdfasdkh","alksjdhfaksjd"],["assdfsdf","asdfasdkh","alksjdhfaksjd"]],"foot":["test4","test5","test6"]}'></table-hiweb>
         </div>
         <div class="row">
           <label>Loaders</label>
@@ -116,10 +116,26 @@
 
   var comp1 = document.querySelector('nav-right-hiweb');
 
+  const items = [
+    {
+      title: "home",
+      icon: "Home"
+    },
+    {
+      title: "برای تست تست می‌کنم",
+      icon: "Home"
+    },
+    {
+      title: "home",
+      icon: "Home"
+    }
+  ];
+
   function test(pass) {
     console.log(pass);
   }
 
+  comp1.data = items;
   comp1.test = function test(pass) {
     console.log(pass);
   }
