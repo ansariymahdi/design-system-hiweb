@@ -13,11 +13,6 @@
       margin-top: 10rem;
     }
 
-
-
-
-
-
     .main-view {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -63,7 +58,7 @@
     <div style="flex: 1 0 auto">
       <div>
         <header>
-          <nav-right-hiweb array='[{"title":"home","icon":"Home"},{"title":"home","icon":"Home"},{"title":"home","icon":"Home"}]'></nav-right-hiweb>
+          <nav-right-hiweb array='[{"title":"home","icon":"Home"},{"title":"برای تست تست می‌کنم","icon":"Home"},{"title":"home","icon":"Home"}]'></nav-right-hiweb>
           <!-- <sidebar-admin-hiweb items='[{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]},{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]}]'></sidebar-admin-hiweb> -->
         </header>
       </div>
@@ -97,7 +92,6 @@
       </div>
     </div>
   </div>
-  <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> -->
 </body>
 
 <script>
@@ -121,26 +115,14 @@
   }
 
   var comp1 = document.querySelector('nav-right-hiweb');
-    // let validator = [
-    //   'required',
-    //   {
-    //     name: 'length',
-    //     options: {
-    //       min: 6,
-    //     },
-    //   },
-    //   'email',
-    // ];
-    // comp.validator = validator;
 
-    function test(pass){
-      console.log(pass);
-    }
+  function test(pass) {
+    console.log(pass);
+  }
 
-    comp1.test = function test(pass){
-      console.log(pass);
-    }
-
+  comp1.test = function test(pass) {
+    console.log(pass);
+  }
 </script>
 
 </html>

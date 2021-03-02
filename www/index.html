@@ -4,11 +4,6 @@
       margin-top: 10rem;
     }
 
-
-
-
-
-
     .main-view {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -42,7 +37,7 @@
       body {
         padding-right: 0;
       }
-    }</style> <script type="module" src="/build/design-system-hiweb.esm.js" data-stencil></script> <script nomodule="" src="/build/design-system-hiweb.js" data-stencil></script> </head> <body> <div class="main-view"> <div style="flex: 1 0 auto;"> <div> <header> <nav-right-hiweb array="[{&quot;title&quot;:&quot;home&quot;,&quot;icon&quot;:&quot;Home&quot;},{&quot;title&quot;:&quot;home&quot;,&quot;icon&quot;:&quot;Home&quot;},{&quot;title&quot;:&quot;home&quot;,&quot;icon&quot;:&quot;Home&quot;}]"></nav-right-hiweb> <!-- <sidebar-admin-hiweb items='[{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]},{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]}]'></sidebar-admin-hiweb> --> </header> </div> <div class="container-fluid"> <div class="col"> <label>Buttons</label> <button-hiweb title="مشاهده"></button-hiweb> <button-error-hiweb title="مشاهده"></button-error-hiweb> <button-info-hiweb title="مشاهده"></button-info-hiweb> <button-outline-hiweb title="مشاهده"></button-outline-hiweb> </div> <div class="row"> <input-hiweb label="ایمیل" validator="[&quot;required&quot;,{&quot;name&quot;:&quot;length&quot;,&quot;options&quot;:{&quot;min&quot;:6}},&quot;email&quot;]"></input-hiweb> </div> <div class="row mt-4"> <card-news-hiweb background-url="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" title-news="برد استقلال مقابل فولاد" description-news="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است." onclick="showMenu()" btn-text="ادامه متن"></card-news-hiweb> </div> <div> <card-accordion-hiweb label="خبر"></card-accordion-hiweb> </div> <div> <table-hiweb></table-hiweb> </div> <div class="row"> <label>Loaders</label> <!-- <progress-loader-hiweb-component class="row progress-loader-component"></progress-loader-hiweb-component> --> </div> </div> </div> </div> <!-- <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component> --> <script>
+    }</style> <script type="module" src="/build/design-system-hiweb.esm.js" data-stencil></script> <script nomodule="" src="/build/design-system-hiweb.js" data-stencil></script> </head> <body> <div class="main-view"> <div style="flex: 1 0 auto;"> <div> <header> <nav-right-hiweb array="[{&quot;title&quot;:&quot;home&quot;,&quot;icon&quot;:&quot;Home&quot;},{&quot;title&quot;:&quot;برای تست تست می‌کنم&quot;,&quot;icon&quot;:&quot;Home&quot;},{&quot;title&quot;:&quot;home&quot;,&quot;icon&quot;:&quot;Home&quot;}]"></nav-right-hiweb> <!-- <sidebar-admin-hiweb items='[{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]},{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"deleteIcon","path":"/something"}]}]'></sidebar-admin-hiweb> --> </header> </div> <div class="container-fluid"> <div class="col"> <label>Buttons</label> <button-hiweb title="مشاهده"></button-hiweb> <button-error-hiweb title="مشاهده"></button-error-hiweb> <button-info-hiweb title="مشاهده"></button-info-hiweb> <button-outline-hiweb title="مشاهده"></button-outline-hiweb> </div> <div class="row"> <input-hiweb label="ایمیل" validator="[&quot;required&quot;,{&quot;name&quot;:&quot;length&quot;,&quot;options&quot;:{&quot;min&quot;:6}},&quot;email&quot;]"></input-hiweb> </div> <div class="row mt-4"> <card-news-hiweb background-url="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" title-news="برد استقلال مقابل فولاد" description-news="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است." onclick="showMenu()" btn-text="ادامه متن"></card-news-hiweb> </div> <div> <card-accordion-hiweb label="خبر"></card-accordion-hiweb> </div> <div> <table-hiweb></table-hiweb> </div> <div class="row"> <label>Loaders</label> <!-- <progress-loader-hiweb-component class="row progress-loader-component"></progress-loader-hiweb-component> --> </div> </div> </div> </div> <script>
   var comp = document.querySelector('input-hiweb');
   console.log('comp', comp.validator);
   let validator = [
@@ -63,26 +58,14 @@
   }
 
   var comp1 = document.querySelector('nav-right-hiweb');
-    // let validator = [
-    //   'required',
-    //   {
-    //     name: 'length',
-    //     options: {
-    //       min: 6,
-    //     },
-    //   },
-    //   'email',
-    // ];
-    // comp.validator = validator;
 
-    function test(pass){
-      console.log(pass);
-    }
+  function test(pass) {
+    console.log(pass);
+  }
 
-    comp1.test = function test(pass){
-      console.log(pass);
-    }
-
+  comp1.test = function test(pass) {
+    console.log(pass);
+  }
 </script> <script>
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   // auto-unregister service worker during dev mode

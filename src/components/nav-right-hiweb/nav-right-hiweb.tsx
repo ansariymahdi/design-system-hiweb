@@ -41,7 +41,7 @@ export class NavRightHiweb {
         <div class="body">
           {this.items.map(item => (
             <div>
-              <div
+              <a
                 class="placeholder item"
                 innerHTML={logo[item.icon]}
                 data-tooltip={item.title}
