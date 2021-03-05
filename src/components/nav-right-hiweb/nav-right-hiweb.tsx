@@ -17,6 +17,7 @@ export class NavRightHiweb {
   @State() open: boolean = false;
   @State() items: any = [];
   @State() switch: boolean = false;
+  @Event() toggleTheme: EventEmitter;
 
   componentWillLoad() {
 
@@ -38,9 +39,14 @@ export class NavRightHiweb {
      this.open = !this.open;
   }
 
+  toggleSwitch = () => {
+    this.switch = !this.switch;
+    this.onClick.emit(this.switch);
+  }
+
   render() {
     return (
-      <nav class={this.open ? 'open' : 'close'}>
+      <nav class={`${this.open ? 'open' : 'close'} ${this.switch ? 'light' : 'dark'}`}>
         <div class="header last">
           <div class="placeholder" innerHTML={logoTest} />
         </div>
@@ -57,10 +63,13 @@ export class NavRightHiweb {
           ))}
         </div>
         <div class="switch last">
-          <div class="switch-container">
+          <div
+            class="switch-container"
+            onClick={this.toggleSwitch}
+          >
             <div
               class={`swith-button ${this.switch ? 'left' : 'right'}`}
-              onClick={() => this.switch = !this.switch}
+              innerHTML={icons[this.switch ? 'sun' : 'moon']}
             >
             </div>
           </div>

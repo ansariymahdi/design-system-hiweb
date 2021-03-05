@@ -5,12 +5,30 @@ nav {
   width: 80px;
   top: 0;
   right: 0;
-  background-color: #fdfdfd;
   border: 0 solid rgba(87, 87, 86, 0.2);
   -webkit-box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 8%);
   border-left-width: 1px;
   transition-duration: 1.5s;
+}
+
+.light {
+  background-color: #fdfdfd;
+  color: black;
+  svg {
+    fill: black;
+  }
+}
+
+.dark {
+  background-color: #222;
+  color: white;
+  svg {
+    fill: white;
+  }
+  .switch-container {
+    border-color: white;
+  }
 }
 
 .last {
@@ -154,25 +172,41 @@ nav {
 }
 
 .switch-container {
-  border: 1px solid rgba(87, 87, 86, 0.2);
+  border: 1px solid black;
   position: relative;
   border-radius: 100px;
   margin: auto;
   height: 30px;
   width: 60px;
+  cursor: pointer;
   .swith-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     --left: 0;
     left: var(--left);
     position: absolute;
-    cursor: pointer;
-    height: 100%;
-    width: 30px;
+    height: 28px;
+    width: 28px;
     top: 0;
-    background: rgba(87, 87, 86, 0.2);
-    border-radius: 50%;
-    transition-duration: 1s;
+    border-radius: 100%;
+    transition-duration: 0.5s;
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  .left {
+    background: black;
+    svg {
+      fill: white;
+    }
   }
   .right {
+    background: white;
+    svg {
+      fill: black;
+    }
     --left: 30px;
   }
 }
@@ -186,14 +220,6 @@ nav {
     svg {
       width: 40px;
       height: 40px;
-    }
-  }
-
-  .switch-container {
-    width: 40px;
-    height: 20px;
-    .swith-button {
-      width: 20px;
     }
   }
 
@@ -246,6 +272,24 @@ nav {
     }
     .button {
       transform: translateY(-80px);
+    }
+  }
+
+  .switch-container {
+    height: 20px;
+    width: 40px;
+    cursor: pointer;
+    .swith-button {
+      --left: 0;
+      height: 18px;
+      width: 18px;
+      svg {
+        height: 10px;
+        width: 10px;
+      }
+    }
+    .right {
+      --left: 20px;
     }
   }
 }

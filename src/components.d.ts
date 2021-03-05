@@ -170,6 +170,7 @@ declare namespace LocalJSX {
         "array"?: any;
         "arrayString"?: string;
         "onOnClick"?: (event: CustomEvent<any>) => void;
+        "onToggleTheme"?: (event: CustomEvent<any>) => void;
         "userIcon"?: {title: string,icon: string, path: string};
     }
     interface ProgressLoaderHiweb {
