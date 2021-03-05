@@ -16,9 +16,10 @@
 
 ## Events
 
-| Event     | Description | Type               |
-| --------- | ----------- | ------------------ |
-| `onClick` |             | `CustomEvent<any>` |
+| Event         | Description | Type               |
+| ------------- | ----------- | ------------------ |
+| `onClick`     |             | `CustomEvent<any>` |
+| `toggleTheme` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------

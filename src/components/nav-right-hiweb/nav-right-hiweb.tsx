@@ -41,7 +41,7 @@ export class NavRightHiweb {
 
   toggleSwitch = () => {
     this.switch = !this.switch;
-    this.onClick.emit(this.switch);
+    this.toggleTheme.emit(this.switch);
   }
 
   render() {
