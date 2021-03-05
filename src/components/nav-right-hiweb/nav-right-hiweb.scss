@@ -41,7 +41,7 @@ nav {
 .body {
   --scale-body: 1;
   z-index: 2;
-  height: calc(100% - 160px);
+  height: calc(100% - 240px);
   position: absolute;
   top: 80px;
   width: 100%;
@@ -61,6 +61,17 @@ nav {
     width: 40px;
     height: 40px;
   }
+}
+
+.switch {
+  --scale-switch: 1;
+  display: flex;
+  justify-content: center;
+  bottom: 80px;
+  z-index: 2;
+  transform: scale(var(--scale-switch));
+  transition: 1s transform;
+  transform-origin: bottom center;
 }
 
 .footer {
@@ -142,6 +153,30 @@ nav {
   transform-origin: left center;
 }
 
+.switch-container {
+  border: 1px solid rgba(87, 87, 86, 0.2);
+  position: relative;
+  border-radius: 100px;
+  margin: auto;
+  height: 30px;
+  width: 60px;
+  .swith-button {
+    --left: 0;
+    left: var(--left);
+    position: absolute;
+    cursor: pointer;
+    height: 100%;
+    width: 30px;
+    top: 0;
+    background: rgba(87, 87, 86, 0.2);
+    border-radius: 50%;
+    transition-duration: 1s;
+  }
+  .right {
+    --left: 30px;
+  }
+}
+
 @media (max-width: 600px) {
   nav {
     width: 60px;
@@ -151,6 +186,14 @@ nav {
     svg {
       width: 40px;
       height: 40px;
+    }
+  }
+
+  .switch-container {
+    width: 40px;
+    height: 20px;
+    .swith-button {
+      width: 20px;
     }
   }
 
@@ -172,6 +215,9 @@ nav {
     .body {
       height: calc(100% - 240px);
     }
+    .switch {
+      bottom: 160px;
+    }
     .footer {
       bottom: 80px;
     }
@@ -186,6 +232,11 @@ nav {
     height: 160px;
     .body {
       --scale-body: 0;
+      transform-origin: top center;
+    }
+    .switch {
+      bottom: 160px;
+      --scale-switch: 0;
       transform-origin: top center;
     }
     .footer {

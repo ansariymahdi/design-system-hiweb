@@ -16,8 +16,10 @@ export class NavRightHiweb {
   @Prop({attribute: 'user'}) userIcon: {title: string,icon: string, path: string};
   @State() open: boolean = false;
   @State() items: any = [];
+  @State() switch: boolean = false;
 
   componentWillLoad() {
+
     if (this.arrayString) {
       this.items = JSON.parse(this.arrayString);
     } else {
@@ -53,6 +55,15 @@ export class NavRightHiweb {
               />
             </div>
           ))}
+        </div>
+        <div class="switch last">
+          <div class="switch-container">
+            <div
+              class={`swith-button ${this.switch ? 'left' : 'right'}`}
+              onClick={() => this.switch = !this.switch}
+            >
+            </div>
+          </div>
         </div>
         <div class="footer last">
           <div
