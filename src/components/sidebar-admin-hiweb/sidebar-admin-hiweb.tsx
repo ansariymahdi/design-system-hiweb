@@ -1,6 +1,5 @@
 import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 
-import deleteIcon from '../../assets/icons/x-mark.svg';
 import icons from './../../modules/iconsList';
 
 @Component({
@@ -23,6 +22,8 @@ export class SideBarAdminHiweb {
   @Event() toggleTheme: EventEmitter;
 
   componentWillLoad() {
+    console.log('items',this.itemsProp);
+
     if (this.itemsStringProp) {
       this.items = JSON.parse(this.itemsStringProp);
     } else {
@@ -47,7 +48,12 @@ export class SideBarAdminHiweb {
   }
 
   mouseEnter = () => {
-    this.hover = true;
+    console.log(this.open);
+
+    if (!this.open) {
+      this.hover = true;
+    }
+
   }
   mouseLeave = () => {
     this.hover = false;

@@ -59,7 +59,7 @@
       <div>
         <header>
           <!-- <nav-right-hiweb></nav-right-hiweb> -->
-          <sidebar-admin-hiweb itemsString='[{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"whatsapp","path":"/something"}]},{"title":"تیتر","subtitle":[{"title":"یه چیزی","iconName":"facebook","path":"/something"}]}]'></sidebar-admin-hiweb>
+          <sidebar-admin-hiweb></sidebar-admin-hiweb>
         </header>
       </div>
 
@@ -115,41 +115,58 @@
     console.log('saljgkash');
   }
 
-  var comp1 = document.querySelector('nav-right-hiweb');
+  // var comp1 = document.querySelector('nav-right-hiweb');
+  //
+  // const items = [
+  //   {
+  //     title: "خانه",
+  //     icon: "home",
+  //     path: '/',
+  //   },
+  //   {
+  //     title: "اخبار",
+  //     icon: "newsPaper",
+  //     path: '/',
+  //   },
+  //   {
+  //     title: "جدول لیگ",
+  //     icon: "table",
+  //     path: '/',
+  //   }
+  // ];
+  //
+  // function test(pass) {
+  //   console.log(pass);
+  // }
+  //
+  // const user = {
+  //   title: 'user',
+  //   path: '//',
+  //   icon: 'user',
+  // }
+  //
+  // comp1.userIcon = user;
+  // comp1.array = items;
+  // comp1.onClick = function test(pass) {
+  //   console.log(pass);
+  // }
 
-  const items = [
+  var comp2 = document.querySelector('sidebar-admin-hiweb');
+
+  const comp2Items = [
     {
-      title: "خانه",
-      icon: "home",
-      path: '/',
-    },
-    {
-      title: "اخبار",
-      icon: "newsPaper",
-      path: '/',
-    },
-    {
-      title: "جدول لیگ",
-      icon: "table",
-      path: '/',
+      title: "خبر",
+      subtitle: [
+        {
+          title: "ایجاد خبر",
+          iconName: "newspaper",
+          path: "/create-news",
+        }
+      ]
     }
-  ];
+  ]
 
-  function test(pass) {
-    console.log(pass);
-  }
-
-  const user = {
-    title: 'user',
-    path: '//',
-    icon: 'user',
-  }
-
-  comp1.userIcon = user;
-  comp1.array = items;
-  comp1.onClick = function test(pass) {
-    console.log(pass);
-  }
+  comp2.itemsProp = comp2Items;
 </script>
 
 </html>
