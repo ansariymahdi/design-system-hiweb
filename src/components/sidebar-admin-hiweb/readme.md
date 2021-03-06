@@ -14,7 +14,6 @@
 | `isDarkTheme`     | `is-dark-theme` |             | `boolean` | `undefined` |
 | `itemsProp`       | `items`         |             | `any`     | `undefined` |
 | `itemsStringProp` | `itemsstring`   |             | `string`  | `undefined` |
-| `onClick`         | `on-click`      |             | `any`     | `undefined` |
 | `open`            | `open`          |             | `boolean` | `false`     |
 | `textcolor`       | `textcolor`     |             | `any`     | `undefined` |
 
@@ -23,6 +22,7 @@
 
 | Event         | Description | Type               |
 | ------------- | ----------- | ------------------ |
+| `onClick`     |             | `CustomEvent<any>` |
 | `toggleTheme` |             | `CustomEvent<any>` |
 
 

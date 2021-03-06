@@ -48,7 +48,6 @@ export namespace Components {
         "isDarkTheme": boolean;
         "itemsProp": any;
         "itemsStringProp": string;
-        "onClick": any;
         "open": boolean;
         "textcolor": any;
     }
@@ -185,7 +184,7 @@ declare namespace LocalJSX {
         "isDarkTheme"?: boolean;
         "itemsProp"?: any;
         "itemsStringProp"?: string;
-        "onClick"?: any;
+        "onOnClick"?: (event: CustomEvent<any>) => void;
         "onToggleTheme"?: (event: CustomEvent<any>) => void;
         "open"?: boolean;
         "textcolor"?: any;

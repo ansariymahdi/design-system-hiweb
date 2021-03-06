@@ -16,7 +16,7 @@ export class SideBarAdminHiweb {
   @Prop() contentcolor;
   @Prop() headercolor;
   @Prop() textcolor;
-  @Prop() onClick;
+  @Event() onClick: EventEmitter;
   @State() items;
   @Prop() isDarkTheme: boolean;
   @State() switch: boolean;
@@ -60,7 +60,7 @@ export class SideBarAdminHiweb {
         {item.subtitle.map(subtitle => {
           return (
             <ul>
-              <li onClick={() => this.onClick(subtitle.path)}>
+              <li onClick={() => this.onClick.emit(subtitle.path)}>
                 <div class="img" innerHTML={icons[subtitle.iconName]} />
                 <h3>{subtitle.title}</h3>
               </li>
