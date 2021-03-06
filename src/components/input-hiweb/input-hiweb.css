@@ -5,20 +5,27 @@
 }
 
 :host .input-container {
-  width: 95%;
+  width: 100%;
+  box-sizing: border-box;
   margin: auto;
   position: relative;
   display: block;
   margin-bottom: 5px;
 }
 
-:host .input-container img {
+:host .input-container .img {
   cursor: pointer;
   width: 1.5rem;
+  height: 1.5rem;
   position: absolute;
   left: calc(.75rem + 1px);
   bottom: calc(.375rem + 1px);
   border-radius: 50%;
+}
+
+.img svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 :host .input-container .control {

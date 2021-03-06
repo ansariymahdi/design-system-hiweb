@@ -1,7 +1,7 @@
 import { Component, h, Prop, State, Event, EventEmitter, Method } from '@stencil/core';
 import { Validator, getValidator, defaultValidator, ValidatorEntry } from '../../validator';
-// import deleteIcon from '../../assets/x-mark.svg';
 
+import icons from '../../modules/iconsList';
 
 @Component({
   tag: 'input-hiweb',
@@ -106,7 +106,7 @@ export class inputHiweb {
           />
           {
             this.value
-              ? <img src="../../assets/x-mark.svg" alt="App Name" style={this.checkFocus()} onClick={() => this.clearInput()} />
+              ? <div innerHTML={icons['xMark']} class="img" style={this.checkFocus()} onClick={() => this.clearInput()} />
               : null
           }
         </div>
