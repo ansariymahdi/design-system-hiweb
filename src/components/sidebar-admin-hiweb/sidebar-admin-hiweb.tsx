@@ -9,6 +9,7 @@ import icons from './../../modules/iconsList';
 })
 export class SideBarAdminHiweb {
   @Prop() open: boolean = false;
+  @Event() isOpen: EventEmitter<boolean>;
   @State() hover: boolean = false;
   @Prop({ attribute: 'itemsString' }) itemsStringProp: string;
   @Prop({ attribute: 'items' }) itemsProp: any;
@@ -44,16 +45,14 @@ export class SideBarAdminHiweb {
       this.open = false;
     } else {
       this.open = !this.open;
+      this.isOpen.emit(this.open);
     }
   }
 
   mouseEnter = () => {
-    console.log(this.open);
-
     if (!this.open) {
       this.hover = true;
     }
-
   }
   mouseLeave = () => {
     this.hover = false;

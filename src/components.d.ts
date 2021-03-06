@@ -184,6 +184,7 @@ declare namespace LocalJSX {
         "isDarkTheme"?: boolean;
         "itemsProp"?: any;
         "itemsStringProp"?: string;
+        "onIsOpen"?: (event: CustomEvent<boolean>) => void;
         "onOnClick"?: (event: CustomEvent<any>) => void;
         "onToggleTheme"?: (event: CustomEvent<any>) => void;
         "open"?: boolean;
