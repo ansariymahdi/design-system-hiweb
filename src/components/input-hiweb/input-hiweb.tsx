@@ -2,6 +2,8 @@ import { Component, h, Prop, State, Event, EventEmitter, Method } from '@stencil
 import { Validator, getValidator, defaultValidator, ValidatorEntry } from '../../validator';
 // import deleteIcon from '../../assets/x-mark.svg';
 
+import icons from './../../modules/iconsList';
+
 @Component({
   tag: 'input-hiweb',
   styleUrl: 'input-hiweb.css',
