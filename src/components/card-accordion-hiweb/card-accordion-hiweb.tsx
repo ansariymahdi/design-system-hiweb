@@ -21,7 +21,7 @@ export class CardAccordionHiweb {
       <div class="row direction-rtl">
         <div class="col">
           <div class={`sidebar-nav-menu-item card ${this.toggle ? 'item-active' : ''}`}>
-            <div class="card-header" onClick={() => this.toggleComponent()}>
+            <div class="card-header-" onClick={() => this.toggleComponent()}>
               <h5 class="card-title"> {this.label}</h5>
               <div class="placeholder fa-chevron-down" innerHTML={ArrowUp} />
             </div>
