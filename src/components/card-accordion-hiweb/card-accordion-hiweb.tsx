@@ -18,7 +18,7 @@ export class CardAccordionHiweb {
   }
   render() {
     return (
-      <div class="row direction-rtl">
+      <div class="row direction-rtl secondary">
         <div class="col">
           <div class={`sidebar-nav-menu-item card ${this.toggle ? 'item-active' : ''}`}>
             <div class="card-header-" onClick={() => this.toggleComponent()}>
