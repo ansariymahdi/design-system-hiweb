@@ -37,6 +37,7 @@ export namespace Components {
     interface NavRightHiweb {
         "array": any;
         "arrayString": string;
+        "isDarkTheme": boolean;
         "userIcon": {title: string,icon: string, path: string};
     }
     interface ProgressLoaderHiweb {
@@ -44,7 +45,9 @@ export namespace Components {
     interface SidebarAdminHiweb {
         "contentcolor": any;
         "headercolor": any;
-        "itemsProp": string;
+        "isDarkTheme": boolean;
+        "itemsProp": any;
+        "itemsStringProp": string;
         "onClick": any;
         "open": boolean;
         "textcolor": any;
@@ -169,6 +172,7 @@ declare namespace LocalJSX {
     interface NavRightHiweb {
         "array"?: any;
         "arrayString"?: string;
+        "isDarkTheme"?: boolean;
         "onOnClick"?: (event: CustomEvent<any>) => void;
         "onToggleTheme"?: (event: CustomEvent<any>) => void;
         "userIcon"?: {title: string,icon: string, path: string};
@@ -178,8 +182,11 @@ declare namespace LocalJSX {
     interface SidebarAdminHiweb {
         "contentcolor"?: any;
         "headercolor"?: any;
-        "itemsProp"?: string;
+        "isDarkTheme"?: boolean;
+        "itemsProp"?: any;
+        "itemsStringProp"?: string;
         "onClick"?: any;
+        "onToggleTheme"?: (event: CustomEvent<any>) => void;
         "open"?: boolean;
         "textcolor"?: any;
     }

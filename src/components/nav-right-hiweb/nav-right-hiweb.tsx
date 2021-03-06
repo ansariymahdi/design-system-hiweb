@@ -16,7 +16,8 @@ export class NavRightHiweb {
   @Prop({attribute: 'user'}) userIcon: {title: string,icon: string, path: string};
   @State() open: boolean = false;
   @State() items: any = [];
-  @State() switch: boolean = false;
+  @Prop() isDarkTheme: boolean;
+  @State() switch: boolean;
   @Event() toggleTheme: EventEmitter;
 
   componentWillLoad() {
@@ -26,7 +27,11 @@ export class NavRightHiweb {
     } else {
       this.items = this.array;
     }
-    console.log('test', this.userIcon);
+    if (this.isDarkTheme) {
+      this.switch = !this.isDarkTheme;
+    } else {
+      this.switch = false;
+    }
 
   }
 

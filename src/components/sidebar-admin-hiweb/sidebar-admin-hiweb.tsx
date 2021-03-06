@@ -1,36 +1,41 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 
 import deleteIcon from '../../assets/icons/x-mark.svg';
-import menu from '../../assets/icons/menu.svg';
-import back from '../../assets/icons/back.svg';
-
-const icons = {
-  'deleteIcon': deleteIcon,
-};
+import icons from './../../modules/iconsList';
 
 @Component({
   tag: 'sidebar-admin-hiweb',
-  styleUrl: 'sidebar-admin-hiweb.css',
+  styleUrl: 'sidebar-admin-hiweb.scss',
   shadow: true,
 })
 export class SideBarAdminHiweb {
   @Prop() open: boolean = false;
   @State() hover: boolean = false;
-  @Prop({ attribute: 'items' }) itemsProp: string;
+  @Prop({ attribute: 'itemsString' }) itemsStringProp: string;
+  @Prop({ attribute: 'items' }) itemsProp: any;
   @Prop() contentcolor;
   @Prop() headercolor;
   @Prop() textcolor;
   @Prop() onClick;
   @State() items;
+  @Prop() isDarkTheme: boolean;
+  @State() switch: boolean;
+  @Event() toggleTheme: EventEmitter;
 
   componentWillLoad() {
-    this.items = JSON.parse(this.itemsProp);
-    console.log(deleteIcon);
+    if (this.itemsStringProp) {
+      this.items = JSON.parse(this.itemsStringProp);
+    } else {
+      this.items = this.itemsProp;
+    }
+    if (this.isDarkTheme) {
+      this.switch = !this.isDarkTheme;
+    } else {
+      this.switch = false;
+    }
 
   }
 
-  componentWillUpdate() {
-  }
 
   toggleBar = () => {
     if (this.hover) {
@@ -76,16 +81,28 @@ export class SideBarAdminHiweb {
     return 'close';
   }
 
+  applyTheme = () => {
+    if (this.switch) {
+      return 'light';
+    }
+    return 'dark';
+  }
+
+  toggleSwitch = () => {
+    this.switch = !this.switch;
+    this.toggleTheme.emit(this.switch);
+  }
+
   render() {
     return (
       <div
-        class={'host ' + this.selectClass()}
+        class={'host ' + this.selectClass() + ' ' + this.applyTheme()}
         onMouseLeave={this.mouseLeave}
         style={{background: this.contentcolor, color: this.textcolor}}
       >
         <div class="header" style={{background: this.headercolor}}>
           <div class="menu-icon" onClick={this.toggleBar}>
-            <div class="img" innerHTML={menu} />
+            <div class="img" innerHTML={icons['menu']} />
           </div>
         </div>
         <div class="content">
@@ -96,7 +113,22 @@ export class SideBarAdminHiweb {
           onMouseEnter={this.mouseEnter}
           style={{background: this.headercolor}}
         >
-          <div class="img" innerHTML={back} />
+          <div class="theme-container">
+            <div class="switch">
+              <div
+                class="switch-container"
+                onClick={this.toggleSwitch}
+              >
+                <div
+                  class={`swith-button ${this.switch ? 'left' : 'right'}`}
+                  innerHTML={icons[this.switch ? 'sun' : 'moon']}
+                >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="img" innerHTML={icons['back']} />
         </div>
       </div>
     );

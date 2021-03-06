@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                             | Default     |
-| ------------- | -------------- | ----------- | ------------------------------------------------ | ----------- |
-| `array`       | `array`        |             | `any`                                            | `undefined` |
-| `arrayString` | `array-string` |             | `string`                                         | `undefined` |
-| `userIcon`    | --             |             | `{ title: string; icon: string; path: string; }` | `undefined` |
+| Property      | Attribute       | Description | Type                                             | Default     |
+| ------------- | --------------- | ----------- | ------------------------------------------------ | ----------- |
+| `array`       | `array`         |             | `any`                                            | `undefined` |
+| `arrayString` | `array-string`  |             | `string`                                         | `undefined` |
+| `isDarkTheme` | `is-dark-theme` |             | `boolean`                                        | `undefined` |
+| `userIcon`    | --              |             | `{ title: string; icon: string; path: string; }` | `undefined` |
 
 
 ## Events
