@@ -18,16 +18,16 @@ export class CardAccordionHiweb {
   }
   render() {
     return (
-      <div class="row direction-rtl secondary">
+      <div class="row direction-rtl mat-card">
         <div class="col">
           <div class={`sidebar-nav-menu-item card ${this.toggle ? 'item-active' : ''}`}>
-            <div class="card-header-" onClick={() => this.toggleComponent()}>
+            <div class="card-header- mat-card" onClick={() => this.toggleComponent()}>
               <h5 class="card-title"> {this.label}</h5>
               <div class="placeholder fa-chevron-down" innerHTML={ArrowUp} />
             </div>
             <div class={'sidebar-nav-menu-item-body'}>
-              <div class="row">
-                <div class="card-body">
+              <div class="row mat-card">
+                <div class="card-body mat-card">
                   <p>
                     <slot></slot>
                   </p>
