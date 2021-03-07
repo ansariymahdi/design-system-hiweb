@@ -188,7 +188,7 @@ declare namespace LocalJSX {
     }
     interface InputHiweb {
         "label"?: string;
-        "onChanged"?: (event: CustomEvent<{title: string, value: string}>) => void;
+        "onChanged"?: (event: CustomEvent<{title: string, value: string, isValid: boolean}>) => void;
         "title"?: string;
         "valid"?: boolean;
         "validatorProp"?: string;

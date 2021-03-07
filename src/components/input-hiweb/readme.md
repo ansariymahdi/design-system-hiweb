@@ -18,9 +18,9 @@
 
 ## Events
 
-| Event     | Description | Type                                             |
-| --------- | ----------- | ------------------------------------------------ |
-| `changed` |             | `CustomEvent<{ title: string; value: string; }>` |
+| Event     | Description | Type                                                               |
+| --------- | ----------- | ------------------------------------------------------------------ |
+| `changed` |             | `CustomEvent<{ title: string; value: string; isValid: boolean; }>` |
 
 
 ## Methods

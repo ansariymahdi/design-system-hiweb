@@ -17,7 +17,7 @@ export class inputHiweb {
   @State() validator: Array<string | ValidatorEntry | Validator<string>>;
   @State() isChanged: boolean = false;
   @State() inputFocused: boolean = false;
-  @Event() changed: EventEmitter<{title: string, value: string}>;
+  @Event() changed: EventEmitter<{title: string, value: string, isValid: boolean}>;
 
   _validator: Validator<string> = defaultValidator;
 
@@ -36,16 +36,14 @@ export class inputHiweb {
 
   handleChange(event) {
     this.value = event.target ? event.target.value : null;
-    this.changed.emit({title: this.title, value: this.value});
+    this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
     this.validate();
     this.isChanged = true;
   }
 
   clearInput = () => {
-    console.log(3);
-
     this.value = '';
-    this.changed.emit({title: this.title, value: this.value});
+    this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
   }
 
   checkFocus = () => {
