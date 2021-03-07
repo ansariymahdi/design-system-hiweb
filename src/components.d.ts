@@ -27,6 +27,9 @@ export namespace Components {
         "descriptionNews": string;
         "titleNews": string;
     }
+    interface ErrorHiweb {
+        "error": { statusCode: number, message: string, buttonMessage: string, path: string};
+    }
     interface InputHiweb {
         "label": string;
         "valid": boolean;
@@ -54,6 +57,8 @@ export namespace Components {
     interface TableHiweb {
         "dataProp": {head: {title: string, options: string[]}[], body: string[][]};
         "dataStringProp": string;
+    }
+    interface TextareaHiweb {
     }
 }
 declare global {
@@ -93,6 +98,12 @@ declare global {
         prototype: HTMLCardNewsHiwebElement;
         new (): HTMLCardNewsHiwebElement;
     };
+    interface HTMLErrorHiwebElement extends Components.ErrorHiweb, HTMLStencilElement {
+    }
+    var HTMLErrorHiwebElement: {
+        prototype: HTMLErrorHiwebElement;
+        new (): HTMLErrorHiwebElement;
+    };
     interface HTMLInputHiwebElement extends Components.InputHiweb, HTMLStencilElement {
     }
     var HTMLInputHiwebElement: {
@@ -123,6 +134,12 @@ declare global {
         prototype: HTMLTableHiwebElement;
         new (): HTMLTableHiwebElement;
     };
+    interface HTMLTextareaHiwebElement extends Components.TextareaHiweb, HTMLStencilElement {
+    }
+    var HTMLTextareaHiwebElement: {
+        prototype: HTMLTextareaHiwebElement;
+        new (): HTMLTextareaHiwebElement;
+    };
     interface HTMLElementTagNameMap {
         "button-error-hiweb": HTMLButtonErrorHiwebElement;
         "button-hiweb": HTMLButtonHiwebElement;
@@ -130,11 +147,13 @@ declare global {
         "button-outline-hiweb": HTMLButtonOutlineHiwebElement;
         "card-accordion-hiweb": HTMLCardAccordionHiwebElement;
         "card-news-hiweb": HTMLCardNewsHiwebElement;
+        "error-hiweb": HTMLErrorHiwebElement;
         "input-hiweb": HTMLInputHiwebElement;
         "nav-right-hiweb": HTMLNavRightHiwebElement;
         "progress-loader-hiweb": HTMLProgressLoaderHiwebElement;
         "sidebar-admin-hiweb": HTMLSidebarAdminHiwebElement;
         "table-hiweb": HTMLTableHiwebElement;
+        "textarea-hiweb": HTMLTextareaHiwebElement;
     }
 }
 declare namespace LocalJSX {
@@ -160,6 +179,10 @@ declare namespace LocalJSX {
         "descriptionNews"?: string;
         "onClicked"?: (event: CustomEvent<any>) => void;
         "titleNews"?: string;
+    }
+    interface ErrorHiweb {
+        "error"?: { statusCode: number, message: string, buttonMessage: string, path: string};
+        "onOnClick"?: (event: CustomEvent<any>) => void;
     }
     interface InputHiweb {
         "label"?: string;
@@ -194,6 +217,8 @@ declare namespace LocalJSX {
         "dataProp"?: {head: {title: string, options: string[]}[], body: string[][]};
         "dataStringProp"?: string;
     }
+    interface TextareaHiweb {
+    }
     interface IntrinsicElements {
         "button-error-hiweb": ButtonErrorHiweb;
         "button-hiweb": ButtonHiweb;
@@ -201,11 +226,13 @@ declare namespace LocalJSX {
         "button-outline-hiweb": ButtonOutlineHiweb;
         "card-accordion-hiweb": CardAccordionHiweb;
         "card-news-hiweb": CardNewsHiweb;
+        "error-hiweb": ErrorHiweb;
         "input-hiweb": InputHiweb;
         "nav-right-hiweb": NavRightHiweb;
         "progress-loader-hiweb": ProgressLoaderHiweb;
         "sidebar-admin-hiweb": SidebarAdminHiweb;
         "table-hiweb": TableHiweb;
+        "textarea-hiweb": TextareaHiweb;
     }
 }
 export { LocalJSX as JSX };
@@ -218,11 +245,13 @@ declare module "@stencil/core" {
             "button-outline-hiweb": LocalJSX.ButtonOutlineHiweb & JSXBase.HTMLAttributes<HTMLButtonOutlineHiwebElement>;
             "card-accordion-hiweb": LocalJSX.CardAccordionHiweb & JSXBase.HTMLAttributes<HTMLCardAccordionHiwebElement>;
             "card-news-hiweb": LocalJSX.CardNewsHiweb & JSXBase.HTMLAttributes<HTMLCardNewsHiwebElement>;
+            "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
             "nav-right-hiweb": LocalJSX.NavRightHiweb & JSXBase.HTMLAttributes<HTMLNavRightHiwebElement>;
             "progress-loader-hiweb": LocalJSX.ProgressLoaderHiweb & JSXBase.HTMLAttributes<HTMLProgressLoaderHiwebElement>;
             "sidebar-admin-hiweb": LocalJSX.SidebarAdminHiweb & JSXBase.HTMLAttributes<HTMLSidebarAdminHiwebElement>;
             "table-hiweb": LocalJSX.TableHiweb & JSXBase.HTMLAttributes<HTMLTableHiwebElement>;
+            "textarea-hiweb": LocalJSX.TextareaHiweb & JSXBase.HTMLAttributes<HTMLTextareaHiwebElement>;
         }
     }
 }
