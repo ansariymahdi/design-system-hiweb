@@ -36,8 +36,8 @@ export class inputHiweb {
 
   handleChange(event) {
     this.value = event.target ? event.target.value : null;
-    this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
     this.validate();
+    this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
     this.isChanged = true;
   }
 
