@@ -9,6 +9,6 @@ export class ButtonHiweb {
   @Prop() title: string;
   @Event() onClick: EventEmitter;
   render() {
-    return <button class="btn-wrapper button-primary-wrapper button--wide m-3" onClick={() => this.onClick.emit()}>{this.title}</button>;
+    return <button class="btn-wrapper button-primary-wrapper button--wide" onClick={() => this.onClick.emit()}>{this.title}</button>;
   }
 }
