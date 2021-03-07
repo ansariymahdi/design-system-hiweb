@@ -10,6 +10,7 @@
 | Property        | Attribute   | Description | Type      | Default     |
 | --------------- | ----------- | ----------- | --------- | ----------- |
 | `label`         | `label`     |             | `string`  | `undefined` |
+| `title`         | `title`     |             | `string`  | `undefined` |
 | `valid`         | `valid`     |             | `boolean` | `undefined` |
 | `validatorProp` | `validator` |             | `string`  | `undefined` |
 | `value`         | `value`     |             | `string`  | `undefined` |
@@ -17,9 +18,9 @@
 
 ## Events
 
-| Event     | Description | Type                  |
-| --------- | ----------- | --------------------- |
-| `changed` |             | `CustomEvent<string>` |
+| Event     | Description | Type                                             |
+| --------- | ----------- | ------------------------------------------------ |
+| `changed` |             | `CustomEvent<{ title: string; value: string; }>` |
 
 
 ## Methods

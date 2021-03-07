@@ -32,6 +32,7 @@ export namespace Components {
     }
     interface InputHiweb {
         "label": string;
+        "title": string;
         "valid": boolean;
         "validate": () => Promise<void>;
         "validatorProp": string;
@@ -186,7 +187,8 @@ declare namespace LocalJSX {
     }
     interface InputHiweb {
         "label"?: string;
-        "onChanged"?: (event: CustomEvent<string>) => void;
+        "onChanged"?: (event: CustomEvent<{title: string, value: string}>) => void;
+        "title"?: string;
         "valid"?: boolean;
         "validatorProp"?: string;
         "value"?: string;

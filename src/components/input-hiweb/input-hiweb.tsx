@@ -10,13 +10,14 @@ import icons from '../../modules/iconsList';
 })
 export class inputHiweb {
   @Prop() label: string;
+  @Prop() title: string;
   @Prop({ mutable: true }) value: string;
   @Prop({ mutable: true }) valid: boolean;
   @Prop({ attribute: 'validator' }) validatorProp: string;
   @State() validator: Array<string | ValidatorEntry | Validator<string>>;
   @State() isChanged: boolean = false;
   @State() inputFocused: boolean = false;
-  @Event() changed: EventEmitter<string>;
+  @Event() changed: EventEmitter<{title: string, value: string}>;
 
   _validator: Validator<string> = defaultValidator;
 
@@ -26,23 +27,16 @@ export class inputHiweb {
   }
 
   componentDidLoad() {
-    const test = document.querySelector('#img');
-
-    console.log(test);
-
-
+    // const test = document.querySelector('#img');
   }
 
   componentWillUpdate() {
-    console.log(2);
-
-
     this._validator = getValidator<string>(this.validator);
   }
 
   handleChange(event) {
     this.value = event.target ? event.target.value : null;
-    this.changed.emit(this.value);
+    this.changed.emit({title: this.title, value: this.value});
     this.validate();
     this.isChanged = true;
   }
@@ -51,7 +45,7 @@ export class inputHiweb {
     console.log(3);
 
     this.value = '';
-    this.changed.emit(this.value);
+    this.changed.emit({title: this.title, value: this.value});
   }
 
   checkFocus = () => {
