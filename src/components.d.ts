@@ -162,6 +162,7 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface ButtonHiweb {
+        "onOnClick"?: (event: CustomEvent<any>) => void;
         "title"?: string;
     }
     interface ButtonInfoHiweb {
