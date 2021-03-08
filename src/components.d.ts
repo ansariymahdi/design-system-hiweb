@@ -56,7 +56,7 @@ export namespace Components {
         "textcolor": any;
     }
     interface TableHiweb {
-        "dataProp": {head: {title: string, options: string[]}[], body: string[][]};
+        "dataProp": {head: {title: string, options: string[]}[], body: {type: string, data: any}[][]};
         "dataStringProp": string;
     }
     interface TextareaHiweb {
@@ -217,8 +217,9 @@ declare namespace LocalJSX {
         "textcolor"?: any;
     }
     interface TableHiweb {
-        "dataProp"?: {head: {title: string, options: string[]}[], body: string[][]};
+        "dataProp"?: {head: {title: string, options: string[]}[], body: {type: string, data: any}[][]};
         "dataStringProp"?: string;
+        "onButtonClicked"?: (event: CustomEvent<string>) => void;
     }
     interface TextareaHiweb {
     }

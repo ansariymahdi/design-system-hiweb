@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'table-hiweb',
@@ -6,10 +6,11 @@ import { Component, h, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class TableHiweb {
-  @Prop({ attribute: 'data' }) dataProp: {head: {title: string, options: string[]}[], body: string[][]};
+  @Prop({ attribute: 'data' }) dataProp: {head: {title: string, options: string[]}[], body: {type: string, data: any}[][]};
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
-  @State() data: {head: {title: string, options: string[]}[], body: string[][]};
+  @State() data: {head: {title: string, options: string[]}[], body: {type: string, data: any}[][]};
   @State() options: string[][] = [];
+  @Event() buttonClicked: EventEmitter<string>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -25,6 +26,11 @@ export class TableHiweb {
     this.options = this.data.head.map(({options}) => {
       return (options);
     });
+  }
+
+  handleClick = path => {
+    console.log(path);
+    this.buttonClicked.emit(path);
   }
 
   renderHead = () => {
@@ -44,10 +50,39 @@ export class TableHiweb {
   renderRow = dataArray => {
     return (
       <tr>
-        {dataArray.map((data, index) => {
-          return (
-            <td class={this.options[index].join(' ')}>{data}</td>
-          );
+        {dataArray.map((body, index) => {
+          const {type, data} = body;
+          const styleClass = this.options[index].join(' ');
+          switch (type) {
+            case 'text':
+              return (
+                <td class={styleClass}>{data.value}</td>
+              )
+            case 'image':
+              return (
+                <td class={styleClass}><img src={data.src} alt="image" /></td>
+              )
+            case 'button':
+            let style = {};
+            if (data.background) {
+              style = {...style, background: data.background};
+            }
+            if (data.color) {
+              style = {...style, color: data.color};
+            }
+            return (
+                <td class={styleClass}>
+                  <button
+                    style={style}
+                    onClick={() => this.handleClick(data.path)}
+                  >
+                    {data.text}
+                  </button>
+                </td>
+            )
+            default:
+              break;
+          }
         })}
       </tr>
     );

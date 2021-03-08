@@ -23,6 +23,15 @@ $dark-color: #37474f;
     border-top: 2px solid $theme-border;
   }
 
+  img {
+    max-height: 50px;
+  }
+
+  button {
+    border-style: none;
+    padding: .375rem .75rem;
+  }
+
   &.table-sm {
     th,
     td {
