@@ -114,7 +114,7 @@ export class TableHiweb {
 
   render() {
     return (
-      <div class="table-responsive">
+      <div class="">
         <table class="table text-right">
           <thead>
             {this.renderHead()}
