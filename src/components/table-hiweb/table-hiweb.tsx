@@ -6,30 +6,36 @@ import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
   shadow: true,
 })
 export class TableHiweb {
-  @Prop({ attribute: 'data' }) dataProp: {head: {title: string, options: string[]}[], body: {type: string, data: any}[][]};
+  @Prop({ attribute: 'data' }) dataProp: {head: {title: string, options: string[], colspan: number}[], body: {type: string, data: any}[][]};
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
-  @State() data: {head: {title: string, options: string[]}[], body: {type: string, data: any}[][]};
-  @State() options: string[][] = [];
+  @State() data: {head: {title: string, options: string[], colspan: number}[], body: {type: string, data: any}[][]};
+  @State() options: {options: string[], colspan: number}[] = [];
   @Event() buttonClicked: EventEmitter<string>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
-      console.log('bye');
-
       this.data = JSON.parse(this.dataStringProp);
     } else {
-      console.log('hi');
-
       this.data = this.dataProp;
     }
+    console.log(this.data);
 
-    this.options = this.data.head.map(({options}) => {
-      return (options);
+
+    this.options = this.data.head.map(({options, colspan}) => {
+      let obj = {
+        options,
+        colspan: 1
+      }
+      if (colspan) {
+        console.log(colspan);
+
+        obj = {...obj, colspan: colspan};
+      }
+      return obj;
     });
   }
 
   handleClick = path => {
-    console.log(path);
     this.buttonClicked.emit(path);
   }
 
@@ -37,9 +43,14 @@ export class TableHiweb {
     return (
       <tr>
         {
-          this.data.head.map(({title, options}) => {
+          this.data.head.map(({title},index) => {
             return (
-              <th class={options.join(' ')}>{title}</th>
+              <th
+                class={this.options[index].options.join(' ')}
+                colSpan={this.options[index].colspan}
+              >
+                {title}
+              </th>
             );
           })
         }
@@ -52,15 +63,25 @@ export class TableHiweb {
       <tr>
         {dataArray.map((body, index) => {
           const {type, data} = body;
-          const styleClass = this.options[index].join(' ');
+          const styleClass = this.options[index].options.join(' ');
+          const colSpan = this.options[index].colspan;
+
           switch (type) {
             case 'text':
               return (
-                <td class={styleClass}>{data.value}</td>
+                <td colSpan={colSpan} class={styleClass}>{data.value}</td>
               )
             case 'image':
               return (
-                <td class={styleClass}><img src={data.src} alt="image" /></td>
+                <td
+                  colSpan={colSpan}
+                  class={styleClass}
+                >
+                  <img
+                    src={data.src}
+                    alt="image"
+                  />
+                </td>
               )
             case 'button':
             let style = {};
@@ -71,7 +92,10 @@ export class TableHiweb {
               style = {...style, color: data.color};
             }
             return (
-                <td class={styleClass}>
+                <td
+                  class={styleClass}
+                  colSpan={colSpan}
+                >
                   <button
                     style={style}
                     onClick={() => this.handleClick(data.path)}
