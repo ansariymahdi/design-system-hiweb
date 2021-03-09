@@ -23,6 +23,8 @@ import whatsapp from './../assets/icons/whatsapp.svg';
 import xMark from './../assets/icons/x-mark.svg';
 import newsPaper from './../assets/icons/newspaper.svg';
 import table from './../assets/icons/table.svg';
+import edit from './../assets/icons/edit.svg';
+import trash from './../assets/icons/trash.svg';
 
 const icons = {
   arrowUp,
@@ -49,7 +51,9 @@ const icons = {
   whatsapp,
   xMark,
   newsPaper,
-  table
+  table,
+  edit,
+  trash
 }
 
 export default icons
