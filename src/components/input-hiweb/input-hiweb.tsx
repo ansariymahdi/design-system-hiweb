@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, h, Prop, State, Event, EventEmitter, Method, Watch } from '@stencil/core';
 import { Validator, getValidator, defaultValidator, ValidatorEntry } from '../../validator';
 
 import icons from '../../modules/iconsList';
@@ -11,7 +11,14 @@ import icons from '../../modules/iconsList';
 export class inputHiweb {
   @Prop() label: string;
   @Prop() title: string;
-  @Prop({ mutable: true }) value: string;
+  @Prop({ mutable: true }) valueProp: string;
+  @State() value: string;
+  @Watch('valueProp')
+ onValueChanged(name: string) {
+   console.log('prev value: ', this.value);
+   console.log('got name: ', name);
+   this.value = name;
+ }
   @Prop({ mutable: true }) valid: boolean;
   @Prop({ attribute: 'validator' }) validatorProp: string;
   @State() validator: Array<string | ValidatorEntry | Validator<string>>;
@@ -24,6 +31,7 @@ export class inputHiweb {
   componentWillLoad() {
     this.validator = JSON.parse(this.validatorProp);
     this._validator = getValidator<string>(this.validator);
+     this.onValueChanged(this.valueProp);
   }
 
   componentDidLoad() {

@@ -36,7 +36,7 @@ export namespace Components {
         "valid": boolean;
         "validate": () => Promise<void>;
         "validatorProp": string;
-        "value": string;
+        "valueProp": string;
     }
     interface NavRightHiweb {
         "array": any;
@@ -192,7 +192,7 @@ declare namespace LocalJSX {
         "title"?: string;
         "valid"?: boolean;
         "validatorProp"?: string;
-        "value"?: string;
+        "valueProp"?: string;
     }
     interface NavRightHiweb {
         "array"?: any;

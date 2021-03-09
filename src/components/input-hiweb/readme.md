@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property        | Attribute   | Description | Type      | Default     |
-| --------------- | ----------- | ----------- | --------- | ----------- |
-| `label`         | `label`     |             | `string`  | `undefined` |
-| `title`         | `title`     |             | `string`  | `undefined` |
-| `valid`         | `valid`     |             | `boolean` | `undefined` |
-| `validatorProp` | `validator` |             | `string`  | `undefined` |
-| `value`         | `value`     |             | `string`  | `undefined` |
+| Property        | Attribute    | Description | Type      | Default     |
+| --------------- | ------------ | ----------- | --------- | ----------- |
+| `label`         | `label`      |             | `string`  | `undefined` |
+| `title`         | `title`      |             | `string`  | `undefined` |
+| `valid`         | `valid`      |             | `boolean` | `undefined` |
+| `validatorProp` | `validator`  |             | `string`  | `undefined` |
+| `valueProp`     | `value-prop` |             | `string`  | `undefined` |
 
 
 ## Events
