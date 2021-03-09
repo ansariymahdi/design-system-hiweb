@@ -50,6 +50,7 @@ export class inputHiweb {
   }
 
   clearInput = () => {
+    console.log('cross clicked');
     this.value = '';
     this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
   }
@@ -104,12 +105,17 @@ export class inputHiweb {
             onFocus={() => this.inputFocused = true}
             onBlur={() => {setTimeout(() => {
               this.inputFocused = false
-            }, 10);
+            }, 100);
           }}
           />
           {
             this.value && this.inputFocused
-              ? <div innerHTML={icons['xMark']} class="img" style={this.checkFocus()} onClick={() => this.clearInput()} />
+              ? <div
+                  innerHTML={icons['xMark']}
+                  class="img"
+                  style={this.checkFocus()}
+                  onClick={() => this.clearInput()}
+                />
               : null
           }
         </div>
