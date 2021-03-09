@@ -38,6 +38,9 @@ export namespace Components {
         "validatorProp": string;
         "valueProp": string;
     }
+    interface ModalHiweb {
+        "data": {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
+    }
     interface NavRightHiweb {
         "array": any;
         "arrayString": string;
@@ -111,6 +114,12 @@ declare global {
         prototype: HTMLInputHiwebElement;
         new (): HTMLInputHiwebElement;
     };
+    interface HTMLModalHiwebElement extends Components.ModalHiweb, HTMLStencilElement {
+    }
+    var HTMLModalHiwebElement: {
+        prototype: HTMLModalHiwebElement;
+        new (): HTMLModalHiwebElement;
+    };
     interface HTMLNavRightHiwebElement extends Components.NavRightHiweb, HTMLStencilElement {
     }
     var HTMLNavRightHiwebElement: {
@@ -150,6 +159,7 @@ declare global {
         "card-news-hiweb": HTMLCardNewsHiwebElement;
         "error-hiweb": HTMLErrorHiwebElement;
         "input-hiweb": HTMLInputHiwebElement;
+        "modal-hiweb": HTMLModalHiwebElement;
         "nav-right-hiweb": HTMLNavRightHiwebElement;
         "progress-loader-hiweb": HTMLProgressLoaderHiwebElement;
         "sidebar-admin-hiweb": HTMLSidebarAdminHiwebElement;
@@ -194,6 +204,10 @@ declare namespace LocalJSX {
         "validatorProp"?: string;
         "valueProp"?: string;
     }
+    interface ModalHiweb {
+        "data"?: {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
+        "onOnClick"?: (event: CustomEvent<any>) => void;
+    }
     interface NavRightHiweb {
         "array"?: any;
         "arrayString"?: string;
@@ -232,6 +246,7 @@ declare namespace LocalJSX {
         "card-news-hiweb": CardNewsHiweb;
         "error-hiweb": ErrorHiweb;
         "input-hiweb": InputHiweb;
+        "modal-hiweb": ModalHiweb;
         "nav-right-hiweb": NavRightHiweb;
         "progress-loader-hiweb": ProgressLoaderHiweb;
         "sidebar-admin-hiweb": SidebarAdminHiweb;
@@ -251,6 +266,7 @@ declare module "@stencil/core" {
             "card-news-hiweb": LocalJSX.CardNewsHiweb & JSXBase.HTMLAttributes<HTMLCardNewsHiwebElement>;
             "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
+            "modal-hiweb": LocalJSX.ModalHiweb & JSXBase.HTMLAttributes<HTMLModalHiwebElement>;
             "nav-right-hiweb": LocalJSX.NavRightHiweb & JSXBase.HTMLAttributes<HTMLNavRightHiwebElement>;
             "progress-loader-hiweb": LocalJSX.ProgressLoaderHiweb & JSXBase.HTMLAttributes<HTMLProgressLoaderHiwebElement>;
             "sidebar-admin-hiweb": LocalJSX.SidebarAdminHiweb & JSXBase.HTMLAttributes<HTMLSidebarAdminHiwebElement>;
