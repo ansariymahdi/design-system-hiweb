@@ -69,3 +69,12 @@
   color: #B22222;
   width: 95%;
 }
+
+.test {
+  height: 0 !important;
+  width: 0 !important;
+  svg {
+    height: 0;
+    width: 0;
+  }
+}

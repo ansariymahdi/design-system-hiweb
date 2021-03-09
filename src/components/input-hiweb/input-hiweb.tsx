@@ -5,7 +5,7 @@ import icons from '../../modules/iconsList';
 
 @Component({
   tag: 'input-hiweb',
-  styleUrl: 'input-hiweb.css',
+  styleUrl: 'input-hiweb.scss',
   shadow: true,
 })
 export class inputHiweb {
@@ -102,10 +102,13 @@ export class inputHiweb {
             value={this.value}
             onInput={event => this.handleChange(event)}
             onFocus={() => this.inputFocused = true}
-            onBlur={() => this.inputFocused = false}
+            onBlur={() => {setTimeout(() => {
+              this.inputFocused = false
+            }, 10);
+          }}
           />
           {
-            this.value
+            this.value && this.inputFocused
               ? <div innerHTML={icons['xMark']} class="img" style={this.checkFocus()} onClick={() => this.clearInput()} />
               : null
           }
