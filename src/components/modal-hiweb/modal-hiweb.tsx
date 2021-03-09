@@ -8,7 +8,18 @@ import icons from '../../modules/iconsList';
   shadow: false,
 })
 export class ModalHiweb {
-  @Prop() data: {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
+  @Prop() data: {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}} = {
+    icon: "trash",
+    text: "مطمئن هستید می‌خواهید این خبر را پاک کنید؟",
+    buttonLeft: {
+      text: "بله",
+      callback: "yes"
+    },
+    buttonRight: {
+      text: "خیر",
+      callback: "no"
+    }
+  };
   @Event() onClick: EventEmitter;
 
   closeModal = () => {
@@ -25,7 +36,10 @@ export class ModalHiweb {
       return
     }
     return (
-      <div class="modal-container">
+      <div
+        class="modal-container"
+        onClick={this.closeModal}
+      >
         <div class="custom-modal">
           <div
             class="cross"
@@ -45,12 +59,16 @@ export class ModalHiweb {
           </div>
           <div class="button-1 button">
             <button onClick={() => this.handleClick(this.data.buttonLeft.callback)}>
-              {this.data.buttonLeft.text}
+              <h1>
+                {this.data.buttonLeft.text}
+              </h1>
             </button>
           </div>
           <div class="button-2 button">
             <button onClick={() => this.handleClick(this.data.buttonRight.callback)}>
-              {this.data.buttonRight.text}
+              <h1>
+                {this.data.buttonRight.text}
+              </h1>
             </button>
           </div>
         </div>
