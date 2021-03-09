@@ -1,5 +1,7 @@
 import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 
+import icons from '../../modules/iconsList';
+
 @Component({
   tag: 'table-hiweb',
   styleUrl: 'table-hiweb.scss',
@@ -82,6 +84,20 @@ export class TableHiweb {
                     alt="image"
                   />
                 </td>
+              )
+            case 'icon':
+              return (
+                  <td
+                    class={styleClass}
+                    colSpan={colSpan}
+                  >
+                    <div
+                      class={"placeholder " + data.className}
+                      chosen-color="yellow"
+                      innerHTML={icons[data.icon]}
+                      onClick={() => this.handleClick(data.path)}
+                    />
+                  </td>
               )
             case 'button':
             let style = {};

@@ -33,6 +33,19 @@ $dark-color: #37474f;
     padding: .375rem .75rem;
   }
 
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 30px;
+    svg {
+      cursor: pointer;
+      height: 30px;
+      width: 30px;
+    }
+  }
+
   &.table-sm {
     th,
     td {
