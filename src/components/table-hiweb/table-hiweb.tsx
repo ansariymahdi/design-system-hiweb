@@ -5,7 +5,7 @@ import icons from '../../modules/iconsList';
 @Component({
   tag: 'table-hiweb',
   styleUrl: 'table-hiweb.scss',
-  shadow: true,
+  shadow: false,
 })
 export class TableHiweb {
   @Prop({ attribute: 'data' }) dataProp: {head: {title: string, options: string[], colspan: number}[], body: {type: string, data: any}[][]};
