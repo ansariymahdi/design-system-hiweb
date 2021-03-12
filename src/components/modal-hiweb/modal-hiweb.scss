@@ -62,17 +62,29 @@
   }
 
   .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     p {
       text-align: center;
       font-size: 18px;
     }
   }
 
+  .button {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   button {
     border-style: none;
     background: blue;
-    height: 100%;
-    width: 100%;
+    border-radius: 5px;
+    height: 80%;
+    width: 80%;
     padding: .375rem .75rem;
     h1 {
       margin: 0;

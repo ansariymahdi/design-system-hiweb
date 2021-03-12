@@ -37,7 +37,7 @@
       body {
         padding-right: 0;
       }
-    }</style> <link rel="modulepreload" href="/build/p-ba57235f.js"><script type="module" src="/build/p-ba57235f.js" data-stencil data-resources-url="/build/" data-stencil-namespace="design-system-hiweb"></script> <script nomodule="" src="/build/design-system-hiweb.js" data-stencil></script> </head> <body> <div class="main-view"> <div style="flex: 1 0 auto;"> <div> <header> <nav-right-hiweb></nav-right-hiweb> <!-- <sidebar-admin-hiweb></sidebar-admin-hiweb> --> </header> </div> <div class="container-fluid"> <div class="col"> <modal-hiweb></modal-hiweb> <label>Buttons</label> <button-hiweb title="مشاهده"></button-hiweb> <button-error-hiweb title="مشاهده"></button-error-hiweb> <button-info-hiweb title="مشاهده"></button-info-hiweb> <button-outline-hiweb title="مشاهده"></button-outline-hiweb> </div> <div class="row"> <input-hiweb label="ایمیل" validator="[&quot;required&quot;,{&quot;name&quot;:&quot;length&quot;,&quot;options&quot;:{&quot;min&quot;:6}},&quot;email&quot;]"></input-hiweb> </div> <!-- <div class="row mt-4">
+    }</style> <script type="module" src="/build/design-system-hiweb.esm.js" data-stencil></script> <script nomodule="" src="/build/design-system-hiweb.js" data-stencil></script> </head> <body> <div class="main-view"> <div style="flex: 1 0 auto;"> <div> <header> <nav-right-hiweb></nav-right-hiweb> <!-- <sidebar-admin-hiweb></sidebar-admin-hiweb> --> </header> </div> <div class="container-fluid"> <div class="col"> <modal-hiweb></modal-hiweb> <label>Buttons</label> <button-hiweb title="مشاهده"></button-hiweb> <button-error-hiweb title="مشاهده"></button-error-hiweb> <button-info-hiweb title="مشاهده"></button-info-hiweb> <button-outline-hiweb title="مشاهده"></button-outline-hiweb> </div> <div class="row"> <input-hiweb label="ایمیل" validator="[&quot;required&quot;,{&quot;name&quot;:&quot;length&quot;,&quot;options&quot;:{&quot;min&quot;:6}},&quot;email&quot;]"></input-hiweb> </div> <!-- <div class="row mt-4">
           <card-news-hiweb background-url="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" title-news="برد استقلال مقابل فولاد"
             description-news="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است." onclick="showMenu()" btn-text="ادامه متن"></card-news-hiweb>
         </div> --> <div> <card-accordion-hiweb label="خبر"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم
@@ -116,4 +116,13 @@
   // ]
   //
   // comp2.itemsProp = comp2Items;
-</script> </body></html>
+</script> <script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // auto-unregister service worker during dev mode
+  navigator.serviceWorker.getRegistration().then(function(registration) {
+  if (registration) {
+    registration.unregister().then(function() { location.reload(true) });
+  }
+  });
+}
+</script></body></html>
