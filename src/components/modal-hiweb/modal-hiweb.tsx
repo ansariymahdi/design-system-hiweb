@@ -28,6 +28,7 @@ export class ModalHiweb {
   }
 
   handleClick = cb => {
+    console.log(cb);
     this.onClick.emit(cb);
   }
 
@@ -40,7 +41,10 @@ export class ModalHiweb {
         class="modal-container"
         onClick={this.closeModal}
       >
-        <div class="custom-modal">
+        <div
+          class="custom-modal"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div
             class="cross"
             innerHTML={icons['cross']}
