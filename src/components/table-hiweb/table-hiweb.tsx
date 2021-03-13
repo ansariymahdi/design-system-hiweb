@@ -8,11 +8,16 @@ import icons from '../../modules/iconsList';
   shadow: false,
 })
 export class TableHiweb {
-  @Prop({ attribute: 'data' }) dataProp: {head: {title: string, options: string[], colspan: number}[], body: {type: string, data: any}[][]};
+  @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
-  @State() data: {head: {title: string, options: string[], colspan: number}[], body: {type: string, data: any}[][]};
-  @State() options: {options: string[], colspan: number}[] = [];
+  @Prop() checkbox: boolean = true;
+  @Prop() page: number;
+  @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
+  @State() options: { options: string[], colspan: number }[] = [];
+  @State() allSelected: boolean = false;
   @Event() buttonClicked: EventEmitter<string>;
+  @Event() handleCheckbox: EventEmitter<{index: number, checked: boolean} | {allSelected: boolean}>;
+  @Event() pageChanged: EventEmitter<number>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -23,7 +28,7 @@ export class TableHiweb {
     console.log(this.data);
 
 
-    this.options = this.data.head.map(({options, colspan}) => {
+    this.options = this.data.head.map(({ options, colspan }) => {
       let obj = {
         options,
         colspan: 1
@@ -31,7 +36,7 @@ export class TableHiweb {
       if (colspan) {
         console.log(colspan);
 
-        obj = {...obj, colspan: colspan};
+        obj = { ...obj, colspan: colspan };
       }
       return obj;
     });
@@ -45,7 +50,18 @@ export class TableHiweb {
     return (
       <tr>
         {
-          this.data.head.map(({title},index) => {
+          this.checkbox
+            ? <th class="center">
+                <div
+                  class="placeholder"
+                  innerHTML={icons['selection']}
+                  onClick={() => {this.allSelected = !this.allSelected; this.handleCheckbox.emit({allSelected: this.allSelected})}}
+                />
+              </th>
+            : null
+        }
+        {
+          this.data.head.map(({ title }, index) => {
             return (
               <th
                 class={this.options[index].options.join(' ')}
@@ -60,11 +76,24 @@ export class TableHiweb {
     );
   }
 
-  renderRow = dataArray => {
+  renderRow = (dataArray, rowIndex) => {
     return (
       <tr>
+        {
+          this.checkbox
+            ? <td class="center">
+                <input
+                  class="form-check-input cursor"
+                  type="checkbox"
+                  value=""
+                  checked={this.allSelected}
+                  onChange={(e) => this.handleCheckbox.emit({index: rowIndex, checked: e.target['checked']})}
+                />
+              </td>
+            : null
+        }
         {dataArray.map((body, index) => {
-          const {type, data} = body;
+          const { type, data } = body;
           const styleClass = this.options[index].options.join(' ');
           const colSpan = this.options[index].colspan;
 
@@ -87,27 +116,27 @@ export class TableHiweb {
               )
             case 'icon':
               return (
-                  <td
-                    class={styleClass}
-                    colSpan={colSpan}
-                  >
-                    <div
-                      class={"placeholder " + data.className}
-                      chosen-color="yellow"
-                      innerHTML={icons[data.icon]}
-                      onClick={() => this.handleClick(data.path)}
-                    />
-                  </td>
+                <td
+                  class={styleClass}
+                  colSpan={colSpan}
+                >
+                  <div
+                    class={"placeholder " + data.className}
+                    chosen-color="yellow"
+                    innerHTML={icons[data.icon]}
+                    onClick={() => this.handleClick(data.path)}
+                  />
+                </td>
               )
             case 'button':
-            let style = {};
-            if (data.background) {
-              style = {...style, background: data.background};
-            }
-            if (data.color) {
-              style = {...style, color: data.color};
-            }
-            return (
+              let style = {};
+              if (data.background) {
+                style = { ...style, background: data.background };
+              }
+              if (data.color) {
+                style = { ...style, color: data.color };
+              }
+              return (
                 <td
                   class={styleClass}
                   colSpan={colSpan}
@@ -119,7 +148,7 @@ export class TableHiweb {
                     {data.text}
                   </button>
                 </td>
-            )
+              )
             default:
               break;
           }
@@ -137,10 +166,22 @@ export class TableHiweb {
           </thead>
           <tbody>
             {
-              this.data.body.map(eachRow => this.renderRow(eachRow))
+              this.data.body.map((eachRow, index) => this.renderRow(eachRow, index))
             }
           </tbody>
         </table>
+        <div class="footer">
+          <nav>
+            {this.renderPagination()}
+            <ul class="pagination-custom">
+              <li class="">Previous</li>
+              <li class="">1</li>
+              <li class="">2</li>
+              <li class="">3</li>
+              <li class="">Next</li>
+            </ul>
+          </nav>
+        </div>
       </div>
     );
   }

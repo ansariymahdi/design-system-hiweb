@@ -30,6 +30,7 @@ import lightning from './../assets/icons/lightning.svg';
 import information from './../assets/icons/information.svg';
 import tick from './../assets/icons/tick.svg';
 import refresh from './../assets/icons/refresh.svg';
+import selection from './../assets/icons/selection.svg';
 
 const icons = {
   arrowUp,
@@ -63,7 +64,8 @@ const icons = {
   lightning,
   information,
   tick,
-  refresh
+  refresh,
+  selection
 }
 
 export default icons

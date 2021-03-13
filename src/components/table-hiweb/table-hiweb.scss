@@ -197,7 +197,34 @@ table {
     }
   }
 }
+
+.cursor {
+  cursor: pointer;
+}
 /**====== Foo-table css end ======**/
+.footer {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-custom {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  li {
+    display: block;
+    padding: .375rem .75rem;
+    border: 1px solid #dee2e6;
+    background: white;
+    cursor: pointer;
+  }
+  li:hover {
+    background: gray;
+  }
+}
 /**====== Data Tables css end ======**/
 
 @media (max-width: 600px) {

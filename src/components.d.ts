@@ -65,8 +65,10 @@ export namespace Components {
         "textcolor": any;
     }
     interface TableHiweb {
-        "dataProp": {head: {title: string, options: string[], colspan: number}[], body: {type: string, data: any}[][]};
+        "checkbox": boolean;
+        "dataProp": { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
         "dataStringProp": string;
+        "page": number;
     }
     interface TextareaHiweb {
     }
@@ -251,9 +253,13 @@ declare namespace LocalJSX {
         "textcolor"?: any;
     }
     interface TableHiweb {
-        "dataProp"?: {head: {title: string, options: string[], colspan: number}[], body: {type: string, data: any}[][]};
+        "checkbox"?: boolean;
+        "dataProp"?: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
         "dataStringProp"?: string;
         "onButtonClicked"?: (event: CustomEvent<string>) => void;
+        "onHandleCheckbox"?: (event: CustomEvent<{index: number, checked: boolean} | {allSelected: boolean}>) => void;
+        "onPageChanged"?: (event: CustomEvent<number>) => void;
+        "page"?: number;
     }
     interface TextareaHiweb {
     }
