@@ -8,10 +8,17 @@ import ArrowUp from './../../assets/icons/ArrowUp.svg';
 })
 export class CardAccordionHiweb {
   @Prop() label: string;
+  @Prop() open: boolean;
 
-  @State() toggle: boolean = false;
+  @State() toggle: boolean;
 
   @Event() onToggle: EventEmitter;
+  componentWillLoad() {
+    if (this.open) {
+      this.toggle = true;
+    }
+    this.toggle = false;
+  }
   toggleComponent() {
     this.toggle = !this.toggle;
     this.onToggle.emit({ visible: this.toggle });
@@ -37,29 +44,6 @@ export class CardAccordionHiweb {
           </div>
         </div>
       </div>
-      // <div class="row direction-rtl">
-      //   <div class="col">
-      //     <div class={`sidebar-nav-menu-item card ${this.toggle ? 'item-active' : ''}`}>
-      //       <div class="card-header">
-      //         <h5 class="card-title" onClick={() => this.toggleComponent()}>
-      //           {' '}
-      //           {this.label}
-      //         </h5>
-      //         {/* <div class="placeholder fa-chevron-down" innerHTML={ArrowUp} /> */}
-      //         {/* <!-- <ArrowUp width={20} height={20} class="fa-chevron-down" /> --> */}
-      //       </div>
-      //       <div>
-      //         <div class="row">
-      //           <div class="card-body">
-      //             <div class="table-responsive">
-
-      //             </div>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }

@@ -20,6 +20,7 @@ export namespace Components {
     }
     interface CardAccordionHiweb {
         "label": string;
+        "open": boolean;
     }
     interface CardNewsHiweb {
         "backgroundUrl": string;
@@ -184,6 +185,7 @@ declare namespace LocalJSX {
     interface CardAccordionHiweb {
         "label"?: string;
         "onOnToggle"?: (event: CustomEvent<any>) => void;
+        "open"?: boolean;
     }
     interface CardNewsHiweb {
         "backgroundUrl"?: string;
