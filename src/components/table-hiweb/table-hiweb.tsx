@@ -17,10 +17,12 @@ export class TableHiweb {
   @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
   @State() allSelected: boolean = false;
+  @State() order = {title: null, down: true};
   @Event() buttonClicked: EventEmitter<string>;
   @Event() handleCheckbox: EventEmitter<{index: number, checked: boolean} | {allSelected: boolean}>;
   @Event() pageChanged: EventEmitter<number>;
   @Event() rowNumChanged: EventEmitter<number>;
+  @Event() orderChanged: EventEmitter<{title: string, down: boolean}>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -65,18 +67,35 @@ export class TableHiweb {
         }
         {
           this.data.head.map(({ title }, index) => {
+            console.log('bye');
+
             return (
               <th
                 class={this.options[index].options.join(' ')}
                 colSpan={this.options[index].colspan}
+                onClick={() => this.handleOrder(title)}
               >
                 {title}
+                {
+                  this.order.title === title
+                    ? <div class="placeholder test" innerHTML={icons[(this.order.down ? 'sortDown' : 'sortUp')]} />
+                    : null
+                }
               </th>
             );
           })
         }
       </tr>
     );
+  }
+
+  handleOrder = title => {
+    if (this.order.title === title) {
+      this.order = { title, down: !(this.order.down)};
+    } else {
+      this.order = { title, down: true};
+    }
+    this.orderChanged.emit(this.order);
   }
 
   renderRow = (dataArray, rowIndex) => {

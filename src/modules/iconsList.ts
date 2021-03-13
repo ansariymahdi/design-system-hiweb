@@ -33,6 +33,8 @@ import refresh from './../assets/icons/refresh.svg';
 import selection from './../assets/icons/selection.svg';
 import checkBox from './../assets/icons/check-box-with-check-sign.svg';
 import roundSquare from './../assets/icons/square-with-round-corners.svg';
+import sortDown from './../assets/icons/sort-down.svg';
+import sortUp from './../assets/icons/sort-ascending.svg';
 
 const icons = {
   arrowUp,
@@ -69,7 +71,9 @@ const icons = {
   refresh,
   selection,
   checkBox,
-  roundSquare
+  roundSquare,
+  sortDown,
+  sortUp
 }
 
 export default icons

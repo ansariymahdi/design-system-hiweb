@@ -18,6 +18,9 @@ $dark-color: #37474f;
 
   thead th {
     border-bottom: 1px solid $theme-border;
+    .test {
+      float: left;
+    }
   }
 
   tbody + tbody {
