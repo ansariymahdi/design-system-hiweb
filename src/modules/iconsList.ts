@@ -25,6 +25,8 @@ import newsPaper from './../assets/icons/newspaper.svg';
 import table from './../assets/icons/table.svg';
 import edit from './../assets/icons/edit.svg';
 import trash from './../assets/icons/trash.svg';
+import close from './../assets/icons/close.svg';
+import lightning from './../assets/icons/lightning.svg';
 
 const icons = {
   arrowUp,
@@ -53,7 +55,9 @@ const icons = {
   newsPaper,
   table,
   edit,
-  trash
+  trash,
+  close,
+  lightning
 }
 
 export default icons

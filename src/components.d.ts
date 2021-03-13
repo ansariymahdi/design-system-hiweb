@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface AlertHiweb {
+        "type": string;
+    }
     interface ButtonErrorHiweb {
         "title": string;
     }
@@ -67,6 +70,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAlertHiwebElement extends Components.AlertHiweb, HTMLStencilElement {
+    }
+    var HTMLAlertHiwebElement: {
+        prototype: HTMLAlertHiwebElement;
+        new (): HTMLAlertHiwebElement;
+    };
     interface HTMLButtonErrorHiwebElement extends Components.ButtonErrorHiweb, HTMLStencilElement {
     }
     var HTMLButtonErrorHiwebElement: {
@@ -152,6 +161,7 @@ declare global {
         new (): HTMLTextareaHiwebElement;
     };
     interface HTMLElementTagNameMap {
+        "alert-hiweb": HTMLAlertHiwebElement;
         "button-error-hiweb": HTMLButtonErrorHiwebElement;
         "button-hiweb": HTMLButtonHiwebElement;
         "button-info-hiweb": HTMLButtonInfoHiwebElement;
@@ -169,6 +179,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AlertHiweb {
+        "type"?: string;
+    }
     interface ButtonErrorHiweb {
         "title"?: string;
     }
@@ -240,6 +253,7 @@ declare namespace LocalJSX {
     interface TextareaHiweb {
     }
     interface IntrinsicElements {
+        "alert-hiweb": AlertHiweb;
         "button-error-hiweb": ButtonErrorHiweb;
         "button-hiweb": ButtonHiweb;
         "button-info-hiweb": ButtonInfoHiweb;
@@ -260,6 +274,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "alert-hiweb": LocalJSX.AlertHiweb & JSXBase.HTMLAttributes<HTMLAlertHiwebElement>;
             "button-error-hiweb": LocalJSX.ButtonErrorHiweb & JSXBase.HTMLAttributes<HTMLButtonErrorHiwebElement>;
             "button-hiweb": LocalJSX.ButtonHiweb & JSXBase.HTMLAttributes<HTMLButtonHiwebElement>;
             "button-info-hiweb": LocalJSX.ButtonInfoHiweb & JSXBase.HTMLAttributes<HTMLButtonInfoHiwebElement>;
