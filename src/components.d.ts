@@ -7,7 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AlertHiweb {
-        "type": string;
+        "timer": any;
+        "title": string;
+        "type": any;
     }
     interface ButtonErrorHiweb {
         "title": string;
@@ -180,7 +182,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AlertHiweb {
-        "type"?: string;
+        "onOnClick"?: (event: CustomEvent<any>) => void;
+        "timer"?: any;
+        "title"?: string;
+        "type"?: any;
     }
     interface ButtonErrorHiweb {
         "title"?: string;

@@ -65,3 +65,55 @@
     background: #820000;
   }
 }
+
+.warning {
+  background: #FBE4C7;
+  strong {
+    color: #A46D2A;
+  }
+  svg {
+    fill: #A46D2A;
+  }
+  .progress-bar {
+    background: #A46D2A;
+  }
+}
+
+.success {
+  background: #C6F2C8;
+  strong {
+    color: #2F8034;
+  }
+  svg {
+    fill: #2F8034;
+  }
+  .progress-bar {
+    background: #2F8034;
+  }
+}
+
+.retry {
+  background: #C5DDFB;
+  strong {
+    color: #1453A0;
+  }
+  svg {
+    fill: #1453A0;
+  }
+  .progress-bar {
+    background: #1453A0;
+  }
+}
+
+.default {
+  background: #E0E0E0;
+  strong {
+    color: #606060;
+  }
+  svg {
+    fill: #606060;
+  }
+  .progress-bar {
+    background: #606060;
+  }
+}
