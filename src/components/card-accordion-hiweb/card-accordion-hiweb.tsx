@@ -1,4 +1,4 @@
-import { Component, h, EventEmitter, Prop, State, Event } from '@stencil/core';
+import { Component, h, EventEmitter, Prop, State, Event, Watch } from '@stencil/core';
 import ArrowUp from './../../assets/icons/ArrowUp.svg';
 
 @Component({
@@ -9,6 +9,15 @@ import ArrowUp from './../../assets/icons/ArrowUp.svg';
 export class CardAccordionHiweb {
   @Prop() label: string;
   @Prop() open: boolean;
+
+  @Watch('open')
+  changeToggle() {
+    if (this.open) {
+      this.toggle = true;
+    } else {
+      this.toggle = false;
+    }
+  }
 
   @State() toggle: boolean;
 
