@@ -213,17 +213,42 @@ table {
 .pagination-custom {
   display: flex;
   padding: 0;
-  margin: 0;
+  margin: 0 40px;
   li {
     display: block;
     padding: .375rem .75rem;
     border: 1px solid #dee2e6;
     background: white;
     cursor: pointer;
+    color: #0d6efd;
   }
-  li:hover {
-    background: gray;
+  li:last-child {
+    border-radius: 0 .25rem .25rem 0;
   }
+  li:first-child {
+    border-radius: .25rem 0 0 .25rem;
+  }
+  li:not(:first-child) {
+    margin-left: -1px;
+  }
+  .disabled {
+    color: #6c757d;
+    cursor: default;
+  }
+  .selected {
+    color: white;
+    background: #0d6efd;
+    cursor: default;
+  }
+  li:hover:not(.selected):not(.disabled) {
+    background: #E9ECEF;
+  }
+}
+
+.selecter {
+  width: 90px;
+  float: right;
+  margin-right: 0;
 }
 /**====== Data Tables css end ======**/
 

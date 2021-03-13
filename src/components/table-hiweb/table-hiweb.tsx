@@ -11,10 +11,13 @@ export class TableHiweb {
   @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
-  @Prop() page: number;
+  @Prop() page: number = 1;
+  @Prop() range: number[] = [1,9];
+  @Prop() numberOfRows: number = 8;
   @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
   @State() allSelected: boolean = false;
+  @State() rowRange: number[];
   @Event() buttonClicked: EventEmitter<string>;
   @Event() handleCheckbox: EventEmitter<{index: number, checked: boolean} | {allSelected: boolean}>;
   @Event() pageChanged: EventEmitter<number>;
@@ -25,7 +28,10 @@ export class TableHiweb {
     } else {
       this.data = this.dataProp;
     }
-    console.log(this.data);
+
+    this.rowRange = [...Array(this.range[1] + 1).keys()].slice(this.range[0]);
+    console.log(this.rowRange);
+
 
 
     this.options = this.data.head.map(({ options, colspan }) => {
@@ -157,6 +163,37 @@ export class TableHiweb {
     );
   }
 
+  renderPagination = () => {
+    if (this.page) {
+      return (
+        <ul class="pagination-custom">
+          <li class={this.page - 1 === 0 ? 'disabled' : ''} onClick={() => this.handlePageChange(this.page - 1)}>Previous</li>
+          {
+            this.page - 1 !== 0
+              ? <li class="" onClick={() => this.handlePageChange(this.page - 1)}>{this.page - 1}</li>
+              : null
+          }
+          <li class="selected" onClick={() => this.handlePageChange(this.page)}>{this.page}</li>
+          <li class="" onClick={() => this.handlePageChange(this.page + 1)}>{this.page + 1}</li>
+          {
+            this.page - 1 === 0
+              ? <li class="" onClick={() => this.handlePageChange(this.page + 2)}>{this.page + 2}</li>
+              : null
+          }
+          <li class="" onClick={() => this.handlePageChange(this.page + 1)}>Next</li>
+        </ul>
+      )
+    }
+  }
+
+  handlePageChange = page => {
+    if (page === 0 || page === this.page) {
+      return;
+    }
+    console.log('page', page);
+    this.pageChanged.emit(page);
+  }
+
   render() {
     return (
       <div class="table-responsive">
@@ -171,16 +208,28 @@ export class TableHiweb {
           </tbody>
         </table>
         <div class="footer">
+          <p>
+
+          </p>
           <nav>
             {this.renderPagination()}
-            <ul class="pagination-custom">
-              <li class="">Previous</li>
-              <li class="">1</li>
-              <li class="">2</li>
-              <li class="">3</li>
-              <li class="">Next</li>
-            </ul>
           </nav>
+          <div class="selecter">
+            <select class="form-select" aria-label="Default select example">
+              {
+                this.rowRange.map(num => {
+                  return (
+                    <option
+                      selected={num === this.numberOfRows ? true : false}
+                      value={num}
+                    >
+                      {num}
+                    </option>
+                  )
+                })
+              }
+            </select>
+          </div>
         </div>
       </div>
     );

@@ -68,7 +68,9 @@ export namespace Components {
         "checkbox": boolean;
         "dataProp": { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
         "dataStringProp": string;
+        "numberOfRows": number;
         "page": number;
+        "range": number[];
     }
     interface TextareaHiweb {
     }
@@ -256,10 +258,12 @@ declare namespace LocalJSX {
         "checkbox"?: boolean;
         "dataProp"?: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
         "dataStringProp"?: string;
+        "numberOfRows"?: number;
         "onButtonClicked"?: (event: CustomEvent<string>) => void;
         "onHandleCheckbox"?: (event: CustomEvent<{index: number, checked: boolean} | {allSelected: boolean}>) => void;
         "onPageChanged"?: (event: CustomEvent<number>) => void;
         "page"?: number;
+        "range"?: number[];
     }
     interface TextareaHiweb {
     }
