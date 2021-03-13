@@ -10,6 +10,7 @@ const TableHiweb = class {
     this.buttonClicked = createEvent(this, "buttonClicked", 7);
     this.handleCheckbox = createEvent(this, "handleCheckbox", 7);
     this.pageChanged = createEvent(this, "pageChanged", 7);
+    this.rowNumChanged = createEvent(this, "rowNumChanged", 7);
     this.checkbox = true;
     this.page = 1;
     this.range = [1, 9];
@@ -93,7 +94,7 @@ const TableHiweb = class {
     });
   }
   render() {
-    return (h("div", { class: "table-responsive" }, h("table", { class: "table text-right" }, h("thead", null, this.renderHead()), h("tbody", null, this.data.body.map((eachRow, index) => this.renderRow(eachRow, index)))), h("div", { class: "footer" }, h("p", null), h("nav", null, this.renderPagination()), h("div", { class: "selecter" }, h("select", { class: "form-select", "aria-label": "Default select example" }, this.rowRange.map(num => {
+    return (h("div", { class: "table-responsive" }, h("table", { class: "table text-right" }, h("thead", null, this.renderHead()), h("tbody", null, this.data.body.map((eachRow, index) => this.renderRow(eachRow, index)))), h("div", { class: "footer" }, h("p", null), h("nav", null, this.renderPagination()), h("div", { class: "selecter" }, h("select", { class: "form-select", onInput: (event) => this.rowNumChanged.emit(event.target['value']) }, this.rowRange.map(num => {
       return (h("option", { selected: num === this.numberOfRows ? true : false, value: num }, num));
     }))))));
   }

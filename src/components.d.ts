@@ -262,6 +262,7 @@ declare namespace LocalJSX {
         "onButtonClicked"?: (event: CustomEvent<string>) => void;
         "onHandleCheckbox"?: (event: CustomEvent<{index: number, checked: boolean} | {allSelected: boolean}>) => void;
         "onPageChanged"?: (event: CustomEvent<number>) => void;
+        "onRowNumChanged"?: (event: CustomEvent<number>) => void;
         "page"?: number;
         "range"?: number[];
     }

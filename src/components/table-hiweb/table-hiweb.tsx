@@ -21,6 +21,7 @@ export class TableHiweb {
   @Event() buttonClicked: EventEmitter<string>;
   @Event() handleCheckbox: EventEmitter<{index: number, checked: boolean} | {allSelected: boolean}>;
   @Event() pageChanged: EventEmitter<number>;
+  @Event() rowNumChanged: EventEmitter<number>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -215,7 +216,10 @@ export class TableHiweb {
             {this.renderPagination()}
           </nav>
           <div class="selecter">
-            <select class="form-select" aria-label="Default select example">
+            <select
+              class="form-select"
+              onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
+              >
               {
                 this.rowRange.map(num => {
                   return (
