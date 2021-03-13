@@ -12,12 +12,11 @@ export class TableHiweb {
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
   @Prop() page: number = 1;
-  @Prop() range: number[] = [1,9];
-  @Prop() numberOfRows: number = 8;
+  @Prop() range: number[] = [5,10,20,50,100,200];
+  @Prop() numberOfRows: number = 10;
   @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
   @State() allSelected: boolean = false;
-  @State() rowRange: number[];
   @Event() buttonClicked: EventEmitter<string>;
   @Event() handleCheckbox: EventEmitter<{index: number, checked: boolean} | {allSelected: boolean}>;
   @Event() pageChanged: EventEmitter<number>;
@@ -29,9 +28,6 @@ export class TableHiweb {
     } else {
       this.data = this.dataProp;
     }
-
-    this.rowRange = [...Array(this.range[1] + 1).keys()].slice(this.range[0]);
-    console.log(this.rowRange);
 
 
 
@@ -61,7 +57,7 @@ export class TableHiweb {
             ? <th class="center">
                 <div
                   class="placeholder"
-                  innerHTML={icons['selection']}
+                  innerHTML={icons[this.allSelected ? 'checkBox' : 'roundSquare']}
                   onClick={() => {this.allSelected = !this.allSelected; this.handleCheckbox.emit({allSelected: this.allSelected})}}
                 />
               </th>
@@ -221,7 +217,7 @@ export class TableHiweb {
               onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
               >
               {
-                this.rowRange.map(num => {
+                this.range.map(num => {
                   return (
                     <option
                       selected={num === this.numberOfRows ? true : false}

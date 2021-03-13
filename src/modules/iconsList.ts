@@ -31,6 +31,8 @@ import information from './../assets/icons/information.svg';
 import tick from './../assets/icons/tick.svg';
 import refresh from './../assets/icons/refresh.svg';
 import selection from './../assets/icons/selection.svg';
+import checkBox from './../assets/icons/check-box-with-check-sign.svg';
+import roundSquare from './../assets/icons/square-with-round-corners.svg';
 
 const icons = {
   arrowUp,
@@ -65,7 +67,9 @@ const icons = {
   information,
   tick,
   refresh,
-  selection
+  selection,
+  checkBox,
+  roundSquare
 }
 
 export default icons
