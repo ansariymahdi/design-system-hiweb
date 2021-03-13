@@ -27,6 +27,9 @@ import edit from './../assets/icons/edit.svg';
 import trash from './../assets/icons/trash.svg';
 import close from './../assets/icons/close.svg';
 import lightning from './../assets/icons/lightning.svg';
+import information from './../assets/icons/information.svg';
+import tick from './../assets/icons/tick.svg';
+import refresh from './../assets/icons/refresh.svg';
 
 const icons = {
   arrowUp,
@@ -57,7 +60,10 @@ const icons = {
   edit,
   trash,
   close,
-  lightning
+  lightning,
+  information,
+  tick,
+  refresh
 }
 
 export default icons
