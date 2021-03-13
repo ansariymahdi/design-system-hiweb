@@ -66,7 +66,7 @@
 
       <div class="container-fluid">
         <div class="col">
-          <modal-hiweb></modal-hiweb>
+          <!-- <modal-hiweb></modal-hiweb> -->
           <label>Buttons</label>
           <button-hiweb title="مشاهده"></button-hiweb>
           <button-error-hiweb title="مشاهده"></button-error-hiweb>
@@ -82,7 +82,7 @@
         </div> -->
 
         <div>
-          <card-accordion-hiweb label="خبر">
+          <card-accordion-hiweb label="خبر" open="true">
             لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم
             است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت
             فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در
@@ -174,6 +174,11 @@
   // ]
   //
   // comp2.itemsProp = comp2Items;
+
+  var comp3 = document.querySelector('card-accordion-hiweb');
+  const test = true;
+  comp3.open = false;
+
 </script>
 
 </html>

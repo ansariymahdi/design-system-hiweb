@@ -14,10 +14,14 @@ export class CardAccordionHiweb {
 
   @Event() onToggle: EventEmitter;
   componentWillLoad() {
+
     if (this.open) {
       this.toggle = true;
+
+    } else {
+      this.toggle = false;
     }
-    this.toggle = false;
+
   }
   toggleComponent() {
     this.toggle = !this.toggle;
