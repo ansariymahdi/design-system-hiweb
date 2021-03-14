@@ -19,7 +19,8 @@ export class AlertHiweb {
 
   componentWillLoad() {
     if (this.timer) {
-      this.intervalId = setInterval(this.getWidth, 100);
+      const timer = this.timer/100;
+      this.intervalId = setInterval(this.getWidth, timer);
     }
     switch (this.type) {
       case 'alert':
