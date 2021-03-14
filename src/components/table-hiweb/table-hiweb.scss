@@ -45,6 +45,9 @@ $dark-color: #37474f;
       width: 30px;
     }
   }
+  .form-check-input {
+    position: static;
+  }
 
   &.table-sm {
     th,
