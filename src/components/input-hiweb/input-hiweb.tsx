@@ -12,6 +12,7 @@ export class inputHiweb {
   @Prop() label: string;
   @Prop() title: string;
   @Prop({ mutable: true }) valueProp: string;
+  @Prop() placeHolder: string;
   @State() value: string;
   @Watch('valueProp')
  onValueChanged(name: string) {
@@ -104,9 +105,10 @@ export class inputHiweb {
             onInput={event => this.handleChange(event)}
             onFocus={() => this.inputFocused = true}
             onBlur={() => {setTimeout(() => {
-              this.inputFocused = false
-            }, 100);
-          }}
+                this.inputFocused = false
+              }, 100);
+            }}
+            placeholder={this.placeHolder}
           />
           {
             this.value && this.inputFocused

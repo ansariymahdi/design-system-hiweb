@@ -11,18 +11,21 @@ export class TableHiweb {
   @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
-  @Prop() page: number = 1;
-  @Prop() range: number[] = [5,10,20,50,100,200];
-  @Prop() numberOfRows: number = 10;
+  @Prop() page: number = 5;
+  @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
+  @Prop() numberOfRows: number = 20;
+  @Prop() totalDocuments: number = 100;
+  @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب']};
+
   @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
   @State() allSelected: boolean = false;
-  @State() order = {title: null, down: true};
+
   @Event() buttonClicked: EventEmitter<string>;
-  @Event() handleCheckbox: EventEmitter<{index: number, checked: boolean} | {allSelected: boolean}>;
+  @Event() handleCheckbox: EventEmitter<{ index: number, checked: boolean } | { allSelected: boolean }>;
   @Event() pageChanged: EventEmitter<number>;
   @Event() rowNumChanged: EventEmitter<number>;
-  @Event() orderChanged: EventEmitter<{title: string, down: boolean}>;
+  @Event() orderChanged: EventEmitter<string>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -57,12 +60,12 @@ export class TableHiweb {
         {
           this.checkbox
             ? <th class="center">
-                <div
-                  class="placeholder"
-                  innerHTML={icons[this.allSelected ? 'checkBox' : 'roundSquare']}
-                  onClick={() => {this.allSelected = !this.allSelected; this.handleCheckbox.emit({allSelected: this.allSelected})}}
-                />
-              </th>
+              <div
+                class="placeholder"
+                innerHTML={icons[this.allSelected ? 'checkBox' : 'roundSquare']}
+                onClick={() => { this.allSelected = !this.allSelected; this.handleCheckbox.emit({ allSelected: this.allSelected }) }}
+              />
+            </th>
             : null
         }
         {
@@ -73,14 +76,8 @@ export class TableHiweb {
               <th
                 class={this.options[index].options.join(' ')}
                 colSpan={this.options[index].colspan}
-                onClick={() => this.handleOrder(title)}
               >
                 {title}
-                {
-                  this.order.title === title
-                    ? <div class="placeholder test" innerHTML={icons[(this.order.down ? 'sortDown' : 'sortUp')]} />
-                    : null
-                }
               </th>
             );
           })
@@ -89,29 +86,20 @@ export class TableHiweb {
     );
   }
 
-  handleOrder = title => {
-    if (this.order.title === title) {
-      this.order = { title, down: !(this.order.down)};
-    } else {
-      this.order = { title, down: true};
-    }
-    this.orderChanged.emit(this.order);
-  }
-
   renderRow = (dataArray, rowIndex) => {
     return (
       <tr>
         {
           this.checkbox
             ? <td class="center">
-                <input
-                  class="form-check-input cursor"
-                  type="checkbox"
-                  value=""
-                  checked={this.allSelected}
-                  onChange={(e) => this.handleCheckbox.emit({index: rowIndex, checked: e.target['checked']})}
-                />
-              </td>
+              <input
+                class="form-check-input cursor"
+                type="checkbox"
+                value=""
+                checked={this.allSelected}
+                onChange={(e) => this.handleCheckbox.emit({ index: rowIndex, checked: e.target['checked'] })}
+              />
+            </td>
             : null
         }
         {dataArray.map((body, index) => {
@@ -183,20 +171,47 @@ export class TableHiweb {
     if (this.page) {
       return (
         <ul class="pagination-custom">
-          <li class={this.page - 1 === 0 ? 'disabled' : ''} onClick={() => this.handlePageChange(this.page - 1)}>Previous</li>
           {
-            this.page - 1 !== 0
+            this.page - 1 > 0
+              ? <li onClick={() => this.handlePageChange(this.page - 1)}>
+                <div class="placeholder" innerHTML={icons['arrowLeft']} />
+              </li>
+              : null
+          }
+          {
+            this.page - 2 > 0
+              ? <li class="" onClick={() => this.handlePageChange(this.page - 2)}>{this.page - 2}</li>
+              : null
+          }
+          {
+            this.page - 1 > 0
               ? <li class="" onClick={() => this.handlePageChange(this.page - 1)}>{this.page - 1}</li>
               : null
           }
           <li class="selected" onClick={() => this.handlePageChange(this.page)}>{this.page}</li>
-          <li class="" onClick={() => this.handlePageChange(this.page + 1)}>{this.page + 1}</li>
+          {
+            (this.page + 1) * this.numberOfRows > this.totalDocuments
+              ? null
+              : <li class="" onClick={() => this.handlePageChange(this.page + 1)}>{this.page + 1}</li>
+          }
+          {
+            (this.page + 2) * this.numberOfRows > this.totalDocuments
+              ? null
+              : <li class="" onClick={() => this.handlePageChange(this.page + 2)}>{this.page + 2}</li>
+          }
           {
             this.page - 1 === 0
-              ? <li class="" onClick={() => this.handlePageChange(this.page + 2)}>{this.page + 2}</li>
+              ? <li class="" onClick={() => this.handlePageChange(this.page + 3)}>{this.page + 3}</li>
               : null
           }
-          <li class="" onClick={() => this.handlePageChange(this.page + 1)}>Next</li>
+          {
+            (this.page + 1) * this.numberOfRows > this.totalDocuments
+              ? null
+              : <li class="" onClick={() => this.handlePageChange(this.page + 1)}>
+                <div class="placeholder" innerHTML={icons['arrowRight']} />
+              </li>
+          }
+
         </ul>
       )
     }
@@ -213,6 +228,37 @@ export class TableHiweb {
   render() {
     return (
       <div class="table-responsive">
+        <div class="header">
+          <div class="search">
+            <input-hiweb placeHolder="جستجو"></input-hiweb>
+          </div>
+          <div class="sort">
+            <div class="text">
+              مرتب سازی براساس
+            </div>
+            <div class="input-group">
+              <select
+                class="form-select"
+                id="inputGroupSelect01"
+                onInput={(event) => this.orderChanged.emit(event.target['value'])}
+              >
+                <option
+                  selected
+                  value={this.orderBy.order}
+                >{this.orderBy.order}</option>
+                {
+                  this.orderBy.options.map(option => {
+                    return (
+                      <option
+                        value={option}
+                      >{option}</option>
+                    )
+                  })
+                }
+              </select>
+            </div>
+          </div>
+        </div>
         <table class="table text-right">
           <thead>
             {this.renderHead()}
@@ -224,17 +270,11 @@ export class TableHiweb {
           </tbody>
         </table>
         <div class="footer">
-          <p>
-
-          </p>
-          <nav>
-            {this.renderPagination()}
-          </nav>
           <div class="selecter">
             <select
               class="form-select"
               onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
-              >
+            >
               {
                 this.range.map(num => {
                   return (
@@ -248,6 +288,14 @@ export class TableHiweb {
                 })
               }
             </select>
+          </div>
+          <nav>
+            {this.renderPagination()}
+          </nav>
+          <div class="total">
+            {
+              'نمایش ' + this.numberOfRows * (this.page - 1) + ' - ' + this.numberOfRows * (this.page) + " از " + this.totalDocuments
+            }
           </div>
         </div>
       </div>

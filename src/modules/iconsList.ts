@@ -35,6 +35,8 @@ import checkBox from './../assets/icons/check-box-with-check-sign.svg';
 import roundSquare from './../assets/icons/square-with-round-corners.svg';
 import sortDown from './../assets/icons/sort-down.svg';
 import sortUp from './../assets/icons/sort-ascending.svg';
+import arrowLeft from './../assets/icons/left-arrow.svg';
+import arrowRight from './../assets/icons/right-arrow.svg';
 
 const icons = {
   arrowUp,
@@ -73,7 +75,9 @@ const icons = {
   checkBox,
   roundSquare,
   sortDown,
-  sortUp
+  sortUp,
+  arrowLeft,
+  arrowRight
 }
 
 export default icons

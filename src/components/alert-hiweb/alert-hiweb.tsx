@@ -19,7 +19,7 @@ export class AlertHiweb {
 
   componentWillLoad() {
     if (this.timer) {
-      const timer = this.timer/100;
+      const timer = this.timer/200;
       this.intervalId = setInterval(this.getWidth, timer);
     }
     switch (this.type) {
@@ -47,7 +47,7 @@ export class AlertHiweb {
       this.progressBarDone = true
       clearInterval(this.intervalId);
     } else {
-      this.width = this.width + 1;
+      this.width = this.width + 0.5;
     }
   }
 

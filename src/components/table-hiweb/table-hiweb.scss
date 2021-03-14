@@ -18,9 +18,6 @@ $dark-color: #37474f;
 
   thead th {
     border-bottom: 1px solid $theme-border;
-    .test {
-      float: left;
-    }
   }
 
   tbody + tbody {
@@ -144,6 +141,51 @@ table.dataTable.fixedHeader-floating {
   }
 }
 
+/*   header  */
+
+.header {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  .search {
+    width: 60%;
+  }
+  .sort {
+    width: 40%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    text-align: right;
+    .text {
+      white-space: nowrap;
+      width: max-content;
+      padding-left: 5px;
+    }
+    .form-select {
+      background-position: left .75rem center;
+      padding: .375rem .75rem .375rem 1.75rem
+    }
+    select {
+      border-color: black;
+      direction: rtl;
+    }
+  }
+}
+@media (max-width: 800px) {
+  .header {
+    .search {
+      width: 100%;
+    }
+    .sort {
+      width: 100%;
+      padding: 0;
+    }
+  }
+}
+
 /**  =====================
       Foo-table css start
 ==========================  **/
@@ -209,50 +251,88 @@ table {
   height: 50px;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
+  .total {
+    width: 30%;
+    text-align: right;
+  }
+  nav {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .selecter {
+    width: 30%;
+    select {
+      width: 50%;
+      float: left;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .footer {
+    .total {
+      width: 50%;
+    }
+    nav {
+      width: 100%;
+      order: -1;
+    }
+    .selecter {
+      width: 50%;
+    }
+  }
 }
 
 .pagination-custom {
   display: flex;
   padding: 0;
   margin: 0 40px;
+  .placeholder {
+    height: 20px;
+    width: 20px;
+    svg {
+      vertical-align: top;
+      fill: $dark-color;
+    }
+  }
   li {
-    display: block;
-    padding: .375rem .75rem;
-    border: 1px solid #dee2e6;
-    background: white;
-    cursor: pointer;
-    color: #0d6efd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    border-radius: 100%;
+    text-align: center;
+    margin: 5px;
+    color: $dark-color;
+    font-weight: bold;
   }
   li:last-child {
-    border-radius: 0 .25rem .25rem 0;
+
   }
   li:first-child {
-    border-radius: .25rem 0 0 .25rem;
+
   }
   li:not(:first-child) {
-    margin-left: -1px;
+
   }
   .disabled {
-    color: #6c757d;
-    cursor: default;
+
   }
   .selected {
+    background: $primary-color;
     color: white;
-    background: #0d6efd;
-    cursor: default;
   }
   li:hover:not(.selected):not(.disabled) {
-    background: #E9ECEF;
+    background: $theme-border;
+    cursor: pointer;
   }
 }
 
-.selecter {
-  width: 90px;
-  float: right;
-  margin-right: 0;
-}
 /**====== Data Tables css end ======**/
 
 @media (max-width: 600px) {

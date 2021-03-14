@@ -38,6 +38,7 @@ export namespace Components {
     }
     interface InputHiweb {
         "label": string;
+        "placeHolder": string;
         "title": string;
         "valid": boolean;
         "validate": () => Promise<void>;
@@ -69,8 +70,10 @@ export namespace Components {
         "dataProp": { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
         "dataStringProp": string;
         "numberOfRows": number;
+        "orderBy": { order: string, options: string[] };
         "page": number;
         "range": number[];
+        "totalDocuments": number;
     }
     interface TextareaHiweb {
     }
@@ -223,6 +226,7 @@ declare namespace LocalJSX {
     interface InputHiweb {
         "label"?: string;
         "onChanged"?: (event: CustomEvent<{title: string, value: string, isValid: boolean}>) => void;
+        "placeHolder"?: string;
         "title"?: string;
         "valid"?: boolean;
         "validatorProp"?: string;
@@ -260,12 +264,14 @@ declare namespace LocalJSX {
         "dataStringProp"?: string;
         "numberOfRows"?: number;
         "onButtonClicked"?: (event: CustomEvent<string>) => void;
-        "onHandleCheckbox"?: (event: CustomEvent<{index: number, checked: boolean} | {allSelected: boolean}>) => void;
-        "onOrderChanged"?: (event: CustomEvent<{title: string, down: boolean}>) => void;
+        "onHandleCheckbox"?: (event: CustomEvent<{ index: number, checked: boolean } | { allSelected: boolean }>) => void;
+        "onOrderChanged"?: (event: CustomEvent<string>) => void;
         "onPageChanged"?: (event: CustomEvent<number>) => void;
         "onRowNumChanged"?: (event: CustomEvent<number>) => void;
+        "orderBy"?: { order: string, options: string[] };
         "page"?: number;
         "range"?: number[];
+        "totalDocuments"?: number;
     }
     interface TextareaHiweb {
     }
