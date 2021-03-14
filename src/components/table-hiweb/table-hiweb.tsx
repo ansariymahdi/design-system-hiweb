@@ -162,6 +162,17 @@ export class TableHiweb {
                   </button>
                 </td>
               )
+            case 'badge':
+            return (
+              <td
+                class={styleClass}
+                colSpan={colSpan}
+              >
+                <div class={'badge-custom ' + data.className}>
+                  {data.value}
+                </div>
+              </td>
+            )
             default:
               break;
           }

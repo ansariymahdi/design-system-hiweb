@@ -52,6 +52,14 @@ $dark-color: #37474f;
       padding: 0.35rem;
     }
   }
+  .badge-custom {
+    display: inline-block;
+    padding: .25em .8em;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .5rem;
+  }
   .left {
     text-align: left;
   }
