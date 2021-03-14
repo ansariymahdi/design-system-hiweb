@@ -1,4 +1,5 @@
 import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import Fragment from 'stencil-fragment'
 
 import icons from '../../modules/iconsList';
 
@@ -15,7 +16,8 @@ export class TableHiweb {
   @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
   @Prop() numberOfRows: number = 20;
   @Prop() totalDocuments: number = 100;
-  @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب']};
+  @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] };
+  @Prop() info: { title: string, content: string }[] = [{ title: 'تعداد', content: '۲۳۴۲۳۴' }, { title: 'نام', content: 'امیرعلی' }]
 
   @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
@@ -26,7 +28,7 @@ export class TableHiweb {
   @Event() pageChanged: EventEmitter<number>;
   @Event() rowNumChanged: EventEmitter<number>;
   @Event() orderChanged: EventEmitter<string>;
-  @Event() searchInputChanged: EventEmitter<{title: string, value: string, isValid: boolean}>;
+  @Event() searchInputChanged: EventEmitter<{ title: string, value: string, isValid: boolean }>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -226,15 +228,34 @@ export class TableHiweb {
     this.pageChanged.emit(page);
   }
 
+  renderInfo = () => {
+    return this.info.map(({ title, content }, index) => {
+      return (
+        <Fragment>
+          <div class="info">
+            <h1>
+              {title}
+            </h1>
+            <h4>
+              {content}
+            </h4>
+          </div>
+          {
+            index !== this.info.length - 1 && <div class="line" />
+          }
+        </Fragment>
+      )
+    });
+  }
+
   render() {
     return (
       <div class="table-responsive">
         <div class="header">
           <div class="info-div">
-            <div class="info">
-            </div>
-            <div class="info">
-            </div>
+            {
+              this.info && this.renderInfo()
+            }
           </div>
           <div class="search">
             <input-hiweb

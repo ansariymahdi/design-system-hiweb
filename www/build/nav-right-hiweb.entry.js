@@ -1,4 +1,4 @@
-import { r as registerInstance, e as createEvent, h } from './index-3bdbcca6.js';
+import { r as registerInstance, e as createEvent, h } from './index-8e64a80c.js';
 import './ArrowUp-60cff1dd.js';
 import { l as logoTest, i as icons, a as arrowDown } from './iconsList-f112227e.js';
 

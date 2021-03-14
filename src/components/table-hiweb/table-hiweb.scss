@@ -177,21 +177,33 @@ table.dataTable.fixedHeader-floating {
 .info-div {
   width: 100%;
   height: fit-content;
-  background: red;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
   .info {
     height: 100px;
-    width: 100px;
-    background: blue;
-    margin: 0 10px;
+    min-width: 100px;
+    margin: 0 20px;
+    h1 , h4 {
+      text-align: right;
+    }
+    h1 {
+      color: $dark-color
+    }
+    h4 {
+      color: $primary-color
+    }
   }
   .info:last-child {
-    margin: 0 10px 0 0;
+    margin: 0 20px 0 0;
   }
   .info:first-child {
-    margin: 0 0 0 10px;
+    margin: 0 0 0 20px;
+  }
+  .line {
+    width: 1px;
+    height: 100px;
+    background: $dark-color;
   }
 }
 @media (max-width: 800px) {

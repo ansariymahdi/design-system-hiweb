@@ -69,6 +69,7 @@ export namespace Components {
         "checkbox": boolean;
         "dataProp": { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
         "dataStringProp": string;
+        "info": { title: string, content: string }[];
         "numberOfRows": number;
         "orderBy": { order: string, options: string[] };
         "page": number;
@@ -262,13 +263,14 @@ declare namespace LocalJSX {
         "checkbox"?: boolean;
         "dataProp"?: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
         "dataStringProp"?: string;
+        "info"?: { title: string, content: string }[];
         "numberOfRows"?: number;
         "onButtonClicked"?: (event: CustomEvent<string>) => void;
         "onHandleCheckbox"?: (event: CustomEvent<{ index: number, checked: boolean } | { allSelected: boolean }>) => void;
         "onOrderChanged"?: (event: CustomEvent<string>) => void;
         "onPageChanged"?: (event: CustomEvent<number>) => void;
         "onRowNumChanged"?: (event: CustomEvent<number>) => void;
-        "onSearchInputChanged"?: (event: CustomEvent<{title: string, value: string, isValid: boolean}>) => void;
+        "onSearchInputChanged"?: (event: CustomEvent<{ title: string, value: string, isValid: boolean }>) => void;
         "orderBy"?: { order: string, options: string[] };
         "page"?: number;
         "range"?: number[];
