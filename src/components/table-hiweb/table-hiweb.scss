@@ -154,7 +154,7 @@ table.dataTable.fixedHeader-floating {
   }
   .sort {
     width: 40%;
-    padding: 0 10px;
+    padding: 0 10px 0 0 ;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -172,6 +172,26 @@ table.dataTable.fixedHeader-floating {
       border-color: black;
       direction: rtl;
     }
+  }
+}
+.info-div {
+  width: 100%;
+  height: fit-content;
+  background: red;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  .info {
+    height: 100px;
+    width: 100px;
+    background: blue;
+    margin: 0 10px;
+  }
+  .info:last-child {
+    margin: 0 10px 0 0;
+  }
+  .info:first-child {
+    margin: 0 0 0 10px;
   }
 }
 @media (max-width: 800px) {

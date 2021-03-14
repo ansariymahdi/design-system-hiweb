@@ -268,6 +268,7 @@ declare namespace LocalJSX {
         "onOrderChanged"?: (event: CustomEvent<string>) => void;
         "onPageChanged"?: (event: CustomEvent<number>) => void;
         "onRowNumChanged"?: (event: CustomEvent<number>) => void;
+        "onSearchInputChanged"?: (event: CustomEvent<{title: string, value: string, isValid: boolean}>) => void;
         "orderBy"?: { order: string, options: string[] };
         "page"?: number;
         "range"?: number[];

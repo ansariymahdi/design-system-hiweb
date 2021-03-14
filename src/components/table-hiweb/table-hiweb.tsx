@@ -26,6 +26,7 @@ export class TableHiweb {
   @Event() pageChanged: EventEmitter<number>;
   @Event() rowNumChanged: EventEmitter<number>;
   @Event() orderChanged: EventEmitter<string>;
+  @Event() searchInputChanged: EventEmitter<{title: string, value: string, isValid: boolean}>;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -229,8 +230,17 @@ export class TableHiweb {
     return (
       <div class="table-responsive">
         <div class="header">
+          <div class="info-div">
+            <div class="info">
+            </div>
+            <div class="info">
+            </div>
+          </div>
           <div class="search">
-            <input-hiweb placeHolder="جستجو"></input-hiweb>
+            <input-hiweb
+              placeHolder="جستجو"
+              onChanged={e => this.searchInputChanged.emit(e['detail'])}
+            ></input-hiweb>
           </div>
           <div class="sort">
             <div class="text">
