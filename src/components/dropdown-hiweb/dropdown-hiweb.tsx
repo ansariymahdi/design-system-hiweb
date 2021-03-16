@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State, Listen, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
 
 import icons from '../../modules/iconsList';
 

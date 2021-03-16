@@ -36,11 +36,13 @@
 
 ### Depends on
 
+- [dropdown-hiweb](../dropdown-hiweb)
 - [input-hiweb](../input-hiweb)
 
 ### Graph
 ```mermaid
 graph TD;
+  table-hiweb --> dropdown-hiweb
   table-hiweb --> input-hiweb
   style table-hiweb fill:#f9f,stroke:#333,stroke-width:4px
 ```
