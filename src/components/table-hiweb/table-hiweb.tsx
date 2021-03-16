@@ -163,16 +163,31 @@ export class TableHiweb {
                 </td>
               )
             case 'badge':
-            return (
-              <td
-                class={styleClass}
-                colSpan={colSpan}
-              >
-                <div class={'badge-custom ' + data.className}>
-                  {data.value}
-                </div>
-              </td>
-            )
+              return (
+                <td
+                  class={styleClass}
+                  colSpan={colSpan}
+                >
+                  <div class={'badge-custom ' + data.className}>
+                    {data.value}
+                  </div>
+                </td>
+              )
+            case 'dropdown':
+            console.log(data);
+
+              return (
+                <td
+                  class={styleClass}
+                  colSpan={colSpan}
+                >
+                  <dropdown-hiweb
+                    icon={data['icon']}
+                    items={data['items']}
+                    onClicked={e => this.buttonClicked.emit(e['detail'])}
+                  ></dropdown-hiweb>
+                </td>
+              )
             default:
               break;
           }
@@ -261,7 +276,7 @@ export class TableHiweb {
 
   render() {
     return (
-      <div class="table-responsive">
+      <div class="">
         <div class="header">
           <div class="info-div">
             {

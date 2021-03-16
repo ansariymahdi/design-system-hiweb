@@ -33,6 +33,10 @@ export namespace Components {
         "descriptionNews": string;
         "titleNews": string;
     }
+    interface DropdownHiweb {
+        "icon": string;
+        "items": {icon: string, text: string}[];
+    }
     interface ErrorHiweb {
         "error": { statusCode: number, message: string, buttonMessage: string, path: string};
     }
@@ -122,6 +126,12 @@ declare global {
         prototype: HTMLCardNewsHiwebElement;
         new (): HTMLCardNewsHiwebElement;
     };
+    interface HTMLDropdownHiwebElement extends Components.DropdownHiweb, HTMLStencilElement {
+    }
+    var HTMLDropdownHiwebElement: {
+        prototype: HTMLDropdownHiwebElement;
+        new (): HTMLDropdownHiwebElement;
+    };
     interface HTMLErrorHiwebElement extends Components.ErrorHiweb, HTMLStencilElement {
     }
     var HTMLErrorHiwebElement: {
@@ -178,6 +188,7 @@ declare global {
         "button-outline-hiweb": HTMLButtonOutlineHiwebElement;
         "card-accordion-hiweb": HTMLCardAccordionHiwebElement;
         "card-news-hiweb": HTMLCardNewsHiwebElement;
+        "dropdown-hiweb": HTMLDropdownHiwebElement;
         "error-hiweb": HTMLErrorHiwebElement;
         "input-hiweb": HTMLInputHiwebElement;
         "modal-hiweb": HTMLModalHiwebElement;
@@ -219,6 +230,11 @@ declare namespace LocalJSX {
         "descriptionNews"?: string;
         "onClicked"?: (event: CustomEvent<any>) => void;
         "titleNews"?: string;
+    }
+    interface DropdownHiweb {
+        "icon"?: string;
+        "items"?: {icon: string, text: string}[];
+        "onClicked"?: (event: CustomEvent<string>) => void;
     }
     interface ErrorHiweb {
         "error"?: { statusCode: number, message: string, buttonMessage: string, path: string};
@@ -286,6 +302,7 @@ declare namespace LocalJSX {
         "button-outline-hiweb": ButtonOutlineHiweb;
         "card-accordion-hiweb": CardAccordionHiweb;
         "card-news-hiweb": CardNewsHiweb;
+        "dropdown-hiweb": DropdownHiweb;
         "error-hiweb": ErrorHiweb;
         "input-hiweb": InputHiweb;
         "modal-hiweb": ModalHiweb;
@@ -307,6 +324,7 @@ declare module "@stencil/core" {
             "button-outline-hiweb": LocalJSX.ButtonOutlineHiweb & JSXBase.HTMLAttributes<HTMLButtonOutlineHiwebElement>;
             "card-accordion-hiweb": LocalJSX.CardAccordionHiweb & JSXBase.HTMLAttributes<HTMLCardAccordionHiwebElement>;
             "card-news-hiweb": LocalJSX.CardNewsHiweb & JSXBase.HTMLAttributes<HTMLCardNewsHiwebElement>;
+            "dropdown-hiweb": LocalJSX.DropdownHiweb & JSXBase.HTMLAttributes<HTMLDropdownHiwebElement>;
             "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
             "modal-hiweb": LocalJSX.ModalHiweb & JSXBase.HTMLAttributes<HTMLModalHiwebElement>;

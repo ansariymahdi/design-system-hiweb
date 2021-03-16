@@ -37,6 +37,7 @@ import sortDown from './../assets/icons/sort-down.svg';
 import sortUp from './../assets/icons/sort-ascending.svg';
 import arrowLeft from './../assets/icons/left-arrow.svg';
 import arrowRight from './../assets/icons/right-arrow.svg';
+import more from './../assets/icons/more.svg';
 
 const icons = {
   arrowUp,
@@ -77,7 +78,8 @@ const icons = {
   sortDown,
   sortUp,
   arrowLeft,
-  arrowRight
+  arrowRight,
+  more
 }
 
 export default icons

@@ -45,6 +45,9 @@ $dark-color: #37474f;
       width: 30px;
     }
   }
+  .placeholder:active {
+    transform: scale(0.9);
+  }
   .form-check-input {
     position: static;
   }
