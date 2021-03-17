@@ -36,7 +36,7 @@
       font-family: IRANSans;
       /* direction: rtl; */
       /* background-color: #e6e7e8; */
-      padding-right: 80px;
+      padding-right: 60px;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -56,12 +56,13 @@
 
 <body>
   <div class="main-view">
+    <nav-top-hiweb></nav-top-hiweb>
     <div style="flex: 1 0 auto">
       <div>
         <header>
-          <nav-right-hiweb></nav-right-hiweb>
+          <!-- <nav-right-hiweb></nav-right-hiweb> -->
 
-          <!-- <sidebar-admin-hiweb></sidebar-admin-hiweb> -->
+          <sidebar-admin-hiweb></sidebar-admin-hiweb>
         </header>
       </div>
 
@@ -127,54 +128,54 @@
     console.log('saljgkash');
   }
 
-  var comp1 = document.querySelector('nav-right-hiweb');
-
-  const items = [
-    {
-      title: "خانه",
-      icon: "home",
-      path: '/',
-    },
-    {
-      title: "اخبار",
-      icon: "newsPaper",
-      path: '/',
-    },
-    {
-      title: "جدول لیگ",
-      icon: "table",
-      path: '/',
-    }
-  ];
-
-  const user = {
-    title: 'user',
-    path: '//',
-    icon: 'user',
-  }
-
-  comp1.userIcon = user;
-  comp1.array = items;
-  comp1.onClick = function test(pass) {
-    console.log(pass);
-  }
-
-  // var comp2 = document.querySelector('sidebar-admin-hiweb');
+  // var comp1 = document.querySelector('nav-right-hiweb');
   //
-  // const comp2Items = [
+  // const items = [
   //   {
-  //     title: "خبر",
-  //     subtitle: [
-  //       {
-  //         title: "ایجاد خبر",
-  //         iconName: "newspaper",
-  //         path: "/create-news",
-  //       }
-  //     ]
+  //     title: "خانه",
+  //     icon: "home",
+  //     path: '/',
+  //   },
+  //   {
+  //     title: "اخبار",
+  //     icon: "newsPaper",
+  //     path: '/',
+  //   },
+  //   {
+  //     title: "جدول لیگ",
+  //     icon: "table",
+  //     path: '/',
   //   }
-  // ]
+  // ];
   //
-  // comp2.itemsProp = comp2Items;
+  // const user = {
+  //   title: 'user',
+  //   path: '//',
+  //   icon: 'user',
+  // }
+  //
+  // comp1.userIcon = user;
+  // comp1.array = items;
+  // comp1.onClick = function test(pass) {
+  //   console.log(pass);
+  // }
+
+  var comp2 = document.querySelector('sidebar-admin-hiweb');
+
+  const comp2Items = [
+    {
+      title: "خبر",
+      subtitle: [
+        {
+          title: "ایجاد خبر",
+          iconName: "newspaper",
+          path: "/create-news",
+        }
+      ]
+    }
+  ]
+
+  comp2.itemsProp = comp2Items;
 
   var comp3 = document.querySelector('card-accordion-hiweb');
   const test = true;

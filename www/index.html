@@ -27,7 +27,7 @@
       font-family: IRANSans;
       /* direction: rtl; */
       /* background-color: #e6e7e8; */
-      padding-right: 80px;
+      padding-right: 60px;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -38,7 +38,7 @@
       body {
         padding-right: 0;
       }
-    }</style> <link rel="modulepreload" href="/build/p-c1675440.js"><script type="module" src="/build/p-c1675440.js" data-stencil data-resources-url="/build/" data-stencil-namespace="design-system-hiweb"></script> <script nomodule="" src="/build/design-system-hiweb.js" data-stencil></script> </head> <body> <div class="main-view"> <div style="flex: 1 0 auto;"> <div> <header> <nav-right-hiweb></nav-right-hiweb> <!-- <sidebar-admin-hiweb></sidebar-admin-hiweb> --> </header> </div> <div class="container-fluid"> <div class="col"> <!-- <modal-hiweb></modal-hiweb> --> <label>Buttons</label> <button-hiweb title="مشاهده"></button-hiweb> <button-error-hiweb title="مشاهده"></button-error-hiweb> <button-info-hiweb title="مشاهده"></button-info-hiweb> <button-outline-hiweb title="مشاهده"></button-outline-hiweb> </div> <div class="row"> <input-hiweb label="ایمیل" validator="[&quot;required&quot;,{&quot;name&quot;:&quot;length&quot;,&quot;options&quot;:{&quot;min&quot;:6}},&quot;email&quot;]"></input-hiweb> <alert-hiweb type="retry" timer="1000" title="اخطار"> مشکلی پیش آمده</alert-hiweb> </div> <!-- <div class="row mt-4">
+    }</style> <link rel="modulepreload" href="/build/p-2e487eae.js"><script type="module" src="/build/p-2e487eae.js" data-stencil data-resources-url="/build/" data-stencil-namespace="design-system-hiweb"></script> <script nomodule="" src="/build/design-system-hiweb.js" data-stencil></script> </head> <body> <div class="main-view"> <nav-top-hiweb></nav-top-hiweb> <div style="flex: 1 0 auto;"> <div> <header> <!-- <nav-right-hiweb></nav-right-hiweb> --> <sidebar-admin-hiweb></sidebar-admin-hiweb> </header> </div> <div class="container-fluid"> <div class="col"> <!-- <modal-hiweb></modal-hiweb> --> <label>Buttons</label> <button-hiweb title="مشاهده"></button-hiweb> <button-error-hiweb title="مشاهده"></button-error-hiweb> <button-info-hiweb title="مشاهده"></button-info-hiweb> <button-outline-hiweb title="مشاهده"></button-outline-hiweb> </div> <div class="row"> <input-hiweb label="ایمیل" validator="[&quot;required&quot;,{&quot;name&quot;:&quot;length&quot;,&quot;options&quot;:{&quot;min&quot;:6}},&quot;email&quot;]"></input-hiweb> <alert-hiweb type="retry" timer="1000" title="اخطار"> مشکلی پیش آمده</alert-hiweb> </div> <!-- <div class="row mt-4">
           <card-news-hiweb background-url="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" title-news="برد استقلال مقابل فولاد"
             description-news="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است." onclick="showMenu()" btn-text="ادامه متن"></card-news-hiweb>
         </div> --> <div> <card-accordion-hiweb label="خبر" open="true"> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم
@@ -64,54 +64,54 @@
     console.log('saljgkash');
   }
 
-  var comp1 = document.querySelector('nav-right-hiweb');
-
-  const items = [
-    {
-      title: "خانه",
-      icon: "home",
-      path: '/',
-    },
-    {
-      title: "اخبار",
-      icon: "newsPaper",
-      path: '/',
-    },
-    {
-      title: "جدول لیگ",
-      icon: "table",
-      path: '/',
-    }
-  ];
-
-  const user = {
-    title: 'user',
-    path: '//',
-    icon: 'user',
-  }
-
-  comp1.userIcon = user;
-  comp1.array = items;
-  comp1.onClick = function test(pass) {
-    console.log(pass);
-  }
-
-  // var comp2 = document.querySelector('sidebar-admin-hiweb');
+  // var comp1 = document.querySelector('nav-right-hiweb');
   //
-  // const comp2Items = [
+  // const items = [
   //   {
-  //     title: "خبر",
-  //     subtitle: [
-  //       {
-  //         title: "ایجاد خبر",
-  //         iconName: "newspaper",
-  //         path: "/create-news",
-  //       }
-  //     ]
+  //     title: "خانه",
+  //     icon: "home",
+  //     path: '/',
+  //   },
+  //   {
+  //     title: "اخبار",
+  //     icon: "newsPaper",
+  //     path: '/',
+  //   },
+  //   {
+  //     title: "جدول لیگ",
+  //     icon: "table",
+  //     path: '/',
   //   }
-  // ]
+  // ];
   //
-  // comp2.itemsProp = comp2Items;
+  // const user = {
+  //   title: 'user',
+  //   path: '//',
+  //   icon: 'user',
+  // }
+  //
+  // comp1.userIcon = user;
+  // comp1.array = items;
+  // comp1.onClick = function test(pass) {
+  //   console.log(pass);
+  // }
+
+  var comp2 = document.querySelector('sidebar-admin-hiweb');
+
+  const comp2Items = [
+    {
+      title: "خبر",
+      subtitle: [
+        {
+          title: "ایجاد خبر",
+          iconName: "newspaper",
+          path: "/create-news",
+        }
+      ]
+    }
+  ]
+
+  comp2.itemsProp = comp2Items;
 
   var comp3 = document.querySelector('card-accordion-hiweb');
   const test = true;
