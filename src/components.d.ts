@@ -281,7 +281,7 @@ declare namespace LocalJSX {
         "dataStringProp"?: string;
         "info"?: { title: string, content: string }[];
         "numberOfRows"?: number;
-        "onButtonClicked"?: (event: CustomEvent<string>) => void;
+        "onButtonClicked"?: (event: CustomEvent<string|{text: string,detail: string}>) => void;
         "onHandleCheckbox"?: (event: CustomEvent<{ index: number, checked: boolean } | { allSelected: boolean }>) => void;
         "onOrderChanged"?: (event: CustomEvent<string>) => void;
         "onPageChanged"?: (event: CustomEvent<number>) => void;

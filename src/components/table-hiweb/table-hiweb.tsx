@@ -23,7 +23,7 @@ export class TableHiweb {
   @State() options: { options: string[], colspan: number }[] = [];
   @State() allSelected: boolean = false;
 
-  @Event() buttonClicked: EventEmitter<string>;
+  @Event() buttonClicked: EventEmitter<string|{text: string,detail: string}>;
   @Event() handleCheckbox: EventEmitter<{ index: number, checked: boolean } | { allSelected: boolean }>;
   @Event() pageChanged: EventEmitter<number>;
   @Event() rowNumChanged: EventEmitter<number>;
@@ -184,7 +184,7 @@ export class TableHiweb {
                   <dropdown-hiweb
                     icon={data['icon']}
                     items={data['items']}
-                    onClicked={e => this.buttonClicked.emit(e['detail'])}
+                    onClicked={e => this.buttonClicked.emit({text: e['detail'],detail: data['detail']})}
                   ></dropdown-hiweb>
                 </td>
               )

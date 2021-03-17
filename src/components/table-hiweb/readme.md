@@ -24,7 +24,7 @@
 
 | Event                | Description | Type                                                                             |
 | -------------------- | ----------- | -------------------------------------------------------------------------------- |
-| `buttonClicked`      |             | `CustomEvent<string>`                                                            |
+| `buttonClicked`      |             | `CustomEvent<string \| { text: string; detail: string; }>`                       |
 | `handleCheckbox`     |             | `CustomEvent<{ allSelected: boolean; } \| { index: number; checked: boolean; }>` |
 | `orderChanged`       |             | `CustomEvent<string>`                                                            |
 | `pageChanged`        |             | `CustomEvent<number>`                                                            |
