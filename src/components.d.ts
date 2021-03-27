@@ -58,6 +58,9 @@ export namespace Components {
         "isDarkTheme": boolean;
         "userIcon": {title: string,icon: string, path: string};
     }
+    interface NavRightHiweb2 {
+        "items": { title: string, subItems: { icon: string, title: string, path: string, active: boolean }[] }[];
+    }
     interface NavTopHiweb {
         "items": {icon: string, callback: string, color: string, num: number}[];
         "user": {text: string, buttons: {icon: string, text: string}[]};
@@ -160,6 +163,12 @@ declare global {
         prototype: HTMLNavRightHiwebElement;
         new (): HTMLNavRightHiwebElement;
     };
+    interface HTMLNavRightHiweb2Element extends Components.NavRightHiweb2, HTMLStencilElement {
+    }
+    var HTMLNavRightHiweb2Element: {
+        prototype: HTMLNavRightHiweb2Element;
+        new (): HTMLNavRightHiweb2Element;
+    };
     interface HTMLNavTopHiwebElement extends Components.NavTopHiweb, HTMLStencilElement {
     }
     var HTMLNavTopHiwebElement: {
@@ -203,6 +212,7 @@ declare global {
         "input-hiweb": HTMLInputHiwebElement;
         "modal-hiweb": HTMLModalHiwebElement;
         "nav-right-hiweb": HTMLNavRightHiwebElement;
+        "nav-right-hiweb-2": HTMLNavRightHiweb2Element;
         "nav-top-hiweb": HTMLNavTopHiwebElement;
         "progress-loader-hiweb": HTMLProgressLoaderHiwebElement;
         "sidebar-admin-hiweb": HTMLSidebarAdminHiwebElement;
@@ -272,6 +282,10 @@ declare namespace LocalJSX {
         "onToggleTheme"?: (event: CustomEvent<any>) => void;
         "userIcon"?: {title: string,icon: string, path: string};
     }
+    interface NavRightHiweb2 {
+        "items"?: { title: string, subItems: { icon: string, title: string, path: string, active: boolean }[] }[];
+        "onOnClick"?: (event: CustomEvent<any>) => void;
+    }
     interface NavTopHiweb {
         "items"?: {icon: string, callback: string, color: string, num: number}[];
         "onButtonClicked"?: (event: CustomEvent<string>) => void;
@@ -323,6 +337,7 @@ declare namespace LocalJSX {
         "input-hiweb": InputHiweb;
         "modal-hiweb": ModalHiweb;
         "nav-right-hiweb": NavRightHiweb;
+        "nav-right-hiweb-2": NavRightHiweb2;
         "nav-top-hiweb": NavTopHiweb;
         "progress-loader-hiweb": ProgressLoaderHiweb;
         "sidebar-admin-hiweb": SidebarAdminHiweb;
@@ -346,6 +361,7 @@ declare module "@stencil/core" {
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
             "modal-hiweb": LocalJSX.ModalHiweb & JSXBase.HTMLAttributes<HTMLModalHiwebElement>;
             "nav-right-hiweb": LocalJSX.NavRightHiweb & JSXBase.HTMLAttributes<HTMLNavRightHiwebElement>;
+            "nav-right-hiweb-2": LocalJSX.NavRightHiweb2 & JSXBase.HTMLAttributes<HTMLNavRightHiweb2Element>;
             "nav-top-hiweb": LocalJSX.NavTopHiweb & JSXBase.HTMLAttributes<HTMLNavTopHiwebElement>;
             "progress-loader-hiweb": LocalJSX.ProgressLoaderHiweb & JSXBase.HTMLAttributes<HTMLProgressLoaderHiwebElement>;
             "sidebar-admin-hiweb": LocalJSX.SidebarAdminHiweb & JSXBase.HTMLAttributes<HTMLSidebarAdminHiwebElement>;

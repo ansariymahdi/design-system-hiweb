@@ -38,6 +38,8 @@ import sortUp from './../assets/icons/sort-ascending.svg';
 import arrowLeft from './../assets/icons/left-arrow.svg';
 import arrowRight from './../assets/icons/right-arrow.svg';
 import more from './../assets/icons/more.svg';
+import rightMenu from './../assets/icons/right-menu-bars.svg';
+import search from './../assets/icons/search.svg';
 
 const icons = {
   arrowUp,
@@ -79,7 +81,9 @@ const icons = {
   sortUp,
   arrowLeft,
   arrowRight,
-  more
+  more,
+  rightMenu,
+  search
 }
 
 export default icons

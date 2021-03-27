@@ -13,16 +13,10 @@
 }
 
 .light {
-  background: #A9A9A9;
-  color: #111;
+  background: #4674F4;
+  color: white;
   svg {
-    fill: #111;
-  }
-  .header {
-    background: white;
-  }
-  .footer {
-    background: white;
+    fill: white;
   }
 }
 
@@ -142,7 +136,6 @@ li h3 {
 .footer {
   width: 100%;
   height: 3.75rem;
-  background: #222;
   position: absolute;
   bottom: 0;
   padding: 0.625rem;

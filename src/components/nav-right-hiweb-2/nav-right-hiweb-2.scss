@@ -1,0 +1,208 @@
+.sidebar {
+  display: block;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  background: #4674F4;
+  color: white;
+  transition-duration: .5s;
+  svg {
+    fill: white;
+  }
+  z-index: 9999;
+}
+
+.open {
+  .menu {
+    transform: scaleX(-1);
+  }
+  --scale: 1;
+  width: 250px;
+  .header{
+    padding: 20px 20px 0 20px;
+    .search {
+      right: 25px;
+    }
+    .search:hover {
+      background: none;
+    }
+  }
+  .body {
+    padding: 20px 20px 0 20px;
+    li {
+      height: 50px;
+      width: 210px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 5px 10px;
+      border-radius: 10px;
+      h6 {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.close {
+  width: 60px;
+  --scale: 0;
+  .search {
+    right: 10px;
+  }
+  h6 {
+    position: absolute;
+    right: 40px;
+    bottom: 0;
+  }
+  .title {
+    position: absolute;
+  }
+}
+
+.header {
+  min-height: 100px;
+  /****
+  if we want the search bar then 180px
+  if not then 100px
+  also change the body top property
+  ******/
+  height: fit-content;
+  padding: 20px 10px 0 10px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  .placeholder {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    svg {
+      height: 25px;
+      width: 25px;
+    }
+  }
+  .placeholder:hover {
+    background: #3F6ADB;
+  }
+  h2 {
+    transform: scale(var(--scale));
+    transition: .5s transform;
+    transform-origin: center right;
+    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: default;
+  }
+  .search {
+    position: absolute;
+    margin: 30px 0;
+    z-index: 1;
+    transition-duration: .5s;
+  }
+  .search-input {
+    direction: rtl;
+    transform: scale(var(--scale));
+    transition: .5s transform;
+    transform-origin: center right;
+    background-color: #3F6ADB;
+    color: white;
+    border-style: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 25px;
+    height: 40px;
+    width: 100%;
+    margin: 30px 0;
+    box-sizing: border-box;
+  }
+}
+
+.body {
+  padding: 20px 10px 0 10px;
+  width: 100%;
+  height: calc(100vh - 100px);
+  //same as header height
+  position: absolute;
+  top: 100px;
+  //same as header height
+  overflow-y: auto;
+  transition-duration: .5s;
+  ul {
+    direction: rtl;
+    list-style-type: none;
+    padding: 0;
+    .title {
+      transform: scale(var(--scale));
+      transition: .5s transform;
+      transform-origin: center right;
+      cursor: default;
+    }
+    .title:hover {
+      background: none;
+    }
+  }
+  li {
+    transition: position 5s;
+    position: relative;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    display: flex;
+    h6 {
+      margin-bottom: 0;
+      transform: scale(var(--scale));
+      transition: .5s transform;
+      transform-origin: center right;
+    }
+  }
+  li:hover {
+    background: #3F6ADB;
+  }
+  .itemPlaceHolder {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      height: 25px;
+      width: 25px;
+    }
+  }
+  .active {
+    margin: 15px 0;
+    background: #3F6ADB;
+    box-shadow: 0px 4px 5px #3F6ADB;
+  }
+}
+
+:host input:focus {
+  outline-width: 0;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
