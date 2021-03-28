@@ -1,4 +1,4 @@
-import { r as registerInstance, e as createEvent, h } from './index-9cc8612d.js';
+import { r as registerInstance, e as createEvent, h } from './index-5c4eb9c8.js';
 import './ArrowUp-60cff1dd.js';
 import { i as icons } from './iconsList-70ae7b16.js';
 
@@ -164,9 +164,6 @@ const inputHiweb = class {
     this._validator = getValidator(this.validator);
     this.onValueChanged(this.valueProp);
   }
-  componentDidLoad() {
-    // const test = document.querySelector('#img');
-  }
   componentWillUpdate() {
     this._validator = getValidator(this.validator);
   }
@@ -181,7 +178,7 @@ const inputHiweb = class {
   }
   render() {
     this.validate();
-    return (h("div", null, h("div", { class: "input-container" }, h("label", null, this.label), this.isChanged
+    return (h("div", null, h("div", { class: "input-container" }, h("label", null, this.label), this.isChanged && typeof (this.validatorProp) !== 'undefined'
       ? h("div", { class: "control", style: Object.assign(Object.assign({}, this.moveValid()), this.getColor()) })
       : null, h("input", { style: this.borderColor(), value: this.value, onInput: event => this.handleChange(event), onFocus: () => this.inputFocused = true, onBlur: () => {
         setTimeout(() => {

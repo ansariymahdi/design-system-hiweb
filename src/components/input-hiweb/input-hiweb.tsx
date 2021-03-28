@@ -32,11 +32,8 @@ export class inputHiweb {
   componentWillLoad() {
     this.validator = JSON.parse(this.validatorProp);
     this._validator = getValidator<string>(this.validator);
-     this.onValueChanged(this.valueProp);
-  }
+    this.onValueChanged(this.valueProp);
 
-  componentDidLoad() {
-    // const test = document.querySelector('#img');
   }
 
   componentWillUpdate() {
@@ -95,7 +92,7 @@ export class inputHiweb {
         <div class="input-container">
           <label>{this.label}</label>
           {
-            this.isChanged
+            this.isChanged && typeof(this.validatorProp) !== 'undefined'
               ? <div class="control" style={{ ...this.moveValid(), ...this.getColor() }}></div>
               : null
           }

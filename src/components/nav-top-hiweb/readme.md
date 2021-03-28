@@ -5,20 +5,18 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
+## Dependencies
 
-| Property | Attribute | Description | Type                                                                | Default                                                                                                                                                                                     |
-| -------- | --------- | ----------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `items`  | --        |             | `{ icon: string; callback: string; color: string; num: number; }[]` | `[     {icon: 'home', callback: 'home', color: 'green', num: 0}   ]`                                                                                                                        |
-| `user`   | --        |             | `{ text: string; buttons: { icon: string; text: string; }[]; }`     | `{     text: 'حساب کاربری',     buttons: [       {         icon: 'arrowLeft',         text: 'وارد شدن'       },       {         icon: 'arrowLeft',         text: 'ساختن'       }     ]   }` |
+### Depends on
 
+- [input-hiweb](../input-hiweb)
 
-## Events
-
-| Event           | Description | Type                  |
-| --------------- | ----------- | --------------------- |
-| `buttonClicked` |             | `CustomEvent<string>` |
-
+### Graph
+```mermaid
+graph TD;
+  nav-top-hiweb --> input-hiweb
+  style nav-top-hiweb fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

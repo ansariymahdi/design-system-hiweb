@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-9cc8612d.js';
+import { r as registerInstance, h } from './index-5c4eb9c8.js';
 import './ArrowUp-60cff1dd.js';
 import { i as icons } from './iconsList-70ae7b16.js';
 
