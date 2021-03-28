@@ -62,6 +62,8 @@ export namespace Components {
         "items": { title: string, subItems: { icon: string, title: string, path: string, active: boolean }[] }[];
     }
     interface NavTopHiweb {
+        "items": {icon: string, notification: number, path: string}[];
+        "user": {fullName: string, info: string, imageUrl};
     }
     interface ProgressLoaderHiweb {
     }
@@ -286,6 +288,10 @@ declare namespace LocalJSX {
         "onOnClick"?: (event: CustomEvent<any>) => void;
     }
     interface NavTopHiweb {
+        "items"?: {icon: string, notification: number, path: string}[];
+        "onOnClick"?: (event: CustomEvent<any>) => void;
+        "onSearch"?: (event: CustomEvent<any>) => void;
+        "user"?: {fullName: string, info: string, imageUrl};
     }
     interface ProgressLoaderHiweb {
     }

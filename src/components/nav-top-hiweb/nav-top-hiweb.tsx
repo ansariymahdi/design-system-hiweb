@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 import icons from './../../modules/iconsList';
 
@@ -9,32 +9,64 @@ import icons from './../../modules/iconsList';
 })
 export class NavTopHiweb {
 
+  @Prop() items: {icon: string, notification: number, path: string}[] = [
+    {
+      icon: 'logout',
+      notification: 0,
+      path: '/logout'
+    },
+    {
+      icon: 'bell',
+      notification: 3,
+      path: '/'
+    }
+  ];
+  @Prop() user: {fullName: string, info: string, imageUrl} = {
+    fullName: 'امیرعلی محمدی',
+    info: 'نمی‌دونم',
+    imageUrl: 'https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-picture-default-avatar-photo-placeholder-profile-picture-eps-file-easy-to-edit-125707135.jpg'
+  };
+  @Event() onClick: EventEmitter;
+  @Event() search: EventEmitter;
 
-
-  imageUrl = "https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-picture-default-avatar-photo-placeholder-profile-picture-eps-file-easy-to-edit-125707135.jpg"
+  renderIcons = () => this.items.map(item => {
+    return (
+      <div
+        class="icon ripple"
+        innerHTML={icons[item.icon]}
+        onClick={() => this.onClick.emit(item.path)}
+      >
+        {
+          item.notification
+            ? <span>{item.notification}</span>
+            : null
+        }
+      </div>
+    );
+  });
 
   render() {
     return (
       <nav>
         <div class="icons">
-          <div class="icon ripple" innerHTML={icons['logout']}/>
-          <div class="icon ripple" innerHTML={icons['bell']}>
-            <span>4</span>
-          </div>
+          {this.renderIcons()}
         </div>
         <div class="line" />
         <div class="user">
           <div class="dropdown ripple" innerHTML={icons['arrowDown']}/>
-          <img src={this.imageUrl} alt="user profile picture" />
+          <img src={this.user.imageUrl} alt="user profile picture" />
           <div class="info">
-            <h6>امیرعلی محمدی</h6>
-            <p>نمی‌دونم</p>
+            <h6>{this.user.fullName}</h6>
+            <p>{this.user.info}</p>
           </div>
         </div>
         <div class="search">
-          <input-hiweb
-            placeHolder="جستجو..."
-          ></input-hiweb>
+          <div class="search-container">
+            <input-hiweb
+              placeHolder="جستجو..."
+              onChanged={(e) => this.search.emit(e.detail.value)}
+            ></input-hiweb>
+          </div>
         </div>
       </nav>
     );
