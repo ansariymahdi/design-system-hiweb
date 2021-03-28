@@ -9,6 +9,8 @@ import icons from './../../modules/iconsList';
 })
 export class NavTopHiweb {
 
+
+
   imageUrl = "https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-picture-default-avatar-photo-placeholder-profile-picture-eps-file-easy-to-edit-125707135.jpg"
 
   render() {
@@ -25,9 +27,14 @@ export class NavTopHiweb {
           <div class="dropdown ripple" innerHTML={icons['arrowDown']}/>
           <img src={this.imageUrl} alt="user profile picture" />
           <div class="info">
-            <h5>امیرعلی محمدی</h5>
-            <h6>نمی‌دونم</h6>
+            <h6>امیرعلی محمدی</h6>
+            <p>نمی‌دونم</p>
           </div>
+        </div>
+        <div class="search">
+          <input-hiweb
+            placeHolder="جستجو..."
+          ></input-hiweb>
         </div>
       </nav>
     );

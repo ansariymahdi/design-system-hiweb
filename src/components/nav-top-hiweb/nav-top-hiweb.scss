@@ -1,5 +1,5 @@
 nav {
-  height: 5rem;
+  height: 4rem;
   width: 100%;
   background: white;
   z-index: 999;
@@ -100,7 +100,7 @@ nav .line {
 }
 
 nav .user {
-  margin-left: 20px;
+  margin: 0 20px;
   height: 100%;
   width: fit-content;
   display: flex;
@@ -108,16 +108,16 @@ nav .user {
   justify-content: flex-start;
 
   .dropdown {
-    height: 30px;
-    min-width: 30px;
+    height: 25px;
+    min-width: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     border-radius: 100%;
     svg {
-      height: 20px;
-      width: 20px;
+      height: 15px;
+      width: 15px;
       fill: #979797;
       opacity: 0.7;
     }
@@ -125,14 +125,14 @@ nav .user {
 
   img {
     margin: 0 10px 0 5px;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 100%;
     object-fit: fill;
   }
 
   .info {
-    height: 60px;
+    height: 50px;
     max-width: fit-content;
     display: flex;
     justify-content: flex-start;
@@ -140,11 +140,29 @@ nav .user {
     flex-wrap: wrap;
   }
 
-  .info h5, .info h6 {
+  .info h6, .info p {
     margin: 0;
     display: flex;
     flex-wrap: nowrap;
     white-space: nowrap;
   }
 
+  .info h6 {
+    color: #262626;
+  }
+
+  .info p {
+    color: #979797;
+  }
+
+}
+
+
+nav .search {
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
