@@ -284,6 +284,7 @@ declare namespace LocalJSX {
     }
     interface NavRightHiweb2 {
         "items"?: { title: string, subItems: { icon: string, title: string, path: string, active: boolean }[] }[];
+        "onIsOpen"?: (event: CustomEvent<boolean>) => void;
         "onOnClick"?: (event: CustomEvent<any>) => void;
     }
     interface NavTopHiweb {

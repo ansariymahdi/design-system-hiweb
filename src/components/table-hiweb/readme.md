@@ -15,7 +15,7 @@
 | `info`           | --                |             | `{ title: string; content: string; }[]`                                                                       | `[{ title: 'تعداد', content: '۲۳۴۲۳۴' }, { title: 'نام', content: 'امیرعلی' }]` |
 | `numberOfRows`   | `number-of-rows`  |             | `number`                                                                                                      | `20`                                                                            |
 | `orderBy`        | --                |             | `{ order: string; options: string[]; }`                                                                       | `{ order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] }`    |
-| `page`           | `page`            |             | `number`                                                                                                      | `5`                                                                             |
+| `page`           | `page`            |             | `number`                                                                                                      | `2`                                                                             |
 | `range`          | --                |             | `number[]`                                                                                                    | `[5, 10, 20, 50, 100, 200]`                                                     |
 | `totalDocuments` | `total-documents` |             | `number`                                                                                                      | `100`                                                                           |
 

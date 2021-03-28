@@ -195,35 +195,14 @@ export class NavRightHiweb2 {
         }
       ]
     },
-    {
-      title: 'استقلال',
-      subItems: [
-        {
-          icon: 'whatsapp',
-          title: 'چت',
-          path: '/',
-          active: false
-        },
-        {
-          icon: 'facebook',
-          title: 'نمی‌دونم',
-          path: '/',
-          active: false
-        },
-        {
-          icon: 'whatsapp',
-          title: 'اصلا',
-          path: '/',
-          active: false
-        }
-      ]
-    }
   ]
   @Event() onClick: EventEmitter;
+  @Event() isOpen: EventEmitter<boolean>;
 
   toggleSideBar = () => {
     this.searchValue = '';
     this.open = !this.open;
+    this.isOpen.emit(this.open);
   }
 
   search = () => {
@@ -231,6 +210,7 @@ export class NavRightHiweb2 {
       return null;
     }
     this.open = true;
+    this.isOpen.emit(this.open);
   }
 
   handleChange = (event) => {
@@ -280,7 +260,12 @@ export class NavRightHiweb2 {
                     return (
                       <li
                         class={item.active ? 'active' : '' }
-                        onClick={() => this.onClick.emit(item.path)}
+                        onClick={() => {
+                          this.onClick.emit(item.path);
+                          if (this.open) {
+                            this.open = false;
+                          }
+                        }}
                         >
                         <div
                           class="itemPlaceHolder"
