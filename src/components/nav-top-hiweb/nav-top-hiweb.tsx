@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 import icons from './../../modules/iconsList';
 
@@ -8,89 +8,27 @@ import icons from './../../modules/iconsList';
   shadow: true,
 })
 export class NavTopHiweb {
-  @Prop() user: {text: string, buttons: {icon: string, text: string}[]} = {
-    text: 'حساب کاربری',
-    buttons: [
-      {
-        icon: 'arrowLeft',
-        text: 'وارد شدن'
-      },
-      {
-        icon: 'arrowLeft',
-        text: 'ساختن'
-      }
-    ]
-  }
-  @Prop() items: {icon: string, callback: string, color: string, num: number}[] = [
-    {icon: 'home', callback: 'home', color: 'green', num: 0}
-  ];
 
-  @Event() buttonClicked: EventEmitter<string>;
-
-  renderItems() {
-    return this.items.map(item => {
-      const colors = ['red', 'green'];
-      let selectedColor = 'yellow';
-      if (colors.includes(item.color)) {
-        selectedColor = item.color;
-      }
-      return (
-        <div
-          class="item"
-          innerHTML={icons[item.icon]}
-          onClick={() => this.handleClick(item.callback)}
-        >
-          {
-            item.num
-            ? <span class={selectedColor}>{item.num}</span>
-            : null
-          }
-        </div>
-      )
-    });
-  }
-
-  handleClick = (cb) => {
-    this.buttonClicked.emit(cb);
-  }
+  imageUrl = "https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-picture-default-avatar-photo-placeholder-profile-picture-eps-file-easy-to-edit-125707135.jpg"
 
   render() {
     return (
       <nav>
-        <button>
-          <div class="placeholder" innerHTML={icons['user']} />
-          <h5>
-            {this.user.text}
-          </h5>
-          <div class="spacer" />
-          <div class="detail">
-            <div class="info">
-              <div class="placeholder" innerHTML={icons['user']} />
-              <h5>
-                {this.user.text}
-              </h5>
-            </div>
-            <div class="actions">
-              {this.user.buttons.map(button => {
-                return (
-                  <button onClick={() => this.handleClick(button.text)}>
-                    <div
-                      class="button-icon"
-                      innerHTML={icons[button.icon]}
-                    />
-                    <h5>
-                      {button.text}
-                    </h5>
-                  </button>
-                )
-              })}
-            </div>
+        <div class="icons">
+          <div class="icon ripple" innerHTML={icons['logout']}/>
+          <div class="icon ripple" innerHTML={icons['bell']}>
+            <span>4</span>
           </div>
-        </button>
-        <div class="items-container">
-          {this.renderItems()}
         </div>
-
+        <div class="line" />
+        <div class="user">
+          <div class="dropdown ripple" innerHTML={icons['arrowDown']}/>
+          <img src={this.imageUrl} alt="user profile picture" />
+          <div class="info">
+            <h5>امیرعلی محمدی</h5>
+            <h6>نمی‌دونم</h6>
+          </div>
+        </div>
       </nav>
     );
   }

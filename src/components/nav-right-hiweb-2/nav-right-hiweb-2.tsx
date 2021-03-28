@@ -27,7 +27,7 @@ export class NavRightHiweb2 {
           active: false
         },
         {
-          icon: 'whatsapp',
+          icon: 'logout',
           title: 'اصلا',
           path: '/',
           active: false

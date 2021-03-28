@@ -40,6 +40,9 @@ import arrowRight from './../assets/icons/right-arrow.svg';
 import more from './../assets/icons/more.svg';
 import rightMenu from './../assets/icons/right-menu-bars.svg';
 import search from './../assets/icons/search.svg';
+import logout from './../assets/icons/logout.svg';
+import bell from './../assets/icons/bell.svg';
+import arrowDown from './../assets/icons/arrow-down.svg';
 
 const icons = {
   arrowUp,
@@ -83,7 +86,10 @@ const icons = {
   arrowRight,
   more,
   rightMenu,
-  search
+  search,
+  logout,
+  bell,
+  arrowDown
 }
 
 export default icons
