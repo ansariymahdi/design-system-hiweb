@@ -11,16 +11,18 @@ $dark-color: #37474f;
   th {
     border-top: 1px solid $theme-border;
     white-space: nowrap;
-    padding: 1.05rem 0.75rem;
+    padding: 1.05rem 0.75rem 1.5rem 0.75rem !important;
     text-align: right;
     white-space: pre-wrap
   }
 
   thead th {
-    border-bottom: 1px solid $theme-border;
+    color: #C6C8C7;
+    border-bottom: 0px;
   }
 
   tbody + tbody {
+    color: #616466;
     border-top: 2px solid $theme-border;
   }
 
@@ -55,7 +57,7 @@ $dark-color: #37474f;
   &.table-sm {
     th,
     td {
-      padding: 0.35rem;
+      // padding: 0.35rem;
     }
   }
   .badge-custom {
@@ -100,7 +102,7 @@ $dark-color: #37474f;
 .table-hover {
   tbody tr {
     &:hover {
-      background-color: transparentize($primary-color, 0.95);
+      background-color: #F6F6F6;
     }
   }
 }
@@ -123,7 +125,7 @@ $dark-color: #37474f;
   td,
   th,
   thead th {
-    border-color: darken($dark-color, 10%);
+    // border-color: darken($dark-color, 10%);
   }
 
   &.table-striped {
@@ -135,7 +137,7 @@ $dark-color: #37474f;
   &.table-hover {
     tbody tr {
       &:hover {
-        background-color: darken($dark-color, 5%);
+        // background-color: darken($dark-color, 5%);
       }
     }
   }
@@ -373,6 +375,7 @@ table {
   .selected {
     background: $primary-color;
     color: white;
+    cursor: default;
   }
   li:hover:not(.selected):not(.disabled) {
     background: $theme-border;

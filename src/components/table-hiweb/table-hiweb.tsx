@@ -12,7 +12,7 @@ export class TableHiweb {
   @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
-  @Prop() page: number = 5;
+  @Prop() page: number = 2;
   @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
   @Prop() numberOfRows: number = 20;
   @Prop() totalDocuments: number = 100;
@@ -316,7 +316,7 @@ export class TableHiweb {
             </div>
           </div>
         </div>
-        <table class="table text-right">
+        <table class="table text-right table-hover">
           <thead>
             {this.renderHead()}
           </thead>
