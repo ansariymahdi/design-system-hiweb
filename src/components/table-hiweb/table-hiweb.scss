@@ -1,6 +1,11 @@
 /**  =====================
       Data Tables css start
 ==========================  **/
+
+.host {
+  background: white;
+  padding: 10px;
+}
 $theme-border: #eaeaea;
 $primary-color: #04a9f5;
 $dark-color: #37474f;
@@ -14,6 +19,16 @@ $dark-color: #37474f;
     padding: 1.05rem 0.75rem 1.5rem 0.75rem !important;
     text-align: right;
     white-space: pre-wrap
+  }
+
+  thead .placeholder {
+    height: 17px;
+    width: 17px;
+    svg {
+      height: 17px;
+      width: 17px;
+      fill: #BEC0C1;
+    }
   }
 
   thead th {
@@ -297,40 +312,56 @@ table {
 }
 /**====== Foo-table css end ======**/
 .footer {
+  padding: 10px;
   height: 50px;
   width: 100%;
   display: flex;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
-  .total {
-    width: 30%;
-    text-align: right;
-  }
   nav {
-    width: 40%;
+    width: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    h5 {
+      font-family: sans-serif;
+      color: #737376;
+      vertical-align: middle;
+      height: 30px;
+    }
   }
   .selecter {
-    width: 30%;
+    width: 50%;
+    display: flex;
+    direction: rtl;
+    color: #7F7F7F;
+    span {
+      color: black;
+      margin-right: 5px;
+    }
     select {
       width: 50%;
-      float: left;
+      margin: 0 5px;
+      border-style: none;
+      height: fit-content;
+      width: fit-content;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
     }
   }
 }
 
 @media (max-width: 800px) {
   .footer {
-    .total {
-      width: 50%;
-    }
     nav {
       width: 100%;
       order: -1;
     }
     .selecter {
-      width: 50%;
+      width: 100%;
     }
   }
 }
@@ -338,13 +369,12 @@ table {
 .pagination-custom {
   display: flex;
   padding: 0;
-  margin: 0 40px;
   .placeholder {
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     svg {
       vertical-align: top;
-      fill: $dark-color;
+      fill: #B8B8B8;
     }
   }
   li {
@@ -354,14 +384,15 @@ table {
     height: 30px;
     width: 30px;
     padding: 5px;
-    border-radius: 100%;
+    border-radius: 5px;
     text-align: center;
-    margin: 5px;
-    color: $dark-color;
+    margin: 1px;
     font-weight: bold;
+    background: #F0F0F0;
+    cursor: pointer;
   }
   li:last-child {
-
+    margin-right: 20px;
   }
   li:first-child {
 
@@ -369,17 +400,18 @@ table {
   li:not(:first-child) {
 
   }
-  .disabled {
-
+  .disable {
+    cursor: default !important;
+    .placeholder {
+      svg {
+        fill: #F0F0F0;
+      }
+    }
   }
   .selected {
     background: $primary-color;
     color: white;
     cursor: default;
-  }
-  li:hover:not(.selected):not(.disabled) {
-    background: $theme-border;
-    cursor: pointer;
   }
 }
 

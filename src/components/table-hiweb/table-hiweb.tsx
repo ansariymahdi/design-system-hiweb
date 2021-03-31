@@ -12,7 +12,7 @@ export class TableHiweb {
   @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
-  @Prop() page: number = 2;
+  @Prop() page: number = 3;
   @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
   @Prop() numberOfRows: number = 20;
   @Prop() totalDocuments: number = 100;
@@ -200,54 +200,25 @@ export class TableHiweb {
     if (this.page) {
       return (
         <ul class="pagination-custom">
-          {
-            this.page - 1 > 0
-              ? <li onClick={() => this.handlePageChange(this.page - 1)}>
-                <div class="placeholder" innerHTML={icons['arrowLeft']} />
-              </li>
-              : null
-          }
-          {
-            this.page - 2 > 0
-              ? <li class="" onClick={() => this.handlePageChange(this.page - 2)}>{this.page - 2}</li>
-              : null
-          }
-          {
-            this.page - 1 > 0
-              ? <li class="" onClick={() => this.handlePageChange(this.page - 1)}>{this.page - 1}</li>
-              : null
-          }
-          <li class="selected" onClick={() => this.handlePageChange(this.page)}>{this.page}</li>
-          {
-            (this.page + 1) * this.numberOfRows > this.totalDocuments
-              ? null
-              : <li class="" onClick={() => this.handlePageChange(this.page + 1)}>{this.page + 1}</li>
-          }
-          {
-            (this.page + 2) * this.numberOfRows > this.totalDocuments
-              ? null
-              : <li class="" onClick={() => this.handlePageChange(this.page + 2)}>{this.page + 2}</li>
-          }
-          {
-            this.page - 1 === 0
-              ? <li class="" onClick={() => this.handlePageChange(this.page + 3)}>{this.page + 3}</li>
-              : null
-          }
-          {
-            (this.page + 1) * this.numberOfRows > this.totalDocuments
-              ? null
-              : <li class="" onClick={() => this.handlePageChange(this.page + 1)}>
-                <div class="placeholder" innerHTML={icons['arrowRight']} />
-              </li>
-          }
-
+          <li
+            onClick={() => this.handlePageChange(this.page - 1)}
+            class={this.page - 1 > 0 ? '' : 'disable'}
+          >
+            <div class="placeholder" innerHTML={icons['arrowLeft']} />
+          </li>
+          <li
+            class={(this.page + 1) * this.numberOfRows > this.totalDocuments ? 'disable' : ''}
+            onClick={() => this.handlePageChange(this.page + 1)}
+          >
+            <div class="placeholder" innerHTML={icons['arrowRight']} />
+          </li>
         </ul>
       )
     }
   }
 
   handlePageChange = page => {
-    if (page === 0 || page === this.page) {
+    if (page === 0 || page === this.page || (page + 1) * this.numberOfRows > this.totalDocuments) {
       return;
     }
     console.log('page', page);
@@ -274,9 +245,32 @@ export class TableHiweb {
     });
   }
 
+
+  renderSelecter = () => {
+    return (
+      <select
+        class=""
+        onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
+      >
+        {
+          this.range.map(num => {
+            return (
+              <option
+                selected={num === this.numberOfRows ? true : false}
+                value={num}
+              >
+                {num}
+              </option>
+            )
+          })
+        }
+      </select>
+    )
+  }
+
   render() {
     return (
-      <div class="">
+      <div class="host">
         <div class="header">
           <div class="info-div">
             {
@@ -328,32 +322,12 @@ export class TableHiweb {
         </table>
         <div class="footer">
           <div class="selecter">
-            <select
-              class="form-select"
-              onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
-            >
-              {
-                this.range.map(num => {
-                  return (
-                    <option
-                      selected={num === this.numberOfRows ? true : false}
-                      value={num}
-                    >
-                      {num}
-                    </option>
-                  )
-                })
-              }
-            </select>
+              نمایش {this.renderSelecter()} از <span>{this.totalDocuments}</span>
           </div>
           <nav>
             {this.renderPagination()}
+            <h5>{this.numberOfRows * (this.page - 1) + ' - ' + this.numberOfRows * (this.page)}</h5>
           </nav>
-          <div class="total">
-            {
-              'نمایش ' + this.numberOfRows * (this.page - 1) + ' - ' + this.numberOfRows * (this.page) + " از " + this.totalDocuments
-            }
-          </div>
         </div>
       </div>
     );
