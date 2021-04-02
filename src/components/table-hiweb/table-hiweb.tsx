@@ -62,7 +62,7 @@ export class TableHiweb {
       <tr>
         {
           this.checkbox
-            ? <th class="center">
+            ? <th class="center checkbox">
               <div
                 class="placeholder"
                 innerHTML={icons[this.allSelected ? 'checkBox' : 'roundSquare']}
@@ -94,7 +94,7 @@ export class TableHiweb {
       <tr>
         {
           this.checkbox
-            ? <td class="center">
+            ? <td class="center checkbox">
               <input
                 class="form-check-input cursor"
                 type="checkbox"
