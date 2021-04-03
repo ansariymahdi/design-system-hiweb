@@ -326,7 +326,7 @@ export class TableHiweb {
           </div>
           <nav>
             {this.renderPagination()}
-            <h5>{this.numberOfRows * (this.page - 1) + ' - ' + this.numberOfRows * (this.page)}</h5>
+            <h5>{((this.numberOfRows * (this.page - 1)) + 1) + ' - ' + this.numberOfRows * (this.page)}</h5>
           </nav>
         </div>
       </div>
