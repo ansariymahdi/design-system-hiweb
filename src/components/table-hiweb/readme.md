@@ -7,17 +7,17 @@
 
 ## Properties
 
-| Property         | Attribute         | Description | Type                                                                                                          | Default                                                                         |
-| ---------------- | ----------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `checkbox`       | `checkbox`        |             | `boolean`                                                                                                     | `true`                                                                          |
-| `dataProp`       | --                |             | `{ head: { title: string; options: string[]; colspan: number; }[]; body: { type: string; data: any; }[][]; }` | `undefined`                                                                     |
-| `dataStringProp` | `datastring`      |             | `string`                                                                                                      | `undefined`                                                                     |
-| `info`           | --                |             | `{ title: string; content: string; }[]`                                                                       | `[{ title: 'تعداد', content: '۲۳۴۲۳۴' }, { title: 'نام', content: 'امیرعلی' }]` |
-| `numberOfRows`   | `number-of-rows`  |             | `number`                                                                                                      | `20`                                                                            |
-| `orderBy`        | --                |             | `{ order: string; options: string[]; }`                                                                       | `{ order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] }`    |
-| `page`           | `page`            |             | `number`                                                                                                      | `3`                                                                             |
-| `range`          | --                |             | `number[]`                                                                                                    | `[5, 10, 20, 50, 100, 200]`                                                     |
-| `totalDocuments` | `total-documents` |             | `number`                                                                                                      | `100`                                                                           |
+| Property         | Attribute         | Description | Type                                                                                                          | Default                                                                      |
+| ---------------- | ----------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `checkbox`       | `checkbox`        |             | `boolean`                                                                                                     | `true`                                                                       |
+| `dataProp`       | --                |             | `{ head: { title: string; options: string[]; colspan: number; }[]; body: { type: string; data: any; }[][]; }` | `undefined`                                                                  |
+| `dataStringProp` | `datastring`      |             | `string`                                                                                                      | `undefined`                                                                  |
+| `info`           | --                |             | `{ title: string; content: string; }[]`                                                                       | `[{ title: 'تعداد', content: '۲۳۴۲۳۴' }]`                                    |
+| `numberOfRows`   | `number-of-rows`  |             | `number`                                                                                                      | `20`                                                                         |
+| `orderBy`        | --                |             | `{ order: string; options: string[]; }`                                                                       | `{ order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] }` |
+| `page`           | `page`            |             | `number`                                                                                                      | `6`                                                                          |
+| `range`          | --                |             | `number[]`                                                                                                    | `[5, 10, 20, 50, 100, 200]`                                                  |
+| `totalDocuments` | `total-documents` |             | `number`                                                                                                      | `101`                                                                        |
 
 
 ## Events

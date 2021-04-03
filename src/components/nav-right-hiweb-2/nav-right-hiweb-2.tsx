@@ -264,6 +264,7 @@ export class NavRightHiweb2 {
                           this.onClick.emit(item.path);
                           if (this.open) {
                             this.open = false;
+                            this.isOpen.emit(this.open);
                           }
                         }}
                         >
