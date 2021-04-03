@@ -218,7 +218,14 @@ export class TableHiweb {
   }
 
   handlePageChange = page => {
-    if (page === 0 || page === this.page || (page + 1) * this.numberOfRows > this.totalDocuments) {
+    if (this.totalDocuments % this.numberOfRows !== 0) {
+      var totalDocumentsRoof = this.totalDocuments + (this.numberOfRows - (this.totalDocuments % this.numberOfRows));
+    } else {
+      var totalDocumentsRoof = this.totalDocuments;
+    }
+
+    if (page === 0 || page * this.numberOfRows > totalDocumentsRoof) {
+
       return;
     }
     console.log('page', page);
