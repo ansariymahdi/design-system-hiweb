@@ -12,12 +12,12 @@ export class TableHiweb {
   @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
-  @Prop() page: number = 3;
+  @Prop() page: number = 6;
   @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
   @Prop() numberOfRows: number = 20;
-  @Prop() totalDocuments: number = 100;
+  @Prop() totalDocuments: number = 101;
   @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] };
-  @Prop() info: { title: string, content: string }[] = [{ title: 'تعداد', content: '۲۳۴۲۳۴' }, { title: 'نام', content: 'امیرعلی' }]
+  @Prop() info: { title: string, content: string }[] = [{ title: 'تعداد', content: '۲۳۴۲۳۴' }]
 
   @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
@@ -198,6 +198,11 @@ export class TableHiweb {
 
   renderPagination = () => {
     if (this.page) {
+      if (this.totalDocuments % this.numberOfRows !== 0) {
+        var totalDocumentsRoof = this.totalDocuments + (this.numberOfRows - (this.totalDocuments % this.numberOfRows));
+      } else {
+        var totalDocumentsRoof = this.totalDocuments;
+      }
       return (
         <ul class="pagination-custom">
           <li
@@ -207,7 +212,7 @@ export class TableHiweb {
             <div class="placeholder" innerHTML={icons['arrowLeft']} />
           </li>
           <li
-            class={(this.page + 1) * this.numberOfRows > this.totalDocuments ? 'disable' : ''}
+            class={(this.page + 1) * this.numberOfRows > totalDocumentsRoof ? 'disable' : ''}
             onClick={() => this.handlePageChange(this.page + 1)}
           >
             <div class="placeholder" innerHTML={icons['arrowRight']} />
