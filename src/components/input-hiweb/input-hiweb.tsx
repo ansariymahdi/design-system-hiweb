@@ -14,6 +14,7 @@ export class inputHiweb {
   @Prop({ mutable: true }) valueProp: string;
   @Prop() placeHolder: string;
   @Prop() type: string = 'text';
+  @Prop() checkInput: boolean;
   @State() value: string;
   @Watch('valueProp')
  onValueChanged(name: string) {
@@ -31,6 +32,9 @@ export class inputHiweb {
   _validator: Validator<string> = defaultValidator;
 
   componentWillLoad() {
+    if (this.checkInput) {
+      this.isChanged = true;
+    }
     this.validator = JSON.parse(this.validatorProp);
     this._validator = getValidator<string>(this.validator);
     this.onValueChanged(this.valueProp);
@@ -38,6 +42,9 @@ export class inputHiweb {
   }
 
   componentWillUpdate() {
+    if (this.checkInput) {
+      this.isChanged = true;
+    }
     this._validator = getValidator<string>(this.validator);
   }
 

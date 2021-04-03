@@ -41,6 +41,7 @@ export namespace Components {
         "error": { statusCode: number, message: string, buttonMessage: string, path: string};
     }
     interface InputHiweb {
+        "checkInput": boolean;
         "label": string;
         "placeHolder": string;
         "title": string;
@@ -263,6 +264,7 @@ declare namespace LocalJSX {
         "onOnClick"?: (event: CustomEvent<any>) => void;
     }
     interface InputHiweb {
+        "checkInput"?: boolean;
         "label"?: string;
         "onChanged"?: (event: CustomEvent<{title: string, value: string, isValid: boolean}>) => void;
         "placeHolder"?: string;
