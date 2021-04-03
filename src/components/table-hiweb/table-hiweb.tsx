@@ -280,6 +280,13 @@ export class TableHiweb {
     )
   }
 
+  calculateRangeEnd = () => {
+    if (this.numberOfRows * (this.page) > this.totalDocuments) {
+      return this.totalDocuments;
+    }
+    return this.numberOfRows * (this.page);
+  }
+
   render() {
     return (
       <div class="host">
@@ -338,7 +345,7 @@ export class TableHiweb {
           </div>
           <nav>
             {this.renderPagination()}
-            <h5>{((this.numberOfRows * (this.page - 1)) + 1) + ' - ' + this.numberOfRows * (this.page)}</h5>
+            <h5>{((this.numberOfRows * (this.page - 1)) + 1) + ' - ' + this.calculateRangeEnd()}</h5>
           </nav>
         </div>
       </div>
