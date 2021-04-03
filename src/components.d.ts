@@ -44,6 +44,7 @@ export namespace Components {
         "label": string;
         "placeHolder": string;
         "title": string;
+        "type": string;
         "valid": boolean;
         "validate": () => Promise<void>;
         "validatorProp": string;
@@ -266,6 +267,7 @@ declare namespace LocalJSX {
         "onChanged"?: (event: CustomEvent<{title: string, value: string, isValid: boolean}>) => void;
         "placeHolder"?: string;
         "title"?: string;
+        "type"?: string;
         "valid"?: boolean;
         "validatorProp"?: string;
         "valueProp"?: string;

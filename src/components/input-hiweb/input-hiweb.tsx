@@ -13,6 +13,7 @@ export class inputHiweb {
   @Prop() title: string;
   @Prop({ mutable: true }) valueProp: string;
   @Prop() placeHolder: string;
+  @Prop() type: string = 'text';
   @State() value: string;
   @Watch('valueProp')
  onValueChanged(name: string) {
@@ -97,6 +98,7 @@ export class inputHiweb {
               : null
           }
           <input
+            type={this.type}
             style={this.borderColor()}
             value={this.value}
             onInput={event => this.handleChange(event)}

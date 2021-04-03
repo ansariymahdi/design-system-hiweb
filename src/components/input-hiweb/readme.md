@@ -12,6 +12,7 @@
 | `label`         | `label`        |             | `string`  | `undefined` |
 | `placeHolder`   | `place-holder` |             | `string`  | `undefined` |
 | `title`         | `title`        |             | `string`  | `undefined` |
+| `type`          | `type`         |             | `string`  | `'text'`    |
 | `valid`         | `valid`        |             | `boolean` | `undefined` |
 | `validatorProp` | `validator`    |             | `string`  | `undefined` |
 | `valueProp`     | `value-prop`   |             | `string`  | `undefined` |
