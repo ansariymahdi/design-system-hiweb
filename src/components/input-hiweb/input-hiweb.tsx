@@ -85,7 +85,7 @@ export class inputHiweb {
   }
 
   getColor = () => {
-    if (this.valid) {
+    if (this.valid && !this.error) {
       return { background: 'green' }
     }
     return { background: '#B22222' };
