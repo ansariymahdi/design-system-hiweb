@@ -10,7 +10,7 @@
 | Property        | Attribute      | Description | Type      | Default     |
 | --------------- | -------------- | ----------- | --------- | ----------- |
 | `checkInput`    | `check-input`  |             | `boolean` | `undefined` |
-| `disable`       | `disable`      |             | `boolean` | `undefined` |
+| `disable`       | `disable`      |             | `boolean` | `false`     |
 | `label`         | `label`        |             | `string`  | `undefined` |
 | `placeHolder`   | `place-holder` |             | `string`  | `undefined` |
 | `title`         | `title`        |             | `string`  | `undefined` |

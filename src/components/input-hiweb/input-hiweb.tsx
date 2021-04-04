@@ -15,7 +15,7 @@ export class inputHiweb {
   @Prop() placeHolder: string;
   @Prop() type: string = 'text';
   @Prop() checkInput: boolean;
-  @Prop() disable: boolean;
+  @Prop() disable: boolean = false;
   @State() value: string;
   @Watch('valueProp')
  onValueChanged(name: string) {
@@ -106,7 +106,7 @@ export class inputHiweb {
               : null
           }
           <input
-            disable={disable}
+            disabled={this.disable}
             type={this.type}
             style={this.borderColor()}
             value={this.value}
