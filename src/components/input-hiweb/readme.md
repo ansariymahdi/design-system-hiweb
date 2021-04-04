@@ -11,6 +11,7 @@
 | --------------- | -------------- | ----------- | --------- | ----------- |
 | `checkInput`    | `check-input`  |             | `boolean` | `undefined` |
 | `disable`       | `disable`      |             | `boolean` | `false`     |
+| `error`         | `error`        |             | `string`  | `undefined` |
 | `label`         | `label`        |             | `string`  | `undefined` |
 | `placeHolder`   | `place-holder` |             | `string`  | `undefined` |
 | `title`         | `title`        |             | `string`  | `undefined` |

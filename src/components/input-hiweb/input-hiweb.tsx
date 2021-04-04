@@ -16,6 +16,7 @@ export class inputHiweb {
   @Prop() type: string = 'text';
   @Prop() checkInput: boolean;
   @Prop() disable: boolean = false;
+  @Prop() error: string;
   @State() value: string;
   @Watch('valueProp')
  onValueChanged(name: string) {
@@ -70,7 +71,7 @@ export class inputHiweb {
   }
 
   borderColor = () => {
-    if (!this.valid && this.isChanged) {
+    if ( this.isChanged && (!this.valid || this.error)) {
       return { borderColor: '#B22222' };
     }
     return { borderColor: 'black' };
@@ -132,7 +133,9 @@ export class inputHiweb {
         {
           !this.valid && this.isChanged
             ? <span>{this._validator.errorMessage}</span>
-            : null
+            : this.error && this.isChanged
+              ? <span>{this.error}</span>
+              : null
         }
       </div>
     );
