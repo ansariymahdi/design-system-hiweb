@@ -62,6 +62,9 @@
   outline-width: 0;
 }
 
+:host input:disabled {
+  background: #dddddd;
+}
 :host span {
   display: block;
   margin: auto;
