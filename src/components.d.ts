@@ -270,7 +270,7 @@ declare namespace LocalJSX {
         "hover"?: boolean;
         "icon"?: string;
         "iconColor"?: {background: string, shadow: string};
-        "onClick"?: (event: CustomEvent<any>) => void;
+        "onHandleClick"?: (event: CustomEvent<any>) => void;
         "title"?: string;
     }
     interface CardNewsHiweb {

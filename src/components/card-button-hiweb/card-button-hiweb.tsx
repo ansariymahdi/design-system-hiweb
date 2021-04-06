@@ -14,7 +14,7 @@ export class CardButtonHiweb {
   @Prop() callback: string = '';
   @Prop() hover: boolean = false;
   @Prop() icon: string = 'whatsapp';
-  @Event() click: EventEmitter;
+  @Event() handleClick: EventEmitter;
 
   private iconStyle = {
     background: this.iconColor.background,
@@ -27,7 +27,7 @@ export class CardButtonHiweb {
     return (
       <div
         class={`card-container ${this.callback ? 'active' : null} ${this.hover ? 'active-hover' : null}`}
-        onClick={() => this.click.emit(this.callback)}
+        onClick={() => this.handleClick.emit(this.callback)}
       >
         <div class="placeholder" style={this.iconStyle} innerHTML={icons[this.icon]} />
         <h1>
