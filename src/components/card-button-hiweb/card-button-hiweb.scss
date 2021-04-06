@@ -1,7 +1,6 @@
 .card-container {
   background: white;
-  min-height: 85px;
-  height: fit-content;
+  height: 85px;
   width: 100px;
   display: flex;
   align-items: center;
@@ -46,12 +45,12 @@
 }
 
 h1 {
-  font-size: 14px;
+  // font-size: 14px;
+  font-size: 0.875em;
   font-weight: bold;
   margin: 0;
   width: 100%;
   text-align: right;
-  margin-bottom: -4px;
 }
 
 p {

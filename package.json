@@ -1,6 +1,6 @@
 {
   "name": "design-system-hiweb",
-  "version": "0.2.59",
+  "version": "0.2.60",
   "description": "hiweb components",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -26,6 +26,7 @@
     "@stencil/core": "^2.0.1",
     "animejs": "^3.2.1",
     "bootstrap": "^5.0.0-beta1",
+    "react-textfit": "^1.1.1",
     "stencil-fragment": "^1.0.1"
   },
   "license": "MIT",
