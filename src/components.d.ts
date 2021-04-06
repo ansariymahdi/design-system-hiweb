@@ -27,6 +27,8 @@ export namespace Components {
         "label": string;
         "open": boolean;
     }
+    interface CardButtonHiweb {
+    }
     interface CardNewsHiweb {
         "backgroundUrl": string;
         "btnText": string;
@@ -131,6 +133,12 @@ declare global {
         prototype: HTMLCardAccordionHiwebElement;
         new (): HTMLCardAccordionHiwebElement;
     };
+    interface HTMLCardButtonHiwebElement extends Components.CardButtonHiweb, HTMLStencilElement {
+    }
+    var HTMLCardButtonHiwebElement: {
+        prototype: HTMLCardButtonHiwebElement;
+        new (): HTMLCardButtonHiwebElement;
+    };
     interface HTMLCardNewsHiwebElement extends Components.CardNewsHiweb, HTMLStencilElement {
     }
     var HTMLCardNewsHiwebElement: {
@@ -210,6 +218,7 @@ declare global {
         "button-info-hiweb": HTMLButtonInfoHiwebElement;
         "button-outline-hiweb": HTMLButtonOutlineHiwebElement;
         "card-accordion-hiweb": HTMLCardAccordionHiwebElement;
+        "card-button-hiweb": HTMLCardButtonHiwebElement;
         "card-news-hiweb": HTMLCardNewsHiwebElement;
         "dropdown-hiweb": HTMLDropdownHiwebElement;
         "error-hiweb": HTMLErrorHiwebElement;
@@ -248,6 +257,8 @@ declare namespace LocalJSX {
         "label"?: string;
         "onOnToggle"?: (event: CustomEvent<any>) => void;
         "open"?: boolean;
+    }
+    interface CardButtonHiweb {
     }
     interface CardNewsHiweb {
         "backgroundUrl"?: string;
@@ -341,6 +352,7 @@ declare namespace LocalJSX {
         "button-info-hiweb": ButtonInfoHiweb;
         "button-outline-hiweb": ButtonOutlineHiweb;
         "card-accordion-hiweb": CardAccordionHiweb;
+        "card-button-hiweb": CardButtonHiweb;
         "card-news-hiweb": CardNewsHiweb;
         "dropdown-hiweb": DropdownHiweb;
         "error-hiweb": ErrorHiweb;
@@ -365,6 +377,7 @@ declare module "@stencil/core" {
             "button-info-hiweb": LocalJSX.ButtonInfoHiweb & JSXBase.HTMLAttributes<HTMLButtonInfoHiwebElement>;
             "button-outline-hiweb": LocalJSX.ButtonOutlineHiweb & JSXBase.HTMLAttributes<HTMLButtonOutlineHiwebElement>;
             "card-accordion-hiweb": LocalJSX.CardAccordionHiweb & JSXBase.HTMLAttributes<HTMLCardAccordionHiwebElement>;
+            "card-button-hiweb": LocalJSX.CardButtonHiweb & JSXBase.HTMLAttributes<HTMLCardButtonHiwebElement>;
             "card-news-hiweb": LocalJSX.CardNewsHiweb & JSXBase.HTMLAttributes<HTMLCardNewsHiwebElement>;
             "dropdown-hiweb": LocalJSX.DropdownHiweb & JSXBase.HTMLAttributes<HTMLDropdownHiwebElement>;
             "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
