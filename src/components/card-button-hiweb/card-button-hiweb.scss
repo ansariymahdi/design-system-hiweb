@@ -11,10 +11,17 @@
   font-family: sans-serif;
   border-radius: 15px;
   position: relative;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none;
+}
+
+.active {
   cursor: pointer;
 }
 
-.card-container:hover {
+.active:hover {
   -webkit-box-shadow:  0 3px 4px -1px gray;
   -moz-box-shadow: 0 3px 4px -1px gray;
   box-shadow: 0 3px 4px -1px gray;
@@ -24,11 +31,9 @@
   position: absolute;
   right: calc(.75rem + 2px);
   top: -12px;
-  background: #702BFB;
   border-radius: 8px;
   height: 30px;
   width: 30px;
-  box-shadow: 0px 3px 4px -1px #B08CE9;
   display: flex;
   align-items: center;
   justify-content: center;

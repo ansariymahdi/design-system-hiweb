@@ -28,6 +28,10 @@ export namespace Components {
         "open": boolean;
     }
     interface CardButtonHiweb {
+        "body": string;
+        "callBack": string;
+        "iconColor": {background: string, shadow: string};
+        "title": string;
     }
     interface CardNewsHiweb {
         "backgroundUrl": string;
@@ -259,6 +263,11 @@ declare namespace LocalJSX {
         "open"?: boolean;
     }
     interface CardButtonHiweb {
+        "body"?: string;
+        "callBack"?: string;
+        "iconColor"?: {background: string, shadow: string};
+        "onClick"?: (event: CustomEvent<any>) => void;
+        "title"?: string;
     }
     interface CardNewsHiweb {
         "backgroundUrl"?: string;
