@@ -43,6 +43,11 @@ import search from './../assets/icons/search.svg';
 import logout from './../assets/icons/logout.svg';
 import bell from './../assets/icons/bell.svg';
 import arrowDown from './../assets/icons/arrow-down.svg';
+import trophy from './../assets/icons/trophy.svg';
+import strategy from './../assets/icons/strategy.svg';
+import planning from './../assets/icons/planning.svg';
+import statistics from './../assets/icons/statistics.svg';
+
 
 const icons = {
   arrowUp,
@@ -89,7 +94,11 @@ const icons = {
   search,
   logout,
   bell,
-  arrowDown
+  arrowDown,
+  trophy,
+  strategy,
+  planning,
+  statistics
 }
 
 export default icons
