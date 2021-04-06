@@ -30,6 +30,8 @@ export namespace Components {
     interface CardButtonHiweb {
         "body": string;
         "callback": string;
+        "hover": boolean;
+        "icon": string;
         "iconColor": {background: string, shadow: string};
         "title": string;
     }
@@ -265,6 +267,8 @@ declare namespace LocalJSX {
     interface CardButtonHiweb {
         "body"?: string;
         "callback"?: string;
+        "hover"?: boolean;
+        "icon"?: string;
         "iconColor"?: {background: string, shadow: string};
         "onClick"?: (event: CustomEvent<any>) => void;
         "title"?: string;

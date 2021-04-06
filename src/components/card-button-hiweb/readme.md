@@ -11,6 +11,8 @@
 | ----------- | ---------- | ----------- | ----------------------------------------- | -------------------------------------------- |
 | `body`      | `body`     |             | `string`                                  | `"نوشته نوشته"`                              |
 | `callback`  | `callback` |             | `string`                                  | `''`                                         |
+| `hover`     | `hover`    |             | `boolean`                                 | `false`                                      |
+| `icon`      | `icon`     |             | `string`                                  | `'whatsapp'`                                 |
 | `iconColor` | --         |             | `{ background: string; shadow: string; }` | `{background: '#702BFB', shadow: '#B08CE9'}` |
 | `title`     | `title`    |             | `string`                                  | `"تیتر"`                                     |
 
