@@ -1,14 +1,32 @@
+// .card-container {
+//   background: white;
+//   height: 85px;
+//   width: 100px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   box-sizing: border-box;
+//   padding: 1.5rem .75rem 1rem .75rem;
+//   flex-wrap: wrap;
+//   font-family: sans-serif;
+//   border-radius: 15px;
+//   position: relative;
+//   -webkit-user-select: none; /* Safari */
+//   -moz-user-select: none; /* Firefox */
+//   -ms-user-select: none; /* IE10+/Edge */
+//   user-select: none;
+// }
+
 .card-container {
   background: white;
-  height: 85px;
-  width: 100px;
+  height: 124px;
+  width: 151px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 1.5rem .75rem 1rem .75rem;
+  padding: 1.5rem 0.75rem 1rem;
   flex-wrap: wrap;
-  font-family: sans-serif;
   border-radius: 15px;
   position: relative;
   -webkit-user-select: none; /* Safari */
@@ -27,13 +45,30 @@
   box-shadow: 0 3px 4px -1px gray;
 }
 
+// .placeholder {
+//   position: absolute;
+//   right: calc(.75rem + 2px);
+//   top: -12px;
+//   border-radius: 8px;
+//   height: 30px;
+//   width: 30px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   svg {
+//     height:15px;
+//     width: 15px;
+//     fill: white;
+//   }
+// }
+
 .placeholder {
   position: absolute;
-  right: calc(.75rem + 2px);
+  right: calc(0.75rem + 2px);
   top: -12px;
   border-radius: 8px;
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
