@@ -88,6 +88,11 @@ export namespace Components {
         "open": boolean;
         "textcolor": any;
     }
+    interface SurveyHiweb {
+        "options": string[];
+        "subtitle": string;
+        "title": string;
+    }
     interface TableHiweb {
         "checkbox": boolean;
         "dataProp": { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
@@ -205,6 +210,12 @@ declare global {
         prototype: HTMLSidebarAdminHiwebElement;
         new (): HTMLSidebarAdminHiwebElement;
     };
+    interface HTMLSurveyHiwebElement extends Components.SurveyHiweb, HTMLStencilElement {
+    }
+    var HTMLSurveyHiwebElement: {
+        prototype: HTMLSurveyHiwebElement;
+        new (): HTMLSurveyHiwebElement;
+    };
     interface HTMLTableHiwebElement extends Components.TableHiweb, HTMLStencilElement {
     }
     var HTMLTableHiwebElement: {
@@ -235,6 +246,7 @@ declare global {
         "nav-top-hiweb": HTMLNavTopHiwebElement;
         "progress-loader-hiweb": HTMLProgressLoaderHiwebElement;
         "sidebar-admin-hiweb": HTMLSidebarAdminHiwebElement;
+        "survey-hiweb": HTMLSurveyHiwebElement;
         "table-hiweb": HTMLTableHiwebElement;
         "textarea-hiweb": HTMLTextareaHiwebElement;
     }
@@ -339,6 +351,12 @@ declare namespace LocalJSX {
         "open"?: boolean;
         "textcolor"?: any;
     }
+    interface SurveyHiweb {
+        "onOptionSelected"?: (event: CustomEvent<any>) => void;
+        "options"?: string[];
+        "subtitle"?: string;
+        "title"?: string;
+    }
     interface TableHiweb {
         "checkbox"?: boolean;
         "dataProp"?: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
@@ -376,6 +394,7 @@ declare namespace LocalJSX {
         "nav-top-hiweb": NavTopHiweb;
         "progress-loader-hiweb": ProgressLoaderHiweb;
         "sidebar-admin-hiweb": SidebarAdminHiweb;
+        "survey-hiweb": SurveyHiweb;
         "table-hiweb": TableHiweb;
         "textarea-hiweb": TextareaHiweb;
     }
@@ -401,6 +420,7 @@ declare module "@stencil/core" {
             "nav-top-hiweb": LocalJSX.NavTopHiweb & JSXBase.HTMLAttributes<HTMLNavTopHiwebElement>;
             "progress-loader-hiweb": LocalJSX.ProgressLoaderHiweb & JSXBase.HTMLAttributes<HTMLProgressLoaderHiwebElement>;
             "sidebar-admin-hiweb": LocalJSX.SidebarAdminHiweb & JSXBase.HTMLAttributes<HTMLSidebarAdminHiwebElement>;
+            "survey-hiweb": LocalJSX.SurveyHiweb & JSXBase.HTMLAttributes<HTMLSurveyHiwebElement>;
             "table-hiweb": LocalJSX.TableHiweb & JSXBase.HTMLAttributes<HTMLTableHiwebElement>;
             "textarea-hiweb": LocalJSX.TextareaHiweb & JSXBase.HTMLAttributes<HTMLTextareaHiwebElement>;
         }
