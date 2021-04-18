@@ -3,8 +3,15 @@
   min-width: 150px;
   width: fit-content;
   height: fit-content;
-  border-radius: 10px;
+  // border-radius: 10px;
   padding: 10px 5px;
+  // -webkit-box-shadow:  0 4px 10px -1px gray;
+  // -moz-box-shadow: 0 4px 10px -1px gray;
+  // box-shadow: 0 4px 10px -1px gray;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none;
 }
 
 .survey-hiweb .title {
@@ -47,7 +54,6 @@
     direction: rtl;
     margin-bottom: 10px;
     h1 {
-      cursor: pointer;
       padding: 2px 10px;
       font-size: 0.850em;
       margin: 0;

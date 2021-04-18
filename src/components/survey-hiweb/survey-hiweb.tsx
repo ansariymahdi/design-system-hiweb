@@ -11,6 +11,7 @@ export class SurveyHiweb {
   @Prop() title: string = '۱۳۹۹/۱۰/۱ - استادیوم آزادی';
   @Prop() subtitle: string = 'لیگ برتر خلیج فارس';
   @Prop() options: string[] = ['پرسپولیس تهران', 'پرسپولیس تهران'];
+  @Prop() check: boolean = false;
   @State() selected: number;
   @Event() optionSelected: EventEmitter;
 
@@ -41,7 +42,7 @@ export class SurveyHiweb {
                     {option}
                   </h1>
                   {
-                    this.selected === index
+                    this.check && this.selected === index
                       ? <div class="placeholder" innerHTML={icons['checkmark']} />
                       : null
                   }

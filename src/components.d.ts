@@ -89,6 +89,7 @@ export namespace Components {
         "textcolor": any;
     }
     interface SurveyHiweb {
+        "check": boolean;
         "options": string[];
         "subtitle": string;
         "title": string;
@@ -352,6 +353,7 @@ declare namespace LocalJSX {
         "textcolor"?: any;
     }
     interface SurveyHiweb {
+        "check"?: boolean;
         "onOptionSelected"?: (event: CustomEvent<any>) => void;
         "options"?: string[];
         "subtitle"?: string;
