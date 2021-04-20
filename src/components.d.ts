@@ -41,6 +41,8 @@ export namespace Components {
         "descriptionNews": string;
         "titleNews": string;
     }
+    interface CounterInputHiweb {
+    }
     interface DropdownHiweb {
         "icon": string;
         "items": {icon: string, text: string}[];
@@ -157,6 +159,12 @@ declare global {
         prototype: HTMLCardNewsHiwebElement;
         new (): HTMLCardNewsHiwebElement;
     };
+    interface HTMLCounterInputHiwebElement extends Components.CounterInputHiweb, HTMLStencilElement {
+    }
+    var HTMLCounterInputHiwebElement: {
+        prototype: HTMLCounterInputHiwebElement;
+        new (): HTMLCounterInputHiwebElement;
+    };
     interface HTMLDropdownHiwebElement extends Components.DropdownHiweb, HTMLStencilElement {
     }
     var HTMLDropdownHiwebElement: {
@@ -238,6 +246,7 @@ declare global {
         "card-accordion-hiweb": HTMLCardAccordionHiwebElement;
         "card-button-hiweb": HTMLCardButtonHiwebElement;
         "card-news-hiweb": HTMLCardNewsHiwebElement;
+        "counter-input-hiweb": HTMLCounterInputHiwebElement;
         "dropdown-hiweb": HTMLDropdownHiwebElement;
         "error-hiweb": HTMLErrorHiwebElement;
         "input-hiweb": HTMLInputHiwebElement;
@@ -292,6 +301,9 @@ declare namespace LocalJSX {
         "descriptionNews"?: string;
         "onClicked"?: (event: CustomEvent<any>) => void;
         "titleNews"?: string;
+    }
+    interface CounterInputHiweb {
+        "onValueChanged"?: (event: CustomEvent<number>) => void;
     }
     interface DropdownHiweb {
         "icon"?: string;
@@ -387,6 +399,7 @@ declare namespace LocalJSX {
         "card-accordion-hiweb": CardAccordionHiweb;
         "card-button-hiweb": CardButtonHiweb;
         "card-news-hiweb": CardNewsHiweb;
+        "counter-input-hiweb": CounterInputHiweb;
         "dropdown-hiweb": DropdownHiweb;
         "error-hiweb": ErrorHiweb;
         "input-hiweb": InputHiweb;
@@ -413,6 +426,7 @@ declare module "@stencil/core" {
             "card-accordion-hiweb": LocalJSX.CardAccordionHiweb & JSXBase.HTMLAttributes<HTMLCardAccordionHiwebElement>;
             "card-button-hiweb": LocalJSX.CardButtonHiweb & JSXBase.HTMLAttributes<HTMLCardButtonHiwebElement>;
             "card-news-hiweb": LocalJSX.CardNewsHiweb & JSXBase.HTMLAttributes<HTMLCardNewsHiwebElement>;
+            "counter-input-hiweb": LocalJSX.CounterInputHiweb & JSXBase.HTMLAttributes<HTMLCounterInputHiwebElement>;
             "dropdown-hiweb": LocalJSX.DropdownHiweb & JSXBase.HTMLAttributes<HTMLDropdownHiwebElement>;
             "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;

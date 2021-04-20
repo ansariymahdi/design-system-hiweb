@@ -47,6 +47,8 @@ import trophy from './../assets/icons/trophy.svg';
 import strategy from './../assets/icons/strategy.svg';
 import planning from './../assets/icons/planning.svg';
 import statistics from './../assets/icons/statistics.svg';
+import plus2 from './../assets/icons/plus2.svg';
+import minus from './../assets/icons/minus.svg';
 
 
 const icons = {
@@ -98,7 +100,9 @@ const icons = {
   trophy,
   strategy,
   planning,
-  statistics
+  statistics,
+  plus2,
+  minus
 }
 
 export default icons
