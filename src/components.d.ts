@@ -93,6 +93,10 @@ export namespace Components {
         "open": boolean;
         "textcolor": any;
     }
+    interface StepperHiweb {
+        "step": number;
+        "totalSteps": number;
+    }
     interface SurveyHiweb {
         "check": boolean;
         "options": string[];
@@ -228,6 +232,12 @@ declare global {
         prototype: HTMLSidebarAdminHiwebElement;
         new (): HTMLSidebarAdminHiwebElement;
     };
+    interface HTMLStepperHiwebElement extends Components.StepperHiweb, HTMLStencilElement {
+    }
+    var HTMLStepperHiwebElement: {
+        prototype: HTMLStepperHiwebElement;
+        new (): HTMLStepperHiwebElement;
+    };
     interface HTMLSurveyHiwebElement extends Components.SurveyHiweb, HTMLStencilElement {
     }
     var HTMLSurveyHiwebElement: {
@@ -266,6 +276,7 @@ declare global {
         "nav-top-hiweb": HTMLNavTopHiwebElement;
         "progress-loader-hiweb": HTMLProgressLoaderHiwebElement;
         "sidebar-admin-hiweb": HTMLSidebarAdminHiwebElement;
+        "stepper-hiweb": HTMLStepperHiwebElement;
         "survey-hiweb": HTMLSurveyHiwebElement;
         "table-hiweb": HTMLTableHiwebElement;
         "textarea-hiweb": HTMLTextareaHiwebElement;
@@ -378,6 +389,10 @@ declare namespace LocalJSX {
         "open"?: boolean;
         "textcolor"?: any;
     }
+    interface StepperHiweb {
+        "step"?: number;
+        "totalSteps"?: number;
+    }
     interface SurveyHiweb {
         "check"?: boolean;
         "onOptionSelected"?: (event: CustomEvent<any>) => void;
@@ -424,6 +439,7 @@ declare namespace LocalJSX {
         "nav-top-hiweb": NavTopHiweb;
         "progress-loader-hiweb": ProgressLoaderHiweb;
         "sidebar-admin-hiweb": SidebarAdminHiweb;
+        "stepper-hiweb": StepperHiweb;
         "survey-hiweb": SurveyHiweb;
         "table-hiweb": TableHiweb;
         "textarea-hiweb": TextareaHiweb;
@@ -452,6 +468,7 @@ declare module "@stencil/core" {
             "nav-top-hiweb": LocalJSX.NavTopHiweb & JSXBase.HTMLAttributes<HTMLNavTopHiwebElement>;
             "progress-loader-hiweb": LocalJSX.ProgressLoaderHiweb & JSXBase.HTMLAttributes<HTMLProgressLoaderHiwebElement>;
             "sidebar-admin-hiweb": LocalJSX.SidebarAdminHiweb & JSXBase.HTMLAttributes<HTMLSidebarAdminHiwebElement>;
+            "stepper-hiweb": LocalJSX.StepperHiweb & JSXBase.HTMLAttributes<HTMLStepperHiwebElement>;
             "survey-hiweb": LocalJSX.SurveyHiweb & JSXBase.HTMLAttributes<HTMLSurveyHiwebElement>;
             "table-hiweb": LocalJSX.TableHiweb & JSXBase.HTMLAttributes<HTMLTableHiwebElement>;
             "textarea-hiweb": LocalJSX.TextareaHiweb & JSXBase.HTMLAttributes<HTMLTextareaHiwebElement>;
