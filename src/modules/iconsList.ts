@@ -49,6 +49,9 @@ import planning from './../assets/icons/planning.svg';
 import statistics from './../assets/icons/statistics.svg';
 import plus2 from './../assets/icons/plus2.svg';
 import minus from './../assets/icons/minus.svg';
+import survey from './../assets/icons/survey.svg';
+import questionnaire from './../assets/icons/questionnaire.svg';
+import telescope from './../assets/icons/telescope.svg';
 
 
 const icons = {
@@ -102,7 +105,10 @@ const icons = {
   planning,
   statistics,
   plus2,
-  minus
+  minus,
+  survey,
+  questionnaire,
+  telescope
 }
 
 export default icons
