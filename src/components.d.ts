@@ -46,6 +46,8 @@ export namespace Components {
     }
     interface CounterInputHiweb {
     }
+    interface DatetimePickerHiweb {
+    }
     interface DropdownHiweb {
         "icon": string;
         "items": {icon: string, text: string}[];
@@ -178,6 +180,12 @@ declare global {
         prototype: HTMLCounterInputHiwebElement;
         new (): HTMLCounterInputHiwebElement;
     };
+    interface HTMLDatetimePickerHiwebElement extends Components.DatetimePickerHiweb, HTMLStencilElement {
+    }
+    var HTMLDatetimePickerHiwebElement: {
+        prototype: HTMLDatetimePickerHiwebElement;
+        new (): HTMLDatetimePickerHiwebElement;
+    };
     interface HTMLDropdownHiwebElement extends Components.DropdownHiweb, HTMLStencilElement {
     }
     var HTMLDropdownHiwebElement: {
@@ -267,6 +275,7 @@ declare global {
         "card-news-hiweb": HTMLCardNewsHiwebElement;
         "checkbox-hiweb": HTMLCheckboxHiwebElement;
         "counter-input-hiweb": HTMLCounterInputHiwebElement;
+        "datetime-picker-hiweb": HTMLDatetimePickerHiwebElement;
         "dropdown-hiweb": HTMLDropdownHiwebElement;
         "error-hiweb": HTMLErrorHiwebElement;
         "input-hiweb": HTMLInputHiwebElement;
@@ -329,6 +338,8 @@ declare namespace LocalJSX {
     }
     interface CounterInputHiweb {
         "onValueChanged"?: (event: CustomEvent<number>) => void;
+    }
+    interface DatetimePickerHiweb {
     }
     interface DropdownHiweb {
         "icon"?: string;
@@ -430,6 +441,7 @@ declare namespace LocalJSX {
         "card-news-hiweb": CardNewsHiweb;
         "checkbox-hiweb": CheckboxHiweb;
         "counter-input-hiweb": CounterInputHiweb;
+        "datetime-picker-hiweb": DatetimePickerHiweb;
         "dropdown-hiweb": DropdownHiweb;
         "error-hiweb": ErrorHiweb;
         "input-hiweb": InputHiweb;
@@ -459,6 +471,7 @@ declare module "@stencil/core" {
             "card-news-hiweb": LocalJSX.CardNewsHiweb & JSXBase.HTMLAttributes<HTMLCardNewsHiwebElement>;
             "checkbox-hiweb": LocalJSX.CheckboxHiweb & JSXBase.HTMLAttributes<HTMLCheckboxHiwebElement>;
             "counter-input-hiweb": LocalJSX.CounterInputHiweb & JSXBase.HTMLAttributes<HTMLCounterInputHiwebElement>;
+            "datetime-picker-hiweb": LocalJSX.DatetimePickerHiweb & JSXBase.HTMLAttributes<HTMLDatetimePickerHiwebElement>;
             "dropdown-hiweb": LocalJSX.DropdownHiweb & JSXBase.HTMLAttributes<HTMLDropdownHiwebElement>;
             "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
