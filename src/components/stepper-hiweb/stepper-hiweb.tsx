@@ -10,7 +10,7 @@ import icons from './../../modules/iconsList';
 })
 export class StepperHiweb {
   @Prop() totalSteps: number = 4;
-  @Prop() step: number = 2;
+  @Prop() step: number = 1;
   @State() stepState: number;
   @Watch('step')
   onValueChanged(step: number) {
@@ -32,18 +32,18 @@ export class StepperHiweb {
                 const active = i < this.stepState - 1;
                 return (
                   <Fragment>
-                    <div class={`step ${active ? 'step-active' : (current ? 'step-current' : null)}`} innerHTML={icons['tick']}>
-                      {
-                        current
-                          ? <div class="circle" />
-                          : null
-                      }
-                    </div>
                     {
-                      i !== this.totalSteps - 1
-                        ? <div class={`spacer ${active ? 'spacer-active' : null}`} />
+                      i !== 0
+                        ? <div class={`spacer ${active ? 'spacer-active' : null}`}>
+                            <div class={`spacer-current ${current ? 'spacer-current-active' : null}`}>
+
+                            </div>
+                          </div>
                         : null
                     }
+                    <div class={`step ${active ? 'step-active' : (current ? 'step-current' : null)}`} innerHTML={icons['tick']}>
+                      <div class={`circle ${current ? 'circle-active' : ''}`} />
+                    </div>
                   </Fragment>
                 )
               })
@@ -52,6 +52,8 @@ export class StepperHiweb {
         </div>
         <div class="body">
           <slot></slot>
+          <button onClick={() => this.stepState++}>next</button>
+          <button onClick={() => this.stepState--}>back</button>
         </div>
       </div>
     );

@@ -30,6 +30,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: border-color;
+    transition-duration: 350ms;
     svg {
       display: none;
       width: 15px;
@@ -41,14 +43,25 @@
     flex-grow: 2;
     height: 2px;
     background: lightgray;
+    transition: background;
+    position: relative;
   }
   .circle {
-    height: 10px;
-    width: 10px;
+    position: absolute;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     background: #2A2D9E;
+    transform: scale(0);
+    transition-duration: 350ms;
+    transition-timing-function: linear;
+  }
+  .circle-active {
+    transition-delay: 1s;
+    transform: scale(.4);
   }
   .step-current {
+    transition-delay: 1s;
     border-color: #2A2D9E;
   }
   .step-active {
@@ -60,6 +73,19 @@
   }
   .spacer-active {
     background: #2A2D9E;
+  }
+  .spacer-current {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: #2A2D9E;
+  }
+  .spacer-current-active {
+    transition: width 1s;
+    width: 100%;
   }
 }
 
