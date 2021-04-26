@@ -57,11 +57,11 @@
     transition-timing-function: linear;
   }
   .circle-active {
-    transition-delay: 1s;
+    transition-delay: .5s;
     transform: scale(.4);
   }
   .step-current {
-    transition-delay: 1s;
+    transition-delay: .5s;
     border-color: #2A2D9E;
   }
   .step-active {
@@ -84,7 +84,7 @@
     background: #2A2D9E;
   }
   .spacer-current-active {
-    transition: width 1s;
+    transition: width .5s;
     width: 100%;
   }
 }

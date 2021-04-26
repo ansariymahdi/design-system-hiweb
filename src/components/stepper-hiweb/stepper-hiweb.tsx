@@ -52,8 +52,6 @@ export class StepperHiweb {
         </div>
         <div class="body">
           <slot></slot>
-          <button onClick={() => this.stepState++}>next</button>
-          <button onClick={() => this.stepState--}>back</button>
         </div>
       </div>
     );
