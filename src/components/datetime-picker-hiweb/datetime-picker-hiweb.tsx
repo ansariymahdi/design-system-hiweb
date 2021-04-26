@@ -110,7 +110,6 @@ export class DatetimePickerHiweb {
   }
 
   renderDaySelector() {
-    const test = range(1, 35, 1);
     return (
       <Fragment>
         <div class="daysOfWeek">

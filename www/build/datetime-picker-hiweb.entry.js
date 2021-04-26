@@ -846,7 +846,6 @@ const DatetimePickerHiweb = class {
     })));
   }
   renderDaySelector() {
-    const test = range(1, 35, 1);
     return (h(Fragment, null, h("div", { class: "daysOfWeek" }, h("div", null, "\u0634"), h("div", null, "\u06CC"), h("div", null, "\u062F"), h("div", null, "\u0633"), h("div", null, "\u0686"), h("div", null, "\u067E"), h("div", null, "\u062C")), h("div", { class: "days-container" }, this.daysBefore.map(day => {
       return (h("div", { class: "day" }, day));
     }), this.daysOfMonth.map(day => {
