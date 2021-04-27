@@ -68,22 +68,23 @@ export class DatetimePickerHiweb {
 
   renderYearSelector() {
     return (
-      <select
-        onInput={(event) => this.year = event.target['value']}
-      >
-        {
-          this.years.map(year => {
-            return (
-              <option
-                selected={year === this.year ? true : false}
-                value={year}
-              >
-                {year}
-              </option>
-            )
-          })
-        }
-      </select>
+        <select
+          id="year"
+          onInput={(event) => this.year = event.target['value']}
+        >
+          {
+            this.years.map(year => {
+              return (
+                <option
+                  selected={year === this.year ? true : false}
+                  value={year}
+                >
+                  {year}
+                </option>
+              )
+            })
+          }
+        </select>
     );
   }
 
@@ -126,7 +127,7 @@ export class DatetimePickerHiweb {
             this.daysBefore.map(day => {
               return (
                 <div class="day">
-                  {day}
+                  {formatNumbersToPersian(`${day}`)}
                 </div>
               )
             })
@@ -138,7 +139,9 @@ export class DatetimePickerHiweb {
                  class={`day active ${day === this.dayOfTheMonth ? 'current' : ''}`}
                  onClick={() => this.dayOfTheMonth = day}
                 >
-                  {day}
+                  <div>
+                  {formatNumbersToPersian(`${day}`)}
+                  </div>  
                 </div>
               )
             })
@@ -147,7 +150,7 @@ export class DatetimePickerHiweb {
             this.daysAfter.map(day => {
               return (
                 <div class="day">
-                  {day}
+                  {formatNumbersToPersian(`${day}`)}
                 </div>
               )
             })
@@ -208,13 +211,11 @@ export class DatetimePickerHiweb {
         <div class="header">
           {this.renderYearSelector()}
           {this.renderMonthSelector()}
+          {this.renderHourSelector()}
+          {this.renderMinuteSelector()}
         </div>
         <div class="body">
           {this.renderDaySelector()}
-        </div>
-        <div class="footer">
-          {this.renderHourSelector()}
-          {this.renderMinuteSelector()}
         </div>
       </div>
     );
