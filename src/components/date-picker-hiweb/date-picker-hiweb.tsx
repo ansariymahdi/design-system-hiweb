@@ -1,38 +1,34 @@
-import { Component, h, State, Listen } from '@stencil/core';
+import { Component, h, State, Listen, Prop } from '@stencil/core';
 import JDate from 'jalali-date';
-import Fragment from 'stencil-fragment';
 
 import icons from '../../modules/iconsList';
-import formatNumbersToPersian, {persianMonths} from '../../modules/formatNumberToPersian';
 import getRandomdInteger from '../../modules/getRandomInteger';
 import range from '../../modules/range';
+import formatNumbersToPersian, {persianMonths} from '../../modules/formatNumberToPersian';
 
 @Component({
-  tag: 'datetime-picker-hiweb',
-  styleUrl: 'datetime-picker-hiweb.scss',
+  tag: 'date-picker-hiweb',
+  styleUrl: 'date-picker-hiweb.scss',
   shadow: true,
 })
-export class DatetimePickerHiweb {
+export class DatePickerHiweb {
+  @Prop() label: string = 'تاریخ';
+
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;
-  @State() openCalendar: boolean = false;
+  @State() openCalendar: boolean;
   @State() year: number;
   @State() month: number;
   @State() dayOfTheMonth: number;
   @State() dayOfTheWeek: number;
-  @State() hour: number;
-  @State() minute: number;
   @State() daysBefore: number[];
   @State() daysAfter: number[];
   @State() daysOfMonth: number[];
   @State() years: number[];
 
-  private hoursArray: number[] = range(0, 24, 1);
-  private minutesArray: number[] = range(0, 59, 1);
-
   @Listen('click', {target: 'body'})
     onClick(e) {
-      const checkPath = () => e.path.some(({id}) =>  id === `calendar-${this.randomNumber}`);
+      const checkPath = () => e.path.some(({id}) => id === `calendar-${this.randomNumber}`);
       if (this.openCalendar && !checkPath()) return this.openCalendar = false;
     }
 
@@ -42,8 +38,6 @@ export class DatetimePickerHiweb {
     this.month = jdate.getMonth();
     this.dayOfTheMonth = jdate.getDate();
     this.dayOfTheWeek = jdate.getDay() + 2;
-    this.hour = jdate._d.getHours();
-    this.minute = jdate._d.getMinutes();
     this.years = range(this.year - 30, this.year + 10, 1);
   }
 
@@ -62,28 +56,45 @@ export class DatetimePickerHiweb {
     this.daysOfMonth = range(1, daysInMonth, 1);
   
     const formatNumbers = (num: number) => ("0" + num).slice(-2);
-    this.inputValue = formatNumbersToPersian(`${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)} - ${formatNumbers(this.hour)}:${formatNumbers(this.minute)}`);
+    this.inputValue = formatNumbersToPersian(`${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`);
+
+    console.log(this.openCalendar);
+    
+  }
+
+  handleArrowClick(num: number) {
+    if (this.month === 12 && num === 1) {
+      this.month = 1;
+      this.year = this.year + 1;
+      return;
+    }
+    if (this.month === 1 && num === -1) {
+      this.month = 12;
+      this.year = this.year - 1;
+      return;
+    }
+    this.month = this.month + num;
   }
 
   renderYearSelector() {
     return (
-        <select
-          id="year"
-          onInput={(event) => this.year = +event.target['value']}
-        >
-          {
-            this.years.map(year => {
-              return (
-                <option
-                  selected={year === this.year ? true : false}
-                  value={year}
-                >
-                  {year}
-                </option>
-              )
-            })
-          }
-        </select>
+      <select
+        id="year"
+        onInput={(event) => this.year = +event.target['value']}
+      >
+        {
+          this.years.map(year => {
+            return (
+              <option
+                selected={year === this.year ? true : false}
+                value={year}
+              >
+                {year}
+              </option>
+            )
+          })
+        }
+      </select>
     );
   }
 
@@ -111,17 +122,7 @@ export class DatetimePickerHiweb {
 
   renderDaySelector() {
     return (
-      <Fragment>
-        <div class="daysOfWeek">
-          <div>ش</div>
-          <div>ی</div>
-          <div>د</div>
-          <div>س</div>
-          <div>چ</div>
-          <div>پ</div>
-          <div>ج</div>
-        </div>
-        <div class="days-container">
+      <div class="days-container">
           {
             this.daysBefore.map(day => {
               return (
@@ -155,67 +156,45 @@ export class DatetimePickerHiweb {
             })
           }
         </div>
-      </Fragment>
     )
   }
 
-  renderHourSelector() {
-    return (
-      <select
-        onInput={(event) => this.hour = event.target['value']}
-      >
-        {
-          this.hoursArray.map(hour => {  
-            return (
-              <option
-                selected={hour === this.hour ? true : false}
-                value={hour}
-              >
-                {hour}
-              </option>
-            )
-          })
-        }
-      </select>
-    );
-  }
-
-  renderMinuteSelector() {
-    return (
-      <select
-        onInput={(event) => this.minute = event.target['value']}
-      >
-        {
-          this.minutesArray.map(minute => {  
-            return (
-              <option
-                selected={minute === this.minute ? true : false}
-                value={minute}
-              >
-                {minute}
-              </option>
-            )
-          })
-        }
-      </select>
-    );
-  }
-
-  renderDateSelector() {
+  renderCalendar() {
     if (!this.openCalendar) {
       return null;
     }
     return (
-      <div class="calendar">
+      <div class={`calendar ${this.label ? 'with-label' : ''}`}>
         <div class="header">
-          {this.renderYearSelector()}
-          {this.renderMonthSelector()}
-          {this.renderHourSelector()}
-          {this.renderMinuteSelector()}
+          <div
+           class="icon left" 
+           innerHTML={icons['arrowLeft']} 
+           onClick={() => this.handleArrowClick(1)}
+          />
+          <div class="middle">
+            <div class="spacer-lg" />
+            {this.renderYearSelector()}
+            <div class="spacer" />
+            {this.renderMonthSelector()}
+          </div>
+          <div
+           class="icon right" 
+           innerHTML={icons['arrowRight']} 
+           onClick={() => this.handleArrowClick(-1)}
+          />
         </div>
         <div class="body">
-          {this.renderDaySelector()}
+          <div class="daysOfWeek">
+            <div>شنبه</div>
+            <div>یکشنبه</div>
+            <div>دوشنبه</div>
+            <div>سه‌شنبه</div>
+            <div>چهارشنبه</div>
+            <div>پنجشنبه</div>
+            <div>جمعه</div>
+          </div>
         </div>
+        {this.renderDaySelector()}
       </div>
     );
   }
@@ -223,13 +202,14 @@ export class DatetimePickerHiweb {
   render() {
     return (
       <div class="input-container" id={`calendar-${this.randomNumber}`}>
+        <label>{this.label}</label>
         <input type="text" value={this.inputValue} readOnly />
         <div
-          class="placeholder" 
+          class="placeholder"
           innerHTML={icons['calendar']}
           onClick={() => this.openCalendar = !this.openCalendar}
         />
-        {this.renderDateSelector()}
+        {this.renderCalendar()}
       </div>
     );
   }
