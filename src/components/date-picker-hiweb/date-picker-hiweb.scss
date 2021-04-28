@@ -59,7 +59,7 @@
 }
 
 .calendar {
-  height: 440px;
+  min-height: 440px;
   width: 395px;
   background: white;
   position: absolute;
@@ -227,3 +227,10 @@
   transform-origin: left center;
 }
 
+
+@media (max-width: 500px) {
+  .calendar {
+    padding: 10px;
+    width: 300px;
+  }
+}
