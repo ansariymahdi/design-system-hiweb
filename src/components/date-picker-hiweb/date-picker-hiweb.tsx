@@ -25,11 +25,32 @@ export class DatePickerHiweb {
   @State() daysAfter: number[];
   @State() daysOfMonth: number[];
   @State() years: number[];
+  @State() calendarLocationBottom: boolean = true;
+  @State() calendarLocationRight: boolean = true;
+  // @State() calendarLocation: {bottom: boolean, right: boolean} = {bottom: true, right: true};
+
+  private calendarRef: HTMLElement;
+  private containerRef: HTMLElement;
+  private checkSpaceTimeout: ReturnType<typeof setTimeout>;
 
   @Listen('click', {target: 'body'})
     onClick(e) {
       const checkPath = () => e.path.some(({id}) => id === `calendar-${this.randomNumber}`);
       if (this.openCalendar && !checkPath()) return this.openCalendar = false;
+    }
+  @Listen('scroll', {target: 'window'})
+    onScroll() {
+      clearTimeout(this.checkSpaceTimeout);
+      this.checkSpaceTimeout = setTimeout(() => {
+        this.checkSpace();
+      }, 100);
+    }
+  @Listen('resize', {target: 'window'})
+    onResize() {
+      clearTimeout(this.checkSpaceTimeout);
+      this.checkSpaceTimeout = setTimeout(() => {
+        this.checkSpace();
+      }, 1000);
     }
 
   componentWillLoad() {
@@ -58,8 +79,50 @@ export class DatePickerHiweb {
     const formatNumbers = (num: number) => ("0" + num).slice(-2);
     this.inputValue = formatNumbersToPersian(`${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`);
 
-    console.log(this.openCalendar);
+    console.log('render', this.openCalendar);
     
+  }
+
+  componentDidRender() {
+    this.checkSpace();
+  }
+
+  checkSpace() {
+    if (this.openCalendar) {
+      const position = this.containerRef.getBoundingClientRect().top;
+      const containerHeight = this.containerRef.getBoundingClientRect().height;
+      const calendarHeight = this.calendarRef.getBoundingClientRect().height;
+      const screanHeight = window.innerHeight;
+      let bottom: boolean;
+      let right: boolean;
+      if (screanHeight - (position + containerHeight) > calendarHeight) {
+        bottom = true;
+      } else {
+        bottom = false
+      }
+
+      this.calendarLocationBottom = bottom;
+
+      console.log(this.calendarLocationBottom);
+    }
+  }
+
+  selectClassess() {
+    let classes: string;
+
+    if (this.calendarLocationBottom) {
+      classes = this.label ? 'c-bottom-with-label' : 'c-bottom';
+    } else {
+      classes = 'c-top';
+    }
+
+    if (this.calendarLocationRight) {
+      classes = classes + ' c-right';
+    } else {
+      classes = classes + ' c-left';
+    }
+
+    return classes;
   }
 
   handleArrowClick(num: number) {
@@ -164,7 +227,10 @@ export class DatePickerHiweb {
       return null;
     }
     return (
-      <div class={`calendar ${this.label ? 'with-label' : ''}`}>
+      <div 
+        class={`calendar ${this.selectClassess()}`}
+        ref={(el : HTMLElement) =>  this.calendarRef = el}
+      >
         <div class="header">
           <div
            class="icon left" 
@@ -201,7 +267,11 @@ export class DatePickerHiweb {
 
   render() {
     return (
-      <div class="input-container" id={`calendar-${this.randomNumber}`}>
+      <div
+       class="input-container" 
+       id={`calendar-${this.randomNumber}`}
+       ref={(el : HTMLElement) =>  this.containerRef = el}
+      >
         <label>{this.label}</label>
         <input type="text" value={this.inputValue} readOnly />
         <div

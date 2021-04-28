@@ -15,7 +15,7 @@
   }
 
   input {
-    padding: 0.375rem 0.75rem 0.375rem calc(24px + (0.375rem *2));
+    padding: 0.375rem 0.75rem 0.375rem calc(24px + (0.75rem));
     text-align: right;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -37,8 +37,8 @@
 
   .placeholder {
     position: absolute;
-    height: calc(24px + (0.375rem *2));
-    width: calc(24px + (0.375rem *2));
+    height: calc(24px + (0.75rem));
+    width: calc(24px + (0.75rem));
     left: 1px;
     bottom: 1px;
     display: flex;
@@ -54,17 +54,15 @@
   }
 }
 
-.with-label {
-  top: calc(24px + (0.375rem *2) + 1.75rem + 9px + 10px) !important;
-}
+
 
 .calendar {
   min-height: 440px;
   width: 395px;
   background: white;
   position: absolute;
-  left: -20px;
-  top: calc(24px + (0.375rem *2) + 10px);
+  right: -20px;
+  
   z-index: 999;
   padding: 45px;
   border-radius: 7px;
@@ -97,6 +95,51 @@
     .right {
       float: right;
     }
+  }
+}
+
+.calendar::after {
+  --scale: 1;
+  --arrow-size: 10px;
+  --tooltip-color: white;
+
+  position: absolute;
+  right: 130px;
+  transform: translateX(var(--translate-y, 0)) translateY(-50%) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: right center;
+}
+
+.calendar::after {
+  --translate-y: calc(-1 * var(--arrow-size) - 1px);
+
+  content: '';
+  border: var(--arrow-size) solid transparent;
+  transform-origin: left center;
+}
+
+
+.c-bottom-with-label {
+  top: calc(24px + (0.75rem) + 1.75rem + 9px + 10px);
+  &::after {
+    top: -10px;
+    border-bottom-color: var(--tooltip-color);
+  }
+}
+
+.c-bottom {
+  top: calc(24px + (0.75rem) + 10px);
+  &::after {
+    top: -10px;
+    border-bottom-color: var(--tooltip-color);
+  }
+}
+
+.c-top {
+  bottom: Calc(24px + (0.75rem) + 12.5px);
+  &::after {
+    bottom: -30px;
+    border-top-color: var(--tooltip-color);
   }
 }
 
@@ -203,30 +246,6 @@
     }
   }
 }
-
-.calendar::before,
-.calendar::after {
-  --scale: 1;
-  --arrow-size: 10px;
-  --tooltip-color: white;
-
-  position: absolute;
-  top: -10px;
-  left: 40px;
-  transform: translateX(var(--translate-y, 0)) translateY(-50%) scale(var(--scale));
-  transition: 150ms transform;
-  transform-origin: right center;
-}
-
-.calendar::after {
-  --translate-y: calc(-1 * var(--arrow-size) - 1px);
-
-  content: '';
-  border: var(--arrow-size) solid transparent;
-  border-bottom-color: var(--tooltip-color);
-  transform-origin: left center;
-}
-
 
 @media (max-width: 500px) {
   .calendar {
