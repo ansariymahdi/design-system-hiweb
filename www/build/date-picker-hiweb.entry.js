@@ -55,7 +55,7 @@ const DatePickerHiweb = class {
   }
   renderYearSelector() {
     return (h("select", { id: "year", onInput: (event) => this.year = +event.target['value'] }, this.years.map(year => {
-      return (h("option", { selected: year === this.year ? true : false, value: year }, year));
+      return (h("option", { selected: year === this.year ? true : false, value: year }, formatNumberToPersian(`${year}`)));
     })));
   }
   renderMonthSelector() {

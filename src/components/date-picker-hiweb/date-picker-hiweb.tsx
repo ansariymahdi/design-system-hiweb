@@ -89,7 +89,7 @@ export class DatePickerHiweb {
                 selected={year === this.year ? true : false}
                 value={year}
               >
-                {year}
+                {formatNumbersToPersian(`${year}`)}
               </option>
             )
           })
