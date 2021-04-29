@@ -78,9 +78,6 @@ export class DatePickerHiweb {
   
     const formatNumbers = (num: number) => ("0" + num).slice(-2);
     this.inputValue = formatNumbersToPersian(`${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`);
-
-    console.log('render', this.openCalendar);
-    
   }
 
   componentDidRender() {
@@ -94,7 +91,7 @@ export class DatePickerHiweb {
       const calendarHeight = this.calendarRef.getBoundingClientRect().height;
       const screanHeight = window.innerHeight;
       let bottom: boolean;
-      let right: boolean;
+      // let right: boolean;
       if (screanHeight - (position + containerHeight) > calendarHeight) {
         bottom = true;
       } else {

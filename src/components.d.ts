@@ -121,6 +121,9 @@ export namespace Components {
     }
     interface TextareaHiweb {
     }
+    interface TimePickerHiweb {
+        "label": string;
+    }
 }
 declare global {
     interface HTMLAlertHiwebElement extends Components.AlertHiweb, HTMLStencilElement {
@@ -273,6 +276,12 @@ declare global {
         prototype: HTMLTextareaHiwebElement;
         new (): HTMLTextareaHiwebElement;
     };
+    interface HTMLTimePickerHiwebElement extends Components.TimePickerHiweb, HTMLStencilElement {
+    }
+    var HTMLTimePickerHiwebElement: {
+        prototype: HTMLTimePickerHiwebElement;
+        new (): HTMLTimePickerHiwebElement;
+    };
     interface HTMLElementTagNameMap {
         "alert-hiweb": HTMLAlertHiwebElement;
         "button-error-hiweb": HTMLButtonErrorHiwebElement;
@@ -299,6 +308,7 @@ declare global {
         "survey-hiweb": HTMLSurveyHiwebElement;
         "table-hiweb": HTMLTableHiwebElement;
         "textarea-hiweb": HTMLTextareaHiwebElement;
+        "time-picker-hiweb": HTMLTimePickerHiwebElement;
     }
 }
 declare namespace LocalJSX {
@@ -443,6 +453,9 @@ declare namespace LocalJSX {
     }
     interface TextareaHiweb {
     }
+    interface TimePickerHiweb {
+        "label"?: string;
+    }
     interface IntrinsicElements {
         "alert-hiweb": AlertHiweb;
         "button-error-hiweb": ButtonErrorHiweb;
@@ -469,6 +482,7 @@ declare namespace LocalJSX {
         "survey-hiweb": SurveyHiweb;
         "table-hiweb": TableHiweb;
         "textarea-hiweb": TextareaHiweb;
+        "time-picker-hiweb": TimePickerHiweb;
     }
 }
 export { LocalJSX as JSX };
@@ -500,6 +514,7 @@ declare module "@stencil/core" {
             "survey-hiweb": LocalJSX.SurveyHiweb & JSXBase.HTMLAttributes<HTMLSurveyHiwebElement>;
             "table-hiweb": LocalJSX.TableHiweb & JSXBase.HTMLAttributes<HTMLTableHiwebElement>;
             "textarea-hiweb": LocalJSX.TextareaHiweb & JSXBase.HTMLAttributes<HTMLTextareaHiwebElement>;
+            "time-picker-hiweb": LocalJSX.TimePickerHiweb & JSXBase.HTMLAttributes<HTMLTimePickerHiwebElement>;
         }
     }
 }

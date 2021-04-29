@@ -1,6 +1,6 @@
 import { r as registerInstance, e as createEvent, h } from './index-b0ce9173.js';
 import './ArrowUp-60cff1dd.js';
-import { i as icons } from './iconsList-965edae6.js';
+import { i as icons } from './iconsList-192bafe8.js';
 
 const defaultValidator = {
   validate: (_x) => true,

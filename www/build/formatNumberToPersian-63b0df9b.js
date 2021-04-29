@@ -751,8 +751,6 @@ function getRandomdInteger(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step));
-
 const dictionary = {
   '0': '۰',
   '1': '۱',
@@ -789,4 +787,4 @@ function formatNumberToPersian(text) {
   return text;
 }
 
-export { JDate as J, formatNumberToPersian as f, getRandomdInteger as g, persianMonths as p, range as r };
+export { JDate as J, formatNumberToPersian as f, getRandomdInteger as g, persianMonths as p };

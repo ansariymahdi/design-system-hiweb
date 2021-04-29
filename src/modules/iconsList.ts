@@ -53,6 +53,7 @@ import survey from './../assets/icons/survey.svg';
 import questionnaire from './../assets/icons/questionnaire.svg';
 import telescope from './../assets/icons/telescope.svg';
 import calendar from './../assets/icons/calendar.svg';
+import clock from './../assets/icons/clock.svg';
 
 
 const icons = {
@@ -110,7 +111,8 @@ const icons = {
   survey,
   questionnaire,
   telescope,
-  calendar
+  calendar,
+  clock
 }
 
 export default icons
