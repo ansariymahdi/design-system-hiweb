@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: auto;
   position: relative;
-  display: block;
+  display: inline-block;
   margin-bottom: 5px;
   
   label {
@@ -69,6 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  direction: ltr;
 }
 
 .time::after {

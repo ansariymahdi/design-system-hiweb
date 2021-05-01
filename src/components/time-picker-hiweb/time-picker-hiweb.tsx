@@ -1,8 +1,7 @@
-import { Component, h, State, Listen, Prop } from '@stencil/core';
+import { Component, h, State, Listen, Prop, Event, EventEmitter } from '@stencil/core';
 import JDate from 'jalali-date';
 
 import getRandomdInteger from '../../modules/getRandomInteger';
-import range from '../../modules/range';
 import formatNumbersToPersian from '../../modules/formatNumberToPersian';
 import icons from '../../modules/iconsList';
 
@@ -12,7 +11,7 @@ import icons from '../../modules/iconsList';
   shadow: true,
 })
 export class TimePickerHiweb {
-  @Prop() label: string = 'زمان';
+  @Prop() label: string = 'ساعت';
 
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;
@@ -20,6 +19,8 @@ export class TimePickerHiweb {
   @State() hour: number;
   @State() minute: number;
   @State() am: boolean;
+
+  @Event() time: EventEmitter<string>;
 
   @Listen('click', {target: 'body'})
     onClick(e) {
@@ -41,7 +42,15 @@ export class TimePickerHiweb {
 
   componentWillRender() {
     const formatNumbers = (num: number) => ("0" + num).slice(-2);
-    this.inputValue = formatNumbersToPersian(`${this.am ? 'ق ظ' : 'ب ظ'} ${formatNumbers(this.hour)}:${formatNumbers(this.minute)}`);
+    const hour = formatNumbers(this.hour);
+    const minute = formatNumbers(this.minute);
+    this.inputValue = formatNumbersToPersian(`${this.am ? 'ق ظ' : 'ب ظ'} ${hour}:${minute}`);
+    if(this.am) {
+      console.log(`${hour}:${minute}`);
+      return this.time.emit(`${hour}:${minute}`);
+    }
+    console.log(`${formatNumbers(this.hour + 12)}:${minute}`);
+    return this.time.emit(`${formatNumbers(this.hour + 12)}:${minute}`);
   }
 
   handleHourChange(num: number) {

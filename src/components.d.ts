@@ -455,6 +455,7 @@ declare namespace LocalJSX {
     }
     interface TimePickerHiweb {
         "label"?: string;
+        "onTime"?: (event: CustomEvent<string>) => void;
     }
     interface IntrinsicElements {
         "alert-hiweb": AlertHiweb;
