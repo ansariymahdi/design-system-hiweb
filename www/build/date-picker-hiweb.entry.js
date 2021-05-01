@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-b0ce9173.js';
+import { r as registerInstance, e as createEvent, h } from './index-b0ce9173.js';
 import './ArrowUp-60cff1dd.js';
 import { i as icons } from './iconsList-192bafe8.js';
 import { g as getRandomdInteger, J as JDate, f as formatNumberToPersian, p as persianMonths } from './formatNumberToPersian-63b0df9b.js';
@@ -9,6 +9,8 @@ const datePickerHiwebCss = "@charset \"UTF-8\";/*!\n * Bootstrap v5.0.0-beta2 (h
 const DatePickerHiweb = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
+    this.jalaiDate = createEvent(this, "jalaiDate", 7);
+    this.gregorianDate = createEvent(this, "gregorianDate", 7);
     this.label = 'تاریخ';
     this.randomNumber = getRandomdInteger(1000, 9999);
     this.calendarLocationBottom = true;
@@ -52,7 +54,14 @@ const DatePickerHiweb = class {
     this.daysAfter = range(1, numberOfDaysAfter, 1);
     this.daysOfMonth = range(1, daysInMonth, 1);
     const formatNumbers = (num) => ("0" + num).slice(-2);
-    this.inputValue = formatNumberToPersian(`${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`);
+    const jalaliDate = `${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`;
+    const gregorianDate = JDate.toGregorian(this.year, this.month, this.dayOfTheMonth);
+    const gregorianYear = gregorianDate.toLocaleDateString('en-US', { year: 'numeric' });
+    const gregorianMonth = gregorianDate.toLocaleDateString('en-US', { month: '2-digit' });
+    const gregorianDay = gregorianDate.toLocaleDateString('en-US', { day: '2-digit' });
+    this.inputValue = formatNumberToPersian(jalaliDate);
+    this.jalaiDate.emit(jalaliDate);
+    this.gregorianDate.emit(`${gregorianYear}-${gregorianMonth}-${gregorianDay}`);
   }
   componentDidRender() {
     this.checkSpace();
@@ -72,7 +81,6 @@ const DatePickerHiweb = class {
         bottom = false;
       }
       this.calendarLocationBottom = bottom;
-      console.log(this.calendarLocationBottom);
     }
   }
   selectClassess() {

@@ -1,4 +1,4 @@
-import { Component, h, State, Listen, Prop } from '@stencil/core';
+import { Component, h, State, Listen, Prop, Event, EventEmitter } from '@stencil/core';
 import JDate from 'jalali-date';
 
 import icons from '../../modules/iconsList';
@@ -28,6 +28,9 @@ export class DatePickerHiweb {
   @State() calendarLocationBottom: boolean = true;
   @State() calendarLocationRight: boolean = true;
   // @State() calendarLocation: {bottom: boolean, right: boolean} = {bottom: true, right: true};
+
+  @Event() jalaiDate: EventEmitter<string>;
+  @Event() gregorianDate: EventEmitter<string>;
 
   private calendarRef: HTMLElement;
   private containerRef: HTMLElement;
@@ -77,7 +80,15 @@ export class DatePickerHiweb {
     this.daysOfMonth = range(1, daysInMonth, 1);
   
     const formatNumbers = (num: number) => ("0" + num).slice(-2);
-    this.inputValue = formatNumbersToPersian(`${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`);
+    const jalaliDate = `${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`;
+    const gregorianDate = JDate.toGregorian(this.year, this.month, this.dayOfTheMonth);
+    const gregorianYear = gregorianDate.toLocaleDateString('en-US', { year: 'numeric'});
+    const gregorianMonth = gregorianDate.toLocaleDateString('en-US', { month: '2-digit'});
+    const gregorianDay = gregorianDate.toLocaleDateString('en-US', { day: '2-digit'});
+
+    this.inputValue = formatNumbersToPersian(jalaliDate);
+    this.jalaiDate.emit(jalaliDate);
+    this.gregorianDate.emit(`${gregorianYear}-${gregorianMonth}-${gregorianDay}`);
   }
 
   componentDidRender() {
@@ -99,8 +110,6 @@ export class DatePickerHiweb {
       }
 
       this.calendarLocationBottom = bottom;
-
-      console.log(this.calendarLocationBottom);
     }
   }
 

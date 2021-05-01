@@ -361,6 +361,8 @@ declare namespace LocalJSX {
     }
     interface DatePickerHiweb {
         "label"?: string;
+        "onGregorianDate"?: (event: CustomEvent<string>) => void;
+        "onJalaiDate"?: (event: CustomEvent<string>) => void;
     }
     interface DatetimePickerHiweb {
     }
