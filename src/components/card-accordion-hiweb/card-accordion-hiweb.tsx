@@ -48,9 +48,7 @@ export class CardAccordionHiweb {
             <div class={'sidebar-nav-menu-item-body'}>
               <div class="row mat-card">
                 <div class="card-body mat-card">
-                  <p>
-                    <slot></slot>
-                  </p>
+                  <slot></slot>
                 </div>
               </div>
             </div>
