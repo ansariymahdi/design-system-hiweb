@@ -103,6 +103,11 @@ export class TimePickerHiweb {
       <div
         class={`time`}
       >
+        <div
+         class="close-button" 
+         innerHTML={icons['cross']} 
+         onClick={() => this.openSelector = false} 
+        />
         {this.renderHourInput()}
         {this.renderMinuteInput()}
         {this.renderAmInput()}
