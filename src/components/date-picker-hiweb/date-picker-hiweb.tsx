@@ -249,7 +249,7 @@ export class DatePickerHiweb {
            onClick={() => this.handleArrowClick(1)}
           />
           <div class="middle">
-            <div class="spacer-lg" />
+            {/* <div class="spacer-lg" /> */}
             {this.renderYearSelector()}
             <div class="spacer" />
             {this.renderMonthSelector()}
