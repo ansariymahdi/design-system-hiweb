@@ -32,9 +32,9 @@ export class DatePickerHiweb {
   @Event() jalaiDate: EventEmitter<string>;
   @Event() gregorianDate: EventEmitter<string>;
 
-  private calendarRef: HTMLElement;
-  private containerRef: HTMLElement;
-  private checkSpaceTimeout: ReturnType<typeof setTimeout>;
+  // private calendarRef: HTMLElement;
+  // private containerRef: HTMLElement;
+  // private checkSpaceTimeout: ReturnType<typeof setTimeout>;
 
   @Listen('click', {target: 'body'})
     onClick(e) {
@@ -235,7 +235,7 @@ export class DatePickerHiweb {
     return (
       <div 
         class='calendar'
-        ref={(el : HTMLElement) =>  this.calendarRef = el}
+        // ref={(el : HTMLElement) =>  this.calendarRef = el}
       >
         <div
          class="close-button" 
@@ -281,7 +281,7 @@ export class DatePickerHiweb {
       <div
        class="input-container" 
        id={`calendar-${this.randomNumber}`}
-       ref={(el : HTMLElement) =>  this.containerRef = el}
+      //  ref={(el : HTMLElement) =>  this.containerRef = el}
       >
         <label>{this.label}</label>
         <input type="text" value={this.inputValue} readOnly />

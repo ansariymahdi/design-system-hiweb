@@ -1,6 +1,6 @@
 {
   "name": "design-system-hiweb",
-  "version": "0.2.77",
+  "version": "0.2.78",
   "description": "hiweb components",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
