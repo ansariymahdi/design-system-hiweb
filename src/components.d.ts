@@ -48,6 +48,7 @@ export namespace Components {
     }
     interface DatePickerHiweb {
         "label": string;
+        "value": string;
     }
     interface DatetimePickerHiweb {
     }
@@ -363,6 +364,7 @@ declare namespace LocalJSX {
         "label"?: string;
         "onGregorianDate"?: (event: CustomEvent<string>) => void;
         "onJalaiDate"?: (event: CustomEvent<string>) => void;
+        "value"?: string;
     }
     interface DatetimePickerHiweb {
     }

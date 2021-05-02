@@ -12,6 +12,7 @@ const DatePickerHiweb = class {
     this.jalaiDate = createEvent(this, "jalaiDate", 7);
     this.gregorianDate = createEvent(this, "gregorianDate", 7);
     this.label = 'تاریخ';
+    this.value = '2014-01-03';
     this.randomNumber = getRandomdInteger(1000, 9999);
   }
   // private calendarRef: HTMLElement;
@@ -37,7 +38,16 @@ const DatePickerHiweb = class {
   //     }, 1000);
   //   }
   componentWillLoad() {
-    const jdate = new JDate;
+    let jdate;
+    if (this.value) {
+      const year = +this.value.slice(0, 4);
+      const month = +this.value.slice(5, 7);
+      const day = +this.value.slice(8, 10);
+      jdate = new JDate(new Date(year, month, day));
+    }
+    else {
+      jdate = new JDate;
+    }
     this.year = jdate.getFullYear();
     this.month = jdate.getMonth();
     this.dayOfTheMonth = jdate.getDate();

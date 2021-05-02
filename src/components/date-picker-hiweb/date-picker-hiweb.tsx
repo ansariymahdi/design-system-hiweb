@@ -13,6 +13,7 @@ import formatNumbersToPersian, {persianMonths} from '../../modules/formatNumberT
 })
 export class DatePickerHiweb {
   @Prop() label: string = 'تاریخ';
+  @Prop() value: string = '2014-01-03';
 
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;
@@ -57,7 +58,15 @@ export class DatePickerHiweb {
   //   }
 
   componentWillLoad() {
-    const jdate = new JDate;
+    let jdate;
+    if (this.value) {
+      const year = +this.value.slice(0,4);
+      const month = +this.value.slice(5,7);
+      const day = +this.value.slice(8,10);
+      jdate = new JDate(new Date(year, month, day));
+    } else {
+      jdate = new JDate;
+    }
     this.year = jdate.getFullYear();
     this.month = jdate.getMonth();
     this.dayOfTheMonth = jdate.getDate();
