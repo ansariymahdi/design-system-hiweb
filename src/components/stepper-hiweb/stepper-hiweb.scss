@@ -51,7 +51,7 @@
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    background: #2A2D9E;
+    background: #4674F4;
     transform: scale(0);
     transition-duration: 350ms;
     transition-timing-function: linear;
@@ -62,17 +62,17 @@
   }
   .step-current {
     transition-delay: .5s;
-    border-color: #2A2D9E;
+    border-color: #4674F4;
   }
   .step-active {
-    border-color: #2A2D9E;
-    background: #2A2D9E;
+    border-color: #4674F4;
+    background: #4674F4;
     svg {
       display: block;
     }
   }
   .spacer-active {
-    background: #2A2D9E;
+    background: #4674F4;
   }
   .spacer-current {
     position: absolute;
@@ -81,7 +81,7 @@
     bottom: 0;
     height: 2px;
     width: 0;
-    background: #2A2D9E;
+    background: #4674F4;
   }
   .spacer-current-active {
     transition: width .5s;
