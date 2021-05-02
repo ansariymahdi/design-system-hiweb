@@ -13,7 +13,7 @@ import formatNumbersToPersian, {persianMonths} from '../../modules/formatNumberT
 })
 export class DatePickerHiweb {
   @Prop() label: string = 'تاریخ';
-  @Prop() value: string = '2014-01-03';
+  @Prop() value: string;
 
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;

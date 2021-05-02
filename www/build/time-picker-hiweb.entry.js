@@ -19,9 +19,15 @@ const TimePickerHiweb = class {
       return this.openSelector = false;
   }
   componentWillLoad() {
-    const jdate = new JDate;
-    this.hour = jdate._d.getHours();
-    this.minute = jdate._d.getMinutes();
+    if (this.value) {
+      this.hour = +this.value.slice(0, 2);
+      this.minute = +this.value.slice(3, 5);
+    }
+    else {
+      const jdate = new JDate;
+      this.hour = jdate._d.getHours();
+      this.minute = jdate._d.getMinutes();
+    }
     if (this.hour >= 12) {
       this.hour = this.hour - 12;
       this.am = false;

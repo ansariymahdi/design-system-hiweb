@@ -124,6 +124,7 @@ export namespace Components {
     }
     interface TimePickerHiweb {
         "label": string;
+        "value": string;
     }
 }
 declare global {
@@ -460,6 +461,7 @@ declare namespace LocalJSX {
     interface TimePickerHiweb {
         "label"?: string;
         "onTime"?: (event: CustomEvent<string>) => void;
+        "value"?: string;
     }
     interface IntrinsicElements {
         "alert-hiweb": AlertHiweb;

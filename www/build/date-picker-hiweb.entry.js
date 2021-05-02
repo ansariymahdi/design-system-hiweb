@@ -12,7 +12,6 @@ const DatePickerHiweb = class {
     this.jalaiDate = createEvent(this, "jalaiDate", 7);
     this.gregorianDate = createEvent(this, "gregorianDate", 7);
     this.label = 'تاریخ';
-    this.value = '2014-01-03';
     this.randomNumber = getRandomdInteger(1000, 9999);
   }
   // private calendarRef: HTMLElement;
