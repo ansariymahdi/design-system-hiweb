@@ -12,7 +12,7 @@ export class TableHiweb {
   @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
-  @Prop() page: number = 6;
+  @Prop() page: number = 1;
   @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
   @Prop() numberOfRows: number = 20;
   @Prop() totalDocuments: number = 3;
@@ -261,15 +261,19 @@ export class TableHiweb {
   renderSelecter = () => {
     // this.range
     // this.totalDocuments
-    const range = this.range.filter(num => num < this.totalDocuments);
+    let range = this.range.filter(num => num < this.totalDocuments);
+    if (!range.length) {
+      range = [this.totalDocuments];
+      this.numberOfRows = this.totalDocuments;
+    }
+    
     return (
       <select
         class=""
         onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
       >
         {
-          range.length
-            ? range.map(num => {
+          range.map(num => {
               return (
                 <option
                   selected={num === this.numberOfRows ? true : false}
@@ -279,12 +283,6 @@ export class TableHiweb {
                 </option>
               )
               })
-            : <option
-                  selected
-                  value={this.totalDocuments}
-                >
-                  {this.totalDocuments}
-                </option>
         }
       </select>
     )

@@ -1,4 +1,4 @@
-import { Component, h, EventEmitter, Prop, State, Event, Watch } from '@stencil/core';
+import { Component, h, EventEmitter, Prop, State, Event , Watch } from '@stencil/core';
 import ArrowUp from './../../assets/icons/ArrowUp.svg';
 
 @Component({
