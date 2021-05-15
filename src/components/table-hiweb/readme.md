@@ -17,7 +17,7 @@
 | `orderBy`        | --                |             | `{ order: string; options: string[]; }`                                                                       | `{ order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] }` |
 | `page`           | `page`            |             | `number`                                                                                                      | `6`                                                                          |
 | `range`          | --                |             | `number[]`                                                                                                    | `[5, 10, 20, 50, 100, 200]`                                                  |
-| `totalDocuments` | `total-documents` |             | `number`                                                                                                      | `101`                                                                        |
+| `totalDocuments` | `total-documents` |             | `number`                                                                                                      | `3`                                                                          |
 
 
 ## Events

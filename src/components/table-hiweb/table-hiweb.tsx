@@ -15,7 +15,7 @@ export class TableHiweb {
   @Prop() page: number = 6;
   @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
   @Prop() numberOfRows: number = 20;
-  @Prop() totalDocuments: number = 101;
+  @Prop() totalDocuments: number = 3;
   @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] };
   @Prop() info: { title: string, content: string }[] = [{ title: 'تعداد', content: '۲۳۴۲۳۴' }]
 
@@ -259,22 +259,32 @@ export class TableHiweb {
 
 
   renderSelecter = () => {
+    // this.range
+    // this.totalDocuments
+    const range = this.range.filter(num => num < this.totalDocuments);
     return (
       <select
         class=""
         onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
       >
         {
-          this.range.map(num => {
-            return (
-              <option
-                selected={num === this.numberOfRows ? true : false}
-                value={num}
-              >
-                {num}
-              </option>
-            )
-          })
+          range.length
+            ? range.map(num => {
+              return (
+                <option
+                  selected={num === this.numberOfRows ? true : false}
+                  value={num}
+                >
+                  {num}
+                </option>
+              )
+              })
+            : <option
+                  selected
+                  value={this.totalDocuments}
+                >
+                  {this.totalDocuments}
+                </option>
         }
       </select>
     )
