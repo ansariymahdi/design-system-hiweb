@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'button-error-hiweb',
@@ -7,7 +7,8 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class ButtonErrorHiweb {
   @Prop() title: string;
+  @Event() onClick: EventEmitter;
   render() {
-    return <button class="btn-wrapper button-error-wrapper button--wide m-3">{this.title}</button>;
+    return <button class="btn-wrapper button-error-wrapper button--wide" onClick={() => this.onClick.emit()}>{this.title}</button>;
   }
 }
