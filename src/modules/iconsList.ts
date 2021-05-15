@@ -113,7 +113,8 @@ const icons = {
   questionnaire,
   telescope,
   calendar,
-  clock
+  clock,
+  actions
 }
 
 export default icons
