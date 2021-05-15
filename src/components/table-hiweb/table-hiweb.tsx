@@ -15,7 +15,7 @@ export class TableHiweb {
   @Prop() page: number = 1;
   @Prop() range: number[] = [5, 10, 20, 50, 100, 200];
   @Prop() numberOfRows: number = 20;
-  @Prop() totalDocuments: number = 3;
+  @Prop() totalDocuments: number = 8;
   @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] };
   @Prop() info: { title: string, content: string }[] = [{ title: 'تعداد', content: '۲۳۴۲۳۴' }]
 
@@ -262,9 +262,14 @@ export class TableHiweb {
     // this.range
     // this.totalDocuments
     let range = this.range.filter(num => num < this.totalDocuments);
-    if (!range.length) {
-      range = [this.totalDocuments];
-      this.numberOfRows = this.totalDocuments;
+
+    if (!range.includes(this.numberOfRows)) {
+      if (!range.length) {
+        range = [this.totalDocuments];
+        this.numberOfRows = this.totalDocuments;
+      } else {
+        this.numberOfRows = range[range.length - 1];
+      }
     }
     
     return (
