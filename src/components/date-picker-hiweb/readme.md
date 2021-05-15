@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default   |
-| -------- | --------- | ----------- | -------- | --------- |
-| `label`  | `label`   |             | `string` | `'تاریخ'` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `label`  | `label`   |             | `string` | `'تاریخ'`   |
+| `value`  | `value`   |             | `string` | `undefined` |
 
 
 ## Events

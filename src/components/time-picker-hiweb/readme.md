@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default  |
-| -------- | --------- | ----------- | -------- | -------- |
-| `label`  | `label`   |             | `string` | `'ساعت'` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `label`  | `label`   |             | `string` | `'ساعت'`    |
+| `value`  | `value`   |             | `string` | `undefined` |
 
 
 ## Events

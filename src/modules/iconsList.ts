@@ -54,6 +54,7 @@ import questionnaire from './../assets/icons/questionnaire.svg';
 import telescope from './../assets/icons/telescope.svg';
 import calendar from './../assets/icons/calendar.svg';
 import clock from './../assets/icons/clock.svg';
+import actions from './../assets/icons/actions.svg';
 
 
 const icons = {
