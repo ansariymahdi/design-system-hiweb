@@ -55,6 +55,10 @@ import telescope from './../assets/icons/telescope.svg';
 import calendar from './../assets/icons/calendar.svg';
 import clock from './../assets/icons/clock.svg';
 import actions from './../assets/icons/actions.svg';
+import tShirt from './../assets/icons/tshirt.svg';
+import soccerPlayer from './../assets/icons/soccer-player.svg';
+import group from './../assets/fonts/group.svg';
+import footballClub from './../assets/icons/football-club.svg';
 
 
 const icons = {
@@ -114,7 +118,11 @@ const icons = {
   telescope,
   calendar,
   clock,
-  actions
+  actions,
+  tShirt,
+  soccerPlayer,
+  group,
+  footballClub
 }
 
 export default icons
