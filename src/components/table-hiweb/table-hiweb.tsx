@@ -261,16 +261,16 @@ export class TableHiweb {
   renderSelecter = () => {
     // this.range
     // this.totalDocuments
-    let range = this.range.filter(num => num < this.totalDocuments);
+    // let range = this.range.filter(num => num < this.totalDocuments);
 
-    if (!range.includes(this.numberOfRows)) {
-      if (!range.length) {
-        range = [this.totalDocuments];
-        this.numberOfRows = this.totalDocuments;
-      } else {
-        this.numberOfRows = range[range.length - 1];
-      }
-    }
+    // if (!range.includes(this.numberOfRows)) {
+    //   if (!range.length) {
+    //     range = [this.totalDocuments];
+    //     this.numberOfRows = this.totalDocuments;
+    //   } else {
+    //     this.numberOfRows = range[range.length - 1];
+    //   }
+    // }
     
     return (
       <select
@@ -278,7 +278,7 @@ export class TableHiweb {
         onInput={(event) => this.rowNumChanged.emit(event.target['value'])}
       >
         {
-          range.map(num => {
+          this.range.map(num => {
               return (
                 <option
                   selected={num === this.numberOfRows ? true : false}
