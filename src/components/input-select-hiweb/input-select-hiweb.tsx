@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'input-select-hiweb',
@@ -9,17 +9,29 @@ export class InputSelectHiweb {
   @Prop() placeHolder: string = 'please select';
   @Prop() selectedValue: string | number;
   @Prop() options: { value: string | number , text: string | number}[] = [{value: 'sdfsdf', text: 'sfsdf'}];
+  @Prop() checkInput: boolean = true;
 
-  @Event() valueChanged: EventEmitter<string | number>;
+  @State() error: boolean = false;
+
+  @Event() valueChanged: EventEmitter<{ value: string | number , text: string | number}>;
+
+  componentWillRender() {
+    if(this.checkInput && typeof this.selectedValue === 'undefined') this.error = true;
+  }
+
+  handleValueChanged(event) {
+    const selectedData = this.options.find(option => option.value == event.target['value']);
+    this.valueChanged.emit(selectedData);
+  }
 
   render() {
     return (
-      <div class="sort">
+      <div class={`sort ${this.error ? 'error' : null}` }>
         <div class="input-group">
           <select
             class="form-select"
             id="inputGroupSelect01"
-            onInput={(event) => this.valueChanged.emit(event.target['value'])}
+            onInput={(event) => this.handleValueChanged(event)}
             >
               <option value="" disabled selected hidden>
                 {this.placeHolder}
@@ -43,6 +55,11 @@ export class InputSelectHiweb {
               }
           </select>
         </div>
+          {
+            this.error
+              ? <span class="message">{this.placeHolder}</span>
+              : null
+          }
       </div>
     );
   }

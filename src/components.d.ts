@@ -73,6 +73,7 @@ export namespace Components {
         "valueProp": string;
     }
     interface InputSelectHiweb {
+        "checkInput": boolean;
         "options": { value: string | number , text: string | number}[];
         "placeHolder": string;
         "selectedValue": string | number;
@@ -405,7 +406,8 @@ declare namespace LocalJSX {
         "valueProp"?: string;
     }
     interface InputSelectHiweb {
-        "onValueChanged"?: (event: CustomEvent<string | number>) => void;
+        "checkInput"?: boolean;
+        "onValueChanged"?: (event: CustomEvent<{ value: string | number , text: string | number}>) => void;
         "options"?: { value: string | number , text: string | number}[];
         "placeHolder"?: string;
         "selectedValue"?: string | number;
