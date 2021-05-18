@@ -72,6 +72,11 @@ export namespace Components {
         "validatorProp": string;
         "valueProp": string;
     }
+    interface InputSelectHiweb {
+        "options": { value: string | number , text: string | number}[];
+        "placeHolder": string;
+        "selectedValue": string | number;
+    }
     interface ModalHiweb {
         "data": {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
     }
@@ -218,6 +223,12 @@ declare global {
         prototype: HTMLInputHiwebElement;
         new (): HTMLInputHiwebElement;
     };
+    interface HTMLInputSelectHiwebElement extends Components.InputSelectHiweb, HTMLStencilElement {
+    }
+    var HTMLInputSelectHiwebElement: {
+        prototype: HTMLInputSelectHiwebElement;
+        new (): HTMLInputSelectHiwebElement;
+    };
     interface HTMLModalHiwebElement extends Components.ModalHiweb, HTMLStencilElement {
     }
     var HTMLModalHiwebElement: {
@@ -300,6 +311,7 @@ declare global {
         "dropdown-hiweb": HTMLDropdownHiwebElement;
         "error-hiweb": HTMLErrorHiwebElement;
         "input-hiweb": HTMLInputHiwebElement;
+        "input-select-hiweb": HTMLInputSelectHiwebElement;
         "modal-hiweb": HTMLModalHiwebElement;
         "nav-right-hiweb": HTMLNavRightHiwebElement;
         "nav-right-hiweb-2": HTMLNavRightHiweb2Element;
@@ -392,6 +404,12 @@ declare namespace LocalJSX {
         "validatorProp"?: string;
         "valueProp"?: string;
     }
+    interface InputSelectHiweb {
+        "onValueChanged"?: (event: CustomEvent<string | number>) => void;
+        "options"?: { value: string | number , text: string | number}[];
+        "placeHolder"?: string;
+        "selectedValue"?: string | number;
+    }
     interface ModalHiweb {
         "data"?: {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
         "onOnClick"?: (event: CustomEvent<any>) => void;
@@ -480,6 +498,7 @@ declare namespace LocalJSX {
         "dropdown-hiweb": DropdownHiweb;
         "error-hiweb": ErrorHiweb;
         "input-hiweb": InputHiweb;
+        "input-select-hiweb": InputSelectHiweb;
         "modal-hiweb": ModalHiweb;
         "nav-right-hiweb": NavRightHiweb;
         "nav-right-hiweb-2": NavRightHiweb2;
@@ -512,6 +531,7 @@ declare module "@stencil/core" {
             "dropdown-hiweb": LocalJSX.DropdownHiweb & JSXBase.HTMLAttributes<HTMLDropdownHiwebElement>;
             "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
+            "input-select-hiweb": LocalJSX.InputSelectHiweb & JSXBase.HTMLAttributes<HTMLInputSelectHiwebElement>;
             "modal-hiweb": LocalJSX.ModalHiweb & JSXBase.HTMLAttributes<HTMLModalHiwebElement>;
             "nav-right-hiweb": LocalJSX.NavRightHiweb & JSXBase.HTMLAttributes<HTMLNavRightHiwebElement>;
             "nav-right-hiweb-2": LocalJSX.NavRightHiweb2 & JSXBase.HTMLAttributes<HTMLNavRightHiweb2Element>;

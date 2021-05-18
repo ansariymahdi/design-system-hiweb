@@ -59,6 +59,7 @@ import tShirt from './../assets/icons/tshirt.svg';
 import soccerPlayer from './../assets/icons/soccer-player.svg';
 import group from './../assets/icons/group.svg';
 import footballClub from './../assets/icons/football-club.svg';
+import speechBubble from './../assets/icons/speech-bubble.svg';
 
 
 const icons = {
@@ -122,7 +123,8 @@ const icons = {
   tShirt,
   soccerPlayer,
   group,
-  footballClub
+  footballClub,
+  speechBubble
 }
 
 export default icons
