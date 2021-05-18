@@ -7,7 +7,7 @@ import { Component, Event, EventEmitter, h, Prop } from '@stencil/core';
 })
 export class InputSelectHiweb {
   @Prop() placeHolder: string = 'please select';
-  @Prop() selectedValue: string | number = 'selected';
+  @Prop() selectedValue: string | number;
   @Prop() options: { value: string | number , text: string | number}[] = [{value: 'sdfsdf', text: 'sfsdf'}];
 
   @Event() valueChanged: EventEmitter<string | number>;
@@ -24,10 +24,14 @@ export class InputSelectHiweb {
               <option value="" disabled selected hidden>
                 {this.placeHolder}
               </option>
-            <option
-              selected
-              value={this.selectedValue}
-            >{this.selectedValue}</option>
+              {
+                this.selectedValue
+                  ? <option
+                      selected
+                      value={this.selectedValue}
+                    >{this.selectedValue}</option>
+                  : null
+              }
               {
                 this.options.map(({value, text}) => {
                   return (
