@@ -77,6 +77,7 @@ export namespace Components {
         "options": { value: string | number , text: string | number}[];
         "placeHolder": string;
         "selectedValue": string | number;
+        "title": string;
     }
     interface ModalHiweb {
         "data": {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
@@ -411,6 +412,7 @@ declare namespace LocalJSX {
         "options"?: { value: string | number , text: string | number}[];
         "placeHolder"?: string;
         "selectedValue"?: string | number;
+        "title"?: string;
     }
     interface ModalHiweb {
         "data"?: {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
