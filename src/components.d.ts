@@ -76,7 +76,7 @@ export namespace Components {
         "checkInput": boolean;
         "options": { value: string | number , text: string | number}[];
         "placeHolder": string;
-        "selectedValue": string | number;
+        "selectedValue": { value: string | number , text: string | number};
         "title": string;
     }
     interface ModalHiweb {
@@ -411,7 +411,7 @@ declare namespace LocalJSX {
         "onValueChanged"?: (event: CustomEvent<{ value: string | number , text: string | number}>) => void;
         "options"?: { value: string | number , text: string | number}[];
         "placeHolder"?: string;
-        "selectedValue"?: string | number;
+        "selectedValue"?: { value: string | number , text: string | number};
         "title"?: string;
     }
     interface ModalHiweb {

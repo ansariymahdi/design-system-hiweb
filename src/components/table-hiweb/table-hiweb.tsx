@@ -259,18 +259,6 @@ export class TableHiweb {
 
 
   renderSelecter = () => {
-    // this.range
-    // this.totalDocuments
-    // let range = this.range.filter(num => num < this.totalDocuments);
-
-    // if (!range.includes(this.numberOfRows)) {
-    //   if (!range.length) {
-    //     range = [this.totalDocuments];
-    //     this.numberOfRows = this.totalDocuments;
-    //   } else {
-    //     this.numberOfRows = range[range.length - 1];
-    //   }
-    // }
     
     return (
       <select

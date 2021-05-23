@@ -7,11 +7,13 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type                                                     | Default                              |
-| --------------- | ---------------- | ----------- | -------------------------------------------------------- | ------------------------------------ |
-| `options`       | --               |             | `{ value: string \| number; text: string \| number; }[]` | `[{value: 'sdfsdf', text: 'sfsdf'}]` |
-| `placeHolder`   | `place-holder`   |             | `string`                                                 | `'please select'`                    |
-| `selectedValue` | `selected-value` |             | `number \| string`                                       | `undefined`                          |
+| Property        | Attribute      | Description | Type                                                     | Default                                                                                                                                                                                                               |
+| --------------- | -------------- | ----------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `checkInput`    | `check-input`  |             | `boolean`                                                | `undefined`                                                                                                                                                                                                           |
+| `options`       | --             |             | `{ value: string \| number; text: string \| number; }[]` | `[{value: 'sdfsdf1', text: 'sfsdf'}, {value: 'sdfsdf2', text: 'sfsdf3'}, {value: 'sdfsdf4', text: 'sfsdf5'}, {value: 'sdfsdf6', text: 'sfsdf'}, {value: 'sdfs7df', text: 'sfsdf'}, {value: 'sdfsdf', text: 'sfsdf'}]` |
+| `placeHolder`   | `place-holder` |             | `string`                                                 | `'please select'`                                                                                                                                                                                                     |
+| `selectedValue` | --             |             | `{ value: string \| number; text: string \| number; }`   | `undefined`                                                                                                                                                                                                           |
+| `title`         | `title`        |             | `string`                                                 | `''`                                                                                                                                                                                                                  |
 
 
 ## Events
