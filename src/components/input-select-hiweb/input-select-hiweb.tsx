@@ -18,13 +18,21 @@ export class InputSelectHiweb {
   @Event() valueChanged: EventEmitter<{ value: string | number , text: string | number}>;
 
   componentWillLoad() {
-    if (typeof this.selectedValue !== 'undefined') {
-      this.valueState = this.selectedValue;
+    if (this.selectedValue) {
+      return this.valueState = this.selectedValue;
     }
+    this.valueState = undefined;
   }
 
   componentWillRender() {
     console.log('select', this.valueState);
+    
+    if (this.selectedValue) {
+      this.valueState = this.selectedValue;
+    } else {
+      this.valueState = undefined;
+    }
+    
     if(this.checkInput && typeof this.valueState === 'undefined') return this.error = true;
     if(this.error) return this.error = false;
   }
