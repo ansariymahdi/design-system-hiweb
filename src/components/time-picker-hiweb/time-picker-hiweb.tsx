@@ -24,7 +24,7 @@ export class TimePickerHiweb {
   @Event() time: EventEmitter<string>;
 
   @Listen('click', {target: 'body'})
-    onClick(e) {
+    onClick(e: { path: { id: any; }[]; }) {
       const checkPath = () => e.path.some(({id}) =>  id === `calendar-${this.randomNumber}`);
       if (this.openSelector && !checkPath()) return this.openSelector = false;
     }
@@ -52,10 +52,8 @@ export class TimePickerHiweb {
     const minute = formatNumbers(this.minute);
     this.inputValue = formatNumbersToPersian(`${this.am ? 'ق ظ' : 'ب ظ'} ${hour}:${minute}`);
     if(this.am) {
-      console.log(`${hour}:${minute}`);
       return this.time.emit(`${hour}:${minute}`);
     }
-    console.log(`${formatNumbers(this.hour + 12)}:${minute}`);
     return this.time.emit(`${formatNumbers(this.hour + 12)}:${minute}`);
   }
 

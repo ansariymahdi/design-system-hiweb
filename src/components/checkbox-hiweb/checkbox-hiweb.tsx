@@ -6,8 +6,9 @@ import { Component, h, State, Prop, Event, EventEmitter } from '@stencil/core';
   shadow: true,
 })
 export class CheckboxHiweb {
-  @State() valueState: boolean;
   @Prop() value: boolean;
+  @State() valueState: boolean;
+
   @Event() onChange: EventEmitter<boolean>;
 
   componentWillLoad() {

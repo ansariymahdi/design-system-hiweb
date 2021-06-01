@@ -26,7 +26,7 @@ export class InputSelectHiweb {
 
   componentWillRender() {
     console.log('select', this.valueState);
-    
+
     if (this.selectedValue) {
       this.valueState = this.selectedValue;
     } else {
@@ -40,8 +40,8 @@ export class InputSelectHiweb {
   handleValueChanged(event) {
     const selectedData = this.options.find(option => option.value == event.target['value']);
     this.valueState = selectedData;
-    const emitEvent = { ...selectedData, title: this.title};
-    this.valueChanged.emit(emitEvent);
+    // const emitEvent = { ...selectedData, title: this.title};
+    this.valueChanged.emit(selectedData);
   }
 
   render() {

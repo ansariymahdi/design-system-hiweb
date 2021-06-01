@@ -44,6 +44,7 @@ export class inputHiweb {
   }
 
   componentWillUpdate() {
+    console.log('prop', this.valueProp)
     if (this.checkInput) {
       this.isChanged = true;
     }
@@ -60,6 +61,7 @@ export class inputHiweb {
   clearInput = () => {
     console.log('cross clicked');
     this.value = '';
+    this.validate();
     this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
   }
 

@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { CheckBoxInput, DateInput, SelectOptionInput, TextInput } from "./components/form-hiweb/form-hiweb";
 export namespace Components {
     interface AlertHiweb {
         "timer": any;
@@ -58,6 +59,10 @@ export namespace Components {
     }
     interface ErrorHiweb {
         "error": { statusCode: number, message: string, buttonMessage: string, path: string};
+    }
+    interface FormHiweb {
+        "a": string[];
+        "formProp": { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
     }
     interface InputHiweb {
         "checkInput": boolean;
@@ -219,6 +224,12 @@ declare global {
         prototype: HTMLErrorHiwebElement;
         new (): HTMLErrorHiwebElement;
     };
+    interface HTMLFormHiwebElement extends Components.FormHiweb, HTMLStencilElement {
+    }
+    var HTMLFormHiwebElement: {
+        prototype: HTMLFormHiwebElement;
+        new (): HTMLFormHiwebElement;
+    };
     interface HTMLInputHiwebElement extends Components.InputHiweb, HTMLStencilElement {
     }
     var HTMLInputHiwebElement: {
@@ -312,6 +323,7 @@ declare global {
         "datetime-picker-hiweb": HTMLDatetimePickerHiwebElement;
         "dropdown-hiweb": HTMLDropdownHiwebElement;
         "error-hiweb": HTMLErrorHiwebElement;
+        "form-hiweb": HTMLFormHiwebElement;
         "input-hiweb": HTMLInputHiwebElement;
         "input-select-hiweb": HTMLInputSelectHiwebElement;
         "modal-hiweb": HTMLModalHiwebElement;
@@ -392,6 +404,11 @@ declare namespace LocalJSX {
     interface ErrorHiweb {
         "error"?: { statusCode: number, message: string, buttonMessage: string, path: string};
         "onOnClick"?: (event: CustomEvent<any>) => void;
+    }
+    interface FormHiweb {
+        "a"?: string[];
+        "formProp"?: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
+        "onOnFormSubmit"?: (event: CustomEvent<{ title: string, value: string | boolean | { value: string | number , text: string | number} }>) => void;
     }
     interface InputHiweb {
         "checkInput"?: boolean;
@@ -501,6 +518,7 @@ declare namespace LocalJSX {
         "datetime-picker-hiweb": DatetimePickerHiweb;
         "dropdown-hiweb": DropdownHiweb;
         "error-hiweb": ErrorHiweb;
+        "form-hiweb": FormHiweb;
         "input-hiweb": InputHiweb;
         "input-select-hiweb": InputSelectHiweb;
         "modal-hiweb": ModalHiweb;
@@ -534,6 +552,7 @@ declare module "@stencil/core" {
             "datetime-picker-hiweb": LocalJSX.DatetimePickerHiweb & JSXBase.HTMLAttributes<HTMLDatetimePickerHiwebElement>;
             "dropdown-hiweb": LocalJSX.DropdownHiweb & JSXBase.HTMLAttributes<HTMLDropdownHiwebElement>;
             "error-hiweb": LocalJSX.ErrorHiweb & JSXBase.HTMLAttributes<HTMLErrorHiwebElement>;
+            "form-hiweb": LocalJSX.FormHiweb & JSXBase.HTMLAttributes<HTMLFormHiwebElement>;
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
             "input-select-hiweb": LocalJSX.InputSelectHiweb & JSXBase.HTMLAttributes<HTMLInputSelectHiwebElement>;
             "modal-hiweb": LocalJSX.ModalHiweb & JSXBase.HTMLAttributes<HTMLModalHiwebElement>;
