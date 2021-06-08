@@ -7,7 +7,8 @@ export interface TextInput {
   title: string,
   validator: string,
   disable: boolean,
-  isValid?: boolean
+  isValid?: boolean,
+  className?: string
 }
 
 export interface SelectOptionInput {
@@ -16,37 +17,42 @@ export interface SelectOptionInput {
   options: { value: string | number, text: string | number }[],
   placeholder: string,
   required?: boolean,
-  isValid?: boolean
+  isValid?: boolean,
+  className?: string
 }
 
 export interface CheckBoxInput {
   title: string,
   value?: boolean,
+  className?: string
 }
 
 export interface DateInput {
   title: string,
   value?: string,
   label: string,
+  className?: string
 }
 
 export interface TimeInput {
   title: string,
   value?: string,
   label: string,
+  className?: string
 }
 
 export interface DateTimeInput {
   title: string,
   dateLabel: string,
   timeLabel: string,
-  value?: string
+  value?: string,
+  className?: string
 }
 
 @Component({
   tag: 'form-hiweb',
   styleUrl: 'form-hiweb.scss',
-  shadow: true,
+  shadow: false,
 })
 export class FormHiweb {
   @Prop() formProp: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[] = [
@@ -76,7 +82,8 @@ export class FormHiweb {
         title: 'select',
         placeholder: 'place',
         required: true,
-        options: [{value: 'sdfsdf1', text: 'sfsdf'}, {value: 'sdfsdf2', text: 'sfsdf3'}, {value: 'sdfsdf4', text: 'sfsdf5'}, {value: 'sdfsdf6', text: 'sfsdf'}, {value: 'sdfs7df', text: 'sfsdf'}, {value: 'sdfsdf', text: 'sfsdf'}]
+        options: [{value: 'sdfsdf1', text: 'sfsdf'}, {value: 'sdfsdf2', text: 'sfsdf3'}, {value: 'sdfsdf4', text: 'sfsdf5'}, {value: 'sdfsdf6', text: 'sfsdf'}, {value: 'sdfs7df', text: 'sfsdf'}, {value: 'sdfsdf', text: 'sfsdf'}],
+        className: 'mb-3'
       }
     },
     {
@@ -148,11 +155,13 @@ export class FormHiweb {
       placeholder,
       title,
       disable,
-      validator
+      validator,
+      className
     }: TextInput = data;
 
     return (
       <input-hiweb
+        class={className}
         valueProp={this.form[index].data.value}
         label={label}
         placeHolder={placeholder}
@@ -176,11 +185,13 @@ export class FormHiweb {
       options,
       placeholder,
       title,
-      required
+      required,
+      className
     }: SelectOptionInput = data;
 
     return (
       <input-select-hiweb
+        class={className}
         title={title}
         options={options}
         placeHolder={placeholder}
@@ -200,11 +211,13 @@ export class FormHiweb {
   renderCheckBoxInput(data, index: number) {
     const {
       value,
-      title
+      title,
+      className
     } = data;
 
     return (
       <checkbox-hiweb
+        class={className}
         title={title}
         value={value}
         onOnChange={e => {
@@ -218,36 +231,42 @@ export class FormHiweb {
   renderDateInput(data, index: number) {
     const {
       value,
-      label
+      label,
+      className
     } = data;
 
     return (
-      <date-picker-hiweb
-        label={label}
-        value={value}
-        onGregorianDate={e => {
-          this.form[index].data.value = e.detail;
-          this.forceRender = !this.forceRender;
-        }}
-      />
+      <div class={className}>
+        <date-picker-hiweb
+          label={label}
+          value={value}
+          onGregorianDate={e => {
+            this.form[index].data.value = e.detail;
+            this.forceRender = !this.forceRender;
+          }}
+        />
+      </div>
     )
   }
 
   renderTimeInput(data, index: number) {
     const {
       value,
-      label
+      label,
+      className
     } = data;
 
     return (
-      <time-picker-hiweb 
-        label={label}
-        value={value}
-        onTime={e => {
-          this.form[index].data.value = e.detail;
-          this.forceRender = !this.forceRender;
-        }}
-      />
+      <div class={className}>
+        <time-picker-hiweb 
+          label={label}
+          value={value}
+          onTime={e => {
+            this.form[index].data.value = e.detail;
+            this.forceRender = !this.forceRender;
+          }}
+        />
+      </div>
     )
   }
 
@@ -255,13 +274,14 @@ export class FormHiweb {
     const {
       dateLabel,
       timeLabel,
-      value
+      value,
+      className
     } = data;
 
     if (!value) this.form[index].data.value = '0000-00-00T00:00:00.000Z';
 
     return (
-      <div>
+      <div class={className}>
         <date-picker-hiweb 
           label={dateLabel}
           value={value ? value.slice(0, 10) : null}
@@ -270,6 +290,8 @@ export class FormHiweb {
             this.forceRender = !this.forceRender;
           }}
         />
+        <div class="width10">
+        </div>
         <time-picker-hiweb 
           label={timeLabel}
           value={value ? value.slice(11, 16): null}
@@ -316,9 +338,13 @@ export class FormHiweb {
     return (
       <div class="form-container">
         {this.renderForm()}
-        <button
-          onClick={this.handleFormSubmit}
-        >log</button>
+        <div class="submit-button-container">
+          <button-hiweb
+            title="ثبت" 
+            onOnClick={this.handleFormSubmit}
+          >
+          </button-hiweb>
+        </div>
       </div>
     );
   }
