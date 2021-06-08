@@ -21,6 +21,19 @@
 | `jalaiDate`     |             | `CustomEvent<string>` |
 
 
+## Dependencies
+
+### Used by
+
+ - [form-hiweb](../form-hiweb)
+
+### Graph
+```mermaid
+graph TD;
+  form-hiweb --> date-picker-hiweb
+  style date-picker-hiweb fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

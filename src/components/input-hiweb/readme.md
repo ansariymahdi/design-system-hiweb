@@ -45,12 +45,14 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [form-hiweb](../form-hiweb)
  - [nav-top-hiweb](../nav-top-hiweb)
  - [table-hiweb](../table-hiweb)
 
 ### Graph
 ```mermaid
 graph TD;
+  form-hiweb --> input-hiweb
   nav-top-hiweb --> input-hiweb
   table-hiweb --> input-hiweb
   style input-hiweb fill:#f9f,stroke:#333,stroke-width:4px

@@ -61,7 +61,6 @@ export namespace Components {
         "error": { statusCode: number, message: string, buttonMessage: string, path: string};
     }
     interface FormHiweb {
-        "a": string[];
         "formProp": { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
     }
     interface InputHiweb {
@@ -406,9 +405,9 @@ declare namespace LocalJSX {
         "onOnClick"?: (event: CustomEvent<any>) => void;
     }
     interface FormHiweb {
-        "a"?: string[];
         "formProp"?: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
-        "onOnFormSubmit"?: (event: CustomEvent<{ title: string, value: string | boolean | { value: string | number , text: string | number} }>) => void;
+        "onErros"?: (event: CustomEvent<string[]>) => void;
+        "onOnFormSubmit"?: (event: CustomEvent<any>) => void;
     }
     interface InputHiweb {
         "checkInput"?: boolean;

@@ -23,6 +23,19 @@
 | `valueChanged` |             | `CustomEvent<{ value: string \| number; text: string \| number; }>` |
 
 
+## Dependencies
+
+### Used by
+
+ - [form-hiweb](../form-hiweb)
+
+### Graph
+```mermaid
+graph TD;
+  form-hiweb --> input-select-hiweb
+  style input-select-hiweb fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

@@ -49,7 +49,7 @@ export interface DateTimeInput {
   shadow: true,
 })
 export class FormHiweb {
-  @Prop({ mutable: true }) formProp: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[] = [
+  @Prop() formProp: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[] = [
     {
       type: 'text',
       data: {
@@ -111,27 +111,13 @@ export class FormHiweb {
 
   @State() checkInputs: boolean = false;
   @State() form: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
+  @State() forceRender: boolean = true;
 
-  @Event() onFormSubmit: EventEmitter<{ title: string, value: string | boolean | { value: string | number , text: string | number} }>;
-
-  @Prop() a = ['a'];
-  private b;
+  @Event() onFormSubmit: EventEmitter<any>;
+  @Event() erros: EventEmitter<string[]>;
 
   componentWillLoad() {
-    this.b = [...this.a];
     this.form = this.formProp;
-    // this.defaultForm = this.form.map(input => {
-    //   console.log(input.data);
-    //   if (input.type === 'selectOption') {
-    //     const value = input.data.value ? input.data.value : {}
-    //   }
-
-    //   return input;
-    // });
-
-
-
-
   }
 
 
@@ -162,8 +148,7 @@ export class FormHiweb {
       placeholder,
       title,
       disable,
-      validator,
-      value
+      validator
     }: TextInput = data;
 
     return (
@@ -176,9 +161,8 @@ export class FormHiweb {
         validatorProp={validator}
         checkInput={this.checkInputs}
         onChanged={e => {
-          this.a[0] = 's';
           console.log(this.form[index].data.value);
-          this.test = !this.test;
+          this.forceRender = !this.forceRender;
           this.form[index].data = {...this.form[index].data, ...e.detail};
           console.log(this.form[index].data.value);
         }}
@@ -207,6 +191,7 @@ export class FormHiweb {
             this.form[index].data.isValid = true;
           }
           this.form[index].data.value = e.detail;
+          this.forceRender = !this.forceRender;
         }}
       />
     )
@@ -224,6 +209,7 @@ export class FormHiweb {
         value={value}
         onOnChange={e => {
           this.form[index].data.value = e.detail;
+          this.forceRender = !this.forceRender;
         }}
       />
     )
@@ -241,6 +227,7 @@ export class FormHiweb {
         value={value}
         onGregorianDate={e => {
           this.form[index].data.value = e.detail;
+          this.forceRender = !this.forceRender;
         }}
       />
     )
@@ -258,6 +245,7 @@ export class FormHiweb {
         value={value}
         onTime={e => {
           this.form[index].data.value = e.detail;
+          this.forceRender = !this.forceRender;
         }}
       />
     )
@@ -279,6 +267,7 @@ export class FormHiweb {
           value={value ? value.slice(0, 10) : null}
           onGregorianDate={e => {
             this.form[index].data.value = `${e.detail}T${this.form[index].data.value.slice(11, 16)}:00.000Z`;
+            this.forceRender = !this.forceRender;
           }}
         />
         <time-picker-hiweb 
@@ -286,6 +275,7 @@ export class FormHiweb {
           value={value ? value.slice(11, 16): null}
           onTime={e => {
             this.form[index].data.value = `${this.form[index].data.value.slice(0, 10)}T${e.detail}:00.000Z`;
+            this.forceRender = !this.forceRender;
           }}
         />
       </div>
@@ -293,8 +283,6 @@ export class FormHiweb {
   }
 
   handleFormSubmit = () => {
-    console.log(this.a);
-    console.log(this.b)
     this.checkInputs = true;
     const errors: string[] = [];
     let form = {};
@@ -318,71 +306,11 @@ export class FormHiweb {
 
     if (errors.length) console.log(errors);
 
-    this.form = [
-    {
-      type: 'text',
-      data: {
-        value: '',
-        placeholder: 'text1',
-        label: 'sdfsdf',
-        title: 'text1',
-        validator: '["required"]'
-      }
-    },
-    {
-      type: 'text',
-      data: {
-        value: '',
-        placeholder: 'sdfsdf',
-        label: 'sdfsdf',
-        title: 'text2',
-        validator: '["required"]'
-      }
-    },
-    {
-      type: 'selectOption',
-      data: {
-        title: 'select',
-        placeholder: 'place',
-        required: true,
-        options: [{value: 'sdfsdf1', text: 'sfsdf'}, {value: 'sdfsdf2', text: 'sfsdf3'}, {value: 'sdfsdf4', text: 'sfsdf5'}, {value: 'sdfsdf6', text: 'sfsdf'}, {value: 'sdfs7df', text: 'sfsdf'}, {value: 'sdfsdf', text: 'sfsdf'}]
-      }
-    },
-    {
-      type: 'checkBox',
-      data: {
-        title: 'check'
-      }
-    },
-    {
-      type: 'date',
-      data: {
-        title: 'date-picker',
-        label: 'tarikh'
-      }
-    },
-    {
-      type: 'time',
-      data: {
-        title: 'time-picker',
-        label: 'zaman'
-      }
-    },
-    {
-      type: 'dateTime',
-      data: {
-        title: 'sdfsfs',
-        dateLabel: 'tarikh-kol',
-        timeLabel: 'zaman-kol'
-      }
-    }
-  ];
-    console.log(this.form[0].data.value);
-
     console.log(form);
-  }
 
-  @State() test: boolean = true;
+    this.erros.emit(errors);
+    // this.onFormSubmit.emit(form);
+  }
 
   render() {
     return (
@@ -391,23 +319,6 @@ export class FormHiweb {
         <button
           onClick={this.handleFormSubmit}
         >log</button>
-        <input-hiweb
-        valueProp={this.form[0].data.value}
-        label={this.form[0].data.label}
-        placeHolder={this.form[0].data.placeholder}
-        title={this.form[0].data.title}
-        disable={this.form[0].data.disable}
-        validatorProp={this.form[0].data.validator}
-        checkInput={this.checkInputs}
-        onChanged={e => {
-          this.a[0] = 's';
-          console.log(this.form[0].data.value);
-          this.test = !this.test;
-          this.form[0].data.value = e.detail.value;
-          this.form[0].data.isValid = e.detail.isValid;
-          console.log(this.form[0].data.value);
-        }}
-      />
       </div>
     );
   }
