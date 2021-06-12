@@ -62,6 +62,7 @@ export namespace Components {
     }
     interface FormHiweb {
         "formProp": { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
+        "resetForm": boolean;
     }
     interface InputHiweb {
         "checkInput": boolean;
@@ -406,8 +407,8 @@ declare namespace LocalJSX {
     }
     interface FormHiweb {
         "formProp"?: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
-        "onErros"?: (event: CustomEvent<string[]>) => void;
         "onOnFormSubmit"?: (event: CustomEvent<any>) => void;
+        "resetForm"?: boolean;
     }
     interface InputHiweb {
         "checkInput"?: boolean;

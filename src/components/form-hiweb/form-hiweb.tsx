@@ -1,4 +1,5 @@
-import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
+import * as _ from 'lodash';
 
 export interface TextInput {
   value: string,
@@ -115,18 +116,24 @@ export class FormHiweb {
       }
     }
   ];
+  @Prop() resetForm: boolean = false;
+  @Watch('resetForm')
+  onResetFormChange() {
+    this.form = _.cloneDeep(this.formProp);
+    this.checkInputs = false;
+  }
+
 
   @State() checkInputs: boolean = false;
   @State() form: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
   @State() forceRender: boolean = true;
 
   @Event() onFormSubmit: EventEmitter<any>;
-  @Event() erros: EventEmitter<string[]>;
 
   componentWillLoad() {
-    this.form = this.formProp;
+    this.form = _.cloneDeep(this.formProp);
+    this.checkInputs = false;
   }
-
 
   renderForm() {
     return this.form.map(({type, data}, index: number) => {
@@ -309,7 +316,6 @@ export class FormHiweb {
     const errors: string[] = [];
     let form = {};
     this.form.forEach(({type, data}) => {
-      console.log(data)
       const {
         title,
         value,
@@ -326,12 +332,7 @@ export class FormHiweb {
       }
     });
 
-    if (errors.length) console.log(errors);
-
-    console.log(form);
-
-    this.erros.emit(errors);
-    // this.onFormSubmit.emit(form);
+    this.onFormSubmit.emit({form, errors});
   }
 
   render() {
