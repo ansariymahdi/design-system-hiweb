@@ -10,6 +10,7 @@
 | Property        | Attribute      | Description | Type      | Default     |
 | --------------- | -------------- | ----------- | --------- | ----------- |
 | `checkInput`    | `check-input`  |             | `boolean` | `undefined` |
+| `color`         | `color`        |             | `string`  | `'black'`   |
 | `disable`       | `disable`      |             | `boolean` | `false`     |
 | `error`         | `error`        |             | `string`  | `undefined` |
 | `label`         | `label`        |             | `string`  | `undefined` |

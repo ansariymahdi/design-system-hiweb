@@ -9,6 +9,7 @@
 
 | Property | Attribute | Description | Type     | Default     |
 | -------- | --------- | ----------- | -------- | ----------- |
+| `color`  | `color`   |             | `string` | `'black'`   |
 | `label`  | `label`   |             | `string` | `'ساعت'`    |
 | `value`  | `value`   |             | `string` | `undefined` |
 

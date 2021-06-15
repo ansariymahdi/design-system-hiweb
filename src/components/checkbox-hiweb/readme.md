@@ -9,6 +9,7 @@
 
 | Property | Attribute | Description | Type      | Default     |
 | -------- | --------- | ----------- | --------- | ----------- |
+| `color`  | `color`   |             | `string`  | `'black'`   |
 | `value`  | `value`   |             | `boolean` | `undefined` |
 
 

@@ -321,6 +321,7 @@ export class FormHiweb {
         <time-picker-hiweb 
           label={timeLabel}
           value={value ? value.slice(11, 16): null}
+          color={color}
           onTime={e => {
             this.form[index].data.value = `${this.form[index].data.value.slice(0, 10)}T${e.detail}:00.000Z`;
             this.forceRender = !this.forceRender;
