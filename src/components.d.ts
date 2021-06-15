@@ -66,6 +66,7 @@ export namespace Components {
     }
     interface InputHiweb {
         "checkInput": boolean;
+        "color": string;
         "disable": boolean;
         "error": string;
         "label": string;
@@ -412,6 +413,7 @@ declare namespace LocalJSX {
     }
     interface InputHiweb {
         "checkInput"?: boolean;
+        "color"?: string;
         "disable"?: boolean;
         "error"?: string;
         "label"?: string;

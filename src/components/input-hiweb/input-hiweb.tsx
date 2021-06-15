@@ -11,6 +11,7 @@ import icons from '../../modules/iconsList';
 export class inputHiweb {
   @Prop() label: string;
   @Prop() title: string;
+  @Prop() color: string = 'black';
   @Prop({ mutable: true }) valueProp: string;
   @Prop() placeHolder: string;
   @Prop() type: string = 'text';
@@ -72,7 +73,7 @@ export class inputHiweb {
     if ( this.isChanged && (!this.valid || this.error)) {
       return { borderColor: '#B22222' };
     }
-    return { borderColor: 'black' };
+    return { borderColor: this.color };
   }
 
   moveValid = () => {
