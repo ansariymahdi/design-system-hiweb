@@ -22,7 +22,8 @@
     color: black;
     border-color: black;
     direction: rtl;
-    border: 1px solid black;
+    border-style: solid;
+    border-width: 1px;
     border-image-source: initial;
     border-image-slice: initial;
     border-image-width: initial;
@@ -40,9 +41,6 @@
 .error {
   .input-group {
     margin-bottom: 3px;
-  }
-  select {
-    border: 1px solid rgb(178, 34, 34);
   }
 
   .message {

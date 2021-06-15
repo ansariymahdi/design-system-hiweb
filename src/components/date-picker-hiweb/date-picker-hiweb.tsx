@@ -14,6 +14,7 @@ import formatNumbersToPersian, {persianMonths} from '../../modules/formatNumberT
 export class DatePickerHiweb {
   @Prop() label: string = 'تاریخ';
   @Prop() value: string;
+  @Prop() color: string = 'black';
 
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;
@@ -293,10 +294,16 @@ export class DatePickerHiweb {
       //  ref={(el : HTMLElement) =>  this.containerRef = el}
       >
         <label>{this.label}</label>
-        <input type="text" value={this.inputValue} readOnly />
+        <input
+         type="text" 
+         value={this.inputValue} 
+         style={{ borderColor: this.color }}
+         readOnly 
+        />
         <div
           class="placeholder"
           innerHTML={icons['calendar']}
+          style={{ background: this.color }}
           onClick={() => this.openCalendar = !this.openCalendar}
         />
         {this.renderCalendar()}

@@ -13,6 +13,7 @@ import icons from '../../modules/iconsList';
 export class TimePickerHiweb {
   @Prop() label: string = 'ساعت';
   @Prop() value: string;
+  @Prop() color: string = 'black';
 
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;
@@ -126,10 +127,16 @@ export class TimePickerHiweb {
         id={`calendar-${this.randomNumber}`}
       >
         <label>{this.label}</label>
-        <input type="text" value={this.inputValue} readOnly />
+        <input
+         type="text" 
+         value={this.inputValue} 
+         style={{ borderColor: this.color }}
+         readOnly
+        />
         <div
          class="placeholder"
          innerHTML={icons['clock']}
+         style={{ background: this.color }}
          onClick={() => this.openSelector = !this.openSelector}
         />
         {this.renderTimeSelector()}

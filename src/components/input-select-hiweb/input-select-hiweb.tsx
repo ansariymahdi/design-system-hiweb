@@ -10,6 +10,7 @@ export class InputSelectHiweb {
   @Prop() placeHolder: string = 'please select';
   @Prop() selectedValue: { value: string | number , text: string | number};
   @Prop() options: { value: string | number , text: string | number}[] = [{value: 'sdfsdf1', text: 'sfsdf'}, {value: 'sdfsdf2', text: 'sfsdf3'}, {value: 'sdfsdf4', text: 'sfsdf5'}, {value: 'sdfsdf6', text: 'sfsdf'}, {value: 'sdfs7df', text: 'sfsdf'}, {value: 'sdfsdf', text: 'sfsdf'}];
+  @Prop() color: string = 'black';
   @Prop() checkInput: boolean;
   @Watch('checkInput')
   onCheckInputChange(checkInput) {
@@ -46,11 +47,19 @@ export class InputSelectHiweb {
     this.valueChanged.emit(selectedData);
   }
 
+  getColor() {
+    if(this.error) {
+      return { borderColor: '#B22222' };
+    }
+    return { borderColor: this.color };
+  }
+
   render() {
     return (
-      <div class={`sort ${this.error ? 'error' : null}` }>
+      <div class={`sort ${this.error ? 'error' : null}`}>
         <div class="input-group">
           <select
+            style={this.getColor()}
             class="form-select"
             id="inputGroupSelect01"
             onInput={(event) => this.handleValueChanged(event)}

@@ -43,11 +43,13 @@ export namespace Components {
         "titleNews": string;
     }
     interface CheckboxHiweb {
+        "color": string;
         "value": boolean;
     }
     interface CounterInputHiweb {
     }
     interface DatePickerHiweb {
+        "color": string;
         "label": string;
         "value": string;
     }
@@ -80,6 +82,7 @@ export namespace Components {
     }
     interface InputSelectHiweb {
         "checkInput": boolean;
+        "color": string;
         "options": { value: string | number , text: string | number}[];
         "placeHolder": string;
         "selectedValue": { value: string | number , text: string | number};
@@ -136,6 +139,7 @@ export namespace Components {
     interface TextareaHiweb {
     }
     interface TimePickerHiweb {
+        "color": string;
         "label": string;
         "value": string;
     }
@@ -383,6 +387,7 @@ declare namespace LocalJSX {
         "titleNews"?: string;
     }
     interface CheckboxHiweb {
+        "color"?: string;
         "onOnChange"?: (event: CustomEvent<boolean>) => void;
         "value"?: boolean;
     }
@@ -390,6 +395,7 @@ declare namespace LocalJSX {
         "onValueChanged"?: (event: CustomEvent<number>) => void;
     }
     interface DatePickerHiweb {
+        "color"?: string;
         "label"?: string;
         "onGregorianDate"?: (event: CustomEvent<string>) => void;
         "onJalaiDate"?: (event: CustomEvent<string>) => void;
@@ -427,6 +433,7 @@ declare namespace LocalJSX {
     }
     interface InputSelectHiweb {
         "checkInput"?: boolean;
+        "color"?: string;
         "onValueChanged"?: (event: CustomEvent<{ value: string | number , text: string | number}>) => void;
         "options"?: { value: string | number , text: string | number}[];
         "placeHolder"?: string;
@@ -501,6 +508,7 @@ declare namespace LocalJSX {
     interface TextareaHiweb {
     }
     interface TimePickerHiweb {
+        "color"?: string;
         "label"?: string;
         "onTime"?: (event: CustomEvent<string>) => void;
         "value"?: string;

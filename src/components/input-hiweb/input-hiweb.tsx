@@ -40,8 +40,10 @@ export class inputHiweb {
     this.validator = JSON.parse(this.validatorProp);
     this._validator = getValidator<string>(this.validator);
     this.onValueChanged(this.valueProp);
-    if (this.valueProp) this.validate();
-    this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
+    this.validate();
+    if(this.valueProp) {
+      this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
+    }
   }
 
   componentWillUpdate() {
@@ -56,7 +58,6 @@ export class inputHiweb {
   }
 
   clearInput = () => {
-    console.log('cross clicked');
     this.value = '';
     this.validate();
     this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
@@ -70,6 +71,9 @@ export class inputHiweb {
   }
 
   borderColor = () => {
+    console.log('change', this.isChanged);
+    console.log('valid',this.valid);
+    console.log('error',this.error);
     if ( this.isChanged && (!this.valid || this.error)) {
       return { borderColor: '#B22222' };
     }

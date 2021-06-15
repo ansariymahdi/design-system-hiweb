@@ -8,6 +8,7 @@ export interface TextInput {
   title: string,
   validator: string,
   disable: boolean,
+  color?: string,
   isValid?: boolean,
   className?: string
 }
@@ -19,27 +20,31 @@ export interface SelectOptionInput {
   placeholder: string,
   required?: boolean,
   isValid?: boolean,
-  className?: string
+  className?: string,
+  color?: string,
 }
 
 export interface CheckBoxInput {
   title: string,
   value?: boolean,
-  className?: string
+  className?: string,
+  color?: string,
 }
 
 export interface DateInput {
   title: string,
   value?: string,
   label: string,
-  className?: string
+  className?: string,
+  color?: string,
 }
 
 export interface TimeInput {
   title: string,
   value?: string,
   label: string,
-  className?: string
+  className?: string,
+  color?: string,
 }
 
 export interface DateTimeInput {
@@ -47,7 +52,8 @@ export interface DateTimeInput {
   dateLabel: string,
   timeLabel: string,
   value?: string,
-  className?: string
+  className?: string,
+  color?: string,
 }
 
 @Component({
@@ -64,7 +70,8 @@ export class FormHiweb {
         placeholder: 'text1',
         label: 'sdfsdf',
         title: 'text1',
-        validator: '["required"]'
+        validator: '["required"]',
+        color: 'yellow'
       }
     },
     {
@@ -163,8 +170,11 @@ export class FormHiweb {
       title,
       disable,
       validator,
-      className
+      className,
+      color
     }: TextInput = data;
+
+    console.log('kill me')
 
     return (
       <input-hiweb
@@ -175,10 +185,11 @@ export class FormHiweb {
         title={title}
         disable={disable}
         validatorProp={validator}
-        checkInput={this.form[index].data.value ? true : this.checkInputs}
+        color={color}
+        checkInput={this.checkInputs}
         onChanged={e => {
-          this.forceRender = !this.forceRender;
           this.form[index].data = {...this.form[index].data, ...e.detail};
+          this.forceRender = !this.forceRender;
         }}
       />
     )
@@ -191,7 +202,8 @@ export class FormHiweb {
       placeholder,
       title,
       required,
-      className
+      className,
+      color
     }: SelectOptionInput = data;
 
     return (
@@ -201,7 +213,8 @@ export class FormHiweb {
         options={options}
         placeHolder={placeholder}
         selectedValue={value}
-        checkInput={this.form[index].data.value ? true : this.checkInputs}
+        color={color}
+        checkInput={this.checkInputs}
         onValueChanged={e => {
           if (required && e.detail) {
             this.form[index].data.isValid = true;
@@ -217,7 +230,8 @@ export class FormHiweb {
     const {
       value,
       title,
-      className
+      className,
+      color
     } = data;
 
     return (
@@ -225,6 +239,7 @@ export class FormHiweb {
         class={className}
         title={title}
         value={value}
+        color={color}
         onOnChange={e => {
           this.form[index].data.value = e.detail;
           this.forceRender = !this.forceRender;
@@ -237,7 +252,8 @@ export class FormHiweb {
     const {
       value,
       label,
-      className
+      className,
+      color
     } = data;
 
     return (
@@ -245,6 +261,7 @@ export class FormHiweb {
         <date-picker-hiweb
           label={label}
           value={value}
+          color={color}
           onGregorianDate={e => {
             this.form[index].data.value = e.detail;
             this.forceRender = !this.forceRender;
@@ -258,7 +275,8 @@ export class FormHiweb {
     const {
       value,
       label,
-      className
+      className,
+      color
     } = data;
 
     return (
@@ -266,6 +284,7 @@ export class FormHiweb {
         <time-picker-hiweb 
           label={label}
           value={value}
+          color={color}
           onTime={e => {
             this.form[index].data.value = e.detail;
             this.forceRender = !this.forceRender;
@@ -280,7 +299,8 @@ export class FormHiweb {
       dateLabel,
       timeLabel,
       value,
-      className
+      className,
+      color
     } = data;
 
     if (!value) this.form[index].data.value = '0000-00-00T00:00:00.000Z';
@@ -289,6 +309,7 @@ export class FormHiweb {
       <div class={className}>
         <date-picker-hiweb 
           label={dateLabel}
+          color={color}
           value={value ? value.slice(0, 10) : null}
           onGregorianDate={e => {
             this.form[index].data.value = `${e.detail}T${this.form[index].data.value.slice(11, 16)}:00.000Z`;
