@@ -60,7 +60,7 @@ export class FormHiweb {
     {
       type: 'text',
       data: {
-        value: '',
+        value: 'sdfsdfsdf',
         placeholder: 'text1',
         label: 'sdfsdf',
         title: 'text1',
@@ -175,12 +175,10 @@ export class FormHiweb {
         title={title}
         disable={disable}
         validatorProp={validator}
-        checkInput={this.checkInputs}
+        checkInput={this.form[index].data.value ? true : this.checkInputs}
         onChanged={e => {
-          console.log(this.form[index].data.value);
           this.forceRender = !this.forceRender;
           this.form[index].data = {...this.form[index].data, ...e.detail};
-          console.log(this.form[index].data.value);
         }}
       />
     )
@@ -203,7 +201,7 @@ export class FormHiweb {
         options={options}
         placeHolder={placeholder}
         selectedValue={value}
-        checkInput={this.checkInputs}
+        checkInput={this.form[index].data.value ? true : this.checkInputs}
         onValueChanged={e => {
           if (required && e.detail) {
             this.form[index].data.isValid = true;

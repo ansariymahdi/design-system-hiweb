@@ -22,6 +22,7 @@ export class InputSelectHiweb {
 
   componentWillLoad() {
     if (this.selectedValue) {
+      this.valueChanged.emit(this.selectedValue);
       return this.valueState = this.selectedValue;
     }
     this.valueState = undefined;

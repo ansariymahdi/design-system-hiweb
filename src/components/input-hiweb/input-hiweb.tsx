@@ -39,7 +39,8 @@ export class inputHiweb {
     this.validator = JSON.parse(this.validatorProp);
     this._validator = getValidator<string>(this.validator);
     this.onValueChanged(this.valueProp);
-
+    if (this.valueProp) this.validate();
+    this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
   }
 
   componentWillUpdate() {
