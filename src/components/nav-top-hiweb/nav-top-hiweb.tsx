@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, State } from '@stencil/core';
 
 import icons from './../../modules/iconsList';
 
@@ -26,6 +26,9 @@ export class NavTopHiweb {
     info: 'نمی‌دونم',
     imageUrl: 'https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-picture-default-avatar-photo-placeholder-profile-picture-eps-file-easy-to-edit-125707135.jpg'
   };
+
+  @State() searchOpen: boolean = false;
+
   @Event() onClick: EventEmitter;
   @Event() search: EventEmitter;
 
@@ -61,7 +64,15 @@ export class NavTopHiweb {
           </div>
         </div>
         <div class="search">
-          <div class="search-container">
+          <div
+            class="search-icon" 
+            innerHTML={icons['search']} 
+            onClick={() => {
+              this.searchOpen = !this.searchOpen;
+              console.log(this.searchOpen);
+            }}
+          />
+          <div class={'search-container ' + (this.searchOpen ? 'active' : 'deactive')}>
             <input-hiweb
               placeHolder="جستجو..."
               onChanged={(e) => this.search.emit(e.detail.value)}
