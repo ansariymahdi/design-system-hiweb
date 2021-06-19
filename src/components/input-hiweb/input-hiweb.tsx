@@ -11,7 +11,7 @@ import icons from '../../modules/iconsList';
 export class inputHiweb {
   @Prop() label: string;
   @Prop() title: string;
-  @Prop() color: string = 'black';
+  @Prop() color: string = '#DDDFE0';
   @Prop({ mutable: true }) valueProp: string;
   @Prop() placeHolder: string;
   @Prop() type: string = 'text';

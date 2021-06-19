@@ -10,7 +10,7 @@ export class InputSelectHiweb {
   @Prop() placeHolder: string = 'please select';
   @Prop() selectedValue: { value: string | number , text: string | number};
   @Prop() options: { value: string | number , text: string | number}[] = [{value: 'sdfsdf1', text: 'sfsdf'}, {value: 'sdfsdf2', text: 'sfsdf3'}, {value: 'sdfsdf4', text: 'sfsdf5'}, {value: 'sdfsdf6', text: 'sfsdf'}, {value: 'sdfs7df', text: 'sfsdf'}, {value: 'sdfsdf', text: 'sfsdf'}];
-  @Prop() color: string = 'black';
+  @Prop() color: string = '#DDDFE0';
   @Prop() checkInput: boolean;
   @Watch('checkInput')
   onCheckInputChange(checkInput) {

@@ -13,7 +13,7 @@ import icons from '../../modules/iconsList';
 export class TimePickerHiweb {
   @Prop() label: string = 'ساعت';
   @Prop() value: string;
-  @Prop() color: string = 'black';
+  @Prop() color: string = '#DDDFE0';
 
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;

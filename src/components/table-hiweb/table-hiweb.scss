@@ -203,25 +203,10 @@ table.dataTable.fixedHeader-floating {
       white-space: nowrap;
       width: max-content;
       padding: 0.375rem 0.75rem;
-      border: 1px solid black;
-      border-top-color: black;
-      border-top-style: solid;
-      border-top-width: 1px;
-      border-right-color: black;
-      border-right-style: solid;
-      border-right-width: 1px;
-      border-bottom-color: black;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      border-left-color: black;
-      border-left-style: solid;
-      border-left-width: 1px;
-      border-image-source: initial;
-      border-image-slice: initial;
-      border-image-width: initial;
-      border-image-outset: initial;
-      border-image-repeat: initial;
-      border-radius: 0;
+      border: 1px solid #dddfe0;
+      border-radius: 0 .5rem .5rem 0;
+      background: #f0f0f0;
+      color: #b8b8b8;
     }
 
     .form-select {
@@ -232,27 +217,10 @@ table.dataTable.fixedHeader-floating {
     select {
       cursor: pointer;
       color: #808282;
-      border-color: black;
       direction: rtl;
-      border: 1px solid black;
-      border-top-color: black;
-      border-top-style: solid;
-      border-top-width: 1px;
-      border-right-color: black;
+      border: 1px solid rgb(221 223 224);
       border-right-style: none;
-      border-right-width: 1px;
-      border-bottom-color: black;
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      border-left-color: black;
-      border-left-style: solid;
-      border-left-width: 1px;
-      border-image-source: initial;
-      border-image-slice: initial;
-      border-image-width: initial;
-      border-image-outset: initial;
-      border-image-repeat: initial;
-      border-radius: 0;
+      border-radius: .5rem 0 0 .5rem;
     }
     select:focus {
       border-color: none;

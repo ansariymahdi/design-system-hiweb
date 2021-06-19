@@ -9,7 +9,7 @@
 
 | Property | Attribute | Description | Type     | Default     |
 | -------- | --------- | ----------- | -------- | ----------- |
-| `color`  | `color`   |             | `string` | `'black'`   |
+| `color`  | `color`   |             | `string` | `'#DDDFE0'` |
 | `label`  | `label`   |             | `string` | `'تاریخ'`   |
 | `value`  | `value`   |             | `string` | `undefined` |
 
