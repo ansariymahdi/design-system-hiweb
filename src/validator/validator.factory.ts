@@ -2,12 +2,14 @@ import { Validator, ValidatorEntry, defaultValidator, combineValidators } from '
 import { getLengthValidator } from './length-validator/length-validator';
 import { EmailValidator } from './email-validator/email-validator';
 import { CheckEmptyValidator } from './checkEmpty-validator/checkEmpty-validator';
+import { URLValidator } from './url-validator/url-validator';
 
 export enum ValidatorsName {
   fruit = 'fruit',
   length = 'length',
   email = 'email',
   required = 'required',
+  url = 'url'
 }
 
 export function getValidator<A>(list: Array<string | ValidatorEntry | Validator<A>>): Validator<A> {
@@ -37,6 +39,8 @@ export function validatorFactory(name: string, options: any): Validator<any> {
       return EmailValidator;
     case ValidatorsName.required:
       return CheckEmptyValidator;
+    case ValidatorsName.url:
+      return URLValidator;
     default:
       return defaultValidator;
   }

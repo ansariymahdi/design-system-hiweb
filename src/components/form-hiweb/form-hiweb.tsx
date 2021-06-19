@@ -1,5 +1,6 @@
 import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
 import * as _ from 'lodash';
+import Fragment from 'stencil-fragment'
 
 export interface TextInput {
   value: string,
@@ -71,6 +72,16 @@ export class FormHiweb {
         label: 'sdfsdf',
         title: 'text1',
         validator: '["required"]',
+        color: 'yellow'
+      }
+    },
+    {
+      type: 'imageLink',
+      data: {
+        placeholder: 'text1',
+        label: 'image',
+        title: 'image',
+        validator: '["url"]',
         color: 'yellow'
       }
     },
@@ -157,13 +168,15 @@ export class FormHiweb {
           return this.renderTimeInput(data, index);
         case 'dateTime':
           return this.renderDateTimeInput(data, index);
+        case 'imageLink':
+          return this.renderImageLink(data, index);
         default:
           return;
       }
     })
   }
 
-  renderTextInput(data, index: number) {
+  renderTextInput(data: TextInput, index: number) {
     const {
       label,
       placeholder,
@@ -173,8 +186,6 @@ export class FormHiweb {
       className,
       color
     }: TextInput = data;
-
-    console.log('kill me')
 
     return (
       <input-hiweb
@@ -195,7 +206,7 @@ export class FormHiweb {
     )
   }
 
-  renderSelectOptionInput(data, index: number) {
+  renderSelectOptionInput(data: SelectOptionInput, index: number) {
     const {
       value,
       options,
@@ -226,7 +237,7 @@ export class FormHiweb {
     )
   }
 
-  renderCheckBoxInput(data, index: number) {
+  renderCheckBoxInput(data: { value: any; title: any; className: any; color: any; }, index: number) {
     const {
       value,
       title,
@@ -248,7 +259,7 @@ export class FormHiweb {
     )
   }
 
-  renderDateInput(data, index: number) {
+  renderDateInput(data: { value: any; label: any; className: any; color: any; }, index: number) {
     const {
       value,
       label,
@@ -271,7 +282,7 @@ export class FormHiweb {
     )
   }
 
-  renderTimeInput(data, index: number) {
+  renderTimeInput(data: { value: any; label: any; className: any; color: any; }, index: number) {
     const {
       value,
       label,
@@ -294,7 +305,7 @@ export class FormHiweb {
     )
   }
 
-  renderDateTimeInput(data, index: number) {
+  renderDateTimeInput(data: { dateLabel: any; timeLabel: any; value: any; className: any; color: any; }, index: number) {
     const {
       dateLabel,
       timeLabel,
@@ -328,6 +339,53 @@ export class FormHiweb {
           }}
         />
       </div>
+    )
+  }
+
+  renderImageLink(data: TextInput, index: number) {
+    const {
+      label,
+      placeholder,
+      title,
+      disable,
+      validator,
+      className,
+      color
+    }: TextInput = data;
+
+    function checkLink() {
+      const link = this.form[index].data.value;
+
+      if(link.startsWith('http')) return link;
+      return `http://${link}`;
+
+    }
+
+    return (
+      <Fragment>
+        <input-hiweb
+          class={className}
+          valueProp={this.form[index].data.value}
+          label={label}
+          placeHolder={placeholder}
+          title={title}
+          disable={disable}
+          validatorProp={validator}
+          color={color}
+          checkInput={this.checkInputs}
+          onChanged={e => {
+            this.form[index].data = {...this.form[index].data, ...e.detail};
+            this.forceRender = !this.forceRender;
+          }}
+        />
+        {
+          this.form[index].data.value && this.form[index].data.isValid
+          ? <a
+              href={this.form[index].data.value.startsWith('http') ? this.form[index].data.value : ('http://' + this.form[index].data.value)} 
+              target="_blank">لینک</a>
+          : null
+        }
+      </Fragment>
     )
   }
 
