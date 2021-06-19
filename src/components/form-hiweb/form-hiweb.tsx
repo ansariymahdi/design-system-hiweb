@@ -353,14 +353,6 @@ export class FormHiweb {
       color
     }: TextInput = data;
 
-    function checkLink() {
-      const link = this.form[index].data.value;
-
-      if(link.startsWith('http')) return link;
-      return `http://${link}`;
-
-    }
-
     return (
       <Fragment>
         <input-hiweb
