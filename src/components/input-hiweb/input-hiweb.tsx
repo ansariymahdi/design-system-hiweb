@@ -116,7 +116,9 @@ export class inputHiweb {
             value={this.value}
             onInput={event => this.handleChange(event)}
             onFocus={() => this.inputFocused = true}
-            onBlur={() => {setTimeout(() => {
+            onBlur={() => {
+              this.isChanged = true;
+              setTimeout(() => {
                 this.inputFocused = false
               }, 100);
             }}
