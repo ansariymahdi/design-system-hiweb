@@ -188,6 +188,20 @@ export class TableHiweb {
                   ></dropdown-hiweb>
                 </td>
               )
+            case 'link':
+              return (
+                <td
+                  class={styleClass}
+                  colSpan={colSpan}
+                >
+                  <a
+                    href={data.value}
+                    target="_blank"
+                  >
+                      لینک
+                  </a>
+                </td>
+              )
             default:
               break;
           }

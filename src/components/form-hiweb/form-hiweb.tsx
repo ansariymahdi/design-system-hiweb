@@ -27,6 +27,7 @@ export interface SelectOptionInput {
 
 export interface CheckBoxInput {
   title: string,
+  label: string,
   value?: boolean,
   className?: string,
   color?: string,
@@ -108,7 +109,8 @@ export class FormHiweb {
     {
       type: 'checkBox',
       data: {
-        title: 'check'
+        title: 'check',
+        label: 'sdfs'
       }
     },
     {
@@ -237,25 +239,29 @@ export class FormHiweb {
     )
   }
 
-  renderCheckBoxInput(data: { value: any; title: any; className: any; color: any; }, index: number) {
+  renderCheckBoxInput(data: { value: any; title: any; className: any; color: any; label: string }, index: number) {
     const {
       value,
       title,
       className,
-      color
+      color,
+      label
     } = data;
 
     return (
-      <checkbox-hiweb
-        class={className}
-        title={title}
-        value={value}
-        color={color}
-        onOnChange={e => {
-          this.form[index].data.value = e.detail;
-          this.forceRender = !this.forceRender;
-        }}
-      />
+      <div class="checkbox-container">
+        <checkbox-hiweb
+          class={className}
+          title={title}
+          value={value}
+          color={color}
+          onOnChange={e => {
+            this.form[index].data.value = e.detail;
+            this.forceRender = !this.forceRender;
+          }}
+        />
+        <label>{label}</label>
+      </div>
     )
   }
 
@@ -393,7 +399,7 @@ export class FormHiweb {
         isValid
       } = data;
 
-      if (type === 'text' && !isValid) errors.push(title);
+      if ((type === 'text' || type === 'imageLink') && !isValid) errors.push(title);
       
       if (required && !isValid) errors.push(title);
       return form = {

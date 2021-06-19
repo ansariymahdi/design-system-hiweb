@@ -13,6 +13,17 @@ $dark-color: #37474f;
   color: #888;
   direction: rtl;
 
+  a {
+    text-decoration: none !important;
+    margin: auto;
+    text-align: right;
+    font-size: 1.1rem;
+    width: 95%;
+    color: #007bff !important;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
   td,
   th {
     border-top: 1px solid $theme-border;
