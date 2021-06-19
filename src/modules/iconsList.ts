@@ -60,7 +60,7 @@ import soccerPlayer from './../assets/icons/soccer-player.svg';
 import group from './../assets/icons/group.svg';
 import footballClub from './../assets/icons/football-club.svg';
 import speechBubble from './../assets/icons/speech-bubble.svg';
-
+import advertisement from './../assets/icons/advertisement.svg';
 
 const icons = {
   arrowUp,
@@ -124,7 +124,8 @@ const icons = {
   soccerPlayer,
   group,
   footballClub,
-  speechBubble
+  speechBubble,
+  advertisement
 }
 
 export default icons
