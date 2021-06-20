@@ -61,6 +61,8 @@ import group from './../assets/icons/group.svg';
 import footballClub from './../assets/icons/football-club.svg';
 import speechBubble from './../assets/icons/speech-bubble.svg';
 import advertisement from './../assets/icons/advertisement.svg';
+import mail from './../assets/icons/mail.svg';
+import messenger from './../assets/icons/messenger.svg';
 
 const icons = {
   arrowUp,
@@ -125,7 +127,9 @@ const icons = {
   group,
   footballClub,
   speechBubble,
-  advertisement
+  advertisement,
+  mail,
+  messenger
 }
 
 export default icons
