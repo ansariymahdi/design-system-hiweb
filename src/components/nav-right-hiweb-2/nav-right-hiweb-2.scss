@@ -34,7 +34,8 @@
   }
   .body {
     padding: 20px 20px 0 20px;
-    li {
+    li, a {
+      color: white;
       height: 50px;
       width: 210px;
       display: flex;

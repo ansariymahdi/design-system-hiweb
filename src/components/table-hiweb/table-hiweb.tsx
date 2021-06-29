@@ -73,8 +73,6 @@ export class TableHiweb {
         }
         {
           this.data.head.map(({ title }, index) => {
-            console.log('bye');
-
             return (
               <th
                 class={this.options[index].options.join(' ')}
@@ -344,7 +342,10 @@ export class TableHiweb {
             </div>
           </div>
         </div>
-        <table class="table text-right table-hover">
+        <div class="table-container scrollbox">
+        <table
+         class="table text-right table-hover"
+        >
           <thead>
             {this.renderHead()}
           </thead>
@@ -354,6 +355,7 @@ export class TableHiweb {
             }
           </tbody>
         </table>
+        </div>
         <div class="footer">
           <div class="selecter">
               نمایش {this.renderSelecter()} از <span>{this.totalDocuments}</span>

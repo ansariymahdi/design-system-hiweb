@@ -260,19 +260,24 @@ export class NavRightHiweb2 {
                     return (
                       <li
                         class={item.active ? 'active' : '' }
-                        onClick={() => {
-                          this.onClick.emit(item.path);
-                          if (this.open) {
-                            this.open = false;
-                            this.isOpen.emit(this.open);
-                          }
-                        }}
                         >
-                        <div
-                          class="itemPlaceHolder"
-                          innerHTML={icons[item.icon]}
-                        />
-                        <h6>{item.title}</h6>
+                          <a
+                            href={item.path}
+                            onClick={e => {
+                              e.preventDefault();
+                              this.onClick.emit(item.path);
+                              if (this.open) {
+                                this.open = false;
+                                this.isOpen.emit(this.open);
+                              }
+                            }}
+                          >
+                            <div
+                              class="itemPlaceHolder"
+                              innerHTML={icons[item.icon]}
+                            />
+                            <h6>{item.title}</h6>
+                          </a>
                       </li>
                     )
                   })

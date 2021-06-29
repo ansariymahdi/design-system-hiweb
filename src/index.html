@@ -165,7 +165,7 @@
           </card-accordion-hiweb>
         </div>
         <div>
-          <table-hiweb dataString='{"head":[{"title":"test1","options":["center"]},{"title":"test2","options":["hide","center"],"colspan":"5"},{"title":"","options":["center"]}],"body":[[{"type":"text","data":{"value":"asdfasdlfkjasdf"}},{"type":"badge","data":{"value":"تایید شده","className":"red"}},{"type":"icon","data":{"icon":"edit","path":"/"}}],[{"type":"text","data":{"value":"asdfasdlfkj"}},{"type":"dropdown","data":{"icon":"more","items":[{"icon":"plus","text":"یه چیزی"}]}},{"type":"dropdown","data":{"icon":"more","items":[{"icon":"plus","text":"یه چیزی"}]}}]]}'></table-hiweb>
+          <table-hiweb></table-hiweb>
         </div>
         <div class="row">
           <label>Loaders</label>
@@ -312,9 +312,514 @@
 
 
 
-  var comp3 = document.querySelector('card-accordion-hiweb');
-  const test = true;
-  comp3.open = false;
+  const tableData = document.querySelector('table-hiweb');
+  tableData.dataProp = {
+    head: [
+      {
+        title: 'از',
+        options: ['right']
+      },
+      {
+        title: 'به',
+        options: ['right']
+      },
+      {
+        title: 'تیتر',
+        options: ['right']
+      },
+      {
+        title: 'متن',
+        options: ['right', 'hide']
+      },
+      {
+        title: 'زمان دریافت',
+        options: ['right']
+      },
+      {
+        title: 'زمان خواندن',
+        options: ['right']
+      },
+      {
+        title: 'وضعیت',
+        options: ['center']
+      },
+      {
+        title: 'وضعیت',
+        options: ['center']
+      },
+      {
+        title: 'وضعیت',
+        options: ['center']
+      },
+      {
+        title: 'وضعیت',
+        options: ['center']
+      },
+      {
+        title: '',
+        options: ['center']
+      }
+    ],
+    body: [
+      [
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+        type: "dropdown",
+        data: {
+          icon: 'actions',
+          detail: {id : '3232'},
+          items: [{
+            icon: 'edit',
+            text: 'ویرایش'
+          },{
+            icon: 'trash',
+            text: 'حذف'
+          }]
+        }
+      }
+      ],
+      [
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+        type: "dropdown",
+        data: {
+          icon: 'actions',
+          detail: {id : '3232'},
+          items: [{
+            icon: 'edit',
+            text: 'ویرایش'
+          },{
+            icon: 'trash',
+            text: 'حذف'
+          }]
+        }
+      }
+      ],
+      [
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+        type: "dropdown",
+        data: {
+          icon: 'actions',
+          detail: {id : '3232'},
+          items: [{
+            icon: 'edit',
+            text: 'ویرایش'
+          },{
+            icon: 'trash',
+            text: 'حذف'
+          }]
+        }
+      }
+      ],
+      [
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+        type: "dropdown",
+        data: {
+          icon: 'actions',
+          detail: {id : '3232'},
+          items: [{
+            icon: 'edit',
+            text: 'ویرایش'
+          },{
+            icon: 'trash',
+            text: 'حذف'
+          }]
+        }
+      }
+      ],
+      [
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+        type: "dropdown",
+        data: {
+          icon: 'actions',
+          detail: {id : '3232'},
+          items: [{
+            icon: 'edit',
+            text: 'ویرایش'
+          },{
+            icon: 'trash',
+            text: 'حذف'
+          }]
+        }
+      }
+      ],
+      [
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+          type: 'text',
+          data: {
+            value: 'test'
+          }
+        },
+        {
+        type: "dropdown",
+        data: {
+          icon: 'actions',
+          detail: {id : '3232'},
+          items: [{
+            icon: 'edit',
+            text: 'ویرایش'
+          },{
+            icon: 'trash',
+            text: 'حذف'
+          }]
+        }
+      }
+      ]
+      
+    ]
+  };
 
 </script>
 
