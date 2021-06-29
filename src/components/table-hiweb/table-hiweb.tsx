@@ -23,12 +23,18 @@ export class TableHiweb {
   @State() options: { options: string[], colspan: number }[] = [];
   @State() allSelected: boolean = false;
 
+  @State() tableBodyHeight: number;
+  @State() shadowLeft: boolean = true;
+  @State() shadowRight: boolean = false;
+
   @Event() buttonClicked: EventEmitter<string|{text: string,detail: string}>;
   @Event() handleCheckbox: EventEmitter<{ index: number, checked: boolean } | { allSelected: boolean }>;
   @Event() pageChanged: EventEmitter<number>;
   @Event() rowNumChanged: EventEmitter<number>;
   @Event() orderChanged: EventEmitter<string>;
   @Event() searchInputChanged: EventEmitter<{ title: string, value: string, isValid: boolean }>;
+
+  private tableRef: HTMLElement;
 
   componentWillLoad() {
     if (this.dataStringProp) {
@@ -51,6 +57,28 @@ export class TableHiweb {
       }
       return obj;
     });
+  }
+
+  componentDidLoad() {
+    // console.log(this.tableRef.scrollWidth);
+    // console.log(this.tableRef.clientWidth);
+    // console.log(this.tableRef.clientWidth - this.tableRef.scrollWidth);
+    // this.formHeight = this.tableRef.clientHeight;
+    this.tableBodyHeight = this.tableRef.children.item(0).children.item(1).clientHeight;
+  }
+
+  handleTableScroll(e) {
+    const scrollPosition = e.target['scrollLeft'];
+    if (scrollPosition === 1) {
+      this.shadowRight = false;
+    } else {
+      this.shadowRight = true;
+    }
+    if (scrollPosition === this.tableRef.clientWidth - this.tableRef.scrollWidth + 1) {
+      this.shadowLeft = false;
+    } else {
+      this.shadowLeft = true;
+    }
   }
 
   handleClick = path => {
@@ -77,7 +105,7 @@ export class TableHiweb {
               <th
                 class={this.options[index].options.join(' ')}
                 colSpan={this.options[index].colspan}
-              >
+              > 
                 {title}
               </th>
             );
@@ -93,14 +121,19 @@ export class TableHiweb {
         {
           this.checkbox
             ? <td class="center checkbox">
-              <input
-                class="form-check-input cursor"
-                type="checkbox"
-                value=""
-                checked={this.allSelected}
-                onChange={(e) => this.handleCheckbox.emit({ index: rowIndex, checked: e.target['checked'] })}
-              />
-            </td>
+                {
+                  rowIndex === 0 && this.shadowRight
+                  ? <div class="shadow-right" style={{height: `${this.tableBodyHeight}px`}} />
+                  : null
+                }
+                <input
+                  class="form-check-input cursor"
+                  type="checkbox"
+                  value=""
+                  checked={this.allSelected}
+                  onChange={(e) => this.handleCheckbox.emit({ index: rowIndex, checked: e.target['checked'] })}
+                />
+              </td>
             : null
         }
         {dataArray.map((body, index) => {
@@ -172,13 +205,17 @@ export class TableHiweb {
                 </td>
               )
             case 'dropdown':
-            console.log(data);
 
               return (
                 <td
                   class={styleClass}
                   colSpan={colSpan}
                 >
+                  {
+                    rowIndex === 0 && this.shadowLeft
+                    ? <div class="shadow-left" style={{height: `${this.tableBodyHeight}px`}} />
+                    : null
+                  }
                   <dropdown-hiweb
                     icon={data['icon']}
                     items={data['items']}
@@ -342,19 +379,23 @@ export class TableHiweb {
             </div>
           </div>
         </div>
-        <div class="table-container scrollbox">
-        <table
-         class="table text-right table-hover"
+        <div
+         class="table-container scrollbox"
+          onScroll={e => this.handleTableScroll(e)} 
+          ref = {(el : HTMLElement) =>  this.tableRef = el}
         >
-          <thead>
-            {this.renderHead()}
-          </thead>
-          <tbody>
-            {
-              this.data.body.map((eachRow, index) => this.renderRow(eachRow, index))
-            }
-          </tbody>
-        </table>
+          <table
+          class="table text-right table-hover"
+          >
+            <thead>
+              {this.renderHead()}
+            </thead>
+            <tbody>
+              {
+                this.data.body.map((eachRow, index) => this.renderRow(eachRow, index))
+              }
+            </tbody>
+          </table>
         </div>
         <div class="footer">
           <div class="selecter">
