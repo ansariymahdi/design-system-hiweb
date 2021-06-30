@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, State, Event, EventEmitter, Listen } from '@stencil/core';
 import Fragment from 'stencil-fragment'
 
 import icons from '../../modules/iconsList';
@@ -33,6 +33,12 @@ export class TableHiweb {
   @Event() rowNumChanged: EventEmitter<number>;
   @Event() orderChanged: EventEmitter<string>;
   @Event() searchInputChanged: EventEmitter<{ title: string, value: string, isValid: boolean }>;
+
+  @Listen('resize', { target: 'window' })
+    onWindowResize() {
+      if(this.shadowLeft || this.shadowRight) return;
+      if (this.tableRef.clientWidth !== this.tableRef.scrollWidth) this.shadowLeft = true;
+    }
 
   private tableRef: HTMLElement;
 
