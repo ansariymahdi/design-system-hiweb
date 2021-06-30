@@ -13,6 +13,7 @@ export class DropdownHiweb {
 
   @State() hasSpaceDown: boolean;
   @State() isOpen: boolean = false;
+  // @State() style: { top: string } | { bottom: string } | {} | any = {};
   private isLoaded: boolean = false;
 
   @Listen('scroll', {target: 'window'})
@@ -34,9 +35,13 @@ export class DropdownHiweb {
 
   private dropDownRef: HTMLElement;
 
-  componentDidRender() {
+  componentDidLoad() {
     this.isLoaded = true;
   }
+
+  // componentDidRender() {
+  //   this.isLoaded = true;
+  // }
 
   checkSpace = () => {
 
@@ -46,9 +51,13 @@ export class DropdownHiweb {
 
       if (this.items.length * 40 > screanHeight - position['bottom'] - 30) {
 
+
+        // this.style = { bottom: `${screanHeight - position['bottom'] + 50}px`, left: `${position['left']}px`};
+
         return this.hasSpaceDown = false;
 
       }
+      // this.style = { top: `${position['top'] + 50}px`, left: `${position['left']}px`};
       this.hasSpaceDown = true;
     }
 
@@ -67,7 +76,10 @@ export class DropdownHiweb {
   renderDropdown = () => {
     if (this.isOpen) {
       return (
-        <div class={'dropdown-custom ' + (this.hasSpaceDown ? 'down' : 'up')}>
+        <div
+          class={'dropdown-custom ' + (this.hasSpaceDown ? 'down' : 'up')}
+          // style={this.style}
+        >
           {
             this.items.map(({icon,text}) => {
               return (

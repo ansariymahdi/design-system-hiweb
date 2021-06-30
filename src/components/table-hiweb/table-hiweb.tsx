@@ -132,6 +132,7 @@ export class TableHiweb {
                   type="checkbox"
                   value=""
                   checked={this.allSelected}
+                  style={{zIndex: `${this.numberOfRows - rowIndex - 1}`}}
                   onChange={(e) => this.handleCheckbox.emit({ index: rowIndex, checked: e.target['checked'] })}
                 />
               </td>
@@ -211,6 +212,7 @@ export class TableHiweb {
                 <td
                   class={styleClass}
                   colSpan={colSpan}
+                  style={{zIndex: `${this.numberOfRows - rowIndex }`}}
                 >
                   {
                     rowIndex === 0 && this.shadowLeft
