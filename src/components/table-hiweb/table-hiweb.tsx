@@ -65,16 +65,17 @@ export class TableHiweb {
     // console.log(this.tableRef.clientWidth - this.tableRef.scrollWidth);
     // this.formHeight = this.tableRef.clientHeight;
     this.tableBodyHeight = this.tableRef.children.item(0).children.item(1).clientHeight;
+    if (this.tableRef.clientWidth === this.tableRef.scrollWidth) this.shadowLeft = false;
   }
 
   handleTableScroll(e) {
     const scrollPosition = e.target['scrollLeft'];
-    if (scrollPosition === 1) {
+    if (scrollPosition >= 0 ) {
       this.shadowRight = false;
     } else {
       this.shadowRight = true;
     }
-    if (scrollPosition === this.tableRef.clientWidth - this.tableRef.scrollWidth + 1) {
+    if (scrollPosition <= this.tableRef.clientWidth - this.tableRef.scrollWidth + 1) {
       this.shadowLeft = false;
     } else {
       this.shadowLeft = true;
