@@ -522,3 +522,39 @@ table {
     display: none;
   }
 }
+.tooltip-t {
+  position:relative;
+}
+
+.tooltip-t span {
+  padding: 0.25rem 0.5rem;
+  border-radius: .25rem;
+  z-index: 1040;
+  display:none;
+  height: fit-content;
+  max-width: 200px;
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+  font-size: 0.875rem;
+  word-wrap: break-word;
+  overflow-y: scroll;
+}
+.tooltip-t:hover span {
+  display:block;
+
+  position:fixed;
+}

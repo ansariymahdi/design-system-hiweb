@@ -27,6 +27,8 @@ export class TableHiweb {
   @State() shadowLeft: boolean = true;
   @State() shadowRight: boolean = false;
 
+  @State() mousePosition: {x: number, y: number} = {x: 0, y: 0};
+
   @Event() buttonClicked: EventEmitter<string|{text: string,detail: string}>;
   @Event() handleCheckbox: EventEmitter<{ index: number, checked: boolean } | { allSelected: boolean }>;
   @Event() pageChanged: EventEmitter<number>;
@@ -38,6 +40,11 @@ export class TableHiweb {
     onWindowResize() {
       if(this.shadowLeft || this.shadowRight) return;
       if (this.tableRef.clientWidth !== this.tableRef.scrollWidth) this.shadowLeft = true;
+    }
+
+  @Listen('mouseover', {target: 'window'})
+    onMouseMove(e) {
+      this.mousePosition = {x: e.clientX, y: e.clientY};
     }
 
   private tableRef: HTMLElement;
@@ -152,7 +159,12 @@ export class TableHiweb {
           switch (type) {
             case 'text':
               return (
-                <td colSpan={colSpan} class={styleClass}>{data.value}</td>
+                <td colSpan={colSpan} class={`${styleClass} tooltip-t`}>
+                  {data.value.length > 30 ? `${data.value.slice(0,30)}...` : data.value}
+                  <span style={{top: `${this.mousePosition.y}px`, left: `${this.mousePosition.x}px`, maxHeight: `${window.innerHeight - this.mousePosition.y - 10}px`}}>
+                      {data.value}
+                  </span>
+                </td>
               )
             case 'image':
               return (
