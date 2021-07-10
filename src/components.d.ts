@@ -64,6 +64,7 @@ export namespace Components {
         "error": { statusCode: number, message: string, buttonMessage: string, path: string};
     }
     interface FormHiweb {
+        "buttonTitle": string;
         "formProp": { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
         "resetForm": boolean;
     }
@@ -95,6 +96,7 @@ export namespace Components {
     interface MultiselectDropdownHiweb {
         "api": {url: string, query: string, field: string, token?: string};
         "items": Item[];
+        "label": string;
     }
     interface NavRightHiweb {
         "array": any;
@@ -425,6 +427,7 @@ declare namespace LocalJSX {
         "onOnClick"?: (event: CustomEvent<any>) => void;
     }
     interface FormHiweb {
+        "buttonTitle"?: string;
         "formProp"?: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
         "onOnFormSubmit"?: (event: CustomEvent<any>) => void;
         "resetForm"?: boolean;
@@ -459,6 +462,7 @@ declare namespace LocalJSX {
     interface MultiselectDropdownHiweb {
         "api"?: {url: string, query: string, field: string, token?: string};
         "items"?: Item[];
+        "label"?: string;
         "onOnChange"?: (event: CustomEvent<(string | number)[]>) => void;
     }
     interface NavRightHiweb {

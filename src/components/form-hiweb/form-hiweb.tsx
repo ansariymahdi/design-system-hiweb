@@ -60,6 +60,7 @@ export interface DateTimeInput {
 }
 
 export interface MultiselectDropdownHiweb {
+  label: string,
   items?: Item[],
   api?: {url: string, query: string, field: string, token?: string},
   value?: (string|number)[]
@@ -154,6 +155,7 @@ export class FormHiweb {
       }
     }
   ];
+  @Prop() buttonTitle: string = 'ثبت';
   @Prop() resetForm: boolean = false;
   @Watch('resetForm')
   onResetFormChange() {
@@ -410,11 +412,13 @@ export class FormHiweb {
   renderMultiselectDropdown(data: MultiselectDropdownHiweb, index) {
     const {
       items,
-      api
+      api,
+      label
     } = data;
 
     return (
       <multiselect-dropdown-hiweb
+        label={label}
         items={items}
         api={api}
         onOnChange={e => {
@@ -455,7 +459,7 @@ export class FormHiweb {
         {this.renderForm()}
         <div class="submit-button-container">
           <button-hiweb
-            title="ثبت" 
+            title={this.buttonTitle} 
             onOnClick={this.handleFormSubmit}
           >
           </button-hiweb>

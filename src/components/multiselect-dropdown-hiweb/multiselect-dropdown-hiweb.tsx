@@ -15,6 +15,7 @@ export interface Item {
   shadow: true,
 })
 export class MultiselectDropdownHiweb {
+  @Prop() label: string;
   @Prop({mutable: true}) items: Item[] = [];
   @Prop() api: {url: string, query: string, field: string, token?: string};
   //  = {
@@ -174,8 +175,9 @@ export class MultiselectDropdownHiweb {
   render() {
     return (
       <Host ref = {(el : HTMLElement) =>  this.hostRef = el}>
+        <label>{this.label}</label>
         <div 
-          class={'multiselect ' + (this.isOpen ? 'is-open' : null)} 
+          class={'multiselect mb-3 ' + (this.isOpen ? 'is-open' : null)} 
           onClick={() => this.handleHostClick()}
         >
           <div class="value-container">
