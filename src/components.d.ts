@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { CheckBoxInput, DateInput, SelectOptionInput, TextInput } from "./components/form-hiweb/form-hiweb";
+import { Item } from "./components/multiselect-dropdown-hiweb/multiselect-dropdown-hiweb";
 export namespace Components {
     interface AlertHiweb {
         "timer": any;
@@ -90,6 +91,10 @@ export namespace Components {
     }
     interface ModalHiweb {
         "data": {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
+    }
+    interface MultiselectDropdownHiweb {
+        "api": {url: string, query: string, field: string, token?: string};
+        "items": Item[];
     }
     interface NavRightHiweb {
         "array": any;
@@ -253,6 +258,12 @@ declare global {
         prototype: HTMLModalHiwebElement;
         new (): HTMLModalHiwebElement;
     };
+    interface HTMLMultiselectDropdownHiwebElement extends Components.MultiselectDropdownHiweb, HTMLStencilElement {
+    }
+    var HTMLMultiselectDropdownHiwebElement: {
+        prototype: HTMLMultiselectDropdownHiwebElement;
+        new (): HTMLMultiselectDropdownHiwebElement;
+    };
     interface HTMLNavRightHiwebElement extends Components.NavRightHiweb, HTMLStencilElement {
     }
     var HTMLNavRightHiwebElement: {
@@ -332,6 +343,7 @@ declare global {
         "input-hiweb": HTMLInputHiwebElement;
         "input-select-hiweb": HTMLInputSelectHiwebElement;
         "modal-hiweb": HTMLModalHiwebElement;
+        "multiselect-dropdown-hiweb": HTMLMultiselectDropdownHiwebElement;
         "nav-right-hiweb": HTMLNavRightHiwebElement;
         "nav-right-hiweb-2": HTMLNavRightHiweb2Element;
         "nav-top-hiweb": HTMLNavTopHiwebElement;
@@ -444,6 +456,11 @@ declare namespace LocalJSX {
         "data"?: {icon: string, text: string, buttonLeft: {text: string, callback: string},buttonRight: {text: string, callback: string}};
         "onOnClick"?: (event: CustomEvent<any>) => void;
     }
+    interface MultiselectDropdownHiweb {
+        "api"?: {url: string, query: string, field: string, token?: string};
+        "items"?: Item[];
+        "onOnChange"?: (event: CustomEvent<(string | number)[]>) => void;
+    }
     interface NavRightHiweb {
         "array"?: any;
         "arrayString"?: string;
@@ -532,6 +549,7 @@ declare namespace LocalJSX {
         "input-hiweb": InputHiweb;
         "input-select-hiweb": InputSelectHiweb;
         "modal-hiweb": ModalHiweb;
+        "multiselect-dropdown-hiweb": MultiselectDropdownHiweb;
         "nav-right-hiweb": NavRightHiweb;
         "nav-right-hiweb-2": NavRightHiweb2;
         "nav-top-hiweb": NavTopHiweb;
@@ -566,6 +584,7 @@ declare module "@stencil/core" {
             "input-hiweb": LocalJSX.InputHiweb & JSXBase.HTMLAttributes<HTMLInputHiwebElement>;
             "input-select-hiweb": LocalJSX.InputSelectHiweb & JSXBase.HTMLAttributes<HTMLInputSelectHiwebElement>;
             "modal-hiweb": LocalJSX.ModalHiweb & JSXBase.HTMLAttributes<HTMLModalHiwebElement>;
+            "multiselect-dropdown-hiweb": LocalJSX.MultiselectDropdownHiweb & JSXBase.HTMLAttributes<HTMLMultiselectDropdownHiwebElement>;
             "nav-right-hiweb": LocalJSX.NavRightHiweb & JSXBase.HTMLAttributes<HTMLNavRightHiwebElement>;
             "nav-right-hiweb-2": LocalJSX.NavRightHiweb2 & JSXBase.HTMLAttributes<HTMLNavRightHiweb2Element>;
             "nav-top-hiweb": LocalJSX.NavTopHiweb & JSXBase.HTMLAttributes<HTMLNavTopHiwebElement>;

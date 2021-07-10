@@ -25,6 +25,7 @@
     "@popperjs/core": "^2.6.0",
     "@stencil/core": "^2.0.1",
     "animejs": "^3.2.1",
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta1",
     "dayjs": "^1.10.4",
     "dayjs-jalali": "^0.0.2",
