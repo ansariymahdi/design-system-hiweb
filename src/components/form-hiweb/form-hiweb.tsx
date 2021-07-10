@@ -1,6 +1,7 @@
 import { Component, Event, EventEmitter, h, Prop, State, Watch } from '@stencil/core';
 import * as _ from 'lodash';
 import Fragment from 'stencil-fragment'
+import { Item } from '../multiselect-dropdown-hiweb/multiselect-dropdown-hiweb';
 
 export interface TextInput {
   value: string,
@@ -56,6 +57,12 @@ export interface DateTimeInput {
   value?: string,
   className?: string,
   color?: string,
+}
+
+export interface MultiselectDropdownHiweb {
+  items?: Item[],
+  api?: {url: string, query: string, field: string, token?: string},
+  value?: (string|number)[]
 }
 
 @Component({
@@ -134,6 +141,17 @@ export class FormHiweb {
         dateLabel: 'tarikh-kol',
         timeLabel: 'zaman-kol'
       }
+    },
+    {
+      type: 'multiselectDropdown',
+      data: {
+        api: {
+          url: 'http://46.224.6.83:666/User',
+          query: 'username',
+          field: 'userName',
+          token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImNOM2d0V1AybWdNUjZja3lyNFJ6aWciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2MjU5MDg5NDcsImV4cCI6MTYyNTkxMjU0NywiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2MjU5MDg5NDcsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.KS0mVuvEH3-NkSP0Vh4o-1Skzo3xWRfyCm1n4a_cmQEf80ClDRrZE2ANvMcKx1X1b5LxMjENO66tTn8wOPDBqi1BebnukdgyKbBlvM72n5vBxG8YrP39aeks4zA0qceMT4bnXCv0OvyF6Rxr-4QyBoLRXjH5gPa4SuttnV-cO_GcjSPsA7l-lFTcRa2nJ8nYscOViNlJpsa36XQSG5C1hc_3pElY0VZr9q_xnMUa91MLneK5GiKmJtZAbbufTMxAVzzSCBXK0mWELo7pkZ5kwYaykbW5CTQ-8IoQk5qk88hIUBBdFmnLtmU5dx0dcd1lh4QjhsvLx1W6X17FLyBovA'
+        }
+      }
     }
   ];
   @Prop() resetForm: boolean = false;
@@ -172,6 +190,8 @@ export class FormHiweb {
           return this.renderDateTimeInput(data, index);
         case 'imageLink':
           return this.renderImageLink(data, index);
+        case 'multiselectDropdown':
+          return this.renderMultiselectDropdown(data, index);
         default:
           return;
       }
@@ -384,6 +404,24 @@ export class FormHiweb {
           : null
         }
       </Fragment>
+    )
+  }
+
+  renderMultiselectDropdown(data: MultiselectDropdownHiweb, index) {
+    const {
+      items,
+      api
+    } = data;
+
+    return (
+      <multiselect-dropdown-hiweb
+        items={items}
+        api={api}
+        onOnChange={e => {
+          this.form[index].data.value = e.detail;
+          console.log(this.form[index].data.value);
+        }}
+      />
     )
   }
 

@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Event, Listen, Prop, EventEmitter, Watch } from '@stencil/core';
+import { Component, Host, h, State, Event, Listen, Prop, EventEmitter } from '@stencil/core';
 import axios from 'axios';
 
 import icons from '../../modules/iconsList';
@@ -15,17 +15,7 @@ export interface Item {
   shadow: true,
 })
 export class MultiselectDropdownHiweb {
-  @Prop({mutable: true}) items: Item[] = [
-    {id: 1, value: 'امیرعلی', selected: false},
-    {id: 2, value: 'امیر', selected: false},
-    {id: 3, value: 'نیما', selected: false},
-    {id: 4, value: 'عرفان', selected: false},
-    {id: 5, value: 'عرفان', selected: false},
-    {id: 6, value: 'عرفان', selected: false},
-    {id: 7, value: 'عرفان', selected: false},
-    {id: 8, value: 'عرفان', selected: false},
-    {id: 9, value: 'عرفان', selected: false}
-  ];
+  @Prop({mutable: true}) items: Item[] = [];
   @Prop() api: {url: string, query: string, field: string, token?: string};
   //  = {
   //   url: 'http://46.224.6.83:666/User',
@@ -56,8 +46,7 @@ export class MultiselectDropdownHiweb {
   }
 
   async getItems() {
-    if (!this.api.url) return null;
-    console.log('kill me');
+    if (!this.api) return null;
     this.loading = true;
     const response = await axios.get(this.api.url, {
       params: {
@@ -78,7 +67,7 @@ export class MultiselectDropdownHiweb {
     this.loading = false;
   }
 
-  handleHostClick(e) {
+  handleHostClick() {
     this.isOpen = !this.isOpen;
   }
 
@@ -187,7 +176,7 @@ export class MultiselectDropdownHiweb {
       <Host ref = {(el : HTMLElement) =>  this.hostRef = el}>
         <div 
           class={'multiselect ' + (this.isOpen ? 'is-open' : null)} 
-          onClick={e => this.handleHostClick(e)}
+          onClick={() => this.handleHostClick()}
         >
           <div class="value-container">
             {this.selectedItems.map((item) => {
