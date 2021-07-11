@@ -15,6 +15,7 @@ export interface Item {
   shadow: true,
 })
 export class MultiselectDropdownHiweb {
+  @Prop() selectAllOption: boolean = true;
   @Prop() label: string;
   @Prop({mutable: true}) items: Item[] = [];
   @Prop() api: {url: string, query: string, field: string, token?: string};
@@ -59,9 +60,11 @@ export class MultiselectDropdownHiweb {
     if (!this.searchValue) response.data.data.list = response.data.data.list.slice(0, 20);
 
     this.items = response.data.data.list.map((item: { [x: string]: any; id: any; }) => {
+      const index = this.selectedItems.findIndex(({id}) => id == item.id);
       return {
         id: item.id,
-        value: item[this.api.field]
+        value: item[this.api.field],
+        selected: index !== -1 ? true : false
       }
     })
 
@@ -75,8 +78,10 @@ export class MultiselectDropdownHiweb {
   async handleItemClick(_event: MouseEvent, _item: Item, index: number) {
     if (this.items[index].selected) return;
     this.addToSelected(index);
-    this.searchValue = '';
-    await this.getItems();
+    if (this.searchValue) {
+      this.searchValue = '';
+      await this.getItems();
+    }
   }
 
   handleCheckboxClick(event: MouseEvent, item: Item, index: number) {
@@ -138,6 +143,21 @@ export class MultiselectDropdownHiweb {
     if (this.isOpen) {
       return (
         <div class="dropdown-items" >
+          {/* {
+            this.selectAllOption
+              ? <div
+                  class={'option ' + (item.selected ? 'selected' : null)} 
+                  onClick={(e) => this.handleItemClick(e, item, index)}
+                >
+                  <input
+                    type="checkbox" 
+                    checked={item.selected} 
+                    onClick={(e) => this.handleCheckboxClick(e, item, index)}
+                  />
+                  <span class="label">{item.value}</span>
+                </div>
+              : null
+          } */}
           {!this.loading
             ? this.items.length
               ? this.items.map((item, index) => {

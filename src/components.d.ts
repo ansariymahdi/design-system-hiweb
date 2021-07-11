@@ -97,6 +97,7 @@ export namespace Components {
         "api": {url: string, query: string, field: string, token?: string};
         "items": Item[];
         "label": string;
+        "selectAllOption": boolean;
     }
     interface NavRightHiweb {
         "array": any;
@@ -429,6 +430,7 @@ declare namespace LocalJSX {
     interface FormHiweb {
         "buttonTitle"?: string;
         "formProp"?: { type: string, data: TextInput | SelectOptionInput | CheckBoxInput | DateInput | any }[];
+        "onFormEvent"?: (event: CustomEvent<any>) => void;
         "onOnFormSubmit"?: (event: CustomEvent<any>) => void;
         "resetForm"?: boolean;
     }
@@ -464,6 +466,7 @@ declare namespace LocalJSX {
         "items"?: Item[];
         "label"?: string;
         "onOnChange"?: (event: CustomEvent<(string | number)[]>) => void;
+        "selectAllOption"?: boolean;
     }
     interface NavRightHiweb {
         "array"?: any;

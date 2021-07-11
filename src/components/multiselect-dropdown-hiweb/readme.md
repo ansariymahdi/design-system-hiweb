@@ -11,6 +11,7 @@
 | -------- | --------- | ----------- | ---------------------------------------------------------------- | ----------- |
 | `api`    | --        |             | `{ url: string; query: string; field: string; token?: string; }` | `undefined` |
 | `items`  | --        |             | `Item[]`                                                         | `[]`        |
+| `label`  | `label`   |             | `string`                                                         | `undefined` |
 
 
 ## Events

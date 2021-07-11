@@ -150,7 +150,7 @@ export class FormHiweb {
           url: 'http://46.224.6.83:666/User',
           query: 'username',
           field: 'userName',
-          token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImNOM2d0V1AybWdNUjZja3lyNFJ6aWciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2MjU5MDg5NDcsImV4cCI6MTYyNTkxMjU0NywiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2MjU5MDg5NDcsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.KS0mVuvEH3-NkSP0Vh4o-1Skzo3xWRfyCm1n4a_cmQEf80ClDRrZE2ANvMcKx1X1b5LxMjENO66tTn8wOPDBqi1BebnukdgyKbBlvM72n5vBxG8YrP39aeks4zA0qceMT4bnXCv0OvyF6Rxr-4QyBoLRXjH5gPa4SuttnV-cO_GcjSPsA7l-lFTcRa2nJ8nYscOViNlJpsa36XQSG5C1hc_3pElY0VZr9q_xnMUa91MLneK5GiKmJtZAbbufTMxAVzzSCBXK0mWELo7pkZ5kwYaykbW5CTQ-8IoQk5qk88hIUBBdFmnLtmU5dx0dcd1lh4QjhsvLx1W6X17FLyBovA'
+          token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImNOM2d0V1AybWdNUjZja3lyNFJ6aWciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2MjU5OTAxNjAsImV4cCI6MTYyNTk5Mzc2MCwiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2MjU5OTAxNjAsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.tCsqbGBNDHQZonkw55TtSPaslvbGxRyYXLZqNy84Y6s3vxZzst0fPWfUvF2fV2Cw1MlIkXfbYaL-Zp92alhD8x-p0x9GpdZIQDH_jGb_3w3JtS5wHGgUhwOCsIfdBa9XIbyiw8xn7GyYbHXkJ_N4zjs9zeRPcwFa2C5wX-Ur1_WtQpGT184wI889g5hD3DYLHpoL85wKbUUyHXC-LpGywhtJzaZPhVzqxNZVD0RKMzCQoQp0CKxHcnRJlqsYG6rnhJntNwC5bGv4A5p7-ezh_nE3HEplV-4AH42ozQ8uoo45ZUGYhJ-mJZGcfTc5EM9tJs1hzvI3KVzKwpYaIc_-ow'
         }
       }
     }
@@ -169,10 +169,15 @@ export class FormHiweb {
   @State() forceRender: boolean = true;
 
   @Event() onFormSubmit: EventEmitter<any>;
+  @Event() formEvent: EventEmitter<any>;
 
   componentWillLoad() {
     this.form = _.cloneDeep(this.formProp);
     this.checkInputs = false;
+  }
+
+  componentDidRender() {
+    this.formEvent.emit(this.form);
   }
 
   renderForm() {
@@ -423,7 +428,7 @@ export class FormHiweb {
         api={api}
         onOnChange={e => {
           this.form[index].data.value = e.detail;
-          console.log(this.form[index].data.value);
+          this.formEvent.emit(this.form);
         }}
       />
     )
