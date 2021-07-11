@@ -63,7 +63,8 @@ export interface MultiselectDropdownHiweb {
   label: string,
   items?: Item[],
   api?: {url: string, query: string, field: string, token?: string},
-  value?: (string|number)[]
+  value?: (string|number)[],
+  selectAllOption: boolean,
 }
 
 @Component({
@@ -150,7 +151,7 @@ export class FormHiweb {
           url: 'http://46.224.6.83:666/User',
           query: 'username',
           field: 'userName',
-          token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImNOM2d0V1AybWdNUjZja3lyNFJ6aWciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2MjU5OTAxNjAsImV4cCI6MTYyNTk5Mzc2MCwiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2MjU5OTAxNjAsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.tCsqbGBNDHQZonkw55TtSPaslvbGxRyYXLZqNy84Y6s3vxZzst0fPWfUvF2fV2Cw1MlIkXfbYaL-Zp92alhD8x-p0x9GpdZIQDH_jGb_3w3JtS5wHGgUhwOCsIfdBa9XIbyiw8xn7GyYbHXkJ_N4zjs9zeRPcwFa2C5wX-Ur1_WtQpGT184wI889g5hD3DYLHpoL85wKbUUyHXC-LpGywhtJzaZPhVzqxNZVD0RKMzCQoQp0CKxHcnRJlqsYG6rnhJntNwC5bGv4A5p7-ezh_nE3HEplV-4AH42ozQ8uoo45ZUGYhJ-mJZGcfTc5EM9tJs1hzvI3KVzKwpYaIc_-ow'
+          token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImNOM2d0V1AybWdNUjZja3lyNFJ6aWciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2MjU5OTQ3NTIsImV4cCI6MTYyNTk5ODM1MiwiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2MjU5OTQ3NTIsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.XGO6fdkjk-0ddyQ9aW-BaBzOrlCetyCLIgmORF-wBQotJbocdGQ3MNeMhT98IZtNkAjNX8Jp8v4Q3VYk0mb7eg8otNl5tXU6b4JKZdz0pdL23iNRpuzuoD-QdO1_JIRp_ttIJ30oZwFwY5pg8vRrHTPu5ooSCcXbrRQjGhD-viF7tVPR1bBXLy3752s6iT7E_IO4igc8JiqQxgty__y1JvwyN5nJN1ekVeTaG7ekHRpGB-V7Iisk3AkgE2jMKOq4vLYLa9hFsJTsChNbWWMI2bz90VGp1hc1lxPVDmvENuIfHLfA_jU6jSGYwRxnABPS-J6T9_Mh83AVYve5F0Dt4g'
         }
       }
     }
@@ -418,7 +419,8 @@ export class FormHiweb {
     const {
       items,
       api,
-      label
+      label,
+      selectAllOption
     } = data;
 
     return (
@@ -426,6 +428,7 @@ export class FormHiweb {
         label={label}
         items={items}
         api={api}
+        selectAllOption={selectAllOption}
         onOnChange={e => {
           this.form[index].data.value = e.detail;
           this.formEvent.emit(this.form);

@@ -465,7 +465,7 @@ declare namespace LocalJSX {
         "api"?: {url: string, query: string, field: string, token?: string};
         "items"?: Item[];
         "label"?: string;
-        "onOnChange"?: (event: CustomEvent<(string | number)[]>) => void;
+        "onOnChange"?: (event: CustomEvent<(string | number)[] | {allIsSelected: boolean, values: (string | number)[]}>) => void;
         "selectAllOption"?: boolean;
     }
     interface NavRightHiweb {

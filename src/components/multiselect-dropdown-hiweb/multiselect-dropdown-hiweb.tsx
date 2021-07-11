@@ -1,6 +1,7 @@
 import { Component, Host, h, State, Event, Listen, Prop, EventEmitter } from '@stencil/core';
 import axios from 'axios';
 
+import Fragment from 'stencil-fragment'
 import icons from '../../modules/iconsList';
 
 export interface Item {
@@ -19,19 +20,14 @@ export class MultiselectDropdownHiweb {
   @Prop() label: string;
   @Prop({mutable: true}) items: Item[] = [];
   @Prop() api: {url: string, query: string, field: string, token?: string};
-  //  = {
-  //   url: 'http://46.224.6.83:666/User',
-  //   query: 'username',
-  //   field: 'userName',
-  //   token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImNOM2d0V1AybWdNUjZja3lyNFJ6aWciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2MjU5MDM5NzYsImV4cCI6MTYyNTkwNzU3NiwiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2MjU5MDM5NzYsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.D53GOGYe96UyfiscNev81fPWKs_Epv6w6Azlj1WjSopk6P-L6XfkqjMMWGatCK7VIXrDiYyfI2UqVP9YLgHK2c_NZToum4ufJPxuyCbw6mfIZbflBZ2YmEhmyb7xHrLqojQYOEEiwasabzrAmvwAC1u2Xgc67WD9ggK2YjleIPscLVRYJsw7SvTtq5x-ptsQL-lOehaZJjVgMlVriA0eDPprVDRDtJMxgNuPYod8rMTMtrhXXW8TIJ7DwZJRkHYtyjYCk1D5YUzl6DQaObC1dFNSKAe_F41DPnMdbenBlG_IEuJWfDWTyyk5dFoHB88FxXdayfomSp9lZhC0goeMmg'
-  // };
 
+  @State() allIsSelected: boolean = false;
   @State() loading: boolean = false;
   @State() isOpen: boolean = false;
   @State() selectedItems: Item[] = [];
   @State() searchValue: string = '';
 
-  @Event() onChange: EventEmitter<(string | number)[]>;
+  @Event() onChange: EventEmitter<(string | number)[] | {allIsSelected: boolean, values: (string | number)[]}>;
 
   private hostRef: HTMLElement;
   private timeoutId: any;
@@ -76,26 +72,37 @@ export class MultiselectDropdownHiweb {
   }
 
   async handleItemClick(_event: MouseEvent, _item: Item, index: number) {
-    if (this.items[index].selected) return;
+    if (!this.allIsSelected && this.items[index].selected) return;
     this.addToSelected(index);
     if (this.searchValue) {
       this.searchValue = '';
       await this.getItems();
     }
+    this.isOpen = false;
   }
 
   handleCheckboxClick(event: MouseEvent, item: Item, index: number) {
     event.stopPropagation();
+    if (this.allIsSelected) {
+      if (this.items[index].selected) {
+        this.addToSelected(index);
+        return this.items[index].selected = false;
+      }
+      this.items[index].selected = true;
+      return this.removeFromSelected(item.id);
+    }
+
     if (this.items[index].selected) {
       this.removeFromSelected(item.id);
       return this.items[index].selected = false;
     }
     this.addToSelected(index);
+    this.items[index].selected = true;
   }
 
   handleSelectedIconClick(event: MouseEvent, _id: string | number, itemIndex: number) {
     this.removeFromSelected(_id);
-    this.items[itemIndex].selected = false;
+    this.items[itemIndex].selected = this.allIsSelected;
     event.stopPropagation();
   }
 
@@ -136,28 +143,46 @@ export class MultiselectDropdownHiweb {
     const values = this.selectedItems.map(item => {
       return item.id;
     });
+    if (this.selectAllOption) return this.onChange.emit({
+      allIsSelected: this.allIsSelected,
+      values
+    });
     this.onChange.emit(values);
+  }
+
+  selectAll() {
+    this.items = this.items.map(item => {
+      return {...item, selected: !this.allIsSelected};
+    });
+    this.allIsSelected = !this.allIsSelected;
+    this.selectedItems = [];
   }
 
   renderDropdown() {
     if (this.isOpen) {
       return (
         <div class="dropdown-items" >
-          {/* {
+          {
             this.selectAllOption
               ? <div
-                  class={'option ' + (item.selected ? 'selected' : null)} 
-                  onClick={(e) => this.handleItemClick(e, item, index)}
+                  class={'option ' + (this.allIsSelected ? 'selected' : null)} 
+                  onClick={() => {
+                    this.selectAll();
+                    this.isOpen = false;
+                  }}
                 >
                   <input
                     type="checkbox" 
-                    checked={item.selected} 
-                    onClick={(e) => this.handleCheckboxClick(e, item, index)}
+                    checked={this.allIsSelected} 
+                    onClick={(e) => {
+                      this.selectAll();
+                      e.stopPropagation();
+                    }}
                   />
-                  <span class="label">{item.value}</span>
+                  <span class="label">همه</span>
                 </div>
               : null
-          } */}
+          }
           {!this.loading
             ? this.items.length
               ? this.items.map((item, index) => {
@@ -201,6 +226,30 @@ export class MultiselectDropdownHiweb {
           onClick={() => this.handleHostClick()}
         >
           <div class="value-container">
+            {
+              this.allIsSelected
+                ? <Fragment>
+                    <div class="value">
+                      <span
+                        class="value-icon" 
+                        innerHTML={icons.close} 
+                        onClick={(e) => {
+                          this.selectAll();
+                          e.stopPropagation();
+                        }}
+                      />
+                      <span class="value-label">همه</span>
+                    </div>
+                    {
+                      this.selectedItems.length
+                        ? <div class="value">
+                            <span class="value-label">به جز</span>
+                          </div>
+                        : null
+                    }
+                  </Fragment>
+                : null
+            }
             {this.selectedItems.map((item) => {
               return (
                 <div class="value">
