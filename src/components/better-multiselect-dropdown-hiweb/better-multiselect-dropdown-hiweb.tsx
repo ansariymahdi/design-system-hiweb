@@ -12,11 +12,11 @@ export interface Item {
 }
 
 @Component({
-  tag: 'multiselect-dropdown-hiweb',
-  styleUrl: 'multiselect-dropdown-hiweb.scss',
+  tag: 'better-multiselect-dropdown-hiweb',
+  styleUrl: 'better-multiselect-dropdown-hiweb.scss',
   shadow: true,
 })
-export class MultiselectDropdownHiweb {
+export class BetterMultiselectDropdownHiweb {
   @Prop() selectAllOption: boolean = true;
   @Prop() label: string;
   @Prop({mutable: true}) items: Item[] = [];

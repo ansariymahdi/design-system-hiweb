@@ -7,18 +7,19 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                             | Default     |
-| -------- | --------- | ----------- | ---------------------------------------------------------------- | ----------- |
-| `api`    | --        |             | `{ url: string; query: string; field: string; token?: string; }` | `undefined` |
-| `items`  | --        |             | `Item[]`                                                         | `[]`        |
-| `label`  | `label`   |             | `string`                                                         | `undefined` |
+| Property          | Attribute           | Description | Type                                                             | Default     |
+| ----------------- | ------------------- | ----------- | ---------------------------------------------------------------- | ----------- |
+| `api`             | --                  |             | `{ url: string; query: string; field: string; token?: string; }` | `undefined` |
+| `items`           | --                  |             | `Item[]`                                                         | `[]`        |
+| `label`           | `label`             |             | `string`                                                         | `undefined` |
+| `selectAllOption` | `select-all-option` |             | `boolean`                                                        | `true`      |
 
 
 ## Events
 
-| Event      | Description | Type                                |
-| ---------- | ----------- | ----------------------------------- |
-| `onChange` |             | `CustomEvent<(string \| number)[]>` |
+| Event      | Description | Type                                                                                             |
+| ---------- | ----------- | ------------------------------------------------------------------------------------------------ |
+| `onChange` |             | `CustomEvent<(string \| number)[] \| { allIsSelected: boolean; values: (string \| number)[]; }>` |
 
 
 ## Dependencies
