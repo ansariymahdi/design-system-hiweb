@@ -1,5 +1,4 @@
 import { Component, h, State, Listen, Prop, Event, EventEmitter } from '@stencil/core';
-import JDate from 'jalali-date';
 import { JalaliDateTime } from 'jalali-date-time';
 
 import icons from '../../modules/iconsList';
@@ -99,7 +98,7 @@ export class DatePickerHiweb {
 
     this.inputValue = formatNumbersToPersian(jalaliDate);
     this.jalaiDate.emit(jalaliDate);
-    this.gregorianDate.emit(`${gregorianDate.year}-${gregorianDate.month}-${gregorianDate.day}`);
+    this.gregorianDate.emit(`${gregorianDate.year}-${this.formatNumbers(+gregorianDate.month)}-${this.formatNumbers(+gregorianDate.day)}`);
   }
 
   formatNumbers(num: number) {
