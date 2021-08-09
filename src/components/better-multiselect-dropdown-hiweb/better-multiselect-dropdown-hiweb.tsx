@@ -20,7 +20,12 @@ export class BetterMultiselectDropdownHiweb {
   @Prop() selectAllOption: boolean = true;
   @Prop() label: string;
   @Prop({mutable: true}) items: Item[] = [];
-  @Prop() api: {url: string, query: string, field: string, token?: string};
+  @Prop() api: {url: string, query: string, field: string, token?: string} = {
+    url: 'http://46.224.6.83:666/User',
+    query: 'username',
+    field: 'userName',
+    token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ilg2THBfYy1ndENWUFJnZHZmME5SVmciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2Mjg1MDQ1NzMsImV4cCI6MTYyODUwODE3MywiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2Mjg1MDQ1NzMsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.GYKMsoRaQmt5YxzsyGyjtvPgvBMO-hEy4BfY-ySvyK6I7FPs5zFgfKv4qnVBml5lRfffV3p5u6fMrYOzQ4WFlOosQBkrr8U9I9RQIkdFgLFkXcbTg896NrGBnbQk2Ifr9TcRknm-64U9E0ydJNANfv5WuVQBxPmQt7i6IEl1aaokhSvEYJTQKUAMdtDD9nHScj2PyUq74rQ3uPqHtNG-Wop28w7nk3uChzN3SCpKkIJilsSjjD2nRR1dbdBxzge4UxCfG3Et-hQBkjALTOuXq2u_L9cCkTXccUSj1Gzowmfyxan1JsVXz9fcFEDcZoY_poly5T7Oh68p4GupE5ED2Q'
+  };
 
   @State() allIsSelected: boolean = false;
   @State() loading: boolean = false;
@@ -56,7 +61,7 @@ export class BetterMultiselectDropdownHiweb {
 
     if (!this.searchValue) response.data.data.list = response.data.data.list.slice(0, 20);
 
-    if (this.selectAllOption) {
+    if (this.selectAllOption && this.allIsSelected) {
       this.items = response.data.data.list.map((item: { [x: string]: any; id: any; }) => {
         const index = this.selectedItems.findIndex(({id}) => id == item.id);
         return {
@@ -83,9 +88,24 @@ export class BetterMultiselectDropdownHiweb {
     this.isOpen = !this.isOpen;
   }
 
-  async handleItemClick(_event: MouseEvent, _item: Item, index: number) {
+  async handleItemClick(_event: MouseEvent, item: Item, index: number) {
     if (!this.allIsSelected && this.items[index].selected) return;
-    this.addToSelected(index);
+    if (this.allIsSelected) {
+      if (this.items[index].selected) {
+        this.addToSelected(index);
+        this.items[index].selected = false;
+      } else {
+        this.items[index].selected = true;
+        this.removeFromSelected(item.id);
+      }
+    } else {
+      if (this.items[index].selected) {
+        this.removeFromSelected(item.id);
+        this.items[index].selected = false;
+      } else {
+        this.addToSelected(index);
+      }
+    }
     if (this.searchValue) {
       this.searchValue = '';
       await this.getItems();
