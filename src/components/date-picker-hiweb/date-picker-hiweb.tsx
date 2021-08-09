@@ -1,10 +1,20 @@
 import { Component, h, State, Listen, Prop, Event, EventEmitter } from '@stencil/core';
 import JDate from 'jalali-date';
+import { JalaliDateTime } from 'jalali-date-time';
 
 import icons from '../../modules/iconsList';
 import getRandomdInteger from '../../modules/getRandomInteger';
 import range from '../../modules/range';
 import formatNumbersToPersian, {persianMonths} from '../../modules/formatNumberToPersian';
+
+const config = {
+  timezone: 'Asia/Tehran',
+  locale: 'en',
+  fullTextFormat: 'W, D N Y H:I:S',
+  titleFormat: 'W, D N Y',
+  dateFormat: 'Y-M-D',
+  timeFormat: 'H:I:S',
+};
 
 @Component({
   tag: 'date-picker-hiweb',
@@ -19,13 +29,9 @@ export class DatePickerHiweb {
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;
   @State() openCalendar: boolean;
-  @State() year: number;
-  @State() month: number;
-  @State() dayOfTheMonth: number;
-  @State() dayOfTheWeek: number;
-  @State() daysBefore: number[];
-  @State() daysAfter: number[];
-  @State() daysOfMonth: number[];
+  @State() year: number | string;
+  @State() month: number | string;
+  @State() dayOfTheMonth: number | string;
   @State() years: number[];
   // @State() calendarLocationBottom: boolean = true;
   // @State() calendarLocationRight: boolean = true;
@@ -37,6 +43,8 @@ export class DatePickerHiweb {
   // private calendarRef: HTMLElement;
   // private containerRef: HTMLElement;
   // private checkSpaceTimeout: ReturnType<typeof setTimeout>;
+
+  private jalali;
 
   @Listen('click', {target: 'body'})
     onClick(e) {
@@ -59,46 +67,43 @@ export class DatePickerHiweb {
   //   }
 
   componentWillLoad() {
-    let jdate;
+    this.jalali = JalaliDateTime(config);
+
+    let today;
     if (this.value) {
       const year = +this.value.slice(0,4);
       const month = +this.value.slice(5,7);
       const day = +this.value.slice(8,10);
-      jdate = new JDate(new Date(year, month, day));
+      today = this.jalali.toDate(new Date(year, month - 1, day), {
+        timezone: 'Asia/Tehran',
+        locale: 'en',
+        format: 'Y-M-D',
+      })
     } else {
-      jdate = new JDate;
+      today = this.jalali.now({
+        timezone: 'Asia/Tehran',
+        locale: 'en',
+        format: 'Y-M-D',
+      });
     }
-    this.year = jdate.getFullYear();
-    this.month = jdate.getMonth();
-    this.dayOfTheMonth = jdate.getDate();
-    this.dayOfTheWeek = jdate.getDay() + 2;
-    this.years = range(this.year - 30, this.year + 10, 1);
+    this.year = today.slice(0,4);
+    this.month = today.slice(5,7);
+    this.dayOfTheMonth = today.slice(8,10);
+    this.years = range(+this.year - 30, +this.year + 10, 1);
   }
 
   componentWillRender() {
-    const jdateFirstDayOfMonth = new JDate(this.year, this.month, 1);
-    const firstDayOfMonth = jdateFirstDayOfMonth.getDay() + 2;
-    const daysInMonth = JDate.daysInMonth(this.year, this.month);
-    const daysBeforeCheck = firstDayOfMonth - 1;
-    const numberOfDaysBefore = daysBeforeCheck === 7 ? 0 : daysBeforeCheck;
-    const numberOfDaysAfterCheck = 35 - (daysInMonth + numberOfDaysBefore);
-    const numberOfDaysAfter = numberOfDaysAfterCheck < 0 ? numberOfDaysAfterCheck + 7 : numberOfDaysAfterCheck;
-    const lastMonthNumberOfDays = this.month === 1 ? JDate.daysInMonth(this.year - 1, 12) : JDate.daysInMonth(this.year, this.month -1);
-
-    this.daysBefore = range(lastMonthNumberOfDays - numberOfDaysBefore + 1, lastMonthNumberOfDays, 1);
-    this.daysAfter = range(1, numberOfDaysAfter, 1);
-    this.daysOfMonth = range(1, daysInMonth, 1);
   
-    const formatNumbers = (num: number) => ("0" + num).slice(-2);
-    const jalaliDate = `${this.year}/${formatNumbers(this.month)}/${formatNumbers(this.dayOfTheMonth)}`;
-    const gregorianDate = JDate.toGregorian(this.year, this.month, this.dayOfTheMonth);
-    const gregorianYear = gregorianDate.toLocaleDateString('en-US', { year: 'numeric'});
-    const gregorianMonth = gregorianDate.toLocaleDateString('en-US', { month: '2-digit'});
-    const gregorianDay = gregorianDate.toLocaleDateString('en-US', { day: '2-digit'});
+    const jalaliDate = `${this.year}/${this.month}/${this.dayOfTheMonth}`;
+    const gregorianDate = this.jalali.gregorian(`${this.year}-${this.month}-${this.dayOfTheMonth}`);
 
     this.inputValue = formatNumbersToPersian(jalaliDate);
     this.jalaiDate.emit(jalaliDate);
-    this.gregorianDate.emit(`${gregorianYear}-${gregorianMonth}-${gregorianDay}`);
+    this.gregorianDate.emit(`${gregorianDate.year}-${gregorianDate.month}-${gregorianDate.day}`);
+  }
+
+  formatNumbers(num: number) {
+    return ("0" + num).slice(-2);
   }
 
   // componentDidRender() {
@@ -142,30 +147,30 @@ export class DatePickerHiweb {
   // }
 
   handleArrowClick(num: number) {
-    if (this.month === 12 && num === 1) {
-      this.month = 1;
-      this.year = this.year + 1;
+    if (+this.month === 12 && num === 1) {
+      this.month = '01';
+      this.year = `${+this.year + 1}`;
       return;
     }
-    if (this.month === 1 && num === -1) {
-      this.month = 12;
-      this.year = this.year - 1;
+    if (+this.month === 1 && num === -1) {
+      this.month = '12';
+      this.year = `${+this.year - 1}`;
       return;
     }
-    this.month = this.month + num;
+    this.month = this.formatNumbers(+this.month + num);
   }
 
   renderYearSelector() {
     return (
       <select
         id="year"
-        onInput={(event) => this.year = +event.target['value']}
+        onInput={(event) => this.year =event.target['value']}
       >
         {
           this.years.map(year => {
             return (
               <option
-                selected={year === this.year ? true : false}
+                selected={year === +this.year ? true : false}
                 value={year}
               >
                 {formatNumbersToPersian(`${year}`)}
@@ -180,14 +185,14 @@ export class DatePickerHiweb {
   renderMonthSelector() {
     return (
       <select
-        onInput={(event) => this.month = +event.target['value']}
+        onInput={(event) => this.month = this.formatNumbers(event.target['value'])}
       >
         {
           persianMonths.map((month, index) => {
             const i = index + 1;   
             return (
               <option
-                selected={i === this.month ? true : false}
+                selected={i === +this.month ? true : false}
                 value={i}
               >
                 {month}
@@ -202,39 +207,23 @@ export class DatePickerHiweb {
   renderDaySelector() {
     return (
       <div class="days-container">
-          {
-            this.daysBefore.map(day => {
-              return (
-                <div class="day">
-                  {formatNumbersToPersian(`${day}`)}
-                </div>
-              )
-            })
-          }
-          {
-            this.daysOfMonth.map(day => {
+        {
+          this.jalali.calendar(this.year + '-' + this.month).weeks.map(week => {
+            return week.map(({date,day}) => {
               return (
                 <div
-                 class={`day active ${day === this.dayOfTheMonth ? 'current' : ''}`}
-                 onClick={() => this.dayOfTheMonth = day}
+                 class={`day ${+date.slice(5,7) === +this.month ? 'active' : ''} ${day === +this.dayOfTheMonth ? 'current' : ''}`}
+                  onClick={() => this.dayOfTheMonth = this.formatNumbers(day)}
                 >
                   <div>
-                  {formatNumbersToPersian(`${day}`)}
+                    {formatNumbersToPersian(`${day}`)}
                   </div>  
                 </div>
               )
             })
-          }
-          {
-            this.daysAfter.map(day => {
-              return (
-                <div class="day">
-                  {formatNumbersToPersian(`${day}`)}
-                </div>
-              )
-            })
-          }
-        </div>
+          })
+        }
+      </div>
     )
   }
 

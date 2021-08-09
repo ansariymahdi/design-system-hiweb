@@ -5,13 +5,20 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Item } from "./components/better-multiselect-dropdown-hiweb/better-multiselect-dropdown-hiweb";
 import { CheckBoxInput, DateInput, SelectOptionInput, TextInput } from "./components/form-hiweb/form-hiweb";
-import { Item } from "./components/multiselect-dropdown-hiweb/multiselect-dropdown-hiweb";
+import { Item as Item1 } from "./components/multiselect-dropdown-hiweb/multiselect-dropdown-hiweb";
 export namespace Components {
     interface AlertHiweb {
         "timer": any;
         "title": string;
         "type": any;
+    }
+    interface BetterMultiselectDropdownHiweb {
+        "api": {url: string, query: string, field: string, token?: string};
+        "items": Item[];
+        "label": string;
+        "selectAllOption": boolean;
     }
     interface ButtonErrorHiweb {
         "title": string;
@@ -158,6 +165,12 @@ declare global {
     var HTMLAlertHiwebElement: {
         prototype: HTMLAlertHiwebElement;
         new (): HTMLAlertHiwebElement;
+    };
+    interface HTMLBetterMultiselectDropdownHiwebElement extends Components.BetterMultiselectDropdownHiweb, HTMLStencilElement {
+    }
+    var HTMLBetterMultiselectDropdownHiwebElement: {
+        prototype: HTMLBetterMultiselectDropdownHiwebElement;
+        new (): HTMLBetterMultiselectDropdownHiwebElement;
     };
     interface HTMLButtonErrorHiwebElement extends Components.ButtonErrorHiweb, HTMLStencilElement {
     }
@@ -329,6 +342,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "alert-hiweb": HTMLAlertHiwebElement;
+        "better-multiselect-dropdown-hiweb": HTMLBetterMultiselectDropdownHiwebElement;
         "button-error-hiweb": HTMLButtonErrorHiwebElement;
         "button-hiweb": HTMLButtonHiwebElement;
         "button-info-hiweb": HTMLButtonInfoHiwebElement;
@@ -365,6 +379,13 @@ declare namespace LocalJSX {
         "timer"?: any;
         "title"?: string;
         "type"?: any;
+    }
+    interface BetterMultiselectDropdownHiweb {
+        "api"?: {url: string, query: string, field: string, token?: string};
+        "items"?: Item[];
+        "label"?: string;
+        "onOnChange"?: (event: CustomEvent<(string | number)[] | {allIsSelected: boolean, values: (string | number)[]}>) => void;
+        "selectAllOption"?: boolean;
     }
     interface ButtonErrorHiweb {
         "onOnClick"?: (event: CustomEvent<any>) => void;
@@ -539,6 +560,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "alert-hiweb": AlertHiweb;
+        "better-multiselect-dropdown-hiweb": BetterMultiselectDropdownHiweb;
         "button-error-hiweb": ButtonErrorHiweb;
         "button-hiweb": ButtonHiweb;
         "button-info-hiweb": ButtonInfoHiweb;
@@ -574,6 +596,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "alert-hiweb": LocalJSX.AlertHiweb & JSXBase.HTMLAttributes<HTMLAlertHiwebElement>;
+            "better-multiselect-dropdown-hiweb": LocalJSX.BetterMultiselectDropdownHiweb & JSXBase.HTMLAttributes<HTMLBetterMultiselectDropdownHiwebElement>;
             "button-error-hiweb": LocalJSX.ButtonErrorHiweb & JSXBase.HTMLAttributes<HTMLButtonErrorHiwebElement>;
             "button-hiweb": LocalJSX.ButtonHiweb & JSXBase.HTMLAttributes<HTMLButtonHiwebElement>;
             "button-info-hiweb": LocalJSX.ButtonInfoHiweb & JSXBase.HTMLAttributes<HTMLButtonInfoHiwebElement>;

@@ -30,6 +30,7 @@
     "dayjs": "^1.10.4",
     "dayjs-jalali": "^0.0.2",
     "jalali-date": "^1.1.4",
+    "jalali-date-time": "^3.2.2",
     "lodash": "^4.17.21",
     "react-textfit": "^1.1.1",
     "stencil-fragment": "^1.0.1"
