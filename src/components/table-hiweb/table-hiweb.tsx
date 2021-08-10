@@ -82,6 +82,8 @@ export class TableHiweb {
   }
 
   handleTableScroll(e) {
+    console.log('called')
+    if (this.tableBodyHeight === 0) this.tableBodyHeight = this.tableRef.children.item(0).children.item(1).clientHeight;
     const scrollPosition = e.target['scrollLeft'];
     if (scrollPosition >= 0 ) {
       this.shadowRight = false;
@@ -105,12 +107,12 @@ export class TableHiweb {
         {
           this.checkbox
             ? <th class="center checkbox">
-              <div
-                class="placeholder"
-                innerHTML={icons[this.allSelected ? 'checkBox' : 'roundSquare']}
-                onClick={() => { this.allSelected = !this.allSelected; this.handleCheckbox.emit({ allSelected: this.allSelected }) }}
-              />
-            </th>
+                <div
+                  class="placeholder"
+                  innerHTML={icons[this.allSelected ? 'checkBox' : 'roundSquare']}
+                  onClick={() => { this.allSelected = !this.allSelected; this.handleCheckbox.emit({ allSelected: this.allSelected }) }}
+                />
+              </th>
             : null
         }
         {
@@ -134,7 +136,7 @@ export class TableHiweb {
       <tr>
         {
           this.checkbox
-            ? <td class="center checkbox">
+            ? <td class="center checkbox" style={{zIndex: `${this.numberOfRows - rowIndex }`}}>
                 {
                   rowIndex === 0 && this.shadowRight
                   ? <div class="shadow-right" style={{height: `${this.tableBodyHeight}px`}} />

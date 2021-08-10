@@ -8,8 +8,6 @@ import icons from './../../modules/iconsList';
   shadow: true,
 })
 export class NavRightHiweb2 {
-  @State() open: boolean = false;
-  @State() searchValue: string;
   @Prop() items: { title: string, subItems: { icon: string, title: string, path: string, active: boolean }[] }[] = [
     {
       title: 'استقلال',
@@ -196,13 +194,34 @@ export class NavRightHiweb2 {
       ]
     },
   ]
+  @State() open: boolean = false;
+  @State() searchValue: string;
+  @State() shadowTop: boolean = false;
+  @State() shadowBottom: boolean = false;
+
   @Event() onClick: EventEmitter;
   @Event() isOpen: EventEmitter<boolean>;
+
+  private bodyRef: HTMLElement;
+
+  componentDidLoad() {
+    this.checkForShadow();
+  }
+
+  checkForShadow = () => {
+    if (!this.bodyRef) return;
+    this.shadowTop = this.bodyRef.scrollTop > 0;
+    this.shadowBottom = this.bodyRef.clientHeight + this.bodyRef.scrollTop !== this.bodyRef.scrollHeight;
+    // console.log(this.bodyRef.clientHeight);
+    // console.log(this.bodyRef.scrollHeight);
+    console.log(this.bodyRef.clientHeight + this.bodyRef.scrollTop !== this.bodyRef.scrollHeight)
+  }
 
   toggleSideBar = () => {
     this.searchValue = '';
     this.open = !this.open;
     this.isOpen.emit(this.open);
+    this.checkForShadow();
   }
 
   search = () => {
@@ -247,7 +266,11 @@ export class NavRightHiweb2 {
 
   renderItems = () => {
     return (
-      <div class="body">
+      <div 
+        class="body" 
+        ref={(el : HTMLElement) =>  this.bodyRef = el}
+        onScroll={() => this.checkForShadow()}
+      >
         {
           this.items.map(({title, subItems}) => {
             return (
@@ -293,8 +316,10 @@ export class NavRightHiweb2 {
   render() {
     return (
       <div class={`sidebar ${this.open ? 'open' : 'close'}`}>
+        <div class={`shadow-custom ${this.shadowTop && 'top-shadow'}`} />
         {this.renderHeader()}
         {this.renderItems()}
+        <div class={`shadow-custom ${this.shadowBottom && 'bottom-shadow'}`} />
       </div>
     );
   }
