@@ -144,17 +144,17 @@ export class FormHiweb {
         timeLabel: 'zaman-kol'
       }
     },
-    {
-      type: 'multiselectDropdown',
-      data: {
-        api: {
-          url: 'http://46.224.6.83:666/User',
-          query: 'username',
-          field: 'userName',
-          token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ilg2THBfYy1ndENWUFJnZHZmME5SVmciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2Mjg1MDQ1NzMsImV4cCI6MTYyODUwODE3MywiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2Mjg1MDQ1NzMsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.GYKMsoRaQmt5YxzsyGyjtvPgvBMO-hEy4BfY-ySvyK6I7FPs5zFgfKv4qnVBml5lRfffV3p5u6fMrYOzQ4WFlOosQBkrr8U9I9RQIkdFgLFkXcbTg896NrGBnbQk2Ifr9TcRknm-64U9E0ydJNANfv5WuVQBxPmQt7i6IEl1aaokhSvEYJTQKUAMdtDD9nHScj2PyUq74rQ3uPqHtNG-Wop28w7nk3uChzN3SCpKkIJilsSjjD2nRR1dbdBxzge4UxCfG3Et-hQBkjALTOuXq2u_L9cCkTXccUSj1Gzowmfyxan1JsVXz9fcFEDcZoY_poly5T7Oh68p4GupE5ED2Q'
-        }
-      }
-    }
+    // {
+    //   type: 'multiselectDropdown',
+    //   data: {
+    //     api: {
+    //       url: 'http://46.224.6.83:666/User',
+    //       query: 'username',
+    //       field: 'userName',
+    //       token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ilg2THBfYy1ndENWUFJnZHZmME5SVmciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2Mjg2MDM1MTQsImV4cCI6MTYyODYwNzExNCwiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2Mjg2MDM1MTQsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.oGsRBj6OSjC_crFQRlgjDCAihL_gwsEUr0Emp8N-E7UN6BlZcQ_jrGlab8L8-BEzIHOEmlJOCuGcWKpDl487lTxfjYjlCWA1oD9E4Izd6jOk7S1n9KLQL4FK9zUyhYqrk1rdUC0sEURBUoeeWQfMsO0Wp6DzAKagB27hS9MkcpHB2nJV-5-h_mda6MahWBVCUlx6cWR0q6SovngrJJtNPBaJj6xiqYk6S9o_XIljSOuoZX2QDreRXD1FMpsC55p0If6ddUyfDPeTGfS_62q71iRYLQLLarLWQqjAc99bxjdxIX5C1SZSIvDRTxw4egkiD7UeD2wif1f5GJIjOpVImg'
+    //     }
+    //   }
+    // }
   ];
   @Prop() buttonTitle: string = 'ثبت';
   @Prop() resetForm: boolean = false;
@@ -424,7 +424,7 @@ export class FormHiweb {
     } = data;
 
     return (
-      <multiselect-dropdown-hiweb
+      <better-multiselect-dropdown-hiweb
         label={label}
         items={items}
         api={api}

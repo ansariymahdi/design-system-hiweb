@@ -211,10 +211,7 @@ export class NavRightHiweb2 {
   checkForShadow = () => {
     if (!this.bodyRef) return;
     this.shadowTop = this.bodyRef.scrollTop > 0;
-    this.shadowBottom = this.bodyRef.clientHeight + this.bodyRef.scrollTop !== this.bodyRef.scrollHeight;
-    // console.log(this.bodyRef.clientHeight);
-    // console.log(this.bodyRef.scrollHeight);
-    console.log(this.bodyRef.clientHeight + this.bodyRef.scrollTop !== this.bodyRef.scrollHeight)
+    this.shadowBottom = this.bodyRef.clientHeight + this.bodyRef.scrollTop < this.bodyRef.scrollHeight;
   }
 
   toggleSideBar = () => {

@@ -71,9 +71,6 @@ export class inputHiweb {
   }
 
   borderColor = () => {
-    console.log('change', this.isChanged);
-    console.log('valid',this.valid);
-    console.log('error',this.error);
     if ( this.isChanged && (!this.valid || this.error)) {
       return { borderColor: '#B22222' };
     }

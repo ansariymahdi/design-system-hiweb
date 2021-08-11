@@ -24,7 +24,7 @@ export class MultiselectDropdownHiweb {
     url: 'http://46.224.6.83:666/User',
     query: 'username',
     field: 'userName',
-    token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ilg2THBfYy1ndENWUFJnZHZmME5SVmciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2Mjg1MDQ1NzMsImV4cCI6MTYyODUwODE3MywiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2Mjg1MDQ1NzMsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.GYKMsoRaQmt5YxzsyGyjtvPgvBMO-hEy4BfY-ySvyK6I7FPs5zFgfKv4qnVBml5lRfffV3p5u6fMrYOzQ4WFlOosQBkrr8U9I9RQIkdFgLFkXcbTg896NrGBnbQk2Ifr9TcRknm-64U9E0ydJNANfv5WuVQBxPmQt7i6IEl1aaokhSvEYJTQKUAMdtDD9nHScj2PyUq74rQ3uPqHtNG-Wop28w7nk3uChzN3SCpKkIJilsSjjD2nRR1dbdBxzge4UxCfG3Et-hQBkjALTOuXq2u_L9cCkTXccUSj1Gzowmfyxan1JsVXz9fcFEDcZoY_poly5T7Oh68p4GupE5ED2Q'
+    token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6Ilg2THBfYy1ndENWUFJnZHZmME5SVmciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE2Mjg2NTUxMzQsImV4cCI6MTYyODY1ODczNCwiaXNzIjoiaHR0cDovLzQ2LjIyNC42LjgzOjgwOTAiLCJhdWQiOiJlZmNfYXBpIiwiY2xpZW50X2lkIjoiZWZjX2FwaV9jbGllbnQiLCJzdWIiOiJlYTYxYTEzMy05ZGE1LTRjODMtYjJkZS0xOWU4M2RlMzhjNDYiLCJhdXRoX3RpbWUiOjE2Mjg2NTUxMzQsImlkcCI6ImxvY2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRhbSIsIm5hbWUiOiJhZGFtIiwiZW1haWwiOiJzLmdob3JlaXNoaUBoaXdlYi5pciIsInBob25lX251bWJlciI6IjA5MTk0ODU0OTU2Iiwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIiwicm9sZXMiLCJlZmNfYXBpIl0sImFtciI6WyJwd2QiXX0.jA3c-4iMEpfcvAGx3axJykP_CdOL3z_uzDYWYlNM42KcnEXCejs9-yLEeN6-UUADrvwsz9xCfM1votecKNUpi8g8B5ALX1OV-_T99h03Rnie7y9LYsKDibfBF7-zT0rm5_SXWoJbQMQJa06POaKSmmOY9ulbA1FR2Iw2BphfPDKdyn02sXIyqjFhxB3shcStq81X1-9Ht7BgWS9YTGgNwyxEoc7sOxDImwkQ-XdZWgSkQhsMGWp0rUM5JauKf5rk4nGeAheb1_5xEcIJsxL6Pn396nRaNBWOlpJFhFIc1xUVw30VoOnHAmOGULxHwLZNtEsRBHTvkLgDCNVoRM90_Q'
   };
 
   @State() allIsSelected: boolean = false;
@@ -32,6 +32,7 @@ export class MultiselectDropdownHiweb {
   @State() isOpen: boolean = false;
   @State() selectedItems: Item[] = [];
   @State() searchValue: string = '';
+  @State() allSelectedList: Item[] = [];
 
   @Event() onChange: EventEmitter<(string | number)[] | {allIsSelected: boolean, values: (string | number)[]}>;
 
@@ -61,6 +62,15 @@ export class MultiselectDropdownHiweb {
 
     if (!this.searchValue) response.data.data.list = response.data.data.list.slice(0, 20);
 
+    if (!this.allSelectedList.length) {
+      this.allSelectedList = response.data.data.list.map((item: { [x: string]: any; id: any}) => {
+        return {
+          id: item.id,
+          value: item[this.api.field]
+        }
+      });
+    }
+
     if (this.selectAllOption && this.allIsSelected) {
       this.items = response.data.data.list.map((item: { [x: string]: any; id: any; }) => {
         const index = this.selectedItems.findIndex(({id}) => id == item.id);
@@ -88,9 +98,24 @@ export class MultiselectDropdownHiweb {
     this.isOpen = !this.isOpen;
   }
 
-  async handleItemClick(_event: MouseEvent, _item: Item, index: number) {
+  async handleItemClick(_event: MouseEvent, item: Item, index: number) {
     if (!this.allIsSelected && this.items[index].selected) return;
-    this.addToSelected(index);
+    if (this.allIsSelected) {
+      if (this.items[index].selected) {
+        this.addToSelected(index);
+        this.items[index].selected = false;
+      } else {
+        this.items[index].selected = true;
+        this.removeFromSelected(item.id);
+      }
+    } else {
+      if (this.items[index].selected) {
+        this.removeFromSelected(item.id);
+        this.items[index].selected = false;
+      } else {
+        this.addToSelected(index);
+      }
+    }
     if (this.searchValue) {
       this.searchValue = '';
       await this.getItems();
@@ -248,8 +273,8 @@ export class MultiselectDropdownHiweb {
                 ? <Fragment>
                     <div class="value">
                       <span
-                        class="value-icon" 
-                        innerHTML={icons.close} 
+                        class="value-icon"
+                        innerHTML={icons.close}
                         onClick={(e) => {
                           this.selectAll();
                           e.stopPropagation();
@@ -259,9 +284,20 @@ export class MultiselectDropdownHiweb {
                     </div>
                     {
                       this.selectedItems.length
-                        ? <div class="value">
-                            <span class="value-label">به جز</span>
-                          </div>
+                        ? this.allSelectedList.map(item => {
+                          const index = this.selectedItems.findIndex(({id}) => id == item.id);
+                          if (index !== -1) return;
+                          return (
+                            <div class="value">
+                              <span
+                                class="value-icon" 
+                                innerHTML={icons.close} 
+                                onClick={(e) => this.handleSelectedIconClick(e, item.id, item.index)}
+                              />
+                              <span class="value-label">{item.value}</span>
+                            </div>
+                          )
+                        })
                         : null
                     }
                   </Fragment>

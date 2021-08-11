@@ -188,6 +188,7 @@ export class BetterMultiselectDropdownHiweb {
     });
     this.allIsSelected = !this.allIsSelected;
     this.selectedItems = [];
+    this.emitEvent();
   }
 
   renderDropdown() {
