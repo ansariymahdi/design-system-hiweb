@@ -29,6 +29,8 @@ export class TableHiweb {
 
   @State() mousePosition: {x: number, y: number} = {x: 0, y: 0};
 
+  @State() timerId: any;
+
   @Event() buttonClicked: EventEmitter<string|{text: string,detail: string}>;
   @Event() handleCheckbox: EventEmitter<{ index: number, checked: boolean } | { allSelected: boolean }>;
   @Event() pageChanged: EventEmitter<number>;
@@ -372,7 +374,12 @@ export class TableHiweb {
           <div class="search">
             <input-hiweb
               placeHolder="جستجو"
-              onChanged={e => this.searchInputChanged.emit(e['detail'])}
+              onChanged={e => {
+                if (this.timerId) clearTimeout(this.timerId);
+                this.timerId = setTimeout(() => {
+                  if (e['detail'].value) this.searchInputChanged.emit(e['detail'])
+                }, 1000); 
+              }}
             ></input-hiweb>
           </div>
           <div class="sort">

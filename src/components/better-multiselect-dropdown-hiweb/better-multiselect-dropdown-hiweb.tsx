@@ -194,7 +194,7 @@ export class BetterMultiselectDropdownHiweb {
   renderDropdown() {
     if (this.isOpen) {
       return (
-        <div class="dropdown-items" >
+        <div class="dropdown-items">
           {
             this.selectAllOption
               ? <div
