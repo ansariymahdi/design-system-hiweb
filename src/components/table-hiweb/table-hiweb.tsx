@@ -7,7 +7,9 @@ export interface Search {
   title: string,
   type: string,
   placeholder: string,
-  value: any
+  value: any,
+  options?: {value: string, title: string}[],
+  default?: string,
 }
 
 @Component({
@@ -47,7 +49,7 @@ export class TableHiweb {
   @Event() pageChanged: EventEmitter<number>;
   @Event() rowNumChanged: EventEmitter<number>;
   @Event() orderChanged: EventEmitter<string>;
-  @Event() searchInputChanged: EventEmitter<{ title: string, value: string, isValid: boolean }>;
+  @Event() searchInputChanged: EventEmitter<{ title: string, value: string, isValid?: boolean }>;
   @Event() selectedFilterHeaderChanged: EventEmitter<number>;
 
   @Listen('resize', { target: 'window' })
@@ -156,7 +158,7 @@ export class TableHiweb {
                 {title}
                 {
                   search 
-                    ? <div class="filter-placeholder" innerHTML={icons['filter']} />
+                    ? <div class="filter-placeholder" innerHTML={icons[search.value ? 'filterFill' : 'filter']} />
                     : ''
                 }
               </th>
@@ -177,7 +179,7 @@ export class TableHiweb {
         {this.bsArray.map(bs => {
           if (bs === this.forceInputReRender) return (
             <tr key={bs ? 1 : 2}>
-              <td colSpan={this.data.head.length + (this.checkbox ? 1 : 0)}>
+              <td colSpan={this.data.head.length + (this.checkbox ? 1 : 0)} style={{ zIndex: '9999'}}>
                 {
                   search.type === 'text'
                     ? (
@@ -196,37 +198,71 @@ export class TableHiweb {
                         }}
                       ></input-hiweb>
                     )
-                    : (
-                      <div class="sort">
-                        <div class="text">
-                          {search.placeholder}
-                        </div>
-                        <div class="input-group">
-                          <select
-                            class="form-select"
-                            id="inputGroupSelect01"
-                            onInput={(event) => {
-                              console.log(event.target['value']);
-                              this.orderChanged.emit(event.target['value'])
-                            }}
-                          >
-                            <option
-                              selected
-                              value={this.orderBy.order}
-                            >{this.orderBy.order}</option>
-                            {
-                              this.orderBy.options.map(option => {
-                                return (
+                    : search.type === 'dropdown'
+                      ? (
+                        <div class="sort">
+                          <div class="text">
+                            {search.placeholder}
+                          </div>
+                          <div class="input-group">
+                            <select
+                              class="form-select"
+                              id="inputGroupSelect01"
+                              onInput={(event) => {
+                                this.searchInputChanged.emit({title: search.title, value: event.target['value']})
+                              }}
+                            >
+                              {
+                                search.value
+                                ? null
+                                : (
                                   <option
-                                    value={option}
-                                  >{option}</option>
+                                    hidden
+                                  >{search.default}</option>
                                 )
-                              })
-                            }
-                          </select>
+                              }
+                              {
+                                search.options.map(({value, title}) => {
+                                  return (
+                                    <option
+                                      selected={value === search.value}
+                                      value={value}
+                                    >{title}</option>
+                                  )
+                                })
+                              }
+                            </select>
+                          </div>
                         </div>
-                      </div>
-                    )
+                      )
+                      : (
+                        <div class="date-search">
+                          <div class="text">
+                            {search.placeholder}
+                          </div>
+                          <div class="date">
+                            <date-picker-hiweb
+                              value={search.value}
+                              label=""
+                              maxWidth={true}
+                              onGregorianDate={e => {
+                                if (e.detail === search.value) return ;
+                                this.searchInputChanged.emit({title: search.title, value: e.detail})
+                              }}
+                            >
+                            </date-picker-hiweb>
+                          </div>
+                          <div
+                            innerHTML={icons['xMark']}
+                            class="delete-placeholder"
+                            onClick={() => {
+                              this.searchInputChanged.emit({title: search.title, value: ''})
+                              this.selectedFilterHeader = 0;
+                              this.selectedFilterHeaderChanged.emit(0);
+                            }}
+                          />
+                        </div>
+                      )
                 }
                 
               </td>

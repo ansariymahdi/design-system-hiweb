@@ -64,6 +64,7 @@ import advertisement from './../assets/icons/advertisement.svg';
 import mail from './../assets/icons/mail.svg';
 import messenger from './../assets/icons/messenger.svg';
 import filter from './../assets/icons/filter.svg';
+import filterFill from './../assets/icons/filter-fill.svg';
 
 const icons = {
   arrowUp,
@@ -131,7 +132,8 @@ const icons = {
   advertisement,
   mail,
   messenger,
-  filter
+  filter,
+  filterFill
 }
 
 export default icons

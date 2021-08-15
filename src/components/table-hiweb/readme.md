@@ -31,7 +31,7 @@
 | `orderChanged`                |             | `CustomEvent<string>`                                                            |
 | `pageChanged`                 |             | `CustomEvent<number>`                                                            |
 | `rowNumChanged`               |             | `CustomEvent<number>`                                                            |
-| `searchInputChanged`          |             | `CustomEvent<{ title: string; value: string; isValid: boolean; }>`               |
+| `searchInputChanged`          |             | `CustomEvent<{ title: string; value: string; isValid?: boolean; }>`              |
 | `selectedFilterHeaderChanged` |             | `CustomEvent<number>`                                                            |
 
 
@@ -41,12 +41,14 @@
 
 - [dropdown-hiweb](../dropdown-hiweb)
 - [input-hiweb](../input-hiweb)
+- [date-picker-hiweb](../date-picker-hiweb)
 
 ### Graph
 ```mermaid
 graph TD;
   table-hiweb --> dropdown-hiweb
   table-hiweb --> input-hiweb
+  table-hiweb --> date-picker-hiweb
   style table-hiweb fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

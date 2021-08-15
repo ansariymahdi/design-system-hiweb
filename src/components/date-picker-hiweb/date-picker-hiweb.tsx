@@ -24,6 +24,7 @@ export class DatePickerHiweb {
   @Prop() label: string = 'تاریخ';
   @Prop() value: string;
   @Prop() color: string = '#DDDFE0';
+  @Prop() maxWidth: boolean = false;
 
   @State() randomNumber: number = getRandomdInteger(1000,9999);
   @State() inputValue: string;
@@ -211,7 +212,7 @@ export class DatePickerHiweb {
             return week.map(({date,day}) => {
               return (
                 <div
-                 class={`day ${+date.slice(5,7) === +this.month ? 'active' : ''} ${day === +this.dayOfTheMonth ? 'current' : ''}`}
+                 class={`day ${+date.slice(5,7) === +this.month ? `active ${day === +this.dayOfTheMonth ? 'current' : ''}` : ''}`}
                   onClick={() => this.dayOfTheMonth = this.formatNumbers(day)}
                 >
                   <div>
@@ -277,7 +278,8 @@ export class DatePickerHiweb {
   render() {
     return (
       <div
-       class="input-container" 
+       class="input-container"
+       style={{width: this.maxWidth ? '100%' : 'fit-content'}} 
        id={`calendar-${this.randomNumber}`}
       //  ref={(el : HTMLElement) =>  this.containerRef = el}
       >
@@ -285,7 +287,7 @@ export class DatePickerHiweb {
         <input
          type="text" 
          value={this.inputValue} 
-         style={{ borderColor: this.color }}
+         style={{ borderColor: this.color, maxWidth: this.maxWidth ? '100%' : '150px' }}
          readOnly 
         />
         <div

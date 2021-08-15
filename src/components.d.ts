@@ -60,6 +60,7 @@ export namespace Components {
     interface DatePickerHiweb {
         "color": string;
         "label": string;
+        "maxWidth": boolean;
         "value": string;
     }
     interface DatetimePickerHiweb {
@@ -437,6 +438,7 @@ declare namespace LocalJSX {
     interface DatePickerHiweb {
         "color"?: string;
         "label"?: string;
+        "maxWidth"?: boolean;
         "onGregorianDate"?: (event: CustomEvent<string>) => void;
         "onJalaiDate"?: (event: CustomEvent<string>) => void;
         "value"?: string;
@@ -549,7 +551,7 @@ declare namespace LocalJSX {
         "onOrderChanged"?: (event: CustomEvent<string>) => void;
         "onPageChanged"?: (event: CustomEvent<number>) => void;
         "onRowNumChanged"?: (event: CustomEvent<number>) => void;
-        "onSearchInputChanged"?: (event: CustomEvent<{ title: string, value: string, isValid: boolean }>) => void;
+        "onSearchInputChanged"?: (event: CustomEvent<{ title: string, value: string, isValid?: boolean }>) => void;
         "onSelectedFilterHeaderChanged"?: (event: CustomEvent<number>) => void;
         "orderBy"?: { order: string, options: string[] };
         "page"?: number;

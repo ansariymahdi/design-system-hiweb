@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `color`  | `color`   |             | `string` | `'#DDDFE0'` |
-| `label`  | `label`   |             | `string` | `'تاریخ'`   |
-| `value`  | `value`   |             | `string` | `undefined` |
+| Property   | Attribute   | Description | Type      | Default     |
+| ---------- | ----------- | ----------- | --------- | ----------- |
+| `color`    | `color`     |             | `string`  | `'#DDDFE0'` |
+| `label`    | `label`     |             | `string`  | `'تاریخ'`   |
+| `maxWidth` | `max-width` |             | `boolean` | `false`     |
+| `value`    | `value`     |             | `string`  | `undefined` |
 
 
 ## Events
@@ -27,11 +28,13 @@
 ### Used by
 
  - [form-hiweb](../form-hiweb)
+ - [table-hiweb](../table-hiweb)
 
 ### Graph
 ```mermaid
 graph TD;
   form-hiweb --> date-picker-hiweb
+  table-hiweb --> date-picker-hiweb
   style date-picker-hiweb fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

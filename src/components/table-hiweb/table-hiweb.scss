@@ -135,6 +135,40 @@ $dark-color: #37474f;
     }
   }
 
+  .date-search {
+    display: flex;
+    flex-wrap: nowrap;
+    .text {
+      text-align: right;
+      font-size: 1.25rem;
+      display: block;
+      color: #666666;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 1rem;
+      white-space: nowrap;
+    }
+    .date {
+      width: 100%;
+    }
+    .delete-placeholder {
+      height: 48px;
+      width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-right: 1rem;
+
+      svg {
+        height: 34px;
+        width: 34px;
+      }
+
+    }
+  }
+
   tbody {
     position: relative;
   }
