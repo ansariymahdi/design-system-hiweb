@@ -81,6 +81,7 @@ export namespace Components {
         "color": string;
         "disable": boolean;
         "error": string;
+        "focusOnInput": boolean;
         "label": string;
         "placeHolder": string;
         "title": string;
@@ -151,6 +152,7 @@ export namespace Components {
         "page": number;
         "range": number[];
         "searchInputPlaceholder": string;
+        "selectedFilterHeaderProp": number;
         "totalDocuments": number;
     }
     interface TextareaHiweb {
@@ -462,6 +464,7 @@ declare namespace LocalJSX {
         "color"?: string;
         "disable"?: boolean;
         "error"?: string;
+        "focusOnInput"?: boolean;
         "label"?: string;
         "onChanged"?: (event: CustomEvent<{title: string, value: string, isValid: boolean}>) => void;
         "placeHolder"?: string;
@@ -547,10 +550,12 @@ declare namespace LocalJSX {
         "onPageChanged"?: (event: CustomEvent<number>) => void;
         "onRowNumChanged"?: (event: CustomEvent<number>) => void;
         "onSearchInputChanged"?: (event: CustomEvent<{ title: string, value: string, isValid: boolean }>) => void;
+        "onSelectedFilterHeaderChanged"?: (event: CustomEvent<number>) => void;
         "orderBy"?: { order: string, options: string[] };
         "page"?: number;
         "range"?: number[];
         "searchInputPlaceholder"?: string;
+        "selectedFilterHeaderProp"?: number;
         "totalDocuments"?: number;
     }
     interface TextareaHiweb {

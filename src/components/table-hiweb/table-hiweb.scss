@@ -52,6 +52,18 @@ $dark-color: #37474f;
 
       transform: scale(1.1,1.1) !important;
     }
+
+    .filter-placeholder {
+      height: 12px;
+      width: 12px;
+      float: left;
+      svg {
+        fill: #41464b;
+        height: 12px;
+        width: 12px;
+      }
+      
+    }
   }
 
   .search-filter-selected {

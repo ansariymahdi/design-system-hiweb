@@ -26,6 +26,7 @@ export class TableHiweb {
   @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] };
   @Prop() info: { title: string, content: string }[] = [{ title: 'تعداد', content: '۲۳۴۲۳۴' }]
   @Prop() searchInputPlaceholder: string = 'جستجو';
+  @Prop() selectedFilterHeaderProp: number;
 
   @State() data: { head: { title: string, options: string[], colspan: number, search: Search }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
@@ -38,6 +39,7 @@ export class TableHiweb {
   @State() mousePosition: {x: number, y: number} = {x: 0, y: 0};
 
   @State() selectedFilterHeader: number = 0;
+  @State() forceInputReRender: boolean = false;
   @State() timerId: any;
 
   @Event() buttonClicked: EventEmitter<string|{text: string,detail: string}>;
@@ -46,6 +48,7 @@ export class TableHiweb {
   @Event() rowNumChanged: EventEmitter<number>;
   @Event() orderChanged: EventEmitter<string>;
   @Event() searchInputChanged: EventEmitter<{ title: string, value: string, isValid: boolean }>;
+  @Event() selectedFilterHeaderChanged: EventEmitter<number>;
 
   @Listen('resize', { target: 'window' })
     onWindowResize() {
@@ -59,8 +62,13 @@ export class TableHiweb {
     }
 
   private tableRef: HTMLElement;
+  private bsArray = [true,false];
 
   componentWillLoad() {
+    if (this.selectedFilterHeaderProp) {
+      this.selectedFilterHeader = this.selectedFilterHeaderProp;
+    }
+
     if (this.dataStringProp) {
       this.data = JSON.parse(this.dataStringProp);
     } else {
@@ -140,10 +148,17 @@ export class TableHiweb {
                 colSpan={this.options[index].colspan}
                 onClick={() => {
                   if (!search || this.selectedFilterHeader === index + 1) return this.selectedFilterHeader = 0;
+                  this.forceInputReRender = !this.forceInputReRender;
                   this.selectedFilterHeader = index + 1
+                  this.selectedFilterHeaderChanged.emit(index + 1);
                 }}
               > 
                 {title}
+                {
+                  search 
+                    ? <div class="filter-placeholder" innerHTML={icons['filter']} />
+                    : ''
+                }
               </th>
             );
           })
@@ -153,64 +168,73 @@ export class TableHiweb {
   }
 
   renderSearch() {
-    if (this.selectedFilterHeader === 0) return;
+    if (this.selectedFilterHeader === 0) return null;
 
     const search = this.data.head[this.selectedFilterHeader - 1].search;
 
-    return ( 
-      <tr>
-        <td colSpan={this.data.head.length + (this.checkbox ? 1 : 0)}>
-          {
-            search.type === 'text'
-              ? (
-                <input-hiweb
-                  title={search.title}
-                  placeHolder={search.placeholder}
-                  valueProp={search.value}
-                  onChanged={e => {
-                    this.data.head[this.selectedFilterHeader - 1].search.value = e['detail'].value;
-                    if (this.timerId) clearTimeout(this.timerId);
-                    this.timerId = setTimeout(() => {
-                      if (e['detail'].value) this.searchInputChanged.emit(e['detail'])
-                    }, 1000); 
-                  }}
-                ></input-hiweb>
-              )
-              : (
-                <div class="sort">
-                  <div class="text">
-                    {search.placeholder}
-                  </div>
-                  <div class="input-group">
-                    <select
-                      class="form-select"
-                      id="inputGroupSelect01"
-                      onInput={(event) => {
-                        console.log(event.target['value']);
-                        this.orderChanged.emit(event.target['value'])
-                      }}
-                    >
-                      <option
-                        selected
-                        value={this.orderBy.order}
-                      >{this.orderBy.order}</option>
-                      {
-                        this.orderBy.options.map(option => {
-                          return (
+    return (
+      <Fragment>
+        {this.bsArray.map(bs => {
+          if (bs === this.forceInputReRender) return (
+            <tr key={bs ? 1 : 2}>
+              <td colSpan={this.data.head.length + (this.checkbox ? 1 : 0)}>
+                {
+                  search.type === 'text'
+                    ? (
+                      <input-hiweb
+                        title={search.title}
+                        placeHolder={search.placeholder + ' ' + search.value}
+                        valueProp={search.value}
+                        focusOnInput={this.selectedFilterHeader !== 0}
+                        onChanged={e => {
+                          if (this.data.head[this.selectedFilterHeader - 1].search.value === e['detail'].value) return;
+                          this.data.head[this.selectedFilterHeader - 1].search.value = e['detail'].value;
+                          if (this.timerId) clearTimeout(this.timerId);
+                          this.timerId = setTimeout(() => {
+                            this.searchInputChanged.emit(e['detail'])
+                          }, 1000); 
+                        }}
+                      ></input-hiweb>
+                    )
+                    : (
+                      <div class="sort">
+                        <div class="text">
+                          {search.placeholder}
+                        </div>
+                        <div class="input-group">
+                          <select
+                            class="form-select"
+                            id="inputGroupSelect01"
+                            onInput={(event) => {
+                              console.log(event.target['value']);
+                              this.orderChanged.emit(event.target['value'])
+                            }}
+                          >
                             <option
-                              value={option}
-                            >{option}</option>
-                          )
-                        })
-                      }
-                    </select>
-                  </div>
-                </div>
-              )
-          }
-          
-        </td>
-      </tr>
+                              selected
+                              value={this.orderBy.order}
+                            >{this.orderBy.order}</option>
+                            {
+                              this.orderBy.options.map(option => {
+                                return (
+                                  <option
+                                    value={option}
+                                  >{option}</option>
+                                )
+                              })
+                            }
+                          </select>
+                        </div>
+                      </div>
+                    )
+                }
+                
+              </td>
+            </tr>
+          )
+          return '';
+        })}
+      </Fragment>
     )
   }
 

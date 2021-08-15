@@ -7,19 +7,20 @@
 
 ## Properties
 
-| Property        | Attribute      | Description | Type      | Default     |
-| --------------- | -------------- | ----------- | --------- | ----------- |
-| `checkInput`    | `check-input`  |             | `boolean` | `undefined` |
-| `color`         | `color`        |             | `string`  | `'#DDDFE0'` |
-| `disable`       | `disable`      |             | `boolean` | `false`     |
-| `error`         | `error`        |             | `string`  | `undefined` |
-| `label`         | `label`        |             | `string`  | `undefined` |
-| `placeHolder`   | `place-holder` |             | `string`  | `undefined` |
-| `title`         | `title`        |             | `string`  | `undefined` |
-| `type`          | `type`         |             | `string`  | `'text'`    |
-| `valid`         | `valid`        |             | `boolean` | `undefined` |
-| `validatorProp` | `validator`    |             | `string`  | `undefined` |
-| `valueProp`     | `value-prop`   |             | `string`  | `undefined` |
+| Property        | Attribute        | Description | Type      | Default     |
+| --------------- | ---------------- | ----------- | --------- | ----------- |
+| `checkInput`    | `check-input`    |             | `boolean` | `undefined` |
+| `color`         | `color`          |             | `string`  | `'#DDDFE0'` |
+| `disable`       | `disable`        |             | `boolean` | `false`     |
+| `error`         | `error`          |             | `string`  | `undefined` |
+| `focusOnInput`  | `focus-on-input` |             | `boolean` | `false`     |
+| `label`         | `label`          |             | `string`  | `undefined` |
+| `placeHolder`   | `place-holder`   |             | `string`  | `undefined` |
+| `title`         | `title`          |             | `string`  | `undefined` |
+| `type`          | `type`           |             | `string`  | `'text'`    |
+| `valid`         | `valid`          |             | `boolean` | `undefined` |
+| `validatorProp` | `validator`      |             | `string`  | `undefined` |
+| `valueProp`     | `value-prop`     |             | `string`  | `undefined` |
 
 
 ## Events

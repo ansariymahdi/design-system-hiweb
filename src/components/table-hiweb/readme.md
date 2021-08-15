@@ -7,30 +7,32 @@
 
 ## Properties
 
-| Property                 | Attribute                  | Description | Type                                                                                                          | Default                                                                      |
-| ------------------------ | -------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `checkbox`               | `checkbox`                 |             | `boolean`                                                                                                     | `true`                                                                       |
-| `dataProp`               | --                         |             | `{ head: { title: string; options: string[]; colspan: number; }[]; body: { type: string; data: any; }[][]; }` | `undefined`                                                                  |
-| `dataStringProp`         | `datastring`               |             | `string`                                                                                                      | `undefined`                                                                  |
-| `info`                   | --                         |             | `{ title: string; content: string; }[]`                                                                       | `[{ title: 'تعداد', content: '۲۳۴۲۳۴' }]`                                    |
-| `numberOfRows`           | `number-of-rows`           |             | `number`                                                                                                      | `20`                                                                         |
-| `orderBy`                | --                         |             | `{ order: string; options: string[]; }`                                                                       | `{ order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] }` |
-| `page`                   | `page`                     |             | `number`                                                                                                      | `1`                                                                          |
-| `range`                  | --                         |             | `number[]`                                                                                                    | `[5, 10, 20, 50, 100, 200]`                                                  |
-| `searchInputPlaceholder` | `search-input-placeholder` |             | `string`                                                                                                      | `'جستجو'`                                                                    |
-| `totalDocuments`         | `total-documents`          |             | `number`                                                                                                      | `8`                                                                          |
+| Property                   | Attribute                     | Description | Type                                                                                                                          | Default                                                                      |
+| -------------------------- | ----------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `checkbox`                 | `checkbox`                    |             | `boolean`                                                                                                                     | `true`                                                                       |
+| `dataProp`                 | --                            |             | `{ head: { title: string; options: string[]; colspan: number; search: Search; }[]; body: { type: string; data: any; }[][]; }` | `undefined`                                                                  |
+| `dataStringProp`           | `datastring`                  |             | `string`                                                                                                                      | `undefined`                                                                  |
+| `info`                     | --                            |             | `{ title: string; content: string; }[]`                                                                                       | `[{ title: 'تعداد', content: '۲۳۴۲۳۴' }]`                                    |
+| `numberOfRows`             | `number-of-rows`              |             | `number`                                                                                                                      | `20`                                                                         |
+| `orderBy`                  | --                            |             | `{ order: string; options: string[]; }`                                                                                       | `{ order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] }` |
+| `page`                     | `page`                        |             | `number`                                                                                                                      | `1`                                                                          |
+| `range`                    | --                            |             | `number[]`                                                                                                                    | `[5, 10, 20, 50, 100, 200]`                                                  |
+| `searchInputPlaceholder`   | `search-input-placeholder`    |             | `string`                                                                                                                      | `'جستجو'`                                                                    |
+| `selectedFilterHeaderProp` | `selected-filter-header-prop` |             | `number`                                                                                                                      | `undefined`                                                                  |
+| `totalDocuments`           | `total-documents`             |             | `number`                                                                                                                      | `8`                                                                          |
 
 
 ## Events
 
-| Event                | Description | Type                                                                             |
-| -------------------- | ----------- | -------------------------------------------------------------------------------- |
-| `buttonClicked`      |             | `CustomEvent<string \| { text: string; detail: string; }>`                       |
-| `handleCheckbox`     |             | `CustomEvent<{ allSelected: boolean; } \| { index: number; checked: boolean; }>` |
-| `orderChanged`       |             | `CustomEvent<string>`                                                            |
-| `pageChanged`        |             | `CustomEvent<number>`                                                            |
-| `rowNumChanged`      |             | `CustomEvent<number>`                                                            |
-| `searchInputChanged` |             | `CustomEvent<{ title: string; value: string; isValid: boolean; }>`               |
+| Event                         | Description | Type                                                                             |
+| ----------------------------- | ----------- | -------------------------------------------------------------------------------- |
+| `buttonClicked`               |             | `CustomEvent<string \| { text: string; detail: string; }>`                       |
+| `handleCheckbox`              |             | `CustomEvent<{ allSelected: boolean; } \| { index: number; checked: boolean; }>` |
+| `orderChanged`                |             | `CustomEvent<string>`                                                            |
+| `pageChanged`                 |             | `CustomEvent<number>`                                                            |
+| `rowNumChanged`               |             | `CustomEvent<number>`                                                            |
+| `searchInputChanged`          |             | `CustomEvent<{ title: string; value: string; isValid: boolean; }>`               |
+| `selectedFilterHeaderChanged` |             | `CustomEvent<number>`                                                            |
 
 
 ## Dependencies

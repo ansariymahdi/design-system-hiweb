@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { Component, h, Prop, State, Event, EventEmitter, Method } from '@stencil/core';
 import { Validator, getValidator, defaultValidator, ValidatorEntry } from '../../validator';
 
 import icons from '../../modules/iconsList';
@@ -16,17 +16,18 @@ export class inputHiweb {
   @Prop() placeHolder: string;
   @Prop() type: string = 'text';
   @Prop() checkInput: boolean;
-  @Watch('checkInput')
-  onCheckInputChange() {
-    this.isChanged = this.checkInput;
-  }
+  // @Watch('checkInput')
+  // onCheckInputChange() {
+  //   this.isChanged = this.checkInput;
+  // }
   @Prop() disable: boolean = false;
   @Prop() error: string;
+  @Prop() focusOnInput: boolean = false;
   @State() value: string;
-  @Watch('valueProp')
- onValueChanged(name: string) {
-   this.value = name;
- }
+  // @Watch('valueProp')
+//  onValueChanged(name: string) {
+//    this.value = name;
+//  }
   @Prop({ mutable: true }) valid: boolean;
   @Prop({ attribute: 'validator' }) validatorProp: string;
   @State() validator: Array<string | ValidatorEntry | Validator<string>>;
@@ -36,14 +37,21 @@ export class inputHiweb {
 
   _validator: Validator<string> = defaultValidator;
 
+  private inputRef: HTMLElement;
+
   componentWillLoad() {
-    this.validator = JSON.parse(this.validatorProp);
-    this._validator = getValidator<string>(this.validator);
-    this.onValueChanged(this.valueProp);
-    this.validate();
     if(this.valueProp) {
+      this.value = this.valueProp;
       this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
     }
+    this.validator = JSON.parse(this.validatorProp);
+    this._validator = getValidator<string>(this.validator);
+    // this.onValueChanged(this.valueProp);
+    this.validate();
+  }
+
+  componentDidLoad() {
+    if (this.focusOnInput) this.inputRef.focus();
   }
 
   componentWillUpdate() {
@@ -51,7 +59,7 @@ export class inputHiweb {
   }
 
   handleChange(event) {
-    this.value = event.target ? event.target.value : null;
+    this.value = event.target ? event.target.value : '';
     this.validate();
     this.changed.emit({title: this.title, value: this.value, isValid: this.valid});
     this.isChanged = true;
@@ -107,6 +115,7 @@ export class inputHiweb {
               : null
           }
           <input
+            ref = {(el : HTMLElement) =>  this.inputRef = el}
             disabled={this.disable}
             type={this.type}
             style={this.borderColor()}

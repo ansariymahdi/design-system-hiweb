@@ -63,6 +63,7 @@ import speechBubble from './../assets/icons/speech-bubble.svg';
 import advertisement from './../assets/icons/advertisement.svg';
 import mail from './../assets/icons/mail.svg';
 import messenger from './../assets/icons/messenger.svg';
+import filter from './../assets/icons/filter.svg';
 
 const icons = {
   arrowUp,
@@ -129,7 +130,8 @@ const icons = {
   speechBubble,
   advertisement,
   mail,
-  messenger
+  messenger,
+  filter
 }
 
 export default icons
