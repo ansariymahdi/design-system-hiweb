@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Item } from "./components/better-multiselect-dropdown-hiweb/better-multiselect-dropdown-hiweb";
 import { CheckBoxInput, DateInput, SelectOptionInput, TextInput } from "./components/form-hiweb/form-hiweb";
 import { Item as Item1 } from "./components/multiselect-dropdown-hiweb/multiselect-dropdown-hiweb";
+import { Search } from "./components/table-hiweb/table-hiweb";
 export namespace Components {
     interface AlertHiweb {
         "timer": any;
@@ -142,13 +143,14 @@ export namespace Components {
     }
     interface TableHiweb {
         "checkbox": boolean;
-        "dataProp": { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
+        "dataProp": { head: { title: string, options: string[], colspan: number, search: Search }[], body: { type: string, data: any }[][] };
         "dataStringProp": string;
         "info": { title: string, content: string }[];
         "numberOfRows": number;
         "orderBy": { order: string, options: string[] };
         "page": number;
         "range": number[];
+        "searchInputPlaceholder": string;
         "totalDocuments": number;
     }
     interface TextareaHiweb {
@@ -535,7 +537,7 @@ declare namespace LocalJSX {
     }
     interface TableHiweb {
         "checkbox"?: boolean;
-        "dataProp"?: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
+        "dataProp"?: { head: { title: string, options: string[], colspan: number, search: Search }[], body: { type: string, data: any }[][] };
         "dataStringProp"?: string;
         "info"?: { title: string, content: string }[];
         "numberOfRows"?: number;
@@ -548,6 +550,7 @@ declare namespace LocalJSX {
         "orderBy"?: { order: string, options: string[] };
         "page"?: number;
         "range"?: number[];
+        "searchInputPlaceholder"?: string;
         "totalDocuments"?: number;
     }
     interface TextareaHiweb {

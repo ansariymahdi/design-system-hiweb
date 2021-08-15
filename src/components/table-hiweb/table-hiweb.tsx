@@ -3,13 +3,20 @@ import Fragment from 'stencil-fragment'
 
 import icons from '../../modules/iconsList';
 
+export interface Search {
+  title: string,
+  type: string,
+  placeholder: string,
+  value: any
+}
+
 @Component({
   tag: 'table-hiweb',
   styleUrl: 'table-hiweb.scss',
   shadow: false,
 })
 export class TableHiweb {
-  @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
+  @Prop({ attribute: 'data' }) dataProp: { head: { title: string, options: string[], colspan: number, search: Search }[], body: { type: string, data: any }[][] };
   @Prop({ attribute: 'dataString' }) dataStringProp: string;
   @Prop() checkbox: boolean = true;
   @Prop() page: number = 1;
@@ -18,8 +25,9 @@ export class TableHiweb {
   @Prop() totalDocuments: number = 8;
   @Prop() orderBy: { order: string, options: string[] } = { order: 'زمان', options: ['بازدید', 'سیبیب', 'سیبسبیسیبسیب', 'سشیبسیب'] };
   @Prop() info: { title: string, content: string }[] = [{ title: 'تعداد', content: '۲۳۴۲۳۴' }]
+  @Prop() searchInputPlaceholder: string = 'جستجو';
 
-  @State() data: { head: { title: string, options: string[], colspan: number }[], body: { type: string, data: any }[][] };
+  @State() data: { head: { title: string, options: string[], colspan: number, search: Search }[], body: { type: string, data: any }[][] };
   @State() options: { options: string[], colspan: number }[] = [];
   @State() allSelected: boolean = false;
 
@@ -29,6 +37,7 @@ export class TableHiweb {
 
   @State() mousePosition: {x: number, y: number} = {x: 0, y: 0};
 
+  @State() selectedFilterHeader: number = 0;
   @State() timerId: any;
 
   @Event() buttonClicked: EventEmitter<string|{text: string,detail: string}>;
@@ -118,11 +127,21 @@ export class TableHiweb {
             : null
         }
         {
-          this.data.head.map(({ title }, index) => {
+          this.data.head.map(({ title, search }, index) => {
             return (
               <th
-                class={this.options[index].options.join(' ')}
+                class={
+                  this.options[index].options.join(' ')
+                  + ' ' +
+                  (search ? 'search-header' : '')
+                  + ' ' +
+                  (this.selectedFilterHeader - 1 === index ? 'search-filter-selected' : '')
+                }
                 colSpan={this.options[index].colspan}
+                onClick={() => {
+                  if (!search || this.selectedFilterHeader === index + 1) return this.selectedFilterHeader = 0;
+                  this.selectedFilterHeader = index + 1
+                }}
               > 
                 {title}
               </th>
@@ -131,6 +150,68 @@ export class TableHiweb {
         }
       </tr>
     );
+  }
+
+  renderSearch() {
+    if (this.selectedFilterHeader === 0) return;
+
+    const search = this.data.head[this.selectedFilterHeader - 1].search;
+
+    return ( 
+      <tr>
+        <td colSpan={this.data.head.length + (this.checkbox ? 1 : 0)}>
+          {
+            search.type === 'text'
+              ? (
+                <input-hiweb
+                  title={search.title}
+                  placeHolder={search.placeholder}
+                  valueProp={search.value}
+                  onChanged={e => {
+                    this.data.head[this.selectedFilterHeader - 1].search.value = e['detail'].value;
+                    if (this.timerId) clearTimeout(this.timerId);
+                    this.timerId = setTimeout(() => {
+                      if (e['detail'].value) this.searchInputChanged.emit(e['detail'])
+                    }, 1000); 
+                  }}
+                ></input-hiweb>
+              )
+              : (
+                <div class="sort">
+                  <div class="text">
+                    {search.placeholder}
+                  </div>
+                  <div class="input-group">
+                    <select
+                      class="form-select"
+                      id="inputGroupSelect01"
+                      onInput={(event) => {
+                        console.log(event.target['value']);
+                        this.orderChanged.emit(event.target['value'])
+                      }}
+                    >
+                      <option
+                        selected
+                        value={this.orderBy.order}
+                      >{this.orderBy.order}</option>
+                      {
+                        this.orderBy.options.map(option => {
+                          return (
+                            <option
+                              value={option}
+                            >{option}</option>
+                          )
+                        })
+                      }
+                    </select>
+                  </div>
+                </div>
+              )
+          }
+          
+        </td>
+      </tr>
+    )
   }
 
   renderRow = (dataArray, rowIndex) => {
@@ -371,9 +452,9 @@ export class TableHiweb {
               this.info && this.renderInfo()
             }
           </div>
-          <div class="search">
+          {/* <div class="search">
             <input-hiweb
-              placeHolder="جستجو"
+              placeHolder={this.searchInputPlaceholder}
               onChanged={e => {
                 if (this.timerId) clearTimeout(this.timerId);
                 this.timerId = setTimeout(() => {
@@ -381,8 +462,8 @@ export class TableHiweb {
                 }, 1000); 
               }}
             ></input-hiweb>
-          </div>
-          <div class="sort">
+          </div> */}
+          {/* <div class="sort">
             <div class="text">
               مرتب سازی براساس
             </div>
@@ -407,7 +488,7 @@ export class TableHiweb {
                 }
               </select>
             </div>
-          </div>
+          </div> */}
         </div>
         <div
          class="table-container scrollbox"
@@ -421,6 +502,7 @@ export class TableHiweb {
               {this.renderHead()}
             </thead>
             <tbody>
+              {this.renderSearch()}
               {
                 this.data.body.map((eachRow, index) => this.renderRow(eachRow, index))
               }
